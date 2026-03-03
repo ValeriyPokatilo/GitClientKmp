@@ -1,0 +1,174 @@
+
+# Dev
+
+.dev_only: &dev_only
+  - /^build/ios/dev/[0-9]*$/
+  - /^build/dev/[0-9]*$/
+
+build ios dev:
+  extends: .build_ios_mpp
+  environment: dev/ios
+  variables:
+    MATCH_APP_IDENTIFIERS: $IOS_BUNDLEID_DEV
+    FIREBASE_BUNDLEID: $IOS_BUNDLEID_DEV
+    BUILD_SCHEME: $IOS_SCHEME_DEV
+  except:
+    - branches
+  only:
+    *dev_only
+
+deploy ios dev to firebase:
+  extends: .deploy_ios_firebase
+  environment: dev/ios/firebase
+  variables:
+    MATCH_APP_IDENTIFIERS: $IOS_BUNDLEID_DEV
+    BUILD_SCHEME: $IOS_SCHEME_DEV
+    BUILD_EXPORT_METHOD: 'enterprise'
+    FIREBASE_APP_ID: $FIREBASE_APP_ID_IOS_DEV
+  except:
+    - branches
+  needs:
+    - build ios dev
+  only:
+    *dev_only
+
+deploy ios dev to gitlab:
+  extends: .deploy_ios_gitlab
+  environment: dev/ios/gitlab
+  variables:
+    MATCH_APP_IDENTIFIERS: $IOS_BUNDLEID_DEV
+    BUILD_SCHEME: $IOS_SCHEME_DEV
+    BUILD_EXPORT_METHOD: 'enterprise'
+  except:
+    - branches
+  needs:
+    - build ios dev
+  only:
+    *dev_only
+
+# Stage
+
+.stage_only: &stage_only
+  - /^build/ios/stage/[0-9]*$/
+  - /^build/stage/[0-9]*$/
+
+build ios stage:
+  extends: .build_ios_mpp
+  environment: stage/ios
+  variables:
+    MATCH_APP_IDENTIFIERS: $IOS_BUNDLEID_STAGE
+    FIREBASE_BUNDLEID: $IOS_BUNDLEID_STAGE
+    BUILD_SCHEME: $IOS_SCHEME_STAGE
+  except:
+    - branches
+  only:
+    *stage_only
+
+deploy ios stage to firebase:
+  extends: .deploy_ios_firebase
+  environment: stage/ios/firebase
+  variables:
+    MATCH_APP_IDENTIFIERS: $IOS_BUNDLEID_STAGE
+    BUILD_SCHEME: $IOS_SCHEME_STAGE
+    BUILD_EXPORT_METHOD: 'enterprise'
+    FIREBASE_APP_ID: $FIREBASE_APP_ID_IOS_STAGE
+  except:
+    - branches
+  needs:
+    - build ios stage
+  only:
+    *stage_only
+
+deploy ios stage to gitlab:
+  extends: .deploy_ios_gitlab
+  environment: stage/ios/gitlab
+  variables:
+    MATCH_APP_IDENTIFIERS: $IOS_BUNDLEID_STAGE
+    BUILD_SCHEME: $IOS_SCHEME_STAGE
+    BUILD_EXPORT_METHOD: 'enterprise'
+  except:
+    - branches
+  needs:
+    - build ios stage
+  only:
+    *stage_only
+
+# Prod
+
+.prod_only: &prod_only
+  - /^build/ios/prod/[0-9]*$/
+  - /^build/prod/[0-9]*$/
+
+build ios prod:
+  extends: .build_ios_mpp
+  environment: prod/ios
+  variables:
+    MATCH_APP_IDENTIFIERS: $IOS_BUNDLEID_PROD
+    FIREBASE_BUNDLEID: $IOS_BUNDLEID_PROD
+    BUILD_SCHEME: $IOS_SCHEME_PROD
+  except:
+    - branches
+  only:
+    *prod_only
+
+deploy ios prod to firebase:
+  extends: .deploy_ios_firebase
+  environment: prod/ios/firebase
+  variables:
+    MATCH_APP_IDENTIFIERS: $IOS_BUNDLEID_PROD
+    BUILD_SCHEME: $IOS_SCHEME_PROD
+    BUILD_EXPORT_METHOD: 'ad-hoc'
+    FIREBASE_APP_ID: $FIREBASE_APP_ID_IOS_PROD
+  except:
+    - branches
+  needs:
+    - build ios prod
+  only:
+    *prod_only
+
+deploy ios prod to gitlab:
+  extends: .deploy_ios_gitlab
+  environment: prod/ios/gitlab
+  variables:
+    MATCH_APP_IDENTIFIERS: $IOS_BUNDLEID_PROD
+    BUILD_SCHEME: $IOS_SCHEME_PROD
+    BUILD_EXPORT_METHOD: 'ad-hoc'
+  except:
+    - branches
+  needs:
+    - build ios prod
+  only:
+    *prod_only
+
+# AppStore
+
+.appstore_only: &appstore_only
+  - /^build/ios/appstore/[0-9]*$/
+
+build ios prod appstore:
+  extends: .build_ios_mpp
+  environment: appstore/ios
+  variables:
+    MATCH_APP_IDENTIFIERS: $IOS_BUNDLEID_PROD
+    FIREBASE_BUNDLEID: $IOS_BUNDLEID_PROD
+    BUILD_SCHEME: $IOS_SCHEME_PROD
+    IS_APPSTORE: "true"
+  except:
+    - branches
+  only:
+    *appstore_only
+
+deploy ios prod to appstore:
+  extends: .deploy_ios_appstore
+  environment: appstore/ios
+  variables:
+    MATCH_APP_IDENTIFIERS: $IOS_BUNDLEID_PROD
+    BUILD_SCHEME: $IOS_SCHEME_PROD
+    BUILD_EXPORT_METHOD: 'app-store'
+  when: manual
+  except:
+    - branches
+  needs:
+    - build ios prod appstore
+  only:
+    *appstore_only

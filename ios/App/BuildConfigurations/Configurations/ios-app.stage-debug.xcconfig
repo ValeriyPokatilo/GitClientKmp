@@ -1,0 +1,2 @@
+#include "../../../BuildConfigurations/default.debug.xcconfig"
+#include "../ios-app.stage.xcconfig"

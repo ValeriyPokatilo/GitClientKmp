@@ -1,0 +1,2 @@
+#include "../../../BuildConfigurations/default.release.xcconfig"
+#include "../ios-app.prod.xcconfig"

@@ -1,0 +1,51 @@
+include:
+  - 'https://gitlab.icerockdev.com/open-source/gitlab-ci-mobile/-/raw/v2/.common.yml'
+  - 'https://gitlab.icerockdev.com/open-source/gitlab-ci-mobile/-/raw/v2/.ios.yml'
+  - 'https://gitlab.icerockdev.com/open-source/gitlab-ci-mobile/-/raw/v2/.android.yml'
+  - .gitlab-ci-android.yml
+  - .gitlab-ci-ios.yml
+  - /testlab.yml
+
+stages:
+  - check
+  - build
+  - deploy
+
+variables:
+  extends: .global_variables
+  BUILD_CRASHLYTICS_TEST_GROUPS: "icerock-testers"
+
+  # iOS-config
+  GRADLE_PROJECT_PATH: mpp-library
+  XCODE_PROJECT_PATH: App/ios-app.xcodeproj # relative to IOS_ROOT_DIR (default - ios)
+
+  IOS_BUNDLEID_DEV: "dev.icerock.boilerplate.dev"
+  IOS_SCHEME_DEV: "ios-app-dev"
+  FIREBASE_APP_ID_IOS_DEV: "1:509592578403:ios:26cef826ef428a21ffcb56"
+
+  IOS_BUNDLEID_STAGE: "dev.icerock.boilerplate.stage"
+  IOS_SCHEME_STAGE: "ios-app-stage"
+  FIREBASE_APP_ID_IOS_STAGE: "1:509592578403:ios:c35eb1a9dd27087effcb56"
+
+  IOS_BUNDLEID_PROD: "dev.icerock.boilerplate"
+  IOS_SCHEME_PROD: "ios-app-prod"
+  FIREBASE_APP_ID_IOS_PROD: "1:509592578403:ios:eda143962ef96913ffcb56"
+
+  # Android-config
+  FIREBASE_APP_ID_ANDROID_DEV: "1:509592578403:android:de36668b13f6af77ffcb56"
+  FIREBASE_APP_ID_ANDROID_STAGE: "1:509592578403:android:0cc17adab53556c6ffcb56"
+  FIREBASE_APP_ID_ANDROID_PROD: "1:509592578403:android:bd25d2fbf3fb70bbffcb56"
+
+tests:
+  extends: .checks
+  script:
+    - ./fastcheck.sh
+  only:
+    - merge_requests
+
+full-tests:
+  extends: .checks
+  script:
+    - ./fullcheck.sh
+  only:
+    - schedules

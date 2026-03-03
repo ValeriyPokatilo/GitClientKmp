@@ -1,0 +1,159 @@
+
+# Dev
+
+.dev_only: &dev_only
+  - /^build/android/dev/[0-9]*$/
+  - /^build/dev/[0-9]*$/
+
+build android dev:
+  extends: .build_android
+  environment: dev/android
+  variables:
+    ASSEMBLE_TASK: :android:app:assembleDevRelease :android:app:bundleDevRelease
+    ARTIFACT_APK: android/app/build/outputs/apk/dev/release/android-app-dev-release.apk
+    ARTIFACT_AAB: android/app/build/outputs/bundle/devRelease/android-app-dev-release.aab
+  except:
+    - branches
+  only:
+    *dev_only
+
+deploy android dev to firebase:
+  extends: .deploy_android_firebase
+  environment: dev/android/firebase
+  variables:
+    FIREBASE_APP_ID: $FIREBASE_APP_ID_ANDROID_DEV
+  except:
+    - branches
+  needs:
+    - build android dev
+  only:
+    *dev_only
+
+deploy android dev to gitlab:
+  extends: .deploy_android_gitlab
+  environment: dev/android/gitlab
+  except:
+    - branches
+  needs:
+    - build android dev
+  only:
+    *dev_only
+
+# remove dot to enable Firebase Testlab for Android (setup of service account required!)
+.deploy testlab dev:
+  extends: .deploy_android_firebase_test_lab
+  environment: dev/android/testlab
+  variables:
+    FIREBASE_APP_ID: $FIREBASE_APP_ID_ANDROID_DEV
+  except:
+    - branches
+  needs:
+    - build android dev
+  only:
+    *dev_only
+
+# Stage
+
+.stage_only: &stage_only
+  - /^build/android/stage/[0-9]*$/
+  - /^build/stage/[0-9]*$/
+
+build android stage:
+  extends: .build_android
+  environment: stage/android
+  variables:
+    ASSEMBLE_TASK: :android:app:assembleStageRelease :android:app:bundleStageRelease
+    ARTIFACT_APK: android/app/build/outputs/apk/stage/release/android-app-stage-release.apk
+    ARTIFACT_AAB: android/app/build/outputs/bundle/stageRelease/android-app-stage-release.aab
+  except:
+    - branches
+  only:
+    *stage_only
+
+deploy android stage to firebase:
+  extends: .deploy_android_firebase
+  environment: stage/android/firebase
+  variables:
+    FIREBASE_APP_ID: $FIREBASE_APP_ID_ANDROID_STAGE
+  except:
+    - branches
+  needs:
+    - build android stage
+  only:
+    *stage_only
+
+deploy android stage to gitlab:
+  extends: .deploy_android_gitlab
+  environment: stage/android/gitlab
+  except:
+    - branches
+  needs:
+    - build android stage
+  only:
+    *stage_only
+
+# remove dot to enable Firebase Testlab for Android (setup of service account required!)
+.deploy testlab stage:
+  extends: .deploy_android_firebase_test_lab
+  environment: stage/android/testlab
+  variables:
+    FIREBASE_APP_ID: $FIREBASE_APP_ID_ANDROID_STAGE
+  except:
+    - branches
+  needs:
+    - build android stage
+  only:
+    *stage_only
+
+# Prod
+
+.prod_only: &prod_only
+  - /^build/android/prod/[0-9]*$/
+  - /^build/prod/[0-9]*$/
+
+build android prod:
+  extends: .build_android
+  environment: prod/android
+  variables:
+    ASSEMBLE_TASK: :android:app:assembleProdRelease :android:app:bundleProdRelease
+    ARTIFACT_APK: android/app/build/outputs/apk/prod/release/android-app-prod-release.apk
+    ARTIFACT_AAB: android/app/build/outputs/bundle/prodRelease/android-app-prod-release.aab
+  except:
+    - branches
+  only:
+    *prod_only
+
+deploy android prod to firebase:
+  extends: .deploy_android_firebase
+  environment: prod/android/firebase
+  variables:
+    FIREBASE_APP_ID: $FIREBASE_APP_ID_ANDROID_PROD
+  except:
+    - branches
+  needs:
+    - build android prod
+  only:
+    *prod_only
+
+deploy android prod to gitlab:
+  extends: .deploy_android_gitlab
+  environment: prod/android/gitlab
+  except:
+    - branches
+  needs:
+    - build android prod
+  only:
+    *prod_only
+
+# remove dot to enable Firebase Testlab for Android (setup of service account required!)
+.deploy testlab prod:
+  extends: .deploy_android_firebase_test_lab
+  environment: prod/android/testlab
+  variables:
+    FIREBASE_APP_ID: $FIREBASE_APP_ID_ANDROID_PROD
+  except:
+    - branches
+  needs:
+    - build android prod
+  only:
+    *prod_only

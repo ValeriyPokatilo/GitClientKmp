@@ -1,0 +1,2 @@
+#include "../../../BuildConfigurations/default.debug.xcconfig"
+#include "../DesignSystem.prod.xcconfig"
