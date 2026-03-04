@@ -19,6 +19,10 @@ android {
         versionCode = Integer.parseInt(project.property("VERSION_CODE") as String)
         versionName = project.property("VERSION_NAME") as String
     }
+
+    buildFeatures {
+        viewBinding = true
+    }
 }
 
 dependencies {
