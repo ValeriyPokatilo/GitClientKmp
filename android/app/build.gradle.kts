@@ -14,7 +14,7 @@ android {
     namespace = "org.example.app"
 
     defaultConfig {
-        applicationId = "dev.icerock.boilerplate"
+        applicationId = "app.xl.gitclientkmp"
 
         versionCode = Integer.parseInt(project.property("VERSION_CODE") as String)
         versionName = project.property("VERSION_NAME") as String
