@@ -5,8 +5,6 @@
 package org.example.app
 
 import android.app.Application
-import com.google.firebase.FirebaseApp
-import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dev.icerock.moko.crashreporting.crashlytics.CrashlyticsLogger
 import org.example.android.utils.LogcatAntilog
 import org.example.android.utils.navigation.ScreenNameExtension
@@ -19,8 +17,8 @@ class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        FirebaseApp.initializeApp(this)
-        FirebaseCrashlytics.getInstance().isCrashlyticsCollectionEnabled = BuildConfig.DEBUG.not()
+        // FirebaseApp.initializeApp(this)
+        // FirebaseCrashlytics.getInstance().isCrashlyticsCollectionEnabled = BuildConfig.DEBUG.not()
 
         val antilog: LogcatAntilog? = if (BuildConfig.DEBUG) {
             LogcatAntilog()

@@ -3,8 +3,9 @@
  */
 
 plugins {
+    // TODO: - uncomment to use Firebase
+    // id("com.google.gms.google-services")
     id("android-app-convention")
-    id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
     id("android-compose-convention")
 }
