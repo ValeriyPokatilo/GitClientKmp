@@ -369,7 +369,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp \"${PROJECT_DIR}/GoogleService/GoogleService-Info-${PRODUCT_BUNDLE_IDENTIFIER}.plist\" \"${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}/GoogleService-Info.plist\" \n";
+			shellScript = "#cp \"${PROJECT_DIR}/GoogleService/GoogleService-Info-${PRODUCT_BUNDLE_IDENTIFIER}.plist\" \"${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}/GoogleService-Info.plist\" \n";
 		};
 		559D87BD6FD631B7A2DA2715 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
