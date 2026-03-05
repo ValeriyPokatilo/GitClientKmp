@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import `mobile-moko-boilerplate`.`mpp-library`.feature.common.MR
+import app.xl.gitclientkmp.MR
 import org.example.app.databinding.FragmentAuthBinding
 
 class AuthFragment : Fragment() {

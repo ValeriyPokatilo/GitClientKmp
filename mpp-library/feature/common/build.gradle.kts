@@ -11,3 +11,7 @@ dependencies {
     commonMainImplementation(platform(libs.koin.bom))
     commonMainImplementation(libs.koin.core)
 }
+
+multiplatformResources {
+    resourcesPackage = "app.xl.gitclientkmp"
+}
