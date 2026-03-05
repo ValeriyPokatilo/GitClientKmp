@@ -19,6 +19,10 @@
 		76EF93102F5A1229001B63C8 /* RepositoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF930D2F5A1229001B63C8 /* RepositoriesListViewController.swift */; };
 		76EF93132F5A1242001B63C8 /* RepositoryDetailInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76EF93122F5A1242001B63C8 /* RepositoryDetailInfoViewController.xib */; };
 		76EF93142F5A1242001B63C8 /* RepositoryDetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF93112F5A1242001B63C8 /* RepositoryDetailInfoViewController.swift */; };
+		76EF93172F5A12D5001B63C8 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF93162F5A12D5001B63C8 /* AppCoordinator.swift */; };
+		76EF93192F5A12E8001B63C8 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF93182F5A12E8001B63C8 /* AuthCoordinator.swift */; };
+		76EF931B2F5A12F7001B63C8 /* RepositoriesListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF931A2F5A12F7001B63C8 /* RepositoriesListCoordinator.swift */; };
+		76EF931D2F5A1309001B63C8 /* RepositoryDetailInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF931C2F5A1309001B63C8 /* RepositoryDetailInfoCoordinator.swift */; };
 		94108688E7D935C98DA98035 /* Pods_ios_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27102F5051BCB9B000CA3866 /* Pods_ios_app.framework */; };
 		D25029F02DB0CD7E000149C7 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D25029EE2DB0CD7E000149C7 /* Preview Assets.xcassets */; };
 		D25029FC2DB0F55F000149C7 /* CombineObservableObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25029FB2DB0F55F000149C7 /* CombineObservableObject.swift */; };
@@ -75,6 +79,10 @@
 		76EF930E2F5A1229001B63C8 /* RepositoriesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoriesListViewController.xib; sourceTree = "<group>"; };
 		76EF93112F5A1242001B63C8 /* RepositoryDetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailInfoViewController.swift; sourceTree = "<group>"; };
 		76EF93122F5A1242001B63C8 /* RepositoryDetailInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryDetailInfoViewController.xib; sourceTree = "<group>"; };
+		76EF93162F5A12D5001B63C8 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
+		76EF93182F5A12E8001B63C8 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
+		76EF931A2F5A12F7001B63C8 /* RepositoriesListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesListCoordinator.swift; sourceTree = "<group>"; };
+		76EF931C2F5A1309001B63C8 /* RepositoryDetailInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailInfoCoordinator.swift; sourceTree = "<group>"; };
 		8F39AE06F9CE75BFD6022A6C /* Pods-ios-app.prod-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-app.prod-debug.xcconfig"; path = "Target Support Files/Pods-ios-app/Pods-ios-app.prod-debug.xcconfig"; sourceTree = "<group>"; };
 		B37F2F2026E0B42C0054DB95 /* ios-app.shared.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "ios-app.shared.xcconfig"; sourceTree = "<group>"; };
 		B37F2F2226E0C5010054DB95 /* ios-app.dev.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = "ios-app.dev.xcconfig"; sourceTree = "<group>"; };
@@ -184,6 +192,7 @@
 				45F4791B219463C7003D25FA /* AppDelegate.swift */,
 				45D8D7F926FB24AE00DD3A58 /* Environment.swift */,
 				D2E6AC0C2DAE1D4900D01DC1 /* MobileApp.swift */,
+				76EF93152F5A12AF001B63C8 /* Coordinators */,
 				76EF93082F5A11B6001B63C8 /* Presentation */,
 				D2F843392ADF0D8200657354 /* Di */,
 				0E5748052660B2E800C9BCDB /* Firebase */,
@@ -216,6 +225,17 @@
 				76EF93122F5A1242001B63C8 /* RepositoryDetailInfoViewController.xib */,
 			);
 			path = Presentation;
+			sourceTree = "<group>";
+		};
+		76EF93152F5A12AF001B63C8 /* Coordinators */ = {
+			isa = PBXGroup;
+			children = (
+				76EF93162F5A12D5001B63C8 /* AppCoordinator.swift */,
+				76EF93182F5A12E8001B63C8 /* AuthCoordinator.swift */,
+				76EF931A2F5A12F7001B63C8 /* RepositoriesListCoordinator.swift */,
+				76EF931C2F5A1309001B63C8 /* RepositoryDetailInfoCoordinator.swift */,
+			);
+			path = Coordinators;
 			sourceTree = "<group>";
 		};
 		AFC23CCD08E0198C409FB435 /* Pods */ = {
@@ -470,16 +490,20 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				76EF93172F5A12D5001B63C8 /* AppCoordinator.swift in Sources */,
 				D2FD61E12DAE4ADA00A37209 /* ViewModelWrapper.swift in Sources */,
 				D25029FC2DB0F55F000149C7 /* CombineObservableObject.swift in Sources */,
 				D2FD61E72DAE4AEE00A37209 /* CFlowExt.swift in Sources */,
+				76EF931D2F5A1309001B63C8 /* RepositoryDetailInfoCoordinator.swift in Sources */,
 				76EF93142F5A1242001B63C8 /* RepositoryDetailInfoViewController.swift in Sources */,
 				D2FD61E82DAE4AEE00A37209 /* ViewModelState.swift in Sources */,
 				D2FD61E92DAE4AEE00A37209 /* ViewModelBinding.swift in Sources */,
 				D2FD61EA2DAE4AEE00A37209 /* ViewModelObservable.swift in Sources */,
 				D2FD61EB2DAE4AEE00A37209 /* ViewModelStateNullable.swift in Sources */,
 				D2E6AC0D2DAE1D4900D01DC1 /* MobileApp.swift in Sources */,
+				76EF93192F5A12E8001B63C8 /* AuthCoordinator.swift in Sources */,
 				45F47922219463C7003D25FA /* AppDelegate.swift in Sources */,
+				76EF931B2F5A12F7001B63C8 /* RepositoriesListCoordinator.swift in Sources */,
 				D2F8433B2ADF0D9300657354 /* Koin.swift in Sources */,
 				76EF93102F5A1229001B63C8 /* RepositoriesListViewController.swift in Sources */,
 				D2F446F72D13468300A410C5 /* KoinExtension.swift in Sources */,
