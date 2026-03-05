@@ -1,13 +1,9 @@
-//
-// Copyright (c) 2025 IceRock MAG Inc. Use of this source code is governed by the Apache 2.0 license.
-//
-
 import FirebaseCore
 import FirebaseCrashlytics
 import MultiPlatformLibrary
 import UIKit
 
-class AppDelegate: NSObject, UIApplicationDelegate {
+final class AppDelegate: NSObject, UIApplicationDelegate {
     var window: UIWindow?
 
     func application(
@@ -25,4 +21,18 @@ class AppDelegate: NSObject, UIApplicationDelegate {
 
         return true
     }
+    
+    func application(
+        _ application: UIApplication,
+        configurationForConnecting connectingSceneSession: UISceneSession,
+        options: UIScene.ConnectionOptions
+    ) -> UISceneConfiguration {
+        let sceneConfiguration = UISceneConfiguration(
+            name: "Default Configuration",
+            sessionRole: connectingSceneSession.role
+        )
+        sceneConfiguration.delegateClass = SceneDelegate.self
+        return sceneConfiguration
+    }
+
 }
