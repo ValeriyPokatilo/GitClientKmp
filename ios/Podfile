@@ -23,6 +23,8 @@ target 'ios-app' do
   pod 'R.swift', '~> 7.8.0'           # Code generation for resources  https://github.com/mac-cain13/R.swift
   pod 'SwiftFormat/CLI', '~> 0.49.4'   # Install swift-format command line tool, can be called for autoformat or lint
   
+  pod 'RxKeyboard', '~> 1.0.0'        # Reactive way of observing keyboard frame changes https://github.com/RxSwiftCommunity/RxKeyboard
+
   # https://github.com/ninjaprox/NVActivityIndicatorView - множество вариантов отображения загрузки с удобным API
   # pod 'NVActivityIndicatorView', '~> 5.1.1'
   
@@ -33,7 +35,6 @@ target 'ios-app' do
   # pod 'XLPagerTabStrip', '~> 9.0'     # Tabs controller like an Android PagerTabStrip
   # pod 'AlamofireImage', '~> 3.6.0'    # Image loader with cache https://github.com/Alamofire/AlamofireImage
   # pod 'Down', '~> 0.10.0'             # Markdown rendering https://github.com/johnxnguyen/Down
-  # pod 'RxKeyboard', '~> 1.0.0'        # Reactive way of observing keyboard frame changes https://github.com/RxSwiftCommunity/RxKeyboard
   # pod 'SwiftLint', '~> 0.40.3'        # A tool to enforce Swift style and conventions. https://github.com/realm/SwiftLint
   # pod 'DatePickerDialog', '~> 4.0'    # Date picker dialog (based on UIDatePicker) https://github.com/squimer/DatePickerDialog-iOS-Swift
   # pod "AlignedCollectionViewFlowLayout", '~> 1.1.2' # Collection view layout with custom align https://github.com/mischa-hildebrand/AlignedCollectionViewFlowLayout

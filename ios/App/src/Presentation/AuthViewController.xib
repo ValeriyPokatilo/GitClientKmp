@@ -11,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="AuthViewController" customModule="mokoApp" customModuleProvider="target">
             <connections>
+                <outlet property="bottomConstraint" destination="uxA-Hf-IPq" id="P5E-1a-a2m"/>
                 <outlet property="errorLabel" destination="LTU-AK-ZcQ" id="4as-oH-kco"/>
                 <outlet property="signInButton" destination="MOz-GQ-DtL" id="cgD-lh-F2J"/>
                 <outlet property="tokenTextField" destination="aJz-FB-wly" id="qYr-Ey-sic"/>
