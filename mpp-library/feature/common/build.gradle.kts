@@ -10,6 +10,7 @@ dependencies {
     commonMainImplementation(libs.moko.resources)
     commonMainImplementation(platform(libs.koin.bom))
     commonMainImplementation(libs.koin.core)
+    commonMainImplementation(libs.kotlinSerialization)
 }
 
 multiplatformResources {
