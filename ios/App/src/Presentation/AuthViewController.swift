@@ -12,10 +12,18 @@ final class AuthViewController: UIViewController {
 
     private let disposeBag = DisposeBag()
 
+    private let viewModel: AuthViewModel = AuthViewModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
         setupKeyboardBinding()
+        bindViewModel()
+    }
+
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        navigationController?.setNavigationBarHidden(true, animated: animated)
     }
 
     private func setupUI() {
@@ -58,7 +66,64 @@ final class AuthViewController: UIViewController {
             .disposed(by: disposeBag)
     }
 
+    private func bindViewModel() {
+        tokenTextField.rx.text.orEmpty
+            .subscribe(onNext: { [weak self] text in
+                self?.viewModel.onTokenChanged(text: text)
+            })
+            .disposed(by: disposeBag)
+
+        Task { [weak self] in
+            guard let self = self else { return }
+            for await state in self.viewModel.state {
+                self.renderState(state)
+            }
+        }
+
+        Task { [weak self] in
+            guard let self = self else { return }
+            for await action in self.viewModel.action {
+                self.handleAction(action)
+            }
+        }
+    }
+
+    private func renderState(_ state: AuthViewModelState) {
+        switch state {
+        case is AuthViewModelStateIdle:
+            errorLabel.isHidden = true
+            signInButton.isEnabled = true
+            signInButton.alpha = 1.0
+            tokenTextField.layer.borderColor = UIColor.grey.cgColor
+        // TODO: - hide indicator
+
+        case is AuthViewModelStateLoading:
+            signInButton.isEnabled = false
+            signInButton.alpha = 0.5
+        // TODO: - show indicator
+
+        case is AuthViewModelStateInvalidInput:
+            errorLabel.isHidden = false
+            errorLabel.text = MR.strings().invalid_token_reason.desc()
+                .localized()
+            tokenTextField.layer.borderColor = UIColor.red.cgColor
+            signInButton.isEnabled = false
+
+        default: break
+        }
+    }
+
+    private func handleAction(_ action: AuthViewModelAction) {
+        if action is AuthViewModelActionRouteToMain {
+            // TODO: - Navigate to List
+        } else if let errorAction = action as? AuthViewModelActionShowError {
+            // TODO: - Show alert
+        } else if action is AuthViewModelActionFocusOnTokenField {
+            tokenTextField.becomeFirstResponder()
+        }
+    }
+
     @IBAction private func signInButtonAction(_ sender: Any) {
-        // TODO: - viewModel.onSignInButtonPressed
+        viewModel.onSignButtonPressed()
     }
 }
