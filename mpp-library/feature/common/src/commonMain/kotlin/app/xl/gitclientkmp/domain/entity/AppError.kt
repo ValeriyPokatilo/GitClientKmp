@@ -1,4 +1,4 @@
-package app.xl.androidapp.domain.entity
+package app.xl.androidapp.app.xl.gitclientkmp.entity
 
 sealed class AppError(
     message: String?,

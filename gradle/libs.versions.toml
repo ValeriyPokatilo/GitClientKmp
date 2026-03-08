@@ -138,6 +138,7 @@ moko-crashReporting-crashlytics = { module = "dev.icerock.moko:crash-reporting-c
 moko-crashReporting-napier = { module = "dev.icerock.moko:crash-reporting-napier", version.ref = "mokoCrashReportingVersion" }
 
 # multiplatform
+multiplatformSettings-noArg = { module = "com.russhwolf:multiplatform-settings-no-arg", version.ref = "multiplatformSettingsVersion" }
 multiplatformSettings = { module = "com.russhwolf:multiplatform-settings", version.ref = "multiplatformSettingsVersion" }
 multiplatformSettings-serialization = { module = "com.russhwolf:multiplatform-settings-serialization", version.ref = "multiplatformSettingsVersion" }
 multiplatformSettings-test = { module = "com.russhwolf:multiplatform-settings-test", version.ref = "multiplatformSettingsVersion" }

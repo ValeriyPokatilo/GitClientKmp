@@ -9,4 +9,5 @@ dependencies {
     commonMainImplementation(libs.moko.resources)
     commonMainImplementation(platform(libs.koin.bom))
     commonMainImplementation(libs.koin.core)
+    commonMainImplementation(project(":mpp-library:feature:common"))
 }

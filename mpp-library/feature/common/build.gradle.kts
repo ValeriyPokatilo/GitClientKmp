@@ -11,6 +11,8 @@ dependencies {
     commonMainImplementation(platform(libs.koin.bom))
     commonMainImplementation(libs.koin.core)
     commonMainImplementation(libs.kotlinSerialization)
+    commonMainImplementation(libs.multiplatformSettings)
+    commonMainImplementation(libs.multiplatformSettings.noArg)
 }
 
 multiplatformResources {

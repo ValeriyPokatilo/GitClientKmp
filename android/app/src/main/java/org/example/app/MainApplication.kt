@@ -5,11 +5,12 @@
 package org.example.app
 
 import android.app.Application
+import app.xl.gitclientkmp.di.authModule
+import app.xl.gitclientkmp.di.commonModule
 import dev.icerock.moko.crashreporting.crashlytics.CrashlyticsLogger
 import org.example.android.utils.LogcatAntilog
 import org.example.android.utils.navigation.ScreenNameExtension
 import org.example.app.navigation.allScreens
-import org.example.app.presentation.di.authModule
 import org.example.library.di.startDI
 import org.koin.android.ext.koin.androidContext
 import org.koin.android.ext.koin.androidLogger
@@ -40,7 +41,7 @@ class MainApplication : Application() {
 
             androidContext(this@MainApplication)
 
-            modules(authModule)
+            modules(authModule, commonModule)
         }
     }
 }

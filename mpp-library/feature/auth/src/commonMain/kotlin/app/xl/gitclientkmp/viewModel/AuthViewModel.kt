@@ -1,5 +1,6 @@
-package app.xl.gitclientkmp
+package app.xl.gitclientkmp.viewModel
 
+import app.xl.gitclientkmp.data.repository.AppRepository
 import dev.icerock.moko.mvvm.flow.cStateFlow
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.flow.Flow
@@ -8,7 +9,9 @@ import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
-class AuthViewModel : ViewModel() {
+class AuthViewModel(
+    private val repository: AppRepository
+) : ViewModel() {
 
     private var token = ""
 

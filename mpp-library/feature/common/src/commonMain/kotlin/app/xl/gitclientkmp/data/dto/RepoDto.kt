@@ -1,4 +1,4 @@
-package app.xl.androidapp.data.dto
+package app.xl.androidapp.app.xl.gitclientkmp.data.dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -7,7 +7,7 @@ import kotlinx.serialization.Serializable
 data class RepoDto(
     val id: Long,
     val name: String,
-    val owner: OwnerDto,
+    val owner: app.xl.androidapp.app.xl.gitclientkmp.data.dto.OwnerDto,
     val language: String? = null,
     val description: String? = null,
     @SerialName("default_branch") val defaultBranch: String
