@@ -1,8 +1,9 @@
-package app.xl.androidapp.app.xl.gitclientkmp.data.repository.mappers
+package app.xl.gitclientkmp.data.repository.mappers
 
-import app.xl.androidapp.app.xl.gitclientkmp.entity.RepositoryDetails
+import app.xl.gitclientkmp.data.dto.RepoDetailsDto
+import app.xl.gitclientkmp.domain.entity.RepositoryDetails
 
-fun app.xl.androidapp.app.xl.gitclientkmp.data.dto.RepoDetailsDto.toEntity(): RepositoryDetails {
+fun RepoDetailsDto.toEntity(): RepositoryDetails {
     return RepositoryDetails(
         id = this.id,
         name = this.name,

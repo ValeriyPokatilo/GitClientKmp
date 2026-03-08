@@ -1,6 +1,5 @@
 package app.xl.gitclientkmp.di
 
-
 import app.xl.gitclientkmp.data.repository.AppRepository
 import app.xl.gitclientkmp.data.storage.KeyValueStorage
 import com.russhwolf.settings.Settings

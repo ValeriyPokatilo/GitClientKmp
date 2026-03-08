@@ -1,4 +1,4 @@
-package app.xl.androidapp.app.xl.gitclientkmp.data.dto
+package app.xl.gitclientkmp.data.dto
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
@@ -14,5 +14,5 @@ data class RepoDetailsDto(
     @SerialName("stargazers_count") val stargazersCount: Int,
     @SerialName("subscribers_count") val subscribersCount: Int,
     @SerialName("html_url") val url: String,
-    val license: app.xl.androidapp.app.xl.gitclientkmp.data.dto.LicenseDto? = null
+    val license: LicenseDto? = null
 )

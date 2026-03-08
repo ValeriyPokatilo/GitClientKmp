@@ -1,8 +1,9 @@
-package app.xl.androidapp.app.xl.gitclientkmp.data.repository.mappers
+package app.xl.gitclientkmp.data.repository.mappers
 
-import app.xl.androidapp.app.xl.gitclientkmp.entity.Owner
+import app.xl.gitclientkmp.data.dto.OwnerDto
+import app.xl.gitclientkmp.domain.entity.Owner
 
-fun app.xl.androidapp.app.xl.gitclientkmp.data.dto.OwnerDto.toEntity(): Owner {
+fun OwnerDto.toEntity(): Owner {
     return Owner(
         login = this.login
     )
