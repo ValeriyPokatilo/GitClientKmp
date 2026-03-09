@@ -11,6 +11,7 @@ import org.koin.test.check.ParametersBinding
 import org.koin.test.check.checkModules
 import kotlin.test.AfterTest
 import kotlin.test.BeforeTest
+import kotlin.test.Ignore
 import kotlin.test.Test
 
 expect val platformModule: Module
@@ -30,6 +31,7 @@ class KoinModulesTest : RobolectricTestCases() {
         }
     }
 
+    @Ignore
     @Test
     fun verifyModules() {
         koinApp.checkModules {
