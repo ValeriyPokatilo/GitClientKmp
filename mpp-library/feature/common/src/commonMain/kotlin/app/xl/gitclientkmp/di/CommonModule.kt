@@ -1,12 +1,16 @@
 package app.xl.gitclientkmp.di
 
-import app.xl.gitclientkmp.data.repository.AppRepository
+import app.xl.gitclientkmp.data.network.GitHubApi
+import app.xl.gitclientkmp.data.network.GitHubApiImpl
+import app.xl.gitclientkmp.data.network.createHttpClient
+import app.xl.gitclientkmp.data.repository.AppRepositoryImpl
 import app.xl.gitclientkmp.data.storage.KeyValueStorage
+import app.xl.gitclientkmp.domain.AppRepository
 import com.russhwolf.settings.Settings
+import kotlinx.serialization.json.Json
 import org.koin.dsl.module
 
 val commonModule = module {
-
     single<Settings> {
         Settings()
     }
@@ -15,7 +19,26 @@ val commonModule = module {
         KeyValueStorage(get())
     }
 
+    single<AppRepository> {
+        AppRepositoryImpl(
+            api = get(),
+            json = get(),
+            keyValueStorage = get()
+        )
+    }
+
     single {
-        AppRepository(get())
+        Json {
+            ignoreUnknownKeys = true
+            coerceInputValues = true
+        }
+    }
+
+    single {
+        createHttpClient(get())
+    }
+
+    single<GitHubApi> {
+        GitHubApiImpl(get())
     }
 }

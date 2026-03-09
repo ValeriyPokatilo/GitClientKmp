@@ -1,6 +1,7 @@
 package app.xl.gitclientkmp.viewModel
 
-import app.xl.gitclientkmp.data.repository.AppRepository
+import app.xl.gitclientkmp.domain.AppRepository
+import app.xl.gitclientkmp.domain.entity.AppError
 import dev.icerock.moko.mvvm.flow.cStateFlow
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.flow.Flow
@@ -42,12 +43,37 @@ class AuthViewModel(
         viewModelScope.launch {
             _state.value = State.Loading
             try {
-                // TODO: - repository.signIn(token)
+                repository.signIn(token)
                 _state.value = State.Idle
                 _actions.emit(Action.RouteToMain)
-            } catch (error: Exception) {
+            } catch (exc: AppError) {
                 _state.value = State.Idle
-                // TODO: - handle error
+                handleError(exc)
+            } catch (exc: Exception) {
+                _state.value = State.Idle
+                handleError(AppError.Network(exc))
+            }
+        }
+    }
+
+    private suspend fun handleError(error: AppError) {
+        when (error) {
+            is AppError.Http -> {
+                _actions.emit(
+                    Action.ShowError(
+                        code = error.code,
+                        message = error.errorMessage ?: ""
+                    )
+                )
+            }
+
+            is AppError.Network -> {
+                _actions.emit(
+                    Action.ShowError(
+                        code = null,
+                        message = null
+                    )
+                )
             }
         }
     }

@@ -98,6 +98,8 @@ coroutinesAndroid = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android
 kotlinxImmutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinxImmutableVersion" }
 
 # ktor
+ktorClient-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktorClientVersion" }
+ktorSerialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktorClientVersion" }
 ktorClient = { module = "io.ktor:ktor-client-core", version.ref = "ktorClientVersion" }
 ktorClientLogging = { module = "io.ktor:ktor-client-logging", version.ref = "ktorClientVersion" }
 ktorClientAuth = { module = "io.ktor:ktor-client-auth", version.ref = "ktorClientVersion" }
