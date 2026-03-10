@@ -13,6 +13,9 @@
 		45D8D7FA26FB24AE00DD3A58 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D8D7F926FB24AE00DD3A58 /* Environment.swift */; };
 		45F47921219463C7003D25FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45F4791A219463C7003D25FA /* Assets.xcassets */; };
 		45F47922219463C7003D25FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F4791B219463C7003D25FA /* AppDelegate.swift */; };
+		76350DA32F5F216F009D4FD1 /* Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76350DA22F5F216F009D4FD1 /* Aliases.swift */; };
+		76350DA62F5FF5F8009D4FD1 /* Ext+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76350DA52F5FF5F8009D4FD1 /* Ext+UIAlertController.swift */; };
+		76350DA82F5FF776009D4FD1 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76350DA72F5FF776009D4FD1 /* AlertViewController.swift */; };
 		76EF930B2F5A120A001B63C8 /* AuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76EF930A2F5A120A001B63C8 /* AuthViewController.xib */; };
 		76EF930C2F5A120A001B63C8 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF93092F5A120A001B63C8 /* AuthViewController.swift */; };
 		76EF930F2F5A1229001B63C8 /* RepositoriesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76EF930E2F5A1229001B63C8 /* RepositoriesListViewController.xib */; };
@@ -74,6 +77,9 @@
 		45F4791C219463C7003D25FA /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4E85A7C63199C53C79B0C01E /* Pods-ios-app.stage-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-app.stage-debug.xcconfig"; path = "Target Support Files/Pods-ios-app/Pods-ios-app.stage-debug.xcconfig"; sourceTree = "<group>"; };
 		6D54CCFF2548C00718908712 /* Pods-ios-app.dev-release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-app.dev-release.xcconfig"; path = "Target Support Files/Pods-ios-app/Pods-ios-app.dev-release.xcconfig"; sourceTree = "<group>"; };
+		76350DA22F5F216F009D4FD1 /* Aliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aliases.swift; sourceTree = "<group>"; };
+		76350DA52F5FF5F8009D4FD1 /* Ext+UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIAlertController.swift"; sourceTree = "<group>"; };
+		76350DA72F5FF776009D4FD1 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		76EF93092F5A120A001B63C8 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		76EF930A2F5A120A001B63C8 /* AuthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthViewController.xib; sourceTree = "<group>"; };
 		76EF930D2F5A1229001B63C8 /* RepositoriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesListViewController.swift; sourceTree = "<group>"; };
@@ -202,6 +208,7 @@
 				D27C14612D13432F002FB963 /* Navigation */,
 				D25029EF2DB0CD7E000149C7 /* Preview Content */,
 				45F47911219463C7003D25FA /* Resources */,
+				76350DA42F5FF5C5009D4FD1 /* Extensions */,
 				2219A11F2DB563E9009E1BE0 /* Views */,
 				D2F446F92D1405A900A410C5 /* Utils */,
 			);
@@ -217,6 +224,14 @@
 			path = Resources;
 			sourceTree = "<group>";
 		};
+		76350DA42F5FF5C5009D4FD1 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				76350DA52F5FF5F8009D4FD1 /* Ext+UIAlertController.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		76EF93082F5A11B6001B63C8 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
@@ -226,6 +241,7 @@
 				76EF930E2F5A1229001B63C8 /* RepositoriesListViewController.xib */,
 				76EF93112F5A1242001B63C8 /* RepositoryDetailInfoViewController.swift */,
 				76EF93122F5A1242001B63C8 /* RepositoryDetailInfoViewController.xib */,
+				76350DA72F5FF776009D4FD1 /* AlertViewController.swift */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -300,6 +316,7 @@
 			isa = PBXGroup;
 			children = (
 				D25029FD2DB0F579000149C7 /* SwiftEnumConvertibleProtocol.swift */,
+				76350DA22F5F216F009D4FD1 /* Aliases.swift */,
 				D25029FB2DB0F55F000149C7 /* CombineObservableObject.swift */,
 				D2FD61DF2DAE4ACF00A37209 /* moko-mvvm */,
 				2219A1202DB5644B009E1BE0 /* moko-resources */,
@@ -431,9 +448,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ios-app/Pods-ios-app-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ios-app/Pods-ios-app-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -497,13 +518,16 @@
 				76EF93142F5A1242001B63C8 /* RepositoryDetailInfoViewController.swift in Sources */,
 				D2FD61E82DAE4AEE00A37209 /* ViewModelState.swift in Sources */,
 				D2FD61E92DAE4AEE00A37209 /* ViewModelBinding.swift in Sources */,
+				76350DA82F5FF776009D4FD1 /* AlertViewController.swift in Sources */,
 				D2FD61EA2DAE4AEE00A37209 /* ViewModelObservable.swift in Sources */,
 				D2FD61EB2DAE4AEE00A37209 /* ViewModelStateNullable.swift in Sources */,
 				D2E6AC0D2DAE1D4900D01DC1 /* MobileApp.swift in Sources */,
 				76EF93192F5A12E8001B63C8 /* AuthCoordinator.swift in Sources */,
 				45F47922219463C7003D25FA /* AppDelegate.swift in Sources */,
 				76EF931B2F5A12F7001B63C8 /* RepositoriesListCoordinator.swift in Sources */,
+				76350DA32F5F216F009D4FD1 /* Aliases.swift in Sources */,
 				D2F8433B2ADF0D9300657354 /* Koin.swift in Sources */,
+				76350DA62F5FF5F8009D4FD1 /* Ext+UIAlertController.swift in Sources */,
 				76EF93102F5A1229001B63C8 /* RepositoriesListViewController.swift in Sources */,
 				D2F446F72D13468300A410C5 /* KoinExtension.swift in Sources */,
 				D25029FE2DB0F579000149C7 /* SwiftEnumConvertibleProtocol.swift in Sources */,

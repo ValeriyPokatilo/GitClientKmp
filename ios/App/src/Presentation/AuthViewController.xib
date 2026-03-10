@@ -32,7 +32,7 @@
                 </imageView>
                 <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="placeholder" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="aJz-FB-wly">
                     <rect key="frame" x="16" y="328" width="361" height="48"/>
-                    <color key="backgroundColor" name="background"/>
+                    <color key="backgroundColor" name="appBackground"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="Gvt-D4-d4y"/>
                     </constraints>
@@ -50,7 +50,7 @@
                 </textField>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MOz-GQ-DtL">
                     <rect key="frame" x="16" y="720" width="361" height="48"/>
-                    <color key="backgroundColor" name="green"/>
+                    <color key="backgroundColor" name="appGreen"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="48" id="s4V-9C-hhS"/>
                     </constraints>
@@ -66,12 +66,12 @@
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LTU-AK-ZcQ">
                     <rect key="frame" x="32" y="382" width="329" height="0.0"/>
                     <fontDescription key="fontDescription" type="system" pointSize="12"/>
-                    <color key="textColor" name="error"/>
+                    <color key="textColor" name="appError"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
-            <color key="backgroundColor" name="background"/>
+            <color key="backgroundColor" name="appBackground"/>
             <constraints>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LTU-AK-ZcQ" secondAttribute="trailing" constant="32" id="3AQ-3Q-efH"/>
                 <constraint firstItem="LTU-AK-ZcQ" firstAttribute="top" secondItem="aJz-FB-wly" secondAttribute="bottom" constant="6" id="97X-IH-r7J"/>
@@ -90,17 +90,17 @@
     </objects>
     <resources>
         <image name="main_logo" width="96" height="96"/>
-        <namedColor name="background">
+        <namedColor name="appBackground">
             <color red="0.050980392156862744" green="0.066666666666666666" blue="0.090196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="error">
+        <namedColor name="appError">
             <color red="0.69019607843137254" green="0.0" blue="0.12549019607843137" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="green">
+        <namedColor name="appGreen">
             <color red="0.35294117647058826" green="0.57647058823529407" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="white">
-            <color red="0.99999994039535522" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

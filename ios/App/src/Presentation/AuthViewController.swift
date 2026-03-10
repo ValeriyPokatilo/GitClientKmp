@@ -9,10 +9,13 @@ final class AuthViewController: UIViewController {
     @IBOutlet private weak var errorLabel: UILabel!
     @IBOutlet private weak var signInButton: UIButton!
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
+    
+    var routeToMain: EmptyBlock?
+    var showAlert: ParameterBlock<String>?
 
     private let disposeBag = DisposeBag()
 
-    private let viewModel: AuthViewModel = AuthViewModel()
+    private lazy var viewModel: AuthViewModel = Koin.instance.getAuthViewModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +38,7 @@ final class AuthViewController: UIViewController {
                 NSAttributedString.Key.foregroundColor: UIColor.white50
             ]
         )
-        tokenTextField.layer.borderColor = UIColor.grey.cgColor
+        tokenTextField.layer.borderColor = UIColor.appGrey.cgColor
 
         let paddingView = UIView(
             frame: CGRect(
@@ -94,10 +97,11 @@ final class AuthViewController: UIViewController {
             errorLabel.isHidden = true
             signInButton.isEnabled = true
             signInButton.alpha = 1.0
-            tokenTextField.layer.borderColor = UIColor.grey.cgColor
+            tokenTextField.layer.borderColor = UIColor.appGrey.cgColor
         // TODO: - hide indicator
 
         case is AuthViewModelStateLoading:
+            tokenTextField.resignFirstResponder()
             signInButton.isEnabled = false
             signInButton.alpha = 0.5
         // TODO: - show indicator
@@ -115,9 +119,9 @@ final class AuthViewController: UIViewController {
 
     private func handleAction(_ action: AuthViewModelAction) {
         if action is AuthViewModelActionRouteToMain {
-            // TODO: - Navigate to List
+            routeToMain?()
         } else if let errorAction = action as? AuthViewModelActionShowError {
-            // TODO: - Show alert
+            showAlert?(errorAction.message ?? "")
         } else if action is AuthViewModelActionFocusOnTokenField {
             tokenTextField.becomeFirstResponder()
         }
