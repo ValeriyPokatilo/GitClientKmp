@@ -2,6 +2,7 @@ import MultiPlatformLibrary
 import RxKeyboard
 import RxSwift
 import UIKit
+import NVActivityIndicatorView
 
 final class AuthViewController: UIViewController {
 
@@ -10,12 +11,20 @@ final class AuthViewController: UIViewController {
     @IBOutlet private weak var signInButton: UIButton!
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
     
-    var routeToMain: EmptyBlock?
-    var showAlert: ParameterBlock<String>?
+    private lazy var viewModel: AuthViewModel = Koin.instance.getAuthViewModel()
+    
+    private let indicatorView = NVActivityIndicatorView(
+        frame: .zero,
+        type: .circleStrokeSpin,
+        color: .white,
+        padding: 0
+    )
+    private let indicatorViewSize: CGFloat = 24
 
     private let disposeBag = DisposeBag()
-
-    private lazy var viewModel: AuthViewModel = Koin.instance.getAuthViewModel()
+    
+    var routeToMain: EmptyBlock?
+    var showAlert: ParameterBlock<String>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +65,23 @@ final class AuthViewController: UIViewController {
             MR.strings().sign_in_button_title.desc().localized(),
             for: .normal
         )
+        
+        signInButton.addSubview(indicatorView)
+        indicatorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            indicatorView.centerXAnchor.constraint(
+                equalTo: signInButton.centerXAnchor
+            ),
+            indicatorView.centerYAnchor.constraint(
+                equalTo: signInButton.centerYAnchor
+            ),
+            indicatorView.widthAnchor.constraint(
+                equalToConstant: indicatorViewSize
+            ),
+            indicatorView.heightAnchor.constraint(
+                equalToConstant: indicatorViewSize
+            )
+        ])
     }
 
     private func setupKeyboardBinding() {
@@ -96,15 +122,14 @@ final class AuthViewController: UIViewController {
         case is AuthViewModelStateIdle:
             errorLabel.isHidden = true
             signInButton.isEnabled = true
-            signInButton.alpha = 1.0
+            signInButton.titleLabel?.isHidden = false
             tokenTextField.layer.borderColor = UIColor.appGrey.cgColor
-        // TODO: - hide indicator
+            indicatorView.stopAnimating()
 
         case is AuthViewModelStateLoading:
-            tokenTextField.resignFirstResponder()
             signInButton.isEnabled = false
-            signInButton.alpha = 0.5
-        // TODO: - show indicator
+            signInButton.titleLabel?.isHidden = true
+            indicatorView.startAnimating()
 
         case is AuthViewModelStateInvalidInput:
             errorLabel.isHidden = false
@@ -112,6 +137,7 @@ final class AuthViewController: UIViewController {
                 .localized()
             tokenTextField.layer.borderColor = UIColor.red.cgColor
             signInButton.isEnabled = false
+            indicatorView.stopAnimating()
 
         default: break
         }

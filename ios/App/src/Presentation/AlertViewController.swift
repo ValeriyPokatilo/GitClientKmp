@@ -92,7 +92,7 @@ final class AlertViewController: UIViewController {
             title: MR.strings().ok.desc().localized(),
             style: .default
         ) { [weak self] _ in
-            self?.dismiss(animated: false)
+            self?.dismiss(animated: true)
         }
 
         alertController.addAction(okAction)
