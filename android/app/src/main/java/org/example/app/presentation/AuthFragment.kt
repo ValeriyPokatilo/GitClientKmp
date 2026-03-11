@@ -1,6 +1,5 @@
 package org.example.app.presentation
 
-import android.app.AlertDialog
 import android.graphics.Color
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -17,6 +16,7 @@ import app.xl.gitclientkmp.viewModel.AuthViewModel
 import kotlinx.coroutines.launch
 import org.example.app.R
 import org.example.app.databinding.FragmentAuthBinding
+import org.example.app.utils.showErrorAlertDialog
 import org.example.app.utils.showKeyboard
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -88,7 +88,7 @@ class AuthFragment : Fragment() {
             }
 
             is AuthViewModel.Action.ShowError -> {
-                showErrorDialog(action.code, action.message)
+                showErrorDialog(action.message)
             }
 
             is AuthViewModel.Action.FocusOnTokenField -> {
@@ -125,27 +125,18 @@ class AuthFragment : Fragment() {
         val context = requireContext()
         val placeholder = MR.strings.token_text_field_placeholder.getString(context)
 
-        binding.signInButton.text = MR.strings.sign_in_button_title.getString(context)
+        binding.signInButton.text = MR.strings.sign_in_button_title.getString(context).uppercase()
         binding.tokenInputLayout.hint = placeholder
         binding.tokenInputEdit.hint = placeholder
     }
 
-    private fun showErrorDialog(code: Int?, message: String?) {
-        val errorMessageText = if (!message.isNullOrBlank()) {
-            message
-        } else {
-            MR.strings.check_connection.getString(requireContext())
-        }
+    private fun showErrorDialog(message: String?) {
+        val title = MR.strings.error.getString(requireContext())
+        val baseMessage = message ?: MR.strings.check_connection.getString(requireContext())
+        val messagePostfix = MR.strings.info_for_developer.getString(requireContext())
+        val fullMessage = "$baseMessage\n$messagePostfix"
+        val buttonTitle = MR.strings.ok.getString(requireContext())
 
-        val fullMessage = buildString {
-            append(errorMessageText)
-            code?.let { append(" / $it") }
-        }
-
-        AlertDialog.Builder(requireContext())
-            .setTitle(MR.strings.error.getString(requireContext()))
-            .setMessage(fullMessage)
-            .setPositiveButton(MR.strings.ok.getString(requireContext()), null)
-            .show()
+        showErrorAlertDialog(title = title, message = fullMessage, buttonTitle = buttonTitle)
     }
 }
