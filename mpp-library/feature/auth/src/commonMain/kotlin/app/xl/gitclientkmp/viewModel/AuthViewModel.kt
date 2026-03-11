@@ -2,7 +2,6 @@ package app.xl.gitclientkmp.viewModel
 
 import app.xl.gitclientkmp.domain.AppRepository
 import app.xl.gitclientkmp.domain.entity.AppError
-import dev.icerock.moko.mvvm.flow.cStateFlow
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -17,7 +16,7 @@ class AuthViewModel(
     private var token = ""
 
     private val _state = MutableStateFlow<State>(State.Idle)
-    val state: StateFlow<State> = _state.cStateFlow()
+    val state: StateFlow<State> = _state
 
     private val _actions = MutableSharedFlow<Action>()
     val action: Flow<Action> = _actions
@@ -57,25 +56,14 @@ class AuthViewModel(
     }
 
     private suspend fun handleError(error: AppError) {
-        when (error) {
-            is AppError.Http -> {
-                _actions.emit(
-                    Action.ShowError(
-                        code = error.code,
-                        message = error.errorMessage ?: ""
-                    )
-                )
-            }
-
-            is AppError.Network -> {
-                _actions.emit(
-                    Action.ShowError(
-                        code = null,
-                        message = null
-                    )
-                )
-            }
+        val message = when (error) {
+            is AppError.Http -> "${error.errorMessage} / ${error.code}"
+            is AppError.Network -> null
         }
+
+        _actions.emit(
+            Action.ShowError(message)
+        )
     }
 
     sealed interface State {
@@ -85,7 +73,7 @@ class AuthViewModel(
     }
 
     sealed interface Action {
-        data class ShowError(val code: Int?, val message: String?) : Action
+        data class ShowError(val message: String?) : Action
         object RouteToMain : Action
         object FocusOnTokenField : Action
     }

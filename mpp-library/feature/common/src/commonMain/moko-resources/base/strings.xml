@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
     <string name="app_name">AndroidApp</string>
-    <string name="sign_in_button_title">SIGN IN</string>
+    <string name="sign_in_button_title">Sign In</string>
     <string name="token_text_field_placeholder">Personal access token</string>
     <string name="check_connection">Please check your connection</string>
+    <string name="info_for_developer">information for developers</string>
     <string name="invalid_token_reason">Invalid token</string>
     <string name="error">Error</string>
-    <string name="ok">OK</string>
+    <string name="ok">Ok</string>
     <string name="logout">Logout</string>
     <string name="repositories">Repositories</string>
     <string name="repositories_empty_title">Empty</string>
