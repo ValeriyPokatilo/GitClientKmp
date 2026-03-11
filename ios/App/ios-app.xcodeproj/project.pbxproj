@@ -16,6 +16,7 @@
 		76350DA32F5F216F009D4FD1 /* Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76350DA22F5F216F009D4FD1 /* Aliases.swift */; };
 		76350DA62F5FF5F8009D4FD1 /* Ext+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76350DA52F5FF5F8009D4FD1 /* Ext+UIAlertController.swift */; };
 		76350DA82F5FF776009D4FD1 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76350DA72F5FF776009D4FD1 /* AlertViewController.swift */; };
+		76DEF5232F618BAD00677238 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DEF5222F618BAD00677238 /* LaunchScreen.storyboard */; };
 		76EF930B2F5A120A001B63C8 /* AuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76EF930A2F5A120A001B63C8 /* AuthViewController.xib */; };
 		76EF930C2F5A120A001B63C8 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF93092F5A120A001B63C8 /* AuthViewController.swift */; };
 		76EF930F2F5A1229001B63C8 /* RepositoriesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76EF930E2F5A1229001B63C8 /* RepositoriesListViewController.xib */; };
@@ -80,6 +81,7 @@
 		76350DA22F5F216F009D4FD1 /* Aliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aliases.swift; sourceTree = "<group>"; };
 		76350DA52F5FF5F8009D4FD1 /* Ext+UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIAlertController.swift"; sourceTree = "<group>"; };
 		76350DA72F5FF776009D4FD1 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		76DEF5222F618BAD00677238 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		76EF93092F5A120A001B63C8 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		76EF930A2F5A120A001B63C8 /* AuthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthViewController.xib; sourceTree = "<group>"; };
 		76EF930D2F5A1229001B63C8 /* RepositoriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesListViewController.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				76EF93112F5A1242001B63C8 /* RepositoryDetailInfoViewController.swift */,
 				76EF93122F5A1242001B63C8 /* RepositoryDetailInfoViewController.xib */,
 				76350DA72F5FF776009D4FD1 /* AlertViewController.swift */,
+				76DEF5222F618BAD00677238 /* LaunchScreen.storyboard */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -414,6 +417,7 @@
 				D25029F02DB0CD7E000149C7 /* Preview Assets.xcassets in Resources */,
 				76EF930B2F5A120A001B63C8 /* AuthViewController.xib in Resources */,
 				76EF930F2F5A1229001B63C8 /* RepositoriesListViewController.xib in Resources */,
+				76DEF5232F618BAD00677238 /* LaunchScreen.storyboard in Resources */,
 				76EF93132F5A1242001B63C8 /* RepositoryDetailInfoViewController.xib in Resources */,
 				45F47921219463C7003D25FA /* Assets.xcassets in Resources */,
 			);
@@ -448,9 +452,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ios-app/Pods-ios-app-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ios-app/Pods-ios-app-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -566,6 +574,16 @@
 			baseConfigurationReference = D28F70F16E4D2C6510E2A7D9 /* Pods-ios-app.dev-debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = CUGUBFWQR9;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(BUNDLE_DISPLAY_NAME)";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "\"IceRock Development\"";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 			};
 			name = "dev-debug";
@@ -575,6 +593,16 @@
 			baseConfigurationReference = 6D54CCFF2548C00718908712 /* Pods-ios-app.dev-release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = CUGUBFWQR9;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(BUNDLE_DISPLAY_NAME)";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "\"IceRock Development\"";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 			};
 			name = "dev-release";
@@ -594,6 +622,16 @@
 			baseConfigurationReference = 4E85A7C63199C53C79B0C01E /* Pods-ios-app.stage-debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = CUGUBFWQR9;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(BUNDLE_DISPLAY_NAME)";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "\"IceRock Development\"";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 			};
 			name = "stage-debug";
@@ -613,6 +651,16 @@
 			baseConfigurationReference = 8F39AE06F9CE75BFD6022A6C /* Pods-ios-app.prod-debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = CUGUBFWQR9;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(BUNDLE_DISPLAY_NAME)";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "\"IceRock Development\"";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 			};
 			name = "prod-debug";
@@ -632,6 +680,16 @@
 			baseConfigurationReference = 307CBACFCFE62C2C9FCC5724 /* Pods-ios-app.prod-release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = CUGUBFWQR9;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(BUNDLE_DISPLAY_NAME)";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "\"IceRock Development\"";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 			};
 			name = "prod-release";
@@ -651,6 +709,16 @@
 			baseConfigurationReference = 2D7851452088C3C91A9B800E /* Pods-ios-app.stage-release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = CUGUBFWQR9;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(BUNDLE_DISPLAY_NAME)";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "\"IceRock Development\"";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = YES;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 			};
 			name = "stage-release";
