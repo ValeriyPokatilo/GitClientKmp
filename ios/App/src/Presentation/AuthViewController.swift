@@ -24,7 +24,7 @@ final class AuthViewController: UIViewController {
     private let disposeBag = DisposeBag()
     
     var routeToMain: EmptyBlock?
-    var showAlert: ParameterBlock<String>?
+    var showAlert: ParameterBlock<(String, String)>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -147,10 +147,19 @@ final class AuthViewController: UIViewController {
         if action is AuthViewModelActionRouteToMain {
             routeToMain?()
         } else if let errorAction = action as? AuthViewModelActionShowError {
-            showAlert?(errorAction.message ?? "")
+            showErrorAlert(message: errorAction.message)
         } else if action is AuthViewModelActionFocusOnTokenField {
             tokenTextField.becomeFirstResponder()
         }
+    }
+    
+    private func showErrorAlert(message: String?) {
+        let title = MR.strings().error.desc().localized()
+        let baseMessage = message ?? MR.strings().check_connection.desc().localized()
+        let messagePostfix = MR.strings().info_for_developer.desc().localized()
+        let fullMessage = "\(baseMessage)\n\(messagePostfix)"
+        
+        showAlert?((title, fullMessage))
     }
 
     @IBAction private func signInButtonAction(_ sender: Any) {

@@ -71,7 +71,7 @@ final class AlertViewController: UIViewController {
 
         let overlayView = UIView(frame: view.bounds)
         overlayView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        overlayView.backgroundColor = UIColor.white.withAlphaComponent(0.05)
+        overlayView.backgroundColor = UIColor.white.withAlphaComponent(0.1)
 
         view.addSubview(overlayView)
     }

@@ -16,8 +16,8 @@ final class AuthCoordinator {
             self?.routeToMain()
         }
 
-        controller.showAlert = { [weak self] message in
-            self?.showAlert(title: message, message: message)
+        controller.showAlert = { [weak self] alertContent in
+            self?.showAlert(title: alertContent.0, message: alertContent.1)
         }
 
         navigationController.pushViewController(controller, animated: true)
