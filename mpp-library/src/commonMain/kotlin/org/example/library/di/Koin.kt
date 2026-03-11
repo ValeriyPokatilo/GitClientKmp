@@ -2,6 +2,7 @@ package org.example.library.di
 
 import app.xl.gitclientkmp.di.authModule
 import app.xl.gitclientkmp.di.commonModule
+import app.xl.gitclientkmp.di.repoModule
 import dev.icerock.moko.crashreporting.core.ExceptionLogger
 import dev.icerock.moko.crashreporting.napier.CrashReportingAntilog
 import io.github.aakira.napier.Antilog
@@ -47,6 +48,7 @@ internal fun registerKoinModules(
     useCasesModule,
     appRouterModule,
     authModule,
+    repoModule,
     commonModule
 
 //    Uncomment for provide exceptionHandler
