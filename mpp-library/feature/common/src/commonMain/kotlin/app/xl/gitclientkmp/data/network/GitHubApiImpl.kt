@@ -1,5 +1,6 @@
 package app.xl.gitclientkmp.data.network
 
+import app.xl.gitclientkmp.data.dto.RepoDto
 import app.xl.gitclientkmp.data.dto.UserInfoDto
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
@@ -13,6 +14,12 @@ class GitHubApiImpl(
     override suspend fun getUser(token: String): UserInfoDto {
         return client.get("https://api.github.com/user") {
             header("Authorization", token)
+        }.body()
+    }
+
+    override suspend fun getRepositories(header: String): List<RepoDto> {
+        return client.get("https://api.github.com/user/repos") {
+            header("Authorization", header)
         }.body()
     }
 }

@@ -1,5 +1,6 @@
 package app.xl.gitclientkmp.domain
 
+import app.xl.gitclientkmp.domain.entity.Repository
 import app.xl.gitclientkmp.domain.entity.UserInfo
 
 interface AppRepository {
@@ -8,4 +9,9 @@ interface AppRepository {
     suspend fun signIn(
         token: String
     ): UserInfo
+
+    @Throws(Exception::class)
+    suspend fun getRepositories(): List<Repository>
+
+    fun logout()
 }
