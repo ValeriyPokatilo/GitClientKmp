@@ -16,11 +16,13 @@
 		76350DA32F5F216F009D4FD1 /* Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76350DA22F5F216F009D4FD1 /* Aliases.swift */; };
 		76350DA62F5FF5F8009D4FD1 /* Ext+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76350DA52F5FF5F8009D4FD1 /* Ext+UIAlertController.swift */; };
 		76350DA82F5FF776009D4FD1 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76350DA72F5FF776009D4FD1 /* AlertViewController.swift */; };
+		76D7CF942F62A2A1008104A0 /* RepositoriesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76D7CF932F62A2A1008104A0 /* RepositoriesListViewController.xib */; };
+		76D7CF952F62A2A1008104A0 /* RepositoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D7CF922F62A2A1008104A0 /* RepositoriesListViewController.swift */; };
+		76D7CF982F62DEA9008104A0 /* RepositoryItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D7CF962F62DEA9008104A0 /* RepositoryItemCell.swift */; };
+		76D7CF992F62DEA9008104A0 /* RepositoryItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76D7CF972F62DEA9008104A0 /* RepositoryItemCell.xib */; };
 		76DEF5232F618BAD00677238 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DEF5222F618BAD00677238 /* LaunchScreen.storyboard */; };
 		76EF930B2F5A120A001B63C8 /* AuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76EF930A2F5A120A001B63C8 /* AuthViewController.xib */; };
 		76EF930C2F5A120A001B63C8 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF93092F5A120A001B63C8 /* AuthViewController.swift */; };
-		76EF930F2F5A1229001B63C8 /* RepositoriesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76EF930E2F5A1229001B63C8 /* RepositoriesListViewController.xib */; };
-		76EF93102F5A1229001B63C8 /* RepositoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF930D2F5A1229001B63C8 /* RepositoriesListViewController.swift */; };
 		76EF93132F5A1242001B63C8 /* RepositoryDetailInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76EF93122F5A1242001B63C8 /* RepositoryDetailInfoViewController.xib */; };
 		76EF93142F5A1242001B63C8 /* RepositoryDetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF93112F5A1242001B63C8 /* RepositoryDetailInfoViewController.swift */; };
 		76EF93172F5A12D5001B63C8 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF93162F5A12D5001B63C8 /* AppCoordinator.swift */; };
@@ -81,11 +83,13 @@
 		76350DA22F5F216F009D4FD1 /* Aliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aliases.swift; sourceTree = "<group>"; };
 		76350DA52F5FF5F8009D4FD1 /* Ext+UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIAlertController.swift"; sourceTree = "<group>"; };
 		76350DA72F5FF776009D4FD1 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		76D7CF922F62A2A1008104A0 /* RepositoriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesListViewController.swift; sourceTree = "<group>"; };
+		76D7CF932F62A2A1008104A0 /* RepositoriesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoriesListViewController.xib; sourceTree = "<group>"; };
+		76D7CF962F62DEA9008104A0 /* RepositoryItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryItemCell.swift; sourceTree = "<group>"; };
+		76D7CF972F62DEA9008104A0 /* RepositoryItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryItemCell.xib; sourceTree = "<group>"; };
 		76DEF5222F618BAD00677238 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		76EF93092F5A120A001B63C8 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
 		76EF930A2F5A120A001B63C8 /* AuthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthViewController.xib; sourceTree = "<group>"; };
-		76EF930D2F5A1229001B63C8 /* RepositoriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesListViewController.swift; sourceTree = "<group>"; };
-		76EF930E2F5A1229001B63C8 /* RepositoriesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoriesListViewController.xib; sourceTree = "<group>"; };
 		76EF93112F5A1242001B63C8 /* RepositoryDetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailInfoViewController.swift; sourceTree = "<group>"; };
 		76EF93122F5A1242001B63C8 /* RepositoryDetailInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryDetailInfoViewController.xib; sourceTree = "<group>"; };
 		76EF93162F5A12D5001B63C8 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
@@ -234,17 +238,59 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		76EF93082F5A11B6001B63C8 /* Presentation */ = {
+		76D7CF9C2F6314B9008104A0 /* AuthScreen */ = {
 			isa = PBXGroup;
 			children = (
 				76EF93092F5A120A001B63C8 /* AuthViewController.swift */,
 				76EF930A2F5A120A001B63C8 /* AuthViewController.xib */,
-				76EF930D2F5A1229001B63C8 /* RepositoriesListViewController.swift */,
-				76EF930E2F5A1229001B63C8 /* RepositoriesListViewController.xib */,
+			);
+			path = AuthScreen;
+			sourceTree = "<group>";
+		};
+		76D7CF9D2F6314C9008104A0 /* RepositoriesListScreen */ = {
+			isa = PBXGroup;
+			children = (
+				76D7CF922F62A2A1008104A0 /* RepositoriesListViewController.swift */,
+				76D7CF932F62A2A1008104A0 /* RepositoriesListViewController.xib */,
+				76D7CF962F62DEA9008104A0 /* RepositoryItemCell.swift */,
+				76D7CF972F62DEA9008104A0 /* RepositoryItemCell.xib */,
+			);
+			path = RepositoriesListScreen;
+			sourceTree = "<group>";
+		};
+		76D7CF9E2F6314E3008104A0 /* LaunchScreen */ = {
+			isa = PBXGroup;
+			children = (
+				76DEF5222F618BAD00677238 /* LaunchScreen.storyboard */,
+			);
+			path = LaunchScreen;
+			sourceTree = "<group>";
+		};
+		76D7CF9F2F631501008104A0 /* RepositoryInfoScreen */ = {
+			isa = PBXGroup;
+			children = (
 				76EF93112F5A1242001B63C8 /* RepositoryDetailInfoViewController.swift */,
 				76EF93122F5A1242001B63C8 /* RepositoryDetailInfoViewController.xib */,
+			);
+			path = RepositoryInfoScreen;
+			sourceTree = "<group>";
+		};
+		76D7CFA02F63151B008104A0 /* AlertController */ = {
+			isa = PBXGroup;
+			children = (
 				76350DA72F5FF776009D4FD1 /* AlertViewController.swift */,
-				76DEF5222F618BAD00677238 /* LaunchScreen.storyboard */,
+			);
+			path = AlertController;
+			sourceTree = "<group>";
+		};
+		76EF93082F5A11B6001B63C8 /* Presentation */ = {
+			isa = PBXGroup;
+			children = (
+				76D7CF9E2F6314E3008104A0 /* LaunchScreen */,
+				76D7CF9C2F6314B9008104A0 /* AuthScreen */,
+				76D7CF9D2F6314C9008104A0 /* RepositoriesListScreen */,
+				76D7CF9F2F631501008104A0 /* RepositoryInfoScreen */,
+				76D7CFA02F63151B008104A0 /* AlertController */,
 			);
 			path = Presentation;
 			sourceTree = "<group>";
@@ -416,8 +462,9 @@
 			files = (
 				D25029F02DB0CD7E000149C7 /* Preview Assets.xcassets in Resources */,
 				76EF930B2F5A120A001B63C8 /* AuthViewController.xib in Resources */,
-				76EF930F2F5A1229001B63C8 /* RepositoriesListViewController.xib in Resources */,
+				76D7CF942F62A2A1008104A0 /* RepositoriesListViewController.xib in Resources */,
 				76DEF5232F618BAD00677238 /* LaunchScreen.storyboard in Resources */,
+				76D7CF992F62DEA9008104A0 /* RepositoryItemCell.xib in Resources */,
 				76EF93132F5A1242001B63C8 /* RepositoryDetailInfoViewController.xib in Resources */,
 				45F47921219463C7003D25FA /* Assets.xcassets in Resources */,
 			);
@@ -520,6 +567,7 @@
 				D2FD61E72DAE4AEE00A37209 /* CFlowExt.swift in Sources */,
 				76EF931D2F5A1309001B63C8 /* RepositoryDetailInfoCoordinator.swift in Sources */,
 				76EF93142F5A1242001B63C8 /* RepositoryDetailInfoViewController.swift in Sources */,
+				76D7CF982F62DEA9008104A0 /* RepositoryItemCell.swift in Sources */,
 				D2FD61E82DAE4AEE00A37209 /* ViewModelState.swift in Sources */,
 				D2FD61E92DAE4AEE00A37209 /* ViewModelBinding.swift in Sources */,
 				76350DA82F5FF776009D4FD1 /* AlertViewController.swift in Sources */,
@@ -527,12 +575,12 @@
 				D2FD61EB2DAE4AEE00A37209 /* ViewModelStateNullable.swift in Sources */,
 				D2E6AC0D2DAE1D4900D01DC1 /* MobileApp.swift in Sources */,
 				76EF93192F5A12E8001B63C8 /* AuthCoordinator.swift in Sources */,
+				76D7CF952F62A2A1008104A0 /* RepositoriesListViewController.swift in Sources */,
 				45F47922219463C7003D25FA /* AppDelegate.swift in Sources */,
 				76EF931B2F5A12F7001B63C8 /* RepositoriesListCoordinator.swift in Sources */,
 				76350DA32F5F216F009D4FD1 /* Aliases.swift in Sources */,
 				D2F8433B2ADF0D9300657354 /* Koin.swift in Sources */,
 				76350DA62F5FF5F8009D4FD1 /* Ext+UIAlertController.swift in Sources */,
-				76EF93102F5A1229001B63C8 /* RepositoriesListViewController.swift in Sources */,
 				D2F446F72D13468300A410C5 /* KoinExtension.swift in Sources */,
 				D25029FE2DB0F579000149C7 /* SwiftEnumConvertibleProtocol.swift in Sources */,
 				D251A4A12D1412A700A7236D /* R.generated.swift in Sources */,
