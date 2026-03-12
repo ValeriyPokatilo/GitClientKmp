@@ -8,6 +8,7 @@ plugins {
     id("android-app-convention")
     id("com.google.firebase.crashlytics")
     id("android-compose-convention")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {

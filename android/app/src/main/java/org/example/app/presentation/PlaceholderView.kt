@@ -10,7 +10,7 @@ import org.example.app.databinding.ViewPlaceholderBinding
 import org.example.app.entity.PlaceholderModel
 
 
-class PlaceholderView (
+class PlaceholderView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0

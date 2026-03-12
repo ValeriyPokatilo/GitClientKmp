@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.xl.gitclientkmp.MR
@@ -186,15 +187,34 @@ class RepositoriesListFragment : Fragment() {
                 viewModel.actions.collect { action ->
                     when (action) {
                         is RepositoriesListViewModel.Action.RouteToDetail -> {
-                            // TODO: - navigate to details
+                            navigateToDetails(
+                                owner = action.owner,
+                                repositoryName = action.repositoryName,
+                                branch = action.branch
+                            )
                         }
 
                         RepositoriesListViewModel.Action.Logout -> {
-                            // TODO: - navigate to auth
+                            navigateToAuth()
                         }
                     }
                 }
             }
         }
+    }
+
+    private fun navigateToAuth() {
+        findNavController().navigate(R.id.action_global_authFragment)
+    }
+
+    private fun navigateToDetails(owner: String, repositoryName: String, branch: String) {
+        val action = RepositoriesListFragmentDirections
+            .actionRepositoriesListFragmentToDetailInfoFragment(
+                owner = owner,
+                repositoryName = repositoryName,
+                branch = branch
+            )
+
+        findNavController().navigate(action)
     }
 }
