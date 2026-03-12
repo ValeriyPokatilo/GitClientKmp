@@ -12,10 +12,13 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
+import app.xl.gitclientkmp.MR
+import app.xl.gitclientkmp.domain.entity.AppError
 import app.xl.gitclientkmp.viewModels.RepositoriesListViewModel
 import kotlinx.coroutines.launch
 import org.example.app.R
 import org.example.app.databinding.FragmentRepositoriesListBinding
+import org.example.app.entity.PlaceholderModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RepositoriesListFragment : Fragment() {
@@ -89,11 +92,11 @@ class RepositoriesListFragment : Fragment() {
                 viewModel.state.collect { state ->
                     when (state) {
                         RepositoriesListViewModel.State.Empty -> {
-                            // TODO: - handleEmptyState()
+                            handleEmptyState()
                         }
 
                         RepositoriesListViewModel.State.Loading -> {
-                            // TODO: - handleLoadingState()
+                            handleLoadingState()
                         }
 
                         is RepositoriesListViewModel.State.Loaded -> {
@@ -101,7 +104,7 @@ class RepositoriesListFragment : Fragment() {
                         }
 
                         is RepositoriesListViewModel.State.Error -> {
-                            // TODO: - handleErrorState(state)
+                            handleErrorState(state)
                         }
                     }
                 }
@@ -109,11 +112,72 @@ class RepositoriesListFragment : Fragment() {
         }
     }
 
+    private fun handleEmptyState() {
+        binding.recyclerView.isVisible = false
+        binding.progressIndicator.hide()
+        binding.placeholderView.show(
+            PlaceholderModel(
+                iconRes = R.drawable.ic_empty,
+                title = MR.strings.repositories_empty_title.getString(requireContext()),
+                titleColorRes = R.color.blue,
+                message = MR.strings.repositories_empty_message.getString(requireContext()),
+                buttonTitle = MR.strings.refresh.getString(requireContext()),
+                buttonAction = {
+                    viewModel.onRetryButtonPressed()
+                }
+            )
+        )
+    }
+
     private fun handleLoadedState(state: RepositoriesListViewModel.State.Loaded) {
         repoAdapter.submitList(state.repositories)
         binding.recyclerView.isVisible = true
         binding.progressIndicator.hide()
-        // TODO: - binding.placeholderView.hide()
+        binding.placeholderView.hide()
+    }
+
+    private fun handleLoadingState() {
+        binding.recyclerView.isVisible = false
+        binding.progressIndicator.show()
+        binding.placeholderView.hide()
+    }
+
+    private fun handleErrorState(state: RepositoriesListViewModel.State.Error) {
+        binding.recyclerView.isVisible = false
+        binding.progressIndicator.hide()
+
+        when (state.error) {
+            is AppError.Http -> {
+                val error = state.error as AppError.Http
+                binding.placeholderView.show(
+                    model = PlaceholderModel(
+                        iconRes = R.drawable.ic_error,
+                        title = error.code.toString(),
+                        titleColorRes = R.color.error,
+                        message = error.message.toString(),
+                        buttonTitle = MR.strings.retry.getString(requireContext()),
+                        buttonAction = {
+                            viewModel.onRetryButtonPressed()
+                        }
+                    )
+                )
+            }
+
+            is AppError.Network -> {
+                binding.placeholderView.show(
+                    model = PlaceholderModel(
+                        iconRes = R.drawable.ic_not_connected,
+                        title = MR.strings.repositories_connection_error_title.getString(requireContext()),
+                        titleColorRes = R.color.error,
+                        message = MR.strings.repositories_connection_error_message.getString(requireContext()),
+                        buttonTitle = MR.strings.retry.getString(requireContext()),
+                        buttonAction = {
+                            viewModel.onRetryButtonPressed()
+                        }
+                    )
+                )
+            }
+        }
     }
 
     private fun bindActions() {

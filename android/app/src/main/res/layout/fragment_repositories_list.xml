@@ -43,4 +43,13 @@
         app:layout_constraintStart_toStartOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="@+id/recyclerView"/>
 
+    <org.example.app.presentation.PlaceholderView
+        android:id="@+id/placeholderView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        app:layout_constraintTop_toTopOf="@id/recyclerView"
+        app:layout_constraintBottom_toBottomOf="@id/recyclerView"
+        app:layout_constraintStart_toStartOf="@id/recyclerView"
+        app:layout_constraintEnd_toEndOf="@id/recyclerView"/>
 </androidx.constraintlayout.widget.ConstraintLayout>
