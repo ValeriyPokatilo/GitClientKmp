@@ -1,12 +1,14 @@
 package app.xl.gitclientkmp.viewModels
 
 import app.xl.gitclientkmp.domain.AppRepository
+import app.xl.gitclientkmp.domain.entity.AppError
 import app.xl.gitclientkmp.domain.entity.Repository
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 class RepositoriesListViewModel(
     private val repository: AppRepository
@@ -23,25 +25,49 @@ class RepositoriesListViewModel(
     }
 
     fun onLogoutButtonPressed() {
-
+        viewModelScope.launch {
+            repository.logout()
+            _actions.emit(Action.Logout)
+        }
     }
 
     fun onRepositoryItemPressed(repository: Repository) {
-
+        viewModelScope.launch {
+            _actions.emit(
+                Action.RouteToDetail(
+                    owner = repository.owner.login,
+                    repositoryName = repository.name,
+                    branch = repository.defaultBranch
+                )
+            )
+        }
     }
 
     fun onRetryButtonPressed() {
-
+        loadRepositories()
     }
 
     private fun loadRepositories() {
+        viewModelScope.launch {
+            _state.value = State.Loading
+            try {
+                val repositories = repository.getRepositories()
 
+                if (repositories.isEmpty()) {
+                    _state.value = State.Empty
+                } else {
+                    _state.value = State.Loaded(repositories)
+                }
+            } catch (error: AppError) {
+                _state.value = State.Error(error)
+            }
+        }
     }
 
     sealed interface State {
         object Loading : State
-        data class Loaded(val repos: List<Repository>) : State
-        data class Error(val error: String) : State
+        data class Loaded(val repositories: List<Repository>) : State
+        data class Error(val error: AppError) : State
         object Empty : State
     }
 
