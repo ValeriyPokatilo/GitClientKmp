@@ -1,12 +1,13 @@
 package org.example.library.repositories.domain
 
-import org.example.library.storage.KeyValueStorage
+import app.xl.gitclientkmp.data.storage.KeyValueStorage
+
 
 internal class AuthDomainRepository(
     private val keyValueStorage: KeyValueStorage,
 ) {
 
     fun isAuthorized(): Boolean {
-        return keyValueStorage.tokens != null
+        return keyValueStorage.getToken() != null
     }
 }
