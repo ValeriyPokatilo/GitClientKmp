@@ -48,4 +48,6 @@ dependencies {
     implementation(projects.mppLibrary)
     implementation(projects.android.utils)
     implementation(projects.android.uikit)
+
+    implementation(libs.markwon)
 }

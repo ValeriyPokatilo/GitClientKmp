@@ -83,8 +83,12 @@ testExtJunitVersion = "1.2.1"
 # koin
 koinBomVersion = "4.0.0"
 
+markwon = "4.6.2"
+
 [libraries]
 detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detektVersion" }
+
+markwon = { module = "io.noties.markwon:core", version.ref = "markwon" }
 
 # kotlin
 junit = { module = "junit:junit", version.ref = "junitVersion" }
