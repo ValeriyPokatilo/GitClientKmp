@@ -4,6 +4,7 @@ import MultiPlatformLibrary
 import UIKit
 
 final class AppDelegate: NSObject, UIApplicationDelegate {
+        
     var window: UIWindow?
 
     func application(
