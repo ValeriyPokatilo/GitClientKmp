@@ -22,8 +22,8 @@ import kotlinx.coroutines.launch
 import org.example.app.R
 import org.example.app.databinding.FragmentDetailInfoBinding
 import org.example.app.entity.PlaceholderModel
+import org.example.app.extensions.openUrl
 import org.example.app.utils.MarkwonFactory
-import org.example.app.utils.openUrl
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 

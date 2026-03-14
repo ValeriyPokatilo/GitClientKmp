@@ -1,4 +1,4 @@
-package org.example.app.utils
+package org.example.app.extensions
 
 import android.content.Intent
 import androidx.core.net.toUri
