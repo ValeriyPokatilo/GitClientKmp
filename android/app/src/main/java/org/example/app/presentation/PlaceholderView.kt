@@ -9,7 +9,6 @@ import androidx.core.content.ContextCompat
 import org.example.app.databinding.ViewPlaceholderBinding
 import org.example.app.entity.PlaceholderModel
 
-
 class PlaceholderView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -17,7 +16,7 @@ class PlaceholderView @JvmOverloads constructor(
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
     private val binding: ViewPlaceholderBinding = ViewPlaceholderBinding.inflate(
-        LayoutInflater.from(context),  this
+        LayoutInflater.from(context), this
     )
 
     init {

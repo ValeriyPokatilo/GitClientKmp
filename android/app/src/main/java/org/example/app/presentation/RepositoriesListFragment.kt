@@ -101,7 +101,7 @@ class RepositoriesListFragment : Fragment() {
                         }
 
                         is RepositoriesListViewModel.State.Loaded -> {
-                             handleLoadedState(state)
+                            handleLoadedState(state)
                         }
 
                         is RepositoriesListViewModel.State.Error -> {
