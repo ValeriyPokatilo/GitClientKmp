@@ -2,7 +2,6 @@ package org.example.library.repositories.domain
 
 import app.xl.gitclientkmp.data.storage.KeyValueStorage
 
-
 internal class AuthDomainRepository(
     private val keyValueStorage: KeyValueStorage,
 ) {
