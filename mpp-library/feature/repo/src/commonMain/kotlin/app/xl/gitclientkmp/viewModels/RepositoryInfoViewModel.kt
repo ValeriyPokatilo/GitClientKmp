@@ -8,31 +8,88 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.launch
 
 class RepositoryInfoViewModel(
-    private val repository: AppRepository
+    private val repository: AppRepository,
+    private val owner: String,
+    private val repositoryName: String,
+    private val branch: String
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<State>(State.Loading)
     val state: StateFlow<State> = _state
 
-    private val _actions = MutableSharedFlow<RepositoriesListViewModel.Action>()
-    val actions: Flow<RepositoriesListViewModel.Action> = _actions
+    private val _actions = MutableSharedFlow<Action>()
+    val actions: Flow<Action> = _actions
 
     init {
         loadRepositoryInfo()
     }
 
-    fun onLogoutPressed() {
+    fun onBackButtonPressed() {
+        viewModelScope.launch {
+            _actions.emit(Action.RouteBack)
+        }
+    }
 
+    fun onLogoutPressed() {
+        viewModelScope.launch {
+            repository.logout()
+            _actions.emit(Action.Logout)
+        }
     }
 
     fun onRetryButtonPressed() {
-
+        loadRepositoryInfo()
     }
 
     private fun loadRepositoryInfo() {
+        viewModelScope.launch {
+            _state.value = State.Loading
+            try {
+                val details = repository.getRepository(
+                    ownerName = owner,
+                    repositoryName = repositoryName
+                )
 
+                _state.value = State.Loaded(
+                    githubRepo = details,
+                    readmeState = ReadmeState.Loading
+                )
+
+                loadReadme()
+            } catch (error: AppError) {
+                _state.value = State.Error(error)
+            }
+        }
+    }
+
+    private suspend fun loadReadme() {
+        try {
+            val readme = repository.getRepositoryReadme(
+                ownerName = owner,
+                repositoryName = repositoryName,
+                branchName = branch
+            )
+
+            val readmeState = if (readme == null) {
+                ReadmeState.Empty
+            } else {
+                ReadmeState.Loaded(readme)
+            }
+
+            updateReadmeState(readmeState)
+        } catch (error: AppError) {
+            updateReadmeState(ReadmeState.Error(error))
+        }
+    }
+
+    private fun updateReadmeState(readmeState: ReadmeState) {
+        val current = _state.value
+        if (current is State.Loaded) {
+            _state.value = current.copy(readmeState = readmeState)
+        }
     }
 
     sealed interface State {

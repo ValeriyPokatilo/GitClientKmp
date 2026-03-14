@@ -9,7 +9,7 @@ val repoModule = module {
         RepositoriesListViewModel(get())
     }
 
-    factory {
-        RepositoryInfoViewModel(get())
+    factory { (owner: String, repositoryName: String, branch: String) ->
+        RepositoryInfoViewModel(get(), owner, repositoryName, branch)
     }
 }
