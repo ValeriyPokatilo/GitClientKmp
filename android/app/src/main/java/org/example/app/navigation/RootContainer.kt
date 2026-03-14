@@ -35,7 +35,7 @@ fun RootContainer(
 
     val startDestination: String = when (destinationRoute) {
         Route.AuthRoute -> Hosts.Auth.route
-        Route.HomeRoute -> Hosts.Main.route
+        Route.RepositoriesRoute -> Hosts.Main.route
     }
 
     var bottomMenuConfig: BottomMenuConfig by remember {

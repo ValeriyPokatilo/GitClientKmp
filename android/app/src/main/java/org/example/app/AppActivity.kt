@@ -8,8 +8,15 @@ import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.FragmentActivity
+import androidx.navigation.fragment.NavHostFragment
+import org.example.library.appRouter.AppRouter
+import org.koin.android.ext.android.inject
 
 class AppActivity : FragmentActivity() {
+
+    private val router: AppRouter by inject()
+
+    private var isAppReadyForStart = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         val splashScreen = installSplashScreen()
@@ -28,13 +35,14 @@ class AppActivity : FragmentActivity() {
         super.onCreate(savedInstanceState)
 
         splashScreen.setKeepOnScreenCondition {
-            //TODO: Add logic with appRouter
-            false
+            !isAppReadyForStart
         }
 
         setContentView(R.layout.activity_main)
 
         setupInsets()
+
+        setupNavigation()
     }
 
     private fun setupInsets() {
@@ -51,5 +59,25 @@ class AppActivity : FragmentActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, bottomPadding)
             insets
         }
+    }
+
+    private fun setupNavigation() {
+        val navHost =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+
+        val navController = navHost.navController
+        val navGraph = navController.navInflater.inflate(R.navigation.main_navigation)
+
+        val route = router.getDestination()
+
+        val startDestination = when (route) {
+            AppRouter.Route.AuthRoute -> R.id.authFragment
+            AppRouter.Route.RepositoriesRoute -> R.id.repositoriesListFragment
+        }
+
+        navGraph.setStartDestination(startDestination)
+        navController.graph = navGraph
+
+        isAppReadyForStart = true
     }
 }
