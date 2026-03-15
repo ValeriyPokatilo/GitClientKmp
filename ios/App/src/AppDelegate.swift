@@ -19,6 +19,8 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         #endif
 
         Koin.setup()
+        
+        setupNavigationBar()
 
         return true
     }
@@ -36,4 +38,14 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         return sceneConfiguration
     }
 
+    private func setupNavigationBar() {
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .appBackground
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().tintColor = .white
+    }
 }

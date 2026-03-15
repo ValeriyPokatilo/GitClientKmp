@@ -9,8 +9,8 @@ final class AppCoordinator {
 
     private let router: AppRouter = Koin.instance.getAppRouter()
 
-    private var authCoordinator: AuthCoordinator?
-    private var repositoriesListCoordinator: RepositoriesListCoordinator?
+    private var authorizedCoordinator: AuthorizedCoordinator?
+    private var unauthorizedCoordinator: UnauthorizedCoordinator?
 
     init(window: UIWindow) {
         self.window = window
@@ -18,31 +18,47 @@ final class AppCoordinator {
 
     func start() {
         window.rootViewController = navigationController
+        window.makeKeyAndVisible()
 
         switch router.getDestination() {
-
-        case is AppRouterRouteAuthRoute:
-            showAuthController()
-
         case is AppRouterRouteRepositoriesRoute:
-            showRepositoriesController()
-
+            authorizedFlow()
         default:
-            showAuthController()
+            unauthorizedFlow()
         }
     }
 
-    private func showAuthController() {
-        authCoordinator = AuthCoordinator(
+    func authorizedFlow() {
+        let coordinator = AuthorizedCoordinator(
             navigationController: navigationController
         )
-        authCoordinator?.start()
+
+        coordinator.onLogout = { [weak self] in
+            self?.logout()
+        }
+
+        coordinator.start()
+
+        authorizedCoordinator = coordinator
+        unauthorizedCoordinator = nil
     }
 
-    private func showRepositoriesController() {
-        repositoriesListCoordinator = RepositoriesListCoordinator(
+    func unauthorizedFlow() {
+        let coordinator = UnauthorizedCoordinator(
             navigationController: navigationController
         )
-        repositoriesListCoordinator?.start()
+
+        coordinator.onLogin = { [weak self] in
+            self?.authorizedFlow()
+        }
+
+        coordinator.start()
+
+        unauthorizedCoordinator = coordinator
+        authorizedCoordinator = nil
+    }
+
+    func logout() {
+        unauthorizedFlow()
     }
 }

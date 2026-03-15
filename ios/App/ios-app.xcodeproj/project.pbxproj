@@ -16,6 +16,8 @@
 		76350DA32F5F216F009D4FD1 /* Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76350DA22F5F216F009D4FD1 /* Aliases.swift */; };
 		76350DA62F5FF5F8009D4FD1 /* Ext+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76350DA52F5FF5F8009D4FD1 /* Ext+UIAlertController.swift */; };
 		76350DA82F5FF776009D4FD1 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76350DA72F5FF776009D4FD1 /* AlertViewController.swift */; };
+		76829CDD2F66B8EF00969E6F /* UnauthorizedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76829CDC2F66B8EF00969E6F /* UnauthorizedCoordinator.swift */; };
+		76829CDF2F66B90F00969E6F /* AuthorizedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76829CDE2F66B90F00969E6F /* AuthorizedCoordinator.swift */; };
 		76D7CF942F62A2A1008104A0 /* RepositoriesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76D7CF932F62A2A1008104A0 /* RepositoriesListViewController.xib */; };
 		76D7CF952F62A2A1008104A0 /* RepositoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D7CF922F62A2A1008104A0 /* RepositoriesListViewController.swift */; };
 		76D7CF982F62DEA9008104A0 /* RepositoryItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D7CF962F62DEA9008104A0 /* RepositoryItemCell.swift */; };
@@ -26,8 +28,6 @@
 		76EF93132F5A1242001B63C8 /* RepositoryDetailInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76EF93122F5A1242001B63C8 /* RepositoryDetailInfoViewController.xib */; };
 		76EF93142F5A1242001B63C8 /* RepositoryDetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF93112F5A1242001B63C8 /* RepositoryDetailInfoViewController.swift */; };
 		76EF93172F5A12D5001B63C8 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF93162F5A12D5001B63C8 /* AppCoordinator.swift */; };
-		76EF93192F5A12E8001B63C8 /* AuthCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF93182F5A12E8001B63C8 /* AuthCoordinator.swift */; };
-		76EF931B2F5A12F7001B63C8 /* RepositoriesListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF931A2F5A12F7001B63C8 /* RepositoriesListCoordinator.swift */; };
 		76EF931D2F5A1309001B63C8 /* RepositoryDetailInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF931C2F5A1309001B63C8 /* RepositoryDetailInfoCoordinator.swift */; };
 		76EF931F2F5A1440001B63C8 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF931E2F5A1440001B63C8 /* SceneDelegate.swift */; };
 		94108688E7D935C98DA98035 /* Pods_ios_app.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27102F5051BCB9B000CA3866 /* Pods_ios_app.framework */; };
@@ -83,6 +83,8 @@
 		76350DA22F5F216F009D4FD1 /* Aliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aliases.swift; sourceTree = "<group>"; };
 		76350DA52F5FF5F8009D4FD1 /* Ext+UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIAlertController.swift"; sourceTree = "<group>"; };
 		76350DA72F5FF776009D4FD1 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		76829CDC2F66B8EF00969E6F /* UnauthorizedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthorizedCoordinator.swift; sourceTree = "<group>"; };
+		76829CDE2F66B90F00969E6F /* AuthorizedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizedCoordinator.swift; sourceTree = "<group>"; };
 		76D7CF922F62A2A1008104A0 /* RepositoriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesListViewController.swift; sourceTree = "<group>"; };
 		76D7CF932F62A2A1008104A0 /* RepositoriesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoriesListViewController.xib; sourceTree = "<group>"; };
 		76D7CF962F62DEA9008104A0 /* RepositoryItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryItemCell.swift; sourceTree = "<group>"; };
@@ -93,8 +95,6 @@
 		76EF93112F5A1242001B63C8 /* RepositoryDetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailInfoViewController.swift; sourceTree = "<group>"; };
 		76EF93122F5A1242001B63C8 /* RepositoryDetailInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryDetailInfoViewController.xib; sourceTree = "<group>"; };
 		76EF93162F5A12D5001B63C8 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
-		76EF93182F5A12E8001B63C8 /* AuthCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthCoordinator.swift; sourceTree = "<group>"; };
-		76EF931A2F5A12F7001B63C8 /* RepositoriesListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesListCoordinator.swift; sourceTree = "<group>"; };
 		76EF931C2F5A1309001B63C8 /* RepositoryDetailInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailInfoCoordinator.swift; sourceTree = "<group>"; };
 		76EF931E2F5A1440001B63C8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		8F39AE06F9CE75BFD6022A6C /* Pods-ios-app.prod-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-app.prod-debug.xcconfig"; path = "Target Support Files/Pods-ios-app/Pods-ios-app.prod-debug.xcconfig"; sourceTree = "<group>"; };
@@ -299,8 +299,8 @@
 			isa = PBXGroup;
 			children = (
 				76EF93162F5A12D5001B63C8 /* AppCoordinator.swift */,
-				76EF93182F5A12E8001B63C8 /* AuthCoordinator.swift */,
-				76EF931A2F5A12F7001B63C8 /* RepositoriesListCoordinator.swift */,
+				76829CDE2F66B90F00969E6F /* AuthorizedCoordinator.swift */,
+				76829CDC2F66B8EF00969E6F /* UnauthorizedCoordinator.swift */,
 				76EF931C2F5A1309001B63C8 /* RepositoryDetailInfoCoordinator.swift */,
 			);
 			path = Coordinators;
@@ -574,10 +574,8 @@
 				D2FD61EA2DAE4AEE00A37209 /* ViewModelObservable.swift in Sources */,
 				D2FD61EB2DAE4AEE00A37209 /* ViewModelStateNullable.swift in Sources */,
 				D2E6AC0D2DAE1D4900D01DC1 /* MobileApp.swift in Sources */,
-				76EF93192F5A12E8001B63C8 /* AuthCoordinator.swift in Sources */,
 				76D7CF952F62A2A1008104A0 /* RepositoriesListViewController.swift in Sources */,
 				45F47922219463C7003D25FA /* AppDelegate.swift in Sources */,
-				76EF931B2F5A12F7001B63C8 /* RepositoriesListCoordinator.swift in Sources */,
 				76350DA32F5F216F009D4FD1 /* Aliases.swift in Sources */,
 				D2F8433B2ADF0D9300657354 /* Koin.swift in Sources */,
 				76350DA62F5FF5F8009D4FD1 /* Ext+UIAlertController.swift in Sources */,
@@ -586,10 +584,12 @@
 				D251A4A12D1412A700A7236D /* R.generated.swift in Sources */,
 				45D8D7FA26FB24AE00DD3A58 /* Environment.swift in Sources */,
 				221908112CC6B83A00A045C4 /* CrashlyticsExceptionLogger.swift in Sources */,
+				76829CDF2F66B90F00969E6F /* AuthorizedCoordinator.swift in Sources */,
 				76EF931F2F5A1440001B63C8 /* SceneDelegate.swift in Sources */,
 				D2F446F52D13459500A410C5 /* LogoutNavigationHook.swift in Sources */,
 				76EF930C2F5A120A001B63C8 /* AuthViewController.swift in Sources */,
 				D2F446FB2D1405E900A410C5 /* ImageDesc.swift in Sources */,
+				76829CDD2F66B8EF00969E6F /* UnauthorizedCoordinator.swift in Sources */,
 				D2FD62822DAF71CB00A37209 /* RemoteStateContent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -622,7 +622,7 @@
 			baseConfigurationReference = D28F70F16E4D2C6510E2A7D9 /* Pods-ios-app.dev-debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = CUGUBFWQR9;
-				INFOPLIST_KEY_CFBundleDisplayName = "$(BUNDLE_DISPLAY_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "MOKO app (D)";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "\"IceRock Development\"";
@@ -641,7 +641,7 @@
 			baseConfigurationReference = 6D54CCFF2548C00718908712 /* Pods-ios-app.dev-release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = CUGUBFWQR9;
-				INFOPLIST_KEY_CFBundleDisplayName = "$(BUNDLE_DISPLAY_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "MOKO app (D)";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "\"IceRock Development\"";
@@ -670,7 +670,7 @@
 			baseConfigurationReference = 4E85A7C63199C53C79B0C01E /* Pods-ios-app.stage-debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = CUGUBFWQR9;
-				INFOPLIST_KEY_CFBundleDisplayName = "$(BUNDLE_DISPLAY_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "MOKO app (D)";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "\"IceRock Development\"";
@@ -699,7 +699,7 @@
 			baseConfigurationReference = 8F39AE06F9CE75BFD6022A6C /* Pods-ios-app.prod-debug.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = CUGUBFWQR9;
-				INFOPLIST_KEY_CFBundleDisplayName = "$(BUNDLE_DISPLAY_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "MOKO app (D)";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "\"IceRock Development\"";
@@ -728,7 +728,7 @@
 			baseConfigurationReference = 307CBACFCFE62C2C9FCC5724 /* Pods-ios-app.prod-release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = CUGUBFWQR9;
-				INFOPLIST_KEY_CFBundleDisplayName = "$(BUNDLE_DISPLAY_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "MOKO app (D)";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "\"IceRock Development\"";
@@ -757,7 +757,7 @@
 			baseConfigurationReference = 2D7851452088C3C91A9B800E /* Pods-ios-app.stage-release.xcconfig */;
 			buildSettings = {
 				DEVELOPMENT_TEAM = CUGUBFWQR9;
-				INFOPLIST_KEY_CFBundleDisplayName = "$(BUNDLE_DISPLAY_NAME)";
+				INFOPLIST_KEY_CFBundleDisplayName = "MOKO app (D)";
 				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
 				INFOPLIST_KEY_NSHumanReadableCopyright = "\"IceRock Development\"";

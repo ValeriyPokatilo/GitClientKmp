@@ -7,7 +7,7 @@ final class RepositoriesListViewController: UITableViewController {
         .getRepositoriesListViewModel()
 
     private var repositories: [Repository] = []
-    
+
     private let cellId = "repository"
 
     override func viewDidLoad() {
@@ -17,22 +17,37 @@ final class RepositoriesListViewController: UITableViewController {
         bindViewModel()
     }
 
+    var onLogout: EmptyBlock?
+    var showDetails: EmptyBlock?
+
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         navigationController?.setNavigationBarHidden(false, animated: animated)
     }
-    
+
     private func setupNavigation() {
         navigationItem.hidesBackButton = true
         navigationItem.title = MR.strings().repositories.desc().localized()
+
+        let button = UIBarButtonItem(
+            image: R.image.ic_logout(),
+            style: .plain,
+            target: self,
+            action: #selector(onLogoutTap)
+        )
+
+        button.tintColor = .white
+
+        navigationItem.rightBarButtonItem = button
+        navigationItem.backButtonTitle = ""
     }
-    
+
     private func setupTableView() {
         tableView.register(
             UINib(nibName: "RepositoryItemCell", bundle: nil),
             forCellReuseIdentifier: cellId
         )
-        
+
         tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = UITableView.automaticDimension
     }
@@ -64,7 +79,19 @@ final class RepositoriesListViewController: UITableViewController {
     }
 
     private func handleAction(_ action: RepositoriesListViewModelAction) {
-        // TODO: - switch action
+        switch action {
+        case is RepositoriesListViewModelActionLogout:
+            onLogout?()
+
+        case is RepositoriesListViewModelActionRouteToDetail:
+            showDetails?()
+
+        default: break
+        }
+    }
+
+    @objc private func onLogoutTap() {
+        viewModel.onLogoutButtonPressed()
     }
 }
 
@@ -74,10 +101,12 @@ extension RepositoriesListViewController {
         _ tableView: UITableView,
         cellForRowAt indexPath: IndexPath
     ) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: cellId,
-            for: indexPath
-        ) as? RepositoryItemCell else {
+        guard
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: cellId,
+                for: indexPath
+            ) as? RepositoryItemCell
+        else {
             fatalError("RepositoryItemCell not registered")
         }
 
@@ -90,6 +119,14 @@ extension RepositoriesListViewController {
         )
 
         return cell
+    }
+
+    override func tableView(
+        _ tableView: UITableView,
+        didSelectRowAt indexPath: IndexPath
+    ) {
+        // TODO: - viewModel.onSelectItem
+        showDetails?()
     }
 }
 
