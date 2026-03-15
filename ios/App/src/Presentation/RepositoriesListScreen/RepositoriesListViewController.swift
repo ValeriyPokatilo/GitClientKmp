@@ -1,4 +1,5 @@
 import MultiPlatformLibrary
+import NVActivityIndicatorView
 import UIKit
 
 final class RepositoriesListViewController: UITableViewController {
@@ -10,22 +11,31 @@ final class RepositoriesListViewController: UITableViewController {
 
     private let cellId = "repository"
 
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupNavigation()
-        setupTableView()
-        bindViewModel()
-    }
+    private let indicatorView = NVActivityIndicatorView(
+        frame: .zero,
+        type: .circleStrokeSpin,
+        color: .white,
+        padding: 0
+    )
+
+    private let placeholderView = PlaceholderView()
+
+    private let indicatorViewSize: CGFloat = 56
 
     var onLogout: EmptyBlock?
     var showDetails: EmptyBlock?
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(false, animated: animated)
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        setupNavigation()
+        setupIndicator()
+        setupTableView()
+        bindViewModel()
     }
 
     private func setupNavigation() {
+        navigationController?.setNavigationBarHidden(false, animated: false)
+        
         navigationItem.hidesBackButton = true
         navigationItem.title = MR.strings().repositories.desc().localized()
 
@@ -52,30 +62,128 @@ final class RepositoriesListViewController: UITableViewController {
         tableView.estimatedRowHeight = UITableView.automaticDimension
     }
 
+    private func setupIndicator() {
+        view.addSubview(indicatorView)
+        indicatorView.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            indicatorView.centerXAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.centerXAnchor
+            ),
+            indicatorView.centerYAnchor.constraint(
+                equalTo: view.safeAreaLayoutGuide.centerYAnchor
+            ),
+            indicatorView.widthAnchor.constraint(
+                equalToConstant: indicatorViewSize
+            ),
+            indicatorView.heightAnchor.constraint(
+                equalToConstant: indicatorViewSize
+            ),
+        ])
+    }
+
     private func bindViewModel() {
         Task { [weak self] in
             guard let self = self else { return }
             for await state in self.viewModel.state {
-                self.renderState(state)
+                await MainActor.run {
+                    self.renderState(state)
+                }
             }
         }
 
         Task { [weak self] in
             guard let self = self else { return }
             for await action in self.viewModel.actions {
-                self.handleAction(action)
+                await MainActor.run {
+                    self.handleAction(action)
+                }
             }
         }
     }
 
     private func renderState(_ state: RepositoriesListViewModelState) {
         switch state {
+        case is RepositoriesListViewModelStateLoading:
+            handleLoadingState()
+
         case let loaded as RepositoriesListViewModelStateLoaded:
-            repositories = loaded.repositories
-            tableView.reloadData()
+            handleLoadedState(items: loaded.repositories)
+
+        case is RepositoriesListViewModelStateEmpty:
+            handleEmptyState()
+
+        case let errorState as RepositoriesListViewModelStateError:
+            handleErrorState(error: errorState.error)
 
         default: break
         }
+    }
+
+    private func handleLoadingState() {
+        indicatorView.startAnimating()
+        tableView.backgroundView = nil
+        repositories.removeAll()
+        tableView.reloadData()
+    }
+
+    private func handleLoadedState(items: [Repository]) {
+        indicatorView.stopAnimating()
+        repositories = items
+        tableView.backgroundView = nil
+        tableView.reloadData()
+    }
+
+    private func handleEmptyState() {
+        indicatorView.stopAnimating()
+        placeholderView.configure(
+            image: R.image.ic_empty(),
+            title: MR.strings().repositories_empty_title.desc().localized(),
+            message: MR.strings().repositories_empty_message.desc().localized(),
+            isError: false,
+            action: { [weak self] in
+                self?.viewModel.onRetryButtonPressed()
+            }
+        )
+        tableView.backgroundView = placeholderView
+    }
+
+    private func handleErrorState(error: AppError) {
+        indicatorView.stopAnimating()
+
+        let title: String
+        let message: String
+        let icon: UIImage?
+
+        switch error {
+        case let httpError as AppError.Http:
+            title = "\(httpError.code)"
+            message = httpError.message ?? ""
+            icon = R.image.ic_error()
+
+        case is AppError.Network:
+            title = MR.strings().repositories_connection_error_title.desc()
+                .localized()
+            message = MR.strings().repositories_connection_error_message.desc()
+                .localized()
+            icon = R.image.ic_connection_error()
+
+        default:
+            title = ""
+            message = ""
+            icon = nil
+        }
+
+        placeholderView.configure(
+            image: icon,
+            title: title,
+            message: message,
+            isError: true,
+            action: { [weak self] in
+                self?.viewModel.onRetryButtonPressed()
+            }
+        )
+
+        tableView.backgroundView = placeholderView
     }
 
     private func handleAction(_ action: RepositoriesListViewModelAction) {
@@ -125,12 +233,10 @@ extension RepositoriesListViewController {
         _ tableView: UITableView,
         didSelectRowAt indexPath: IndexPath
     ) {
+        tableView.deselectRow(at: indexPath, animated: true)
         // TODO: - viewModel.onSelectItem
         showDetails?()
     }
-}
-
-extension RepositoriesListViewController {
 
     override func tableView(
         _ tableView: UITableView,

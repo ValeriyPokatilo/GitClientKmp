@@ -18,6 +18,8 @@
 		76350DA82F5FF776009D4FD1 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76350DA72F5FF776009D4FD1 /* AlertViewController.swift */; };
 		76829CDD2F66B8EF00969E6F /* UnauthorizedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76829CDC2F66B8EF00969E6F /* UnauthorizedCoordinator.swift */; };
 		76829CDF2F66B90F00969E6F /* AuthorizedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76829CDE2F66B90F00969E6F /* AuthorizedCoordinator.swift */; };
+		76D676382F66C4E600DA76F5 /* PlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76D676362F66C4E500DA76F5 /* PlaceholderView.xib */; };
+		76D676392F66C4E600DA76F5 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D676352F66C4E500DA76F5 /* PlaceholderView.swift */; };
 		76D7CF942F62A2A1008104A0 /* RepositoriesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76D7CF932F62A2A1008104A0 /* RepositoriesListViewController.xib */; };
 		76D7CF952F62A2A1008104A0 /* RepositoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D7CF922F62A2A1008104A0 /* RepositoriesListViewController.swift */; };
 		76D7CF982F62DEA9008104A0 /* RepositoryItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D7CF962F62DEA9008104A0 /* RepositoryItemCell.swift */; };
@@ -85,6 +87,8 @@
 		76350DA72F5FF776009D4FD1 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
 		76829CDC2F66B8EF00969E6F /* UnauthorizedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthorizedCoordinator.swift; sourceTree = "<group>"; };
 		76829CDE2F66B90F00969E6F /* AuthorizedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizedCoordinator.swift; sourceTree = "<group>"; };
+		76D676352F66C4E500DA76F5 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
+		76D676362F66C4E500DA76F5 /* PlaceholderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceholderView.xib; sourceTree = "<group>"; };
 		76D7CF922F62A2A1008104A0 /* RepositoriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesListViewController.swift; sourceTree = "<group>"; };
 		76D7CF932F62A2A1008104A0 /* RepositoriesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoriesListViewController.xib; sourceTree = "<group>"; };
 		76D7CF962F62DEA9008104A0 /* RepositoryItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryItemCell.swift; sourceTree = "<group>"; };
@@ -238,6 +242,15 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		76D676372F66C4E500DA76F5 /* Placeholder */ = {
+			isa = PBXGroup;
+			children = (
+				76D676352F66C4E500DA76F5 /* PlaceholderView.swift */,
+				76D676362F66C4E500DA76F5 /* PlaceholderView.xib */,
+			);
+			path = Placeholder;
+			sourceTree = "<group>";
+		};
 		76D7CF9C2F6314B9008104A0 /* AuthScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -290,6 +303,7 @@
 				76D7CF9C2F6314B9008104A0 /* AuthScreen */,
 				76D7CF9D2F6314C9008104A0 /* RepositoriesListScreen */,
 				76D7CF9F2F631501008104A0 /* RepositoryInfoScreen */,
+				76D676372F66C4E500DA76F5 /* Placeholder */,
 				76D7CFA02F63151B008104A0 /* AlertController */,
 			);
 			path = Presentation;
@@ -462,6 +476,7 @@
 			files = (
 				D25029F02DB0CD7E000149C7 /* Preview Assets.xcassets in Resources */,
 				76EF930B2F5A120A001B63C8 /* AuthViewController.xib in Resources */,
+				76D676382F66C4E600DA76F5 /* PlaceholderView.xib in Resources */,
 				76D7CF942F62A2A1008104A0 /* RepositoriesListViewController.xib in Resources */,
 				76DEF5232F618BAD00677238 /* LaunchScreen.storyboard in Resources */,
 				76D7CF992F62DEA9008104A0 /* RepositoryItemCell.xib in Resources */,
@@ -568,6 +583,7 @@
 				76EF931D2F5A1309001B63C8 /* RepositoryDetailInfoCoordinator.swift in Sources */,
 				76EF93142F5A1242001B63C8 /* RepositoryDetailInfoViewController.swift in Sources */,
 				76D7CF982F62DEA9008104A0 /* RepositoryItemCell.swift in Sources */,
+				76D676392F66C4E600DA76F5 /* PlaceholderView.swift in Sources */,
 				D2FD61E82DAE4AEE00A37209 /* ViewModelState.swift in Sources */,
 				D2FD61E92DAE4AEE00A37209 /* ViewModelBinding.swift in Sources */,
 				76350DA82F5FF776009D4FD1 /* AlertViewController.swift in Sources */,
