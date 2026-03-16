@@ -106,6 +106,7 @@ PODS:
   - GoogleUtilities/UserDefaults (8.1.0):
     - GoogleUtilities/Logger
     - GoogleUtilities/Privacy
+  - MarkdownKit (1.7.1)
   - MultiPlatformLibrary (1.0)
   - nanopb (3.30910.0):
     - nanopb/decode (= 3.30910.0)
@@ -133,6 +134,7 @@ PODS:
 DEPENDENCIES:
   - FirebaseAnalytics
   - FirebaseCrashlytics
+  - MarkdownKit
   - MultiPlatformLibrary (from `../mpp-library`)
   - NVActivityIndicatorView (~> 5.1.1)
   - R.swift (~> 7.8.0)
@@ -153,6 +155,7 @@ SPEC REPOS:
     - GoogleAppMeasurement
     - GoogleDataTransport
     - GoogleUtilities
+    - MarkdownKit
     - nanopb
     - NVActivityIndicatorView
     - PromisesObjC
@@ -181,6 +184,7 @@ SPEC CHECKSUMS:
   GoogleAppMeasurement: 57270ccc2b77472d7e85c4cbe45972564eff78bb
   GoogleDataTransport: aae35b7ea0c09004c3797d53c8c41f66f219d6a7
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
+  MarkdownKit: 0b15195c63cf3e39387949c4bdeccde0055e252a
   MultiPlatformLibrary: 4fb5beedefb618efe7a675e9ade97759b7e868b5
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
@@ -193,6 +197,6 @@ SPEC CHECKSUMS:
   RxSwift: 915abbdfb62214aa89ccd0b194d44fb478019b27
   SwiftFormat: 2402d29b26746f169cce5454d5af88314cbb2e35
 
-PODFILE CHECKSUM: a80ef5aad3c78e1d2eef43404fcd8258512386db
+PODFILE CHECKSUM: 76fd3c25e01bae52fb839d296678437e7c46a451
 
 COCOAPODS: 1.16.2

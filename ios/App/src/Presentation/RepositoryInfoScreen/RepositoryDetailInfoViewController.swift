@@ -1,3 +1,4 @@
+import MarkdownKit
 import MultiPlatformLibrary
 import NVActivityIndicatorView
 import UIKit
@@ -10,7 +11,9 @@ final class RepositoryDetailInfoViewController: UIViewController {
     @IBOutlet private weak var starsView: IconLabelView!
     @IBOutlet private weak var forksView: IconLabelView!
     @IBOutlet private weak var watchersView: IconLabelView!
-    @IBOutlet private weak var activityIndicator: NVActivityIndicatorView!
+    @IBOutlet private weak var readmeIndicator: NVActivityIndicatorView!
+    @IBOutlet private weak var mainIndicator: NVActivityIndicatorView!
+    @IBOutlet private weak var markdownTextView: UITextView!
 
     private let owner: String
     private let repositoryName: String
@@ -22,8 +25,6 @@ final class RepositoryDetailInfoViewController: UIViewController {
             repositoryName: repositoryName,
             branch: branch
         )
-
-    private let placeholderView = PlaceholderView()
 
     var onLogout: EmptyBlock?
     var onGoBack: EmptyBlock?
@@ -46,12 +47,12 @@ final class RepositoryDetailInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigation()
-        setupIndicator()
+        setupIndicators()
         bindViewModel()
     }
 
     private func setupNavigation() {
-        navigationItem.title = "Repo Name"
+        navigationItem.title = repositoryName
 
         let button = UIBarButtonItem(
             image: R.image.ic_logout(),
@@ -65,8 +66,9 @@ final class RepositoryDetailInfoViewController: UIViewController {
         navigationItem.rightBarButtonItem = button
     }
 
-    private func setupIndicator() {
-        activityIndicator.type = .circleStrokeSpin
+    private func setupIndicators() {
+        mainIndicator.type = .circleStrokeSpin
+        readmeIndicator.type = .circleStrokeSpin
     }
 
     private func bindViewModel() {
@@ -98,22 +100,23 @@ final class RepositoryDetailInfoViewController: UIViewController {
                 details: loadedState.githubRepo,
                 readmeState: loadedState.readmeState
             )
-        case let errorState as RepositoryInfoViewModelStateError:
-            handleErrorState(error: errorState.error)
+        case let state as RepositoryInfoViewModelStateError:
+            handleErrorState(error: state.error)
         default: break
         }
     }
 
     private func handleLoadingState() {
-        activityIndicator.startAnimating()
+        mainIndicator.startAnimating()
     }
 
     private func handleLoadedState(
         details: RepositoryDetails,
         readmeState: RepositoryInfoViewModelReadmeState
     ) {
-        activityIndicator.stopAnimating()
+        mainIndicator.stopAnimating()
         setupDetails(details: details)
+        handleReadmeState(readmeState: readmeState)
     }
 
     private func setupDetails(details: RepositoryDetails) {
@@ -158,7 +161,40 @@ final class RepositoryDetailInfoViewController: UIViewController {
     private func handleReadmeState(
         readmeState: RepositoryInfoViewModelReadmeState
     ) {
+        switch readmeState {
+        case is RepositoryInfoViewModelReadmeStateLoading:
+            readmeIndicator.startAnimating()
 
+        case let state as RepositoryInfoViewModelReadmeStateLoaded:
+            readmeIndicator.stopAnimating()
+            handleMarkdown(markdownString: state.markdown)
+
+        case is RepositoryInfoViewModelReadmeStateEmpty:
+            readmeIndicator.stopAnimating()
+            markdownTextView.text = MR.strings().no_readme_md.desc().localized()
+
+        case let state as RepositoryInfoViewModelReadmeStateError:
+            readmeIndicator.stopAnimating()
+            handleErrorState(error: state.error)
+
+        default: break
+        }
+    }
+
+    private func handleMarkdown(markdownString: String?) {
+        if let markdownString {
+            let parser = MarkdownParser(
+                font: UIFont.systemFont(ofSize: 16),
+                color: R.color.white70() ?? UIColor()
+            )
+
+            parser.enabledElements = [.header, .bold, .italic, .link]
+
+            parser.header.font = UIFont.boldSystemFont(ofSize: 20)
+            parser.header.color = R.color.white() ?? UIColor()
+
+            markdownTextView.attributedText = parser.parse(markdownString)
+        }
     }
 
     private func handleErrorState(error: AppError) {
