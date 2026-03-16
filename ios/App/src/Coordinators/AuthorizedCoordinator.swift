@@ -19,16 +19,27 @@ final class AuthorizedCoordinator {
             self?.onLogout?()
         }
 
-        controller.showDetails = { [weak self] in
-            self?.showRepositoryDetails()
+        controller.showDetails = { [weak self] details in
+            self?.showRepositoryDetails(
+                owner: details.0,
+                repositoryName: details.1,
+                branch: details.2
+            )
         }
 
         navigationController.setViewControllers([controller], animated: false)
     }
 
-    func showRepositoryDetails() {
+    func showRepositoryDetails(
+        owner: String,
+        repositoryName: String,
+        branch: String
+    ) {
         let coordinator = RepositoryDetailInfoCoordinator(
-            navigationController: navigationController
+            navigationController: navigationController,
+            owner: owner,
+            repositoryName: repositoryName,
+            branch: branch
         )
         
         coordinator.onLogout = { [weak self] in

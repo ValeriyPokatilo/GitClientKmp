@@ -23,7 +23,7 @@ final class RepositoriesListViewController: UITableViewController {
     private let indicatorViewSize: CGFloat = 56
 
     var onLogout: EmptyBlock?
-    var showDetails: EmptyBlock?
+    var showDetails: ParameterBlock<(String, String, String)>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -191,8 +191,8 @@ final class RepositoriesListViewController: UITableViewController {
         case is RepositoriesListViewModelActionLogout:
             onLogout?()
 
-        case is RepositoriesListViewModelActionRouteToDetail:
-            showDetails?()
+        case let details as RepositoriesListViewModelActionRouteToDetail:
+            showDetails?((details.owner, details.repositoryName, details.branch))
 
         default: break
         }
@@ -234,8 +234,7 @@ extension RepositoriesListViewController {
         didSelectRowAt indexPath: IndexPath
     ) {
         tableView.deselectRow(at: indexPath, animated: true)
-        // TODO: - viewModel.onSelectItem
-        showDetails?()
+        viewModel.onRepositoryItemPressed(repository: repositories[indexPath.row])
     }
 
     override func tableView(
