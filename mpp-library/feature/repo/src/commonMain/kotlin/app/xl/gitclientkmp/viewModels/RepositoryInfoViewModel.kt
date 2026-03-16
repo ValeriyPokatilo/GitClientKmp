@@ -73,7 +73,7 @@ class RepositoryInfoViewModel(
                 branchName = branch
             )
 
-            val readmeState = if (readme == null) {
+            val readmeState = if (readme.isBlank()) {
                 ReadmeState.Empty
             } else {
                 ReadmeState.Loaded(readme)

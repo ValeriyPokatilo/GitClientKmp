@@ -25,7 +25,7 @@ interface AppRepository {
         ownerName: String,
         repositoryName: String,
         branchName: String? = null
-    ): String?
+    ): String
 
     fun logout()
 }

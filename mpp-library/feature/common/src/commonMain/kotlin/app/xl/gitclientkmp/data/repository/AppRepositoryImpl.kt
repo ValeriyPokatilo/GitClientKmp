@@ -110,19 +110,25 @@ class AppRepositoryImpl(
         ownerName: String,
         repositoryName: String,
         branchName: String?
-    ): String? {
+    ): String {
+
         val authHeader = createAuthHeader()
 
         try {
             val readmeDto =
                 api.getRepositoryReadme(authHeader, ownerName, repositoryName, branchName)
 
-            if (readmeDto.encoding != "base64") return null
+            if (readmeDto.encoding != "base64") return ""
 
             val decodedBytes = Base64Decoder.decode(readmeDto.content)
 
             return decodedBytes.decodeToString()
+
         } catch (exception: ResponseException) {
+            if (exception.response.status.value == 404) {
+                return ""
+            }
+
             val body = runCatching {
                 exception.response.bodyAsText()
             }.getOrNull()
@@ -136,6 +142,7 @@ class AppRepositoryImpl(
                 errorMessage = message,
                 cause = exception
             )
+
         } catch (exception: Exception) {
             throw AppError.Network(exception)
         }
