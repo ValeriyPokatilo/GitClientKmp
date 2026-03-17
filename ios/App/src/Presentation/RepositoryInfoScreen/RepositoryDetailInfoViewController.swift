@@ -15,6 +15,8 @@ final class RepositoryDetailInfoViewController: UIViewController {
     @IBOutlet private weak var mainIndicator: NVActivityIndicatorView!
     @IBOutlet private weak var markdownTextView: UITextView!
 
+    @IBOutlet private weak var placeholderView: PlaceholderView!
+    
     private let owner: String
     private let repositoryName: String
     private let branch: String
@@ -92,16 +94,21 @@ final class RepositoryDetailInfoViewController: UIViewController {
     }
 
     private func renderState(_ state: RepositoryInfoViewModelState) {
+        placeholderView.isHidden = true
+        
         switch state {
         case is RepositoryInfoViewModelStateLoading:
             handleLoadingState()
+            
         case let loadedState as RepositoryInfoViewModelStateLoaded:
             handleLoadedState(
                 details: loadedState.githubRepo,
                 readmeState: loadedState.readmeState
             )
+            
         case let state as RepositoryInfoViewModelStateError:
             handleErrorState(error: state.error)
+            
         default: break
         }
     }
@@ -161,22 +168,24 @@ final class RepositoryDetailInfoViewController: UIViewController {
     private func handleReadmeState(
         readmeState: RepositoryInfoViewModelReadmeState
     ) {
+        placeholderView.isHidden = true
+
         switch readmeState {
         case is RepositoryInfoViewModelReadmeStateLoading:
             readmeIndicator.startAnimating()
-
+            
         case let state as RepositoryInfoViewModelReadmeStateLoaded:
             readmeIndicator.stopAnimating()
             handleMarkdown(markdownString: state.markdown)
-
+            
         case is RepositoryInfoViewModelReadmeStateEmpty:
             readmeIndicator.stopAnimating()
             markdownTextView.text = MR.strings().no_readme_md.desc().localized()
-
+            
         case let state as RepositoryInfoViewModelReadmeStateError:
             readmeIndicator.stopAnimating()
             handleErrorState(error: state.error)
-
+            
         default: break
         }
     }
@@ -198,7 +207,11 @@ final class RepositoryDetailInfoViewController: UIViewController {
     }
 
     private func handleErrorState(error: AppError) {
-
+        placeholderView.isHidden = false
+        
+        placeholderView.configure(with: error) { [weak self] in
+            self?.viewModel.onRetryButtonPressed()
+        }
     }
 
     private func handleAction(_ action: RepositoryInfoViewModelAction) {

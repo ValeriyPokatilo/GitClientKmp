@@ -38,7 +38,7 @@
                         <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounce" value="YES"/>
                     </userDefinedRuntimeAttributes>
                     <connections>
-                        <action selector="refrashAction:" destination="-1" eventType="touchUpInside" id="Fud-5g-giU"/>
+                        <action selector="refreshAction:" destination="-1" eventType="touchUpInside" id="1RF-Bv-Ppa"/>
                     </connections>
                 </button>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="NxG-zy-37z">

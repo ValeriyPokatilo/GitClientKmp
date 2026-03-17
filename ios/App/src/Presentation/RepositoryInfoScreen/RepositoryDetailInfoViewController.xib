@@ -18,6 +18,7 @@
                 <outlet property="linkView" destination="IGk-gF-ZhE" id="yfk-8p-yNc"/>
                 <outlet property="mainIndicator" destination="5b2-E2-WzN" id="Euj-b7-Grl"/>
                 <outlet property="markdownTextView" destination="kNL-au-uJL" id="MP1-uT-Akm"/>
+                <outlet property="placeholderView" destination="tf9-5h-kCV" id="bMQ-N5-1Gl"/>
                 <outlet property="readmeIndicator" destination="HVz-37-SVw" id="TPz-s0-gdW"/>
                 <outlet property="starsView" destination="xNy-49-ztJ" id="c3w-sC-ZZs"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
@@ -127,16 +128,23 @@
                     <viewLayoutGuide key="contentLayoutGuide" id="C14-fe-sLy"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="edz-FT-OYB"/>
                 </scrollView>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tf9-5h-kCV" customClass="PlaceholderView" customModule="mokoApp" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="118" width="401.66666666666669" height="666"/>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="appBackground"/>
             <constraints>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="tf9-5h-kCV" secondAttribute="trailing" id="AGd-9y-Hni"/>
                 <constraint firstItem="QRB-Tw-LJK" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="BB7-88-q9I"/>
                 <constraint firstItem="5b2-E2-WzN" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Lh9-EK-S3H"/>
                 <constraint firstItem="QRB-Tw-LJK" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="RbT-9d-PSl"/>
+                <constraint firstItem="tf9-5h-kCV" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="VI6-c6-cDs"/>
                 <constraint firstItem="QRB-Tw-LJK" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="YWQ-Kb-QzJ"/>
                 <constraint firstItem="5b2-E2-WzN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YfZ-hp-xUL"/>
                 <constraint firstItem="QRB-Tw-LJK" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="dSg-nq-QCA"/>
+                <constraint firstItem="tf9-5h-kCV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="k4Z-Fe-QTb"/>
+                <constraint firstItem="tf9-5h-kCV" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="x5i-g4-wwj"/>
             </constraints>
             <point key="canvasLocation" x="139.69465648854961" y="153.52112676056339"/>
         </view>

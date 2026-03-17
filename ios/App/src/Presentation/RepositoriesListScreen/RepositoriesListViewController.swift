@@ -135,53 +135,20 @@ final class RepositoriesListViewController: UITableViewController {
 
     private func handleEmptyState() {
         indicatorView.stopAnimating()
-        placeholderView.configure(
-            image: R.image.ic_empty(),
-            title: MR.strings().repositories_empty_title.desc().localized(),
-            message: MR.strings().repositories_empty_message.desc().localized(),
-            isError: false,
-            action: { [weak self] in
-                self?.viewModel.onRetryButtonPressed()
-            }
-        )
+        
+        placeholderView.configureEmpty { [weak self] in
+            self?.viewModel.onRetryButtonPressed()
+        }
+        
         tableView.backgroundView = placeholderView
     }
 
     private func handleErrorState(error: AppError) {
         indicatorView.stopAnimating()
-
-        let title: String
-        let message: String
-        let icon: UIImage?
-
-        switch error {
-        case let httpError as AppError.Http:
-            title = "\(httpError.code)"
-            message = httpError.message ?? ""
-            icon = R.image.ic_error()
-
-        case is AppError.Network:
-            title = MR.strings().repositories_connection_error_title.desc()
-                .localized()
-            message = MR.strings().repositories_connection_error_message.desc()
-                .localized()
-            icon = R.image.ic_connection_error()
-
-        default:
-            title = ""
-            message = ""
-            icon = nil
+        
+        placeholderView.configure(with: error) { [weak self] in
+            self?.viewModel.onRetryButtonPressed()
         }
-
-        placeholderView.configure(
-            image: icon,
-            title: title,
-            message: message,
-            isError: true,
-            action: { [weak self] in
-                self?.viewModel.onRetryButtonPressed()
-            }
-        )
 
         tableView.backgroundView = placeholderView
     }

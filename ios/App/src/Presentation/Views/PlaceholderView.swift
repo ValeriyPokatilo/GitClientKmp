@@ -6,7 +6,7 @@ final class PlaceholderView: UIView {
     @IBOutlet private weak var imageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var messageLabel: UILabel!
-    @IBOutlet weak var refreshButton: UIButton!
+    @IBOutlet private weak var refreshButton: UIButton!
 
     private var action: EmptyBlock?
 
@@ -35,27 +35,58 @@ final class PlaceholderView: UIView {
         addSubview(view)
     }
 
-    func configure(
-        image: UIImage?,
-        title: String,
-        message: String,
-        isError: Bool,
-        action: @escaping EmptyBlock
-    ) {
-        imageView.image = image
+    func configure(with error: AppError, action: @escaping EmptyBlock) {
+        let title: String
+        let message: String
+        let icon: UIImage?
+
+        switch error {
+        case let httpError as AppError.Http:
+            title = "\(httpError.code)"
+            message = httpError.message ?? ""
+            icon = R.image.ic_error()
+
+        case is AppError.Network:
+            title = MR.strings().repositories_connection_error_title.desc()
+                .localized()
+            message = MR.strings().repositories_connection_error_message.desc()
+                .localized()
+            icon = R.image.ic_connection_error()
+
+        default:
+            title = ""
+            message = error.message ?? ""
+            icon = R.image.ic_error()
+        }
+
+        imageView.image = icon
         titleLabel.text = title
-        titleLabel.textColor = isError ? R.color.appError() : R.color.appBlue()
+        titleLabel.textColor = R.color.appError()
         messageLabel.text = message
         refreshButton.setTitle(
-            isError
-                ? MR.strings().retry.desc().localized()
-                : MR.strings().refresh.desc().localized(),
+            MR.strings().retry.desc().localized(),
             for: .normal
         )
+
         self.action = action
     }
 
-    @IBAction func refrashAction(_ sender: Any) {
+    func configureEmpty(action: @escaping EmptyBlock) {
+        imageView.image = R.image.ic_empty()
+        titleLabel.text = MR.strings().repositories_empty_title.desc()
+            .localized()
+        titleLabel.textColor = R.color.appBlue()
+        messageLabel.text = MR.strings().repositories_empty_message.desc()
+            .localized()
+        refreshButton.setTitle(
+            MR.strings().refresh.desc().localized(),
+            for: .normal
+        )
+
+        self.action = action
+    }
+
+    @IBAction private func refreshAction(_ sender: Any) {
         action?()
     }
 }
