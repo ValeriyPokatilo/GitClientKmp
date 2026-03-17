@@ -27,9 +27,11 @@ final class RepositoryDetailInfoViewController: UIViewController {
             repositoryName: repositoryName,
             branch: branch
         )
+    
+    private var stateTask: Task<Void, Never>?
+    private var actionTask: Task<Void, Never>?
 
     var onLogout: EmptyBlock?
-    var onGoBack: EmptyBlock?
 
     init(
         owner: String,
@@ -74,8 +76,8 @@ final class RepositoryDetailInfoViewController: UIViewController {
     }
 
     private func bindViewModel() {
-        Task { [weak self] in
-            guard let self = self else { return }
+        stateTask = Task { [weak self] in
+            guard let self else { return }
             for await state in self.viewModel.state {
                 await MainActor.run {
                     self.renderState(state)
@@ -83,8 +85,8 @@ final class RepositoryDetailInfoViewController: UIViewController {
             }
         }
 
-        Task { [weak self] in
-            guard let self = self else { return }
+        actionTask = Task { [weak self] in
+            guard let self else { return }
             for await action in self.viewModel.actions {
                 await MainActor.run {
                     self.handleAction(action)
@@ -130,14 +132,14 @@ final class RepositoryDetailInfoViewController: UIViewController {
         linkView.configure(
             icon: R.image.ic_link(),
             title: details.url,
-            titleColor: R.color.appBlue() ?? UIColor(),
+            titleColor: .appBlue,
             additional: nil
         )
 
         licenseView.configure(
             icon: R.image.ic_license(),
             title: MR.strings().license.desc().localized(),
-            titleColor: R.color.white() ?? UIColor(),
+            titleColor: .white,
             additional: nil
         )
 
@@ -146,21 +148,21 @@ final class RepositoryDetailInfoViewController: UIViewController {
         starsView.configure(
             icon: R.image.ic_star(),
             title: "\(details.stargazersCount)",
-            titleColor: R.color.appYellow() ?? UIColor(),
+            titleColor: .appYellow,
             additional: MR.strings().stars.desc().localized()
         )
 
         forksView.configure(
             icon: R.image.ic_fork(),
             title: "\(details.forksCount)",
-            titleColor: R.color.appGreen() ?? UIColor(),
+            titleColor: .appGreen,
             additional: MR.strings().forks.desc().localized()
         )
 
         watchersView.configure(
             icon: R.image.ic_watch(),
             title: "\(details.subscribersCount)",
-            titleColor: R.color.appCyan() ?? UIColor(),
+            titleColor: .appCyan,
             additional: MR.strings().watchers.desc().localized()
         )
     }
@@ -194,13 +196,13 @@ final class RepositoryDetailInfoViewController: UIViewController {
         if let markdownString {
             let parser = MarkdownParser(
                 font: UIFont.systemFont(ofSize: 16),
-                color: R.color.white70() ?? UIColor()
+                color: .white70
             )
 
             parser.enabledElements = [.header, .bold, .italic, .link]
 
             parser.header.font = UIFont.boldSystemFont(ofSize: 20)
-            parser.header.color = R.color.white() ?? UIColor()
+            parser.header.color = .white
 
             markdownTextView.attributedText = parser.parse(markdownString)
         }
@@ -219,8 +221,9 @@ final class RepositoryDetailInfoViewController: UIViewController {
         case is RepositoryInfoViewModelActionLogout:
             onLogout?()
 
-        case is RepositoryInfoViewModelActionRouteBack:
-            onGoBack?()
+            // TODO: - 
+//        case is RepositoryInfoViewModelActionRouteBack:
+            // onGoBack?()
 
         default: break
         }
@@ -228,5 +231,10 @@ final class RepositoryDetailInfoViewController: UIViewController {
 
     @objc private func onLogoutTap() {
         viewModel.onLogoutPressed()
+    }
+    
+    deinit {
+        stateTask?.cancel()
+        actionTask?.cancel()
     }
 }

@@ -22,20 +22,27 @@ final class RepositoriesListViewController: UITableViewController {
 
     private let indicatorViewSize: CGFloat = 56
 
-    var onLogout: EmptyBlock?
-    var showDetails: ParameterBlock<(String, String, String)>?
+    private var stateTask: Task<Void, Never>?
+    private var actionTask: Task<Void, Never>?
+
+    var logout: EmptyBlock?
+    var showDetails: ParameterBlock<RepositoryDetailsRoute>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupNavigation()
         setupIndicator()
         setupTableView()
         bindViewModel()
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        setupNavigation()
+    }
+
     private func setupNavigation() {
         navigationController?.setNavigationBarHidden(false, animated: false)
-        
+
         navigationItem.hidesBackButton = true
         navigationItem.title = MR.strings().repositories.desc().localized()
 
@@ -82,8 +89,8 @@ final class RepositoriesListViewController: UITableViewController {
     }
 
     private func bindViewModel() {
-        Task { [weak self] in
-            guard let self = self else { return }
+        stateTask = Task { [weak self] in
+            guard let self else { return }
             for await state in self.viewModel.state {
                 await MainActor.run {
                     self.renderState(state)
@@ -91,8 +98,8 @@ final class RepositoriesListViewController: UITableViewController {
             }
         }
 
-        Task { [weak self] in
-            guard let self = self else { return }
+        actionTask = Task { [weak self] in
+            guard let self else { return }
             for await action in self.viewModel.actions {
                 await MainActor.run {
                     self.handleAction(action)
@@ -135,17 +142,17 @@ final class RepositoriesListViewController: UITableViewController {
 
     private func handleEmptyState() {
         indicatorView.stopAnimating()
-        
+
         placeholderView.configureEmpty { [weak self] in
             self?.viewModel.onRetryButtonPressed()
         }
-        
+
         tableView.backgroundView = placeholderView
     }
 
     private func handleErrorState(error: AppError) {
         indicatorView.stopAnimating()
-        
+
         placeholderView.configure(with: error) { [weak self] in
             self?.viewModel.onRetryButtonPressed()
         }
@@ -156,10 +163,16 @@ final class RepositoriesListViewController: UITableViewController {
     private func handleAction(_ action: RepositoriesListViewModelAction) {
         switch action {
         case is RepositoriesListViewModelActionLogout:
-            onLogout?()
+            logout?()
 
         case let details as RepositoriesListViewModelActionRouteToDetail:
-            showDetails?((details.owner, details.repositoryName, details.branch))
+            showDetails?(
+                RepositoryDetailsRoute(
+                    owner: details.owner,
+                    repositoryName: details.repositoryName,
+                    branch: details.branch
+                )
+            )
 
         default: break
         }
@@ -167,6 +180,11 @@ final class RepositoriesListViewController: UITableViewController {
 
     @objc private func onLogoutTap() {
         viewModel.onLogoutButtonPressed()
+    }
+
+    deinit {
+        stateTask?.cancel()
+        actionTask?.cancel()
     }
 }
 
@@ -201,7 +219,9 @@ extension RepositoriesListViewController {
         didSelectRowAt indexPath: IndexPath
     ) {
         tableView.deselectRow(at: indexPath, animated: true)
-        viewModel.onRepositoryItemPressed(repository: repositories[indexPath.row])
+        viewModel.onRepositoryItemPressed(
+            repository: repositories[indexPath.row]
+        )
     }
 
     override func tableView(

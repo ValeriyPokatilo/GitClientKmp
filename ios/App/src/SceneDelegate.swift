@@ -1,6 +1,7 @@
 import UIKit
+import MultiPlatformLibrary
 
-final class SceneDelegate: NSObject, UIWindowSceneDelegate {
+final class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
     var appCoordinator: AppCoordinator?
@@ -13,9 +14,9 @@ final class SceneDelegate: NSObject, UIWindowSceneDelegate {
         guard let windowScene = (scene as? UIWindowScene) else { return }
 
         let window = UIWindow(windowScene: windowScene)
-        appCoordinator = AppCoordinator(window: window)
-        appCoordinator?.start()
         self.window = window
+        appCoordinator = AppCoordinator( window: window)
+        appCoordinator?.start()
         window.makeKeyAndVisible()
     }
 }

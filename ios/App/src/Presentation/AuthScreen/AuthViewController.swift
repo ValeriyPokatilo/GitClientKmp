@@ -1,8 +1,8 @@
 import MultiPlatformLibrary
+import NVActivityIndicatorView
 import RxKeyboard
 import RxSwift
 import UIKit
-import NVActivityIndicatorView
 
 final class AuthViewController: UIViewController {
 
@@ -10,26 +10,22 @@ final class AuthViewController: UIViewController {
     @IBOutlet private weak var errorLabel: UILabel!
     @IBOutlet private weak var signInButton: UIButton!
     @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
-    
+    @IBOutlet private weak var indicatorView: NVActivityIndicatorView!
+
     private lazy var viewModel: AuthViewModel = Koin.instance.getAuthViewModel()
-    
-    private let indicatorView = NVActivityIndicatorView(
-        frame: .zero,
-        type: .circleStrokeSpin,
-        color: .white,
-        padding: 0
-    )
-    private let indicatorViewSize: CGFloat = 24
 
     private let disposeBag = DisposeBag()
     
+    private var stateTask: Task<Void, Never>?
+    private var actionTask: Task<Void, Never>?
+
     var routeToMain: EmptyBlock?
-    var showAlert: ParameterBlock<(String, String)>?
+    var showAlert: ParameterBlock<AlertModel>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
-        setupKeyboardBinding()
+        bindKeyboard()
         bindViewModel()
     }
 
@@ -41,50 +37,18 @@ final class AuthViewController: UIViewController {
     private func setupUI() {
         let placeholder = MR.strings().token_text_field_placeholder.desc()
             .localized()
-        tokenTextField.attributedPlaceholder = NSAttributedString(
-            string: placeholder,
-            attributes: [
-                NSAttributedString.Key.foregroundColor: UIColor.white50
-            ]
-        )
-        tokenTextField.layer.borderColor = UIColor.appGrey.cgColor
-
-        let paddingView = UIView(
-            frame: CGRect(
-                x: 0,
-                y: 0,
-                width: 16,
-                height: tokenTextField.frame.height
-            )
-        )
-
-        tokenTextField.leftView = paddingView
-        tokenTextField.leftViewMode = .always
-
+        tokenTextField.setupBorderedField(placeholder: placeholder)
+        
+        
         signInButton.setTitle(
             MR.strings().sign_in_button_title.desc().localized(),
             for: .normal
         )
-        
-        signInButton.addSubview(indicatorView)
-        indicatorView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            indicatorView.centerXAnchor.constraint(
-                equalTo: signInButton.centerXAnchor
-            ),
-            indicatorView.centerYAnchor.constraint(
-                equalTo: signInButton.centerYAnchor
-            ),
-            indicatorView.widthAnchor.constraint(
-                equalToConstant: indicatorViewSize
-            ),
-            indicatorView.heightAnchor.constraint(
-                equalToConstant: indicatorViewSize
-            )
-        ])
+
+        indicatorView.type = .circleStrokeSpin
     }
 
-    private func setupKeyboardBinding() {
+    private func bindKeyboard() {
         RxKeyboard.instance.visibleHeight
             .drive(onNext: { [weak self] keyboardHeight in
                 guard let self else { return }
@@ -102,17 +66,21 @@ final class AuthViewController: UIViewController {
             })
             .disposed(by: disposeBag)
 
-        Task { [weak self] in
-            guard let self = self else { return }
+        stateTask = Task { [weak self] in
+            guard let self else { return }
             for await state in self.viewModel.state {
-                self.renderState(state)
+                await MainActor.run {
+                    self.renderState(state)
+                }
             }
         }
 
-        Task { [weak self] in
-            guard let self = self else { return }
+        actionTask = Task { [weak self] in
+            guard let self else { return }
             for await action in self.viewModel.action {
-                self.handleAction(action)
+                await MainActor.run {
+                    self.handleAction(action)
+                }
             }
         }
     }
@@ -120,27 +88,40 @@ final class AuthViewController: UIViewController {
     private func renderState(_ state: AuthViewModelState) {
         switch state {
         case is AuthViewModelStateIdle:
-            errorLabel.isHidden = true
-            signInButton.isEnabled = true
-            signInButton.titleLabel?.isHidden = false
-            tokenTextField.layer.borderColor = UIColor.appGrey.cgColor
-            indicatorView.stopAnimating()
+            handleIdleState()
 
         case is AuthViewModelStateLoading:
-            signInButton.isEnabled = false
-            signInButton.titleLabel?.isHidden = true
-            indicatorView.startAnimating()
+            handleLoadingState()
 
         case is AuthViewModelStateInvalidInput:
-            errorLabel.isHidden = false
-            errorLabel.text = MR.strings().invalid_token_reason.desc()
-                .localized()
-            tokenTextField.layer.borderColor = UIColor.red.cgColor
-            signInButton.isEnabled = false
-            indicatorView.stopAnimating()
+            handleInvalidInputState()
 
         default: break
         }
+    }
+    
+    private func handleIdleState() {
+        errorLabel.isHidden = true
+        signInButton.isEnabled = true
+        signInButton.titleLabel?.isHidden = false
+        tokenTextField.layer.borderColor = UIColor.appGrey.cgColor
+        indicatorView.stopAnimating()
+    }
+    
+    private func handleLoadingState() {
+        errorLabel.isHidden = true
+        signInButton.isEnabled = false
+        signInButton.titleLabel?.isHidden = true
+        indicatorView.startAnimating()
+    }
+    
+    private func handleInvalidInputState() {
+        errorLabel.isHidden = false
+        errorLabel.text = MR.strings().invalid_token_reason.desc()
+            .localized()
+        tokenTextField.layer.borderColor = UIColor.red.cgColor
+        signInButton.isEnabled = false
+        indicatorView.stopAnimating()
     }
 
     private func handleAction(_ action: AuthViewModelAction) {
@@ -152,17 +133,23 @@ final class AuthViewController: UIViewController {
             tokenTextField.becomeFirstResponder()
         }
     }
-    
+
     private func showErrorAlert(message: String?) {
         let title = MR.strings().error.desc().localized()
-        let baseMessage = message ?? MR.strings().check_connection.desc().localized()
+        let baseMessage =
+            message ?? MR.strings().check_connection.desc().localized()
         let messagePostfix = MR.strings().info_for_developer.desc().localized()
         let fullMessage = "\(baseMessage)\n\(messagePostfix)"
-        
-        showAlert?((title, fullMessage))
+
+        showAlert?(AlertModel(title: title, message: fullMessage))
     }
 
     @IBAction private func signInButtonAction(_ sender: Any) {
         viewModel.onSignButtonPressed()
+    }
+    
+    deinit {
+        stateTask?.cancel()
+        actionTask?.cancel()
     }
 }

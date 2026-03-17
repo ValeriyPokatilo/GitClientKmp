@@ -4,21 +4,24 @@ import UIKit
 final class AppCoordinator {
 
     private let window: UIWindow
-
-    private let navigationController = UINavigationController()
-
-    private let router: AppRouter = Koin.instance.getAppRouter()
+    private let navigationController: UINavigationController
+    private let router: AppRouter
 
     private var authorizedCoordinator: AuthorizedCoordinator?
     private var unauthorizedCoordinator: UnauthorizedCoordinator?
 
-    init(window: UIWindow) {
+    init(
+        window: UIWindow,
+        router: AppRouter = Koin.instance.getAppRouter(),
+        navigationController: UINavigationController = UINavigationController()
+    ) {
         self.window = window
+        self.router = router
+        self.navigationController = navigationController
     }
 
     func start() {
         window.rootViewController = navigationController
-        window.makeKeyAndVisible()
 
         switch router.getDestination() {
         case is AppRouterRouteRepositoriesRoute:
@@ -28,7 +31,7 @@ final class AppCoordinator {
         }
     }
 
-    func authorizedFlow() {
+    private func authorizedFlow() {
         let coordinator = AuthorizedCoordinator(
             navigationController: navigationController
         )
@@ -43,7 +46,7 @@ final class AppCoordinator {
         unauthorizedCoordinator = nil
     }
 
-    func unauthorizedFlow() {
+    private func unauthorizedFlow() {
         let coordinator = UnauthorizedCoordinator(
             navigationController: navigationController
         )
@@ -58,7 +61,7 @@ final class AppCoordinator {
         authorizedCoordinator = nil
     }
 
-    func logout() {
+    private func logout() {
         unauthorizedFlow()
     }
 }

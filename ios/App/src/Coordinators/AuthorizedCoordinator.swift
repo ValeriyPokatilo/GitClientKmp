@@ -3,7 +3,6 @@ import UIKit
 final class AuthorizedCoordinator {
 
     private let navigationController: UINavigationController
-
     private var repositoryDetailCoordinator: RepositoryDetailInfoCoordinator?
 
     var onLogout: EmptyBlock?
@@ -15,15 +14,15 @@ final class AuthorizedCoordinator {
     func start() {
         let controller = RepositoriesListViewController()
 
-        controller.onLogout = { [weak self] in
+        controller.logout = { [weak self] in
             self?.onLogout?()
         }
 
         controller.showDetails = { [weak self] details in
             self?.showRepositoryDetails(
-                owner: details.0,
-                repositoryName: details.1,
-                branch: details.2
+                owner: details.owner,
+                repositoryName: details.repositoryName,
+                branch: details.branch
             )
         }
 
@@ -41,7 +40,7 @@ final class AuthorizedCoordinator {
             repositoryName: repositoryName,
             branch: branch
         )
-        
+
         coordinator.onLogout = { [weak self] in
             self?.onLogout?()
         }

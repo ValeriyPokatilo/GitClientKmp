@@ -36,6 +36,8 @@ final class PlaceholderView: UIView {
     }
 
     func configure(with error: AppError, action: @escaping EmptyBlock) {
+        reset()
+        
         let title: String
         let message: String
         let icon: UIImage?
@@ -61,7 +63,7 @@ final class PlaceholderView: UIView {
 
         imageView.image = icon
         titleLabel.text = title
-        titleLabel.textColor = R.color.appError()
+        titleLabel.textColor = .appError
         messageLabel.text = message
         refreshButton.setTitle(
             MR.strings().retry.desc().localized(),
@@ -72,10 +74,12 @@ final class PlaceholderView: UIView {
     }
 
     func configureEmpty(action: @escaping EmptyBlock) {
+        reset()
+        
         imageView.image = R.image.ic_empty()
         titleLabel.text = MR.strings().repositories_empty_title.desc()
             .localized()
-        titleLabel.textColor = R.color.appBlue()
+        titleLabel.textColor = .appBlue
         messageLabel.text = MR.strings().repositories_empty_message.desc()
             .localized()
         refreshButton.setTitle(
@@ -88,5 +92,13 @@ final class PlaceholderView: UIView {
 
     @IBAction private func refreshAction(_ sender: Any) {
         action?()
+    }
+    
+    private func reset() {
+        imageView.image = nil
+        titleLabel.text = nil
+        messageLabel.text = nil
+        titleLabel.textColor = .label
+        action = nil
     }
 }

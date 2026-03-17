@@ -6,7 +6,7 @@ final class RepositoryDetailInfoCoordinator {
     private let owner: String
     private let repositoryName: String
     private let branch: String
-    
+
     var onLogout: EmptyBlock?
 
     init(
@@ -30,10 +30,6 @@ final class RepositoryDetailInfoCoordinator {
 
         controller.onLogout = { [weak self] in
             self?.onLogout?()
-        }
-        
-        controller.onGoBack = {
-            
         }
 
         navigationController.pushViewController(controller, animated: true)

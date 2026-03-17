@@ -16,6 +16,9 @@
 		76350DA32F5F216F009D4FD1 /* Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76350DA22F5F216F009D4FD1 /* Aliases.swift */; };
 		76350DA62F5FF5F8009D4FD1 /* Ext+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76350DA52F5FF5F8009D4FD1 /* Ext+UIAlertController.swift */; };
 		76350DA82F5FF776009D4FD1 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76350DA72F5FF776009D4FD1 /* AlertViewController.swift */; };
+		7650E1002F695415004CA6AE /* RepositoryDetailsRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7650E0FF2F695415004CA6AE /* RepositoryDetailsRoute.swift */; };
+		7650E1072F695EF2004CA6AE /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7650E1062F695EF2004CA6AE /* AlertModel.swift */; };
+		7650E1092F696242004CA6AE /* Ext+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7650E1082F696242004CA6AE /* Ext+UITextField.swift */; };
 		76829CDD2F66B8EF00969E6F /* UnauthorizedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76829CDC2F66B8EF00969E6F /* UnauthorizedCoordinator.swift */; };
 		76829CDF2F66B90F00969E6F /* AuthorizedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76829CDE2F66B90F00969E6F /* AuthorizedCoordinator.swift */; };
 		76D676382F66C4E600DA76F5 /* PlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76D676362F66C4E500DA76F5 /* PlaceholderView.xib */; };
@@ -87,6 +90,9 @@
 		76350DA22F5F216F009D4FD1 /* Aliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aliases.swift; sourceTree = "<group>"; };
 		76350DA52F5FF5F8009D4FD1 /* Ext+UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIAlertController.swift"; sourceTree = "<group>"; };
 		76350DA72F5FF776009D4FD1 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		7650E0FF2F695415004CA6AE /* RepositoryDetailsRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsRoute.swift; sourceTree = "<group>"; };
+		7650E1062F695EF2004CA6AE /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
+		7650E1082F696242004CA6AE /* Ext+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UITextField.swift"; sourceTree = "<group>"; };
 		76829CDC2F66B8EF00969E6F /* UnauthorizedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthorizedCoordinator.swift; sourceTree = "<group>"; };
 		76829CDE2F66B90F00969E6F /* AuthorizedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizedCoordinator.swift; sourceTree = "<group>"; };
 		76D676352F66C4E500DA76F5 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
@@ -215,6 +221,7 @@
 				76EF931E2F5A1440001B63C8 /* SceneDelegate.swift */,
 				45D8D7F926FB24AE00DD3A58 /* Environment.swift */,
 				D2E6AC0C2DAE1D4900D01DC1 /* MobileApp.swift */,
+				7650E0FE2F695402004CA6AE /* Models */,
 				76EF93152F5A12AF001B63C8 /* Coordinators */,
 				76EF93082F5A11B6001B63C8 /* Presentation */,
 				D2F843392ADF0D8200657354 /* Di */,
@@ -242,8 +249,18 @@
 			isa = PBXGroup;
 			children = (
 				76350DA52F5FF5F8009D4FD1 /* Ext+UIAlertController.swift */,
+				7650E1082F696242004CA6AE /* Ext+UITextField.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		7650E0FE2F695402004CA6AE /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7650E0FF2F695415004CA6AE /* RepositoryDetailsRoute.swift */,
+				7650E1062F695EF2004CA6AE /* AlertModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		76D676372F66C4E500DA76F5 /* Views */ = {
@@ -521,9 +538,13 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ios-app/Pods-ios-app-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
+			inputPaths = (
+			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-ios-app/Pods-ios-app-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -579,6 +600,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7650E1002F695415004CA6AE /* RepositoryDetailsRoute.swift in Sources */,
 				76EF93172F5A12D5001B63C8 /* AppCoordinator.swift in Sources */,
 				D2FD61E12DAE4ADA00A37209 /* ViewModelWrapper.swift in Sources */,
 				D25029FC2DB0F55F000149C7 /* CombineObservableObject.swift in Sources */,
@@ -590,8 +612,10 @@
 				D2FD61E82DAE4AEE00A37209 /* ViewModelState.swift in Sources */,
 				D2FD61E92DAE4AEE00A37209 /* ViewModelBinding.swift in Sources */,
 				76350DA82F5FF776009D4FD1 /* AlertViewController.swift in Sources */,
+				7650E1072F695EF2004CA6AE /* AlertModel.swift in Sources */,
 				D2FD61EA2DAE4AEE00A37209 /* ViewModelObservable.swift in Sources */,
 				D2FD61EB2DAE4AEE00A37209 /* ViewModelStateNullable.swift in Sources */,
+				7650E1092F696242004CA6AE /* Ext+UITextField.swift in Sources */,
 				D2E6AC0D2DAE1D4900D01DC1 /* MobileApp.swift in Sources */,
 				76D7CF952F62A2A1008104A0 /* RepositoriesListViewController.swift in Sources */,
 				45F47922219463C7003D25FA /* AppDelegate.swift in Sources */,

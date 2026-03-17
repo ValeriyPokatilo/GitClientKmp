@@ -4,12 +4,12 @@ import MultiPlatformLibrary
 import UIKit
 
 final class AppDelegate: NSObject, UIApplicationDelegate {
-        
-    var window: UIWindow?
 
     func application(
-        _: UIApplication,
-        didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [
+            UIApplication.LaunchOptionsKey: Any
+        ]? = nil
     ) -> Bool {
         // TODO: - Uncomment Build Phases script
         // FirebaseApp.configure()
@@ -19,12 +19,12 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
         #endif
 
         Koin.setup()
-        
+
         setupNavigationBar()
 
         return true
     }
-    
+
     func application(
         _ application: UIApplication,
         configurationForConnecting connectingSceneSession: UISceneSession,
