@@ -16,10 +16,12 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.xl.gitclientkmp.MR
 import app.xl.gitclientkmp.domain.entity.AppError
 import app.xl.gitclientkmp.viewModels.RepositoriesListViewModel
+import dev.icerock.moko.units.adapter.UnitsRecyclerViewAdapter
 import kotlinx.coroutines.launch
 import org.example.app.R
 import org.example.app.databinding.FragmentRepositoriesListBinding
 import org.example.app.entity.PlaceholderModel
+import org.example.app.utils.toUnitItem
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RepositoriesListFragment : Fragment() {
@@ -30,7 +32,7 @@ class RepositoriesListFragment : Fragment() {
 
     private val viewModel: RepositoriesListViewModel by viewModel()
 
-    private lateinit var repoAdapter: RepoAdapter
+    private lateinit var unitsAdapter: UnitsRecyclerViewAdapter
 
     private val divider by lazy {
         DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL).apply {
@@ -45,7 +47,11 @@ class RepositoriesListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentRepositoriesListBinding.inflate(inflater, container, false)
+        _binding = FragmentRepositoriesListBinding.inflate(
+            inflater,
+            container,
+            false
+        )
         return binding.root
     }
 
@@ -73,13 +79,12 @@ class RepositoriesListFragment : Fragment() {
     }
 
     private fun setupRecyclerView() = with(binding.recyclerView) {
-        repoAdapter = RepoAdapter { repository ->
-            viewModel.onRepositoryItemPressed(repository)
-        }
-        adapter = repoAdapter
-        layoutManager = LinearLayoutManager(context)
+        layoutManager = LinearLayoutManager(requireContext())
+
+        unitsAdapter = UnitsRecyclerViewAdapter(viewLifecycleOwner)
+        adapter = unitsAdapter
+
         addItemDecoration(divider)
-        setHasFixedSize(true)
     }
 
     private fun bindToViewModel() {
@@ -131,7 +136,14 @@ class RepositoriesListFragment : Fragment() {
     }
 
     private fun handleLoadedState(state: RepositoriesListViewModel.State.Loaded) {
-        repoAdapter.submitList(state.repositories)
+        val units = state.repositories.map { repo ->
+            repo.toUnitItem { clickedRepo ->
+                viewModel.onRepositoryItemPressed(clickedRepo)
+            }
+        }
+
+        unitsAdapter.units = units
+
         binding.recyclerView.isVisible = true
         binding.progressIndicator.hide()
         binding.placeholderView.hide()

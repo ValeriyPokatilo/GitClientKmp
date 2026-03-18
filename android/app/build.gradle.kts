@@ -50,4 +50,5 @@ dependencies {
     implementation(projects.android.uikit)
 
     implementation(libs.markwon)
+    implementation(libs.moko.units)
 }
