@@ -17,6 +17,7 @@ dependencies {
     commonMainImplementation(libs.ktorClient)
     commonMainImplementation(libs.ktorClient.content.negotiation)
     commonMainImplementation(libs.ktorSerialization.kotlinx.json)
+    commonMainImplementation(libs.moko.units)
 }
 
 multiplatformResources {
