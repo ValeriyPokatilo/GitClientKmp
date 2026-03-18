@@ -21,12 +21,13 @@
 		7650E1092F696242004CA6AE /* Ext+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7650E1082F696242004CA6AE /* Ext+UITextField.swift */; };
 		76829CDD2F66B8EF00969E6F /* UnauthorizedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76829CDC2F66B8EF00969E6F /* UnauthorizedCoordinator.swift */; };
 		76829CDF2F66B90F00969E6F /* AuthorizedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76829CDE2F66B90F00969E6F /* AuthorizedCoordinator.swift */; };
+		7697AB332F6A847600C333E7 /* RepositoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697AB312F6A847600C333E7 /* RepositoriesListViewController.swift */; };
+		7697AB342F6A847600C333E7 /* RepositoriesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7697AB322F6A847600C333E7 /* RepositoriesListViewController.xib */; };
+		7697AB362F6A8B9200C333E7 /* Ext+Repository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697AB352F6A8B9200C333E7 /* Ext+Repository.swift */; };
 		76D676382F66C4E600DA76F5 /* PlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76D676362F66C4E500DA76F5 /* PlaceholderView.xib */; };
 		76D676392F66C4E600DA76F5 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D676352F66C4E500DA76F5 /* PlaceholderView.swift */; };
 		76D6763B2F66EB9900DA76F5 /* IconLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76D6763A2F66EB9900DA76F5 /* IconLabelView.xib */; };
 		76D6763D2F66EBA700DA76F5 /* IconLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D6763C2F66EBA700DA76F5 /* IconLabelView.swift */; };
-		76D7CF942F62A2A1008104A0 /* RepositoriesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76D7CF932F62A2A1008104A0 /* RepositoriesListViewController.xib */; };
-		76D7CF952F62A2A1008104A0 /* RepositoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D7CF922F62A2A1008104A0 /* RepositoriesListViewController.swift */; };
 		76D7CF982F62DEA9008104A0 /* RepositoryItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D7CF962F62DEA9008104A0 /* RepositoryItemCell.swift */; };
 		76D7CF992F62DEA9008104A0 /* RepositoryItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76D7CF972F62DEA9008104A0 /* RepositoryItemCell.xib */; };
 		76DEF5232F618BAD00677238 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DEF5222F618BAD00677238 /* LaunchScreen.storyboard */; };
@@ -95,12 +96,13 @@
 		7650E1082F696242004CA6AE /* Ext+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UITextField.swift"; sourceTree = "<group>"; };
 		76829CDC2F66B8EF00969E6F /* UnauthorizedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthorizedCoordinator.swift; sourceTree = "<group>"; };
 		76829CDE2F66B90F00969E6F /* AuthorizedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizedCoordinator.swift; sourceTree = "<group>"; };
+		7697AB312F6A847600C333E7 /* RepositoriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesListViewController.swift; sourceTree = "<group>"; };
+		7697AB322F6A847600C333E7 /* RepositoriesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoriesListViewController.xib; sourceTree = "<group>"; };
+		7697AB352F6A8B9200C333E7 /* Ext+Repository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+Repository.swift"; sourceTree = "<group>"; };
 		76D676352F66C4E500DA76F5 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		76D676362F66C4E500DA76F5 /* PlaceholderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceholderView.xib; sourceTree = "<group>"; };
 		76D6763A2F66EB9900DA76F5 /* IconLabelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IconLabelView.xib; sourceTree = "<group>"; };
 		76D6763C2F66EBA700DA76F5 /* IconLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconLabelView.swift; sourceTree = "<group>"; };
-		76D7CF922F62A2A1008104A0 /* RepositoriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesListViewController.swift; sourceTree = "<group>"; };
-		76D7CF932F62A2A1008104A0 /* RepositoriesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoriesListViewController.xib; sourceTree = "<group>"; };
 		76D7CF962F62DEA9008104A0 /* RepositoryItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryItemCell.swift; sourceTree = "<group>"; };
 		76D7CF972F62DEA9008104A0 /* RepositoryItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryItemCell.xib; sourceTree = "<group>"; };
 		76DEF5222F618BAD00677238 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -249,6 +251,7 @@
 			isa = PBXGroup;
 			children = (
 				76350DA52F5FF5F8009D4FD1 /* Ext+UIAlertController.swift */,
+				7697AB352F6A8B9200C333E7 /* Ext+Repository.swift */,
 				7650E1082F696242004CA6AE /* Ext+UITextField.swift */,
 			);
 			path = Extensions;
@@ -286,8 +289,8 @@
 		76D7CF9D2F6314C9008104A0 /* RepositoriesListScreen */ = {
 			isa = PBXGroup;
 			children = (
-				76D7CF922F62A2A1008104A0 /* RepositoriesListViewController.swift */,
-				76D7CF932F62A2A1008104A0 /* RepositoriesListViewController.xib */,
+				7697AB312F6A847600C333E7 /* RepositoriesListViewController.swift */,
+				7697AB322F6A847600C333E7 /* RepositoriesListViewController.xib */,
 				76D7CF962F62DEA9008104A0 /* RepositoryItemCell.swift */,
 				76D7CF972F62DEA9008104A0 /* RepositoryItemCell.xib */,
 			);
@@ -501,8 +504,8 @@
 				D25029F02DB0CD7E000149C7 /* Preview Assets.xcassets in Resources */,
 				76EF930B2F5A120A001B63C8 /* AuthViewController.xib in Resources */,
 				76D676382F66C4E600DA76F5 /* PlaceholderView.xib in Resources */,
-				76D7CF942F62A2A1008104A0 /* RepositoriesListViewController.xib in Resources */,
 				76DEF5232F618BAD00677238 /* LaunchScreen.storyboard in Resources */,
+				7697AB342F6A847600C333E7 /* RepositoriesListViewController.xib in Resources */,
 				76D7CF992F62DEA9008104A0 /* RepositoryItemCell.xib in Resources */,
 				76EF93132F5A1242001B63C8 /* RepositoryDetailInfoViewController.xib in Resources */,
 				45F47921219463C7003D25FA /* Assets.xcassets in Resources */,
@@ -615,9 +618,9 @@
 				7650E1072F695EF2004CA6AE /* AlertModel.swift in Sources */,
 				D2FD61EA2DAE4AEE00A37209 /* ViewModelObservable.swift in Sources */,
 				D2FD61EB2DAE4AEE00A37209 /* ViewModelStateNullable.swift in Sources */,
+				7697AB362F6A8B9200C333E7 /* Ext+Repository.swift in Sources */,
 				7650E1092F696242004CA6AE /* Ext+UITextField.swift in Sources */,
 				D2E6AC0D2DAE1D4900D01DC1 /* MobileApp.swift in Sources */,
-				76D7CF952F62A2A1008104A0 /* RepositoriesListViewController.swift in Sources */,
 				45F47922219463C7003D25FA /* AppDelegate.swift in Sources */,
 				76350DA32F5F216F009D4FD1 /* Aliases.swift in Sources */,
 				D2F8433B2ADF0D9300657354 /* Koin.swift in Sources */,
@@ -630,6 +633,7 @@
 				221908112CC6B83A00A045C4 /* CrashlyticsExceptionLogger.swift in Sources */,
 				76829CDF2F66B90F00969E6F /* AuthorizedCoordinator.swift in Sources */,
 				76EF931F2F5A1440001B63C8 /* SceneDelegate.swift in Sources */,
+				7697AB332F6A847600C333E7 /* RepositoriesListViewController.swift in Sources */,
 				D2F446F52D13459500A410C5 /* LogoutNavigationHook.swift in Sources */,
 				76EF930C2F5A120A001B63C8 /* AuthViewController.swift in Sources */,
 				D2F446FB2D1405E900A410C5 /* ImageDesc.swift in Sources */,

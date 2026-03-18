@@ -17,6 +17,8 @@ target 'ios-app' do
   project 'App/ios-app'
 
   pod 'MultiPlatformLibrary', :path => '../mpp-library'
+  pod 'MultiPlatformLibraryUnits/Core',
+    :git => 'https://github.com/icerockdev/moko-units.git', :tag => 'release/0.8.0'
   pod 'FirebaseAnalytics'
   pod 'FirebaseCrashlytics'
 

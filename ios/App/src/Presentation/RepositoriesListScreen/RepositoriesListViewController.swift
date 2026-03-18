@@ -1,43 +1,43 @@
 import MultiPlatformLibrary
+import MultiPlatformLibraryUnits
 import NVActivityIndicatorView
 import UIKit
 
-final class RepositoriesListViewController: UITableViewController {
+final class RepositoriesListViewController: UIViewController {
+
+    @IBOutlet private weak var tableView: UITableView!
+    @IBOutlet private weak var indicatorView: NVActivityIndicatorView!
+    @IBOutlet private weak var placeholderView: PlaceholderView!
 
     private lazy var viewModel: RepositoriesListViewModel = Koin.instance
         .getRepositoriesListViewModel()
 
-    private var repositories: [Repository] = []
-
-    private let cellId = "repository"
-
-    private let indicatorView = NVActivityIndicatorView(
-        frame: .zero,
-        type: .circleStrokeSpin,
-        color: .white,
-        padding: 0
-    )
-
-    private let placeholderView = PlaceholderView()
-
-    private let indicatorViewSize: CGFloat = 56
-
     private var stateTask: Task<Void, Never>?
     private var actionTask: Task<Void, Never>?
+
+    private lazy var dataSource: TableUnitsSource = {
+        TableUnitsSourceKt.default(for: tableView)
+    }()
 
     var logout: EmptyBlock?
     var showDetails: ParameterBlock<RepositoryDetailsRoute>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        setupNavigation()
         setupIndicator()
         setupTableView()
         bindViewModel()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        setupNavigation()
+    private func setupIndicator() {
+        indicatorView.type = .circleStrokeSpin
+    }
+
+    private func setupTableView() {
+        tableView.rowHeight = UITableView.automaticDimension
+        tableView.estimatedRowHeight = UITableView.automaticDimension
+        tableView.separatorStyle = .singleLine
     }
 
     private func setupNavigation() {
@@ -57,35 +57,6 @@ final class RepositoriesListViewController: UITableViewController {
 
         navigationItem.rightBarButtonItem = button
         navigationItem.backButtonTitle = ""
-    }
-
-    private func setupTableView() {
-        tableView.register(
-            UINib(nibName: "RepositoryItemCell", bundle: nil),
-            forCellReuseIdentifier: cellId
-        )
-
-        tableView.rowHeight = UITableView.automaticDimension
-        tableView.estimatedRowHeight = UITableView.automaticDimension
-    }
-
-    private func setupIndicator() {
-        view.addSubview(indicatorView)
-        indicatorView.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            indicatorView.centerXAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.centerXAnchor
-            ),
-            indicatorView.centerYAnchor.constraint(
-                equalTo: view.safeAreaLayoutGuide.centerYAnchor
-            ),
-            indicatorView.widthAnchor.constraint(
-                equalToConstant: indicatorViewSize
-            ),
-            indicatorView.heightAnchor.constraint(
-                equalToConstant: indicatorViewSize
-            ),
-        ])
     }
 
     private func bindViewModel() {
@@ -109,12 +80,14 @@ final class RepositoriesListViewController: UITableViewController {
     }
 
     private func renderState(_ state: RepositoriesListViewModelState) {
+        placeholderView.isHidden = true
+
         switch state {
         case is RepositoriesListViewModelStateLoading:
             handleLoadingState()
 
-        case let loaded as RepositoriesListViewModelStateLoaded:
-            handleLoadedState(items: loaded.repositories)
+        case let loadedState as RepositoriesListViewModelStateLoaded:
+            handleLoadedState(items: loadedState.repositories)
 
         case is RepositoriesListViewModelStateEmpty:
             handleEmptyState()
@@ -128,36 +101,43 @@ final class RepositoriesListViewController: UITableViewController {
 
     private func handleLoadingState() {
         indicatorView.startAnimating()
-        tableView.backgroundView = nil
-        repositories.removeAll()
-        tableView.reloadData()
+        tableView.isHidden = true
+        dataSource.unitItems = []
     }
 
     private func handleLoadedState(items: [Repository]) {
         indicatorView.stopAnimating()
-        repositories = items
-        tableView.backgroundView = nil
-        tableView.reloadData()
+        tableView.isHidden = false
+
+        let units = items.map { repo in
+            repo.toTableUnitItem { [weak self] selected in
+                self?.viewModel.onRepositoryItemPressed(repository: selected)
+            }
+        }
+
+        dataSource.unitItems = units
     }
 
     private func handleEmptyState() {
         indicatorView.stopAnimating()
+        tableView.isHidden = true
 
+        placeholderView.isHidden = false
         placeholderView.configureEmpty { [weak self] in
             self?.viewModel.onRetryButtonPressed()
         }
-
-        tableView.backgroundView = placeholderView
     }
 
     private func handleErrorState(error: AppError) {
         indicatorView.stopAnimating()
 
-        placeholderView.configure(with: error) { [weak self] in
-            self?.viewModel.onRetryButtonPressed()
-        }
-
-        tableView.backgroundView = placeholderView
+        placeholderView.isHidden = false
+        placeholderView.configure(
+            with: error,
+            action: { [weak self] in
+                self?.viewModel.onRetryButtonPressed()
+            }
+        )
     }
 
     private func handleAction(_ action: RepositoriesListViewModelAction) {
@@ -185,49 +165,5 @@ final class RepositoriesListViewController: UITableViewController {
     deinit {
         stateTask?.cancel()
         actionTask?.cancel()
-    }
-}
-
-extension RepositoriesListViewController {
-
-    override func tableView(
-        _ tableView: UITableView,
-        cellForRowAt indexPath: IndexPath
-    ) -> UITableViewCell {
-        guard
-            let cell = tableView.dequeueReusableCell(
-                withIdentifier: cellId,
-                for: indexPath
-            ) as? RepositoryItemCell
-        else {
-            fatalError("RepositoryItemCell not registered")
-        }
-
-        let repo = repositories[indexPath.row]
-
-        cell.configure(
-            name: repo.name,
-            language: repo.language,
-            description: repo.description_
-        )
-
-        return cell
-    }
-
-    override func tableView(
-        _ tableView: UITableView,
-        didSelectRowAt indexPath: IndexPath
-    ) {
-        tableView.deselectRow(at: indexPath, animated: true)
-        viewModel.onRepositoryItemPressed(
-            repository: repositories[indexPath.row]
-        )
-    }
-
-    override func tableView(
-        _ tableView: UITableView,
-        numberOfRowsInSection section: Int
-    ) -> Int {
-        return repositories.count
     }
 }

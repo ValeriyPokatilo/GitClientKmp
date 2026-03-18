@@ -108,6 +108,8 @@ PODS:
     - GoogleUtilities/Privacy
   - MarkdownKit (1.7.1)
   - MultiPlatformLibrary (1.0)
+  - MultiPlatformLibraryUnits/Core (0.6.1):
+    - MultiPlatformLibrary
   - nanopb (3.30910.0):
     - nanopb/decode (= 3.30910.0)
     - nanopb/encode (= 3.30910.0)
@@ -134,8 +136,9 @@ PODS:
 DEPENDENCIES:
   - FirebaseAnalytics
   - FirebaseCrashlytics
-  - MarkdownKit
+  - MarkdownKit (~> 1.7.1)
   - MultiPlatformLibrary (from `../mpp-library`)
+  - MultiPlatformLibraryUnits/Core (from `https://github.com/icerockdev/moko-units.git`, tag `release/0.8.0`)
   - NVActivityIndicatorView (~> 5.1.1)
   - R.swift (~> 7.8.0)
   - RxKeyboard (~> 1.0.0)
@@ -170,6 +173,14 @@ SPEC REPOS:
 EXTERNAL SOURCES:
   MultiPlatformLibrary:
     :path: "../mpp-library"
+  MultiPlatformLibraryUnits:
+    :git: https://github.com/icerockdev/moko-units.git
+    :tag: release/0.8.0
+
+CHECKOUT OPTIONS:
+  MultiPlatformLibraryUnits:
+    :git: https://github.com/icerockdev/moko-units.git
+    :tag: release/0.8.0
 
 SPEC CHECKSUMS:
   FirebaseAnalytics: ef2970f65f3a2807e8f47a49cf3b8719d53e9fce
@@ -186,6 +197,7 @@ SPEC CHECKSUMS:
   GoogleUtilities: 00c88b9a86066ef77f0da2fab05f65d7768ed8e1
   MarkdownKit: 0b15195c63cf3e39387949c4bdeccde0055e252a
   MultiPlatformLibrary: 4fb5beedefb618efe7a675e9ade97759b7e868b5
+  MultiPlatformLibraryUnits: bcbf5d10829ef66915888c27c89db248576a99a4
   nanopb: fad817b59e0457d11a5dfbde799381cd727c1275
   NVActivityIndicatorView: 1f6c5687f1171810aa27a3296814dc2d7dec3667
   PromisesObjC: f5707f49cb48b9636751c5b2e7d227e43fba9f47
@@ -197,6 +209,6 @@ SPEC CHECKSUMS:
   RxSwift: 915abbdfb62214aa89ccd0b194d44fb478019b27
   SwiftFormat: 2402d29b26746f169cce5454d5af88314cbb2e35
 
-PODFILE CHECKSUM: 76fd3c25e01bae52fb839d296678437e7c46a451
+PODFILE CHECKSUM: 3b7d70089656eda1da6f7c01a057063d9ef70064
 
 COCOAPODS: 1.16.2
