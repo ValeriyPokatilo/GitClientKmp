@@ -20,7 +20,6 @@ import dev.icerock.moko.units.adapter.UnitsRecyclerViewAdapter
 import kotlinx.coroutines.launch
 import org.example.app.R
 import org.example.app.databinding.FragmentRepositoriesListBinding
-import org.example.app.entity.PlaceholderModel
 import org.example.app.utils.toUnitItem
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -121,18 +120,9 @@ class RepositoriesListFragment : Fragment() {
     private fun handleEmptyState() {
         binding.recyclerView.isVisible = false
         binding.progressIndicator.hide()
-        binding.placeholderView.show(
-            PlaceholderModel(
-                iconRes = R.drawable.ic_empty,
-                title = MR.strings.repositories_empty_title.getString(requireContext()),
-                titleColorRes = R.color.blue,
-                message = MR.strings.repositories_empty_message.getString(requireContext()),
-                buttonTitle = MR.strings.refresh.getString(requireContext()),
-                buttonAction = {
-                    viewModel.onRetryButtonPressed()
-                }
-            )
-        )
+        binding.placeholderView.showEmpty {
+            viewModel.onRetryButtonPressed()
+        }
     }
 
     private fun handleLoadedState(state: RepositoriesListViewModel.State.Loaded) {
@@ -158,39 +148,9 @@ class RepositoriesListFragment : Fragment() {
     private fun handleErrorState(state: RepositoriesListViewModel.State.Error) {
         binding.recyclerView.isVisible = false
         binding.progressIndicator.hide()
-
-        when (state.error) {
-            is AppError.Http -> {
-                val error = state.error as AppError.Http
-                binding.placeholderView.show(
-                    model = PlaceholderModel(
-                        iconRes = R.drawable.ic_error,
-                        title = error.code.toString(),
-                        titleColorRes = R.color.error,
-                        message = error.message.toString(),
-                        buttonTitle = MR.strings.retry.getString(requireContext()),
-                        buttonAction = {
-                            viewModel.onRetryButtonPressed()
-                        }
-                    )
-                )
-            }
-
-            is AppError.Network -> {
-                binding.placeholderView.show(
-                    model = PlaceholderModel(
-                        iconRes = R.drawable.ic_not_connected,
-                        title = MR.strings.repositories_connection_error_title.getString(requireContext()),
-                        titleColorRes = R.color.error,
-                        message = MR.strings.repositories_connection_error_message.getString(requireContext()),
-                        buttonTitle = MR.strings.retry.getString(requireContext()),
-                        buttonAction = {
-                            viewModel.onRetryButtonPressed()
-                        }
-                    )
-                )
-            }
-        }
+        binding.placeholderView.showError(error = state.error, action = {
+            viewModel.onRetryButtonPressed()
+        })
     }
 
     private fun bindActions() {

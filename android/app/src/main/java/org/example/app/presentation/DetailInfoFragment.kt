@@ -21,7 +21,6 @@ import app.xl.gitclientkmp.viewModels.RepositoryInfoViewModel
 import kotlinx.coroutines.launch
 import org.example.app.R
 import org.example.app.databinding.FragmentDetailInfoBinding
-import org.example.app.entity.PlaceholderModel
 import org.example.app.extensions.openUrl
 import org.example.app.utils.MarkwonFactory
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -78,6 +77,7 @@ class DetailInfoFragment : Fragment() {
                         RepositoryInfoViewModel.Action.Logout -> {
                             navigateToAuth()
                         }
+
                         RepositoryInfoViewModel.Action.RouteBack -> {
                             navigateToList()
                         }
@@ -97,6 +97,7 @@ class DetailInfoFragment : Fragment() {
                             binding.scrollView.isVisible = false
                             binding.placeholderView.hide()
                         }
+
                         is RepositoryInfoViewModel.State.Loaded -> {
                             binding.detailsProgressIndicator.hide()
                             binding.scrollView.isVisible = true
@@ -105,6 +106,7 @@ class DetailInfoFragment : Fragment() {
                             setupDetails(state.githubRepo)
                             handleReadmeState(state.readmeState)
                         }
+
                         is RepositoryInfoViewModel.State.Error -> {
                             binding.detailsProgressIndicator.hide()
                             binding.scrollView.isVisible = false
@@ -198,51 +200,17 @@ class DetailInfoFragment : Fragment() {
                 R.id.action_logout -> {
                     viewModel.onLogoutPressed()
                     true
-                } else -> false
+                }
+
+                else -> false
             }
         }
     }
 
     private fun showError(error: AppError) {
-        when (error) {
-            is AppError.Http -> {
-                binding.placeholderView.show(
-                    model = PlaceholderModel(
-                        iconRes = R.drawable.ic_error,
-                        title = error.code.toString(),
-                        titleColorRes = R.color.error,
-                        message = error.message.toString(),
-                        buttonTitle = MR.strings.retry.getString(
-                            requireContext()
-                        ),
-                        buttonAction = {
-                            viewModel.onRetryButtonPressed()
-                        }
-                    )
-                )
-            }
-
-            is AppError.Network -> {
-                binding.placeholderView.show(
-                    model = PlaceholderModel(
-                        iconRes = R.drawable.ic_not_connected,
-                        title = MR.strings.repositories_connection_error_title.getString(
-                            requireContext()
-                        ),
-                        titleColorRes = R.color.error,
-                        message = MR.strings.repositories_connection_error_message.getString(
-                            requireContext()
-                        ),
-                        buttonTitle = MR.strings.retry.getString(
-                            requireContext()
-                        ),
-                        buttonAction = {
-                            viewModel.onRetryButtonPressed()
-                        }
-                    )
-                )
-            }
-        }
+        binding.placeholderView.showError(error = error, action = {
+            viewModel.onRetryButtonPressed()
+        })
     }
 
     private fun navigateToAuth() {
