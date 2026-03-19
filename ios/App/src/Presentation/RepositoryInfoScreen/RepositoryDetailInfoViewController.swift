@@ -87,7 +87,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
 
         actionTask = Task { [weak self] in
             guard let self else { return }
-            for await action in self.viewModel.actions {
+            for await action in self.viewModel.action {
                 await MainActor.run {
                     self.handleAction(action)
                 }

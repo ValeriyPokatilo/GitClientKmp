@@ -27,7 +27,7 @@ final class RepositoryItemCell: UITableViewCell, Fillable {
         nameLabel.text = repo.name
         languageLabel.text = repo.language
 
-        if let description = repo.description_, !description.isEmpty {
+        if let description = repo.descriptionText, !description.isEmpty {
             descriptionLabel.text = description
             descriptionLabel.isHidden = false
         } else {
