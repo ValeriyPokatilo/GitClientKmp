@@ -17,12 +17,12 @@ import app.xl.gitclientkmp.MR
 import app.xl.gitclientkmp.domain.entity.AppError
 import app.xl.gitclientkmp.domain.entity.License
 import app.xl.gitclientkmp.domain.entity.RepositoryDetails
+import app.xl.gitclientkmp.domain.extensions.toDisplayUrl
 import app.xl.gitclientkmp.viewModels.RepositoryInfoViewModel
 import kotlinx.coroutines.launch
 import org.example.app.R
 import org.example.app.databinding.FragmentDetailInfoBinding
 import org.example.app.extensions.openUrl
-import org.example.app.extensions.toDisplayUrl
 import org.example.app.utils.MarkwonFactory
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
