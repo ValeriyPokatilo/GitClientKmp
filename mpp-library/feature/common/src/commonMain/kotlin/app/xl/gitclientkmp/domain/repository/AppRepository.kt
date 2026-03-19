@@ -1,4 +1,4 @@
-package app.xl.gitclientkmp.domain
+package app.xl.gitclientkmp.domain.repository
 
 import app.xl.gitclientkmp.domain.entity.Repository
 import app.xl.gitclientkmp.domain.entity.RepositoryDetails

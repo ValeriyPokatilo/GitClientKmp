@@ -1,7 +1,7 @@
 package app.xl.gitclientkmp.viewModel
 
-import app.xl.gitclientkmp.domain.AppRepository
 import app.xl.gitclientkmp.domain.entity.AppError
+import app.xl.gitclientkmp.domain.repository.AppRepository
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow

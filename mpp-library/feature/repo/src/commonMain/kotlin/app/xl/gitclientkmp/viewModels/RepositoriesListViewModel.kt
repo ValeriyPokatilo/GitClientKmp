@@ -1,8 +1,8 @@
 package app.xl.gitclientkmp.viewModels
 
-import app.xl.gitclientkmp.domain.AppRepository
 import app.xl.gitclientkmp.domain.entity.AppError
 import app.xl.gitclientkmp.domain.entity.Repository
+import app.xl.gitclientkmp.domain.repository.AppRepository
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -17,8 +17,8 @@ class RepositoriesListViewModel(
     private val _state = MutableStateFlow<State>(State.Loading)
     val state: StateFlow<State> = _state
 
-    private val _actions = MutableSharedFlow<Action>()
-    val actions: Flow<Action> = _actions
+    private val _action = MutableSharedFlow<Action>()
+    val action: Flow<Action> = _action
 
     init {
         loadRepositories()
@@ -27,13 +27,13 @@ class RepositoriesListViewModel(
     fun onLogoutButtonPressed() {
         viewModelScope.launch {
             repository.logout()
-            _actions.emit(Action.Logout)
+            _action.emit(Action.Logout)
         }
     }
 
     fun onRepositoryItemPressed(repository: Repository) {
         viewModelScope.launch {
-            _actions.emit(
+            _action.emit(
                 Action.RouteToDetail(
                     owner = repository.owner.login,
                     repositoryName = repository.name,

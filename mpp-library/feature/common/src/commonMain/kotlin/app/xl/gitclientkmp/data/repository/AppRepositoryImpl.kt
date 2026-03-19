@@ -6,11 +6,11 @@ import app.xl.gitclientkmp.data.network.toBearerHeader
 import app.xl.gitclientkmp.data.repository.mappers.toEntity
 import app.xl.gitclientkmp.data.storage.KeyValueStorage
 import app.xl.gitclientkmp.data.utils.Base64Decoder
-import app.xl.gitclientkmp.domain.AppRepository
 import app.xl.gitclientkmp.domain.entity.AppError
 import app.xl.gitclientkmp.domain.entity.Repository
 import app.xl.gitclientkmp.domain.entity.RepositoryDetails
 import app.xl.gitclientkmp.domain.entity.UserInfo
+import app.xl.gitclientkmp.domain.repository.AppRepository
 import io.ktor.client.plugins.ResponseException
 import io.ktor.client.statement.bodyAsText
 import kotlinx.serialization.json.Json
@@ -79,11 +79,9 @@ class AppRepositoryImpl(
         ownerName: String,
         repositoryName: String
     ): RepositoryDetails {
-        val authHeader = createAuthHeader()
-
         try {
             return api
-                .getRepository(authHeader, ownerName, repositoryName)
+                .getRepository(ownerName = ownerName, repositoryName = repositoryName)
                 .toEntity()
         } catch (exception: ResponseException) {
 
@@ -111,38 +109,33 @@ class AppRepositoryImpl(
         repositoryName: String,
         branchName: String?
     ): String {
-
-        val authHeader = createAuthHeader()
-
-        try {
-            val readmeDto =
-                api.getRepositoryReadme(authHeader, ownerName, repositoryName, branchName)
-
-            if (readmeDto.encoding != "base64") return ""
-
-            val decodedBytes = Base64Decoder.decode(readmeDto.content)
-
-            return decodedBytes.decodeToString()
-
-        } catch (exception: ResponseException) {
-            if (exception.response.status.value == 404) {
-                return ""
-            }
-
-            val body = runCatching {
-                exception.response.bodyAsText()
-            }.getOrNull()
-
-            val message = runCatching {
-                body?.let { json.decodeFromString<GitHubErrorDto>(it).message }
-            }.getOrNull()
-
-            throw AppError.Http(
-                code = exception.response.status.value,
-                errorMessage = message,
-                cause = exception
+        return try {
+            val readmeDto = api.getRepositoryReadme(
+                ownerName = ownerName,
+                repositoryName = repositoryName,
+                branchName = branchName
             )
 
+            if (readmeDto.encoding != BASE64_ENCODING) {
+                ""
+            } else {
+                val decodedBytes = Base64Decoder.decode(readmeDto.content)
+                decodedBytes.decodeToString()
+            }
+        } catch (exception: ResponseException) {
+            if (exception.response.status.value == NOT_FOUND) {
+                ""
+            } else {
+                val body = runCatching { exception.response.bodyAsText() }.getOrNull()
+                val message = runCatching { body?.let { json.decodeFromString<GitHubErrorDto>(it).message } }
+                    .getOrNull()
+
+                throw AppError.Http(
+                    code = exception.response.status.value,
+                    errorMessage = message,
+                    cause = exception
+                )
+            }
         } catch (exception: Exception) {
             throw AppError.Network(exception)
         }
@@ -157,5 +150,10 @@ class AppRepositoryImpl(
             Exception("invalid_token") // TODO: - make error
         )
         return token.toBearerHeader()
+    }
+
+    companion object {
+        private const val NOT_FOUND = 404
+        private const val BASE64_ENCODING = "base64"
     }
 }

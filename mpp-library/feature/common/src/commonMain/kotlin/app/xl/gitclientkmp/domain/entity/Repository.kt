@@ -6,6 +6,6 @@ data class Repository(
     val owner: Owner,
     val language: String?,
     val languageColor: Int? = null,
-    val description: String?,
+    val descriptionText: String?,
     val defaultBranch: String
 )

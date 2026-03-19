@@ -9,7 +9,7 @@ fun RepoDto.toEntity(): Repository {
         name = this.name,
         owner = this.owner.toEntity(),
         language = this.language,
-        description = this.description,
+        descriptionText = this.description,
         defaultBranch = this.defaultBranch
     )
 }

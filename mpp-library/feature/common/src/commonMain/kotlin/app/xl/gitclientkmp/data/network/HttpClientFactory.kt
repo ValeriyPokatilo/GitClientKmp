@@ -7,16 +7,22 @@ import io.ktor.client.request.header
 import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
-fun createHttpClient(json: Json): HttpClient {
+fun createHttpClient(
+    json: Json,
+    tokenProvider: () -> String
+): HttpClient {
     return HttpClient {
 
-        expectSuccess = true
+        expectSuccess = false
 
         install(ContentNegotiation) {
             json(json)
         }
 
         defaultRequest {
+            url("https://api.github.com")
+
+            header("Authorization", "Bearer ${tokenProvider()}")
             header("Accept", "application/vnd.github+json")
             header("User-Agent", "GitClientKMP")
         }
