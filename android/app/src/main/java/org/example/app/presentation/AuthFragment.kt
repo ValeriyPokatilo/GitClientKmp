@@ -41,6 +41,7 @@ class AuthFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupUI()
         bindToViewModel()
+        bindInputs()
     }
 
     override fun onDestroyView() {
@@ -49,21 +50,17 @@ class AuthFragment : Fragment() {
     }
 
     private fun bindToViewModel() {
-        bindInputs()
-
         binding.signInButton.setOnClickListener {
             viewModel.onSignButtonPressed()
         }
 
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
                     viewModel.state.collect { state ->
                         renderState(state)
                     }
                 }
-
                 launch {
                     viewModel.action.collect { action ->
                         handleAction(action)
@@ -76,25 +73,6 @@ class AuthFragment : Fragment() {
     private fun bindInputs() {
         binding.tokenInputEdit.doAfterTextChanged {
             viewModel.onTokenChanged(it?.toString().orEmpty())
-        }
-    }
-
-    private fun handleAction(action: AuthViewModel.Action) {
-        when (action) {
-            is AuthViewModel.Action.RouteToMain -> {
-                findNavController().navigate(
-                    R.id.action_authFragment_to_repositoriesListFragment
-                )
-            }
-
-            is AuthViewModel.Action.ShowError -> {
-                showErrorDialog(action.message)
-            }
-
-            is AuthViewModel.Action.FocusOnTokenField -> {
-                binding.tokenInputEdit.requestFocus()
-                binding.tokenInputEdit.showKeyboard()
-            }
         }
     }
 
@@ -117,6 +95,25 @@ class AuthFragment : Fragment() {
                 binding.signInButton.isEnabled = false
                 binding.tokenInputLayout.error =
                     MR.strings.invalid_token_reason.getString(requireContext())
+            }
+        }
+    }
+
+    private fun handleAction(action: AuthViewModel.Action) {
+        when (action) {
+            is AuthViewModel.Action.RouteToMain -> {
+                findNavController().navigate(
+                    R.id.action_authFragment_to_repositoriesListFragment
+                )
+            }
+
+            is AuthViewModel.Action.ShowError -> {
+                showErrorDialog(action.message)
+            }
+
+            is AuthViewModel.Action.FocusOnTokenField -> {
+                binding.tokenInputEdit.requestFocus()
+                binding.tokenInputEdit.showKeyboard()
             }
         }
     }

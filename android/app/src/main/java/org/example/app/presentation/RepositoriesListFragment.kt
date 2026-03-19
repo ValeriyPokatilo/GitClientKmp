@@ -13,8 +13,6 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import app.xl.gitclientkmp.MR
-import app.xl.gitclientkmp.domain.entity.AppError
 import app.xl.gitclientkmp.viewModels.RepositoriesListViewModel
 import dev.icerock.moko.units.adapter.UnitsRecyclerViewAdapter
 import kotlinx.coroutines.launch
@@ -87,32 +85,54 @@ class RepositoriesListFragment : Fragment() {
     }
 
     private fun bindToViewModel() {
-        bindState()
-        bindActions()
-    }
-
-    private fun bindState() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.state.collect { state ->
-                    when (state) {
-                        RepositoriesListViewModel.State.Empty -> {
-                            handleEmptyState()
-                        }
-
-                        RepositoriesListViewModel.State.Loading -> {
-                            handleLoadingState()
-                        }
-
-                        is RepositoriesListViewModel.State.Loaded -> {
-                            handleLoadedState(state)
-                        }
-
-                        is RepositoriesListViewModel.State.Error -> {
-                            handleErrorState(state)
-                        }
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    viewModel.state.collect { state ->
+                        renderState(state)
                     }
                 }
+                launch {
+                    viewModel.action.collect { action ->
+                        handleAction(action)
+                    }
+                }
+            }
+        }
+    }
+
+    private fun renderState(state: RepositoriesListViewModel.State) {
+        when (state) {
+            RepositoriesListViewModel.State.Empty -> {
+                handleEmptyState()
+            }
+
+            RepositoriesListViewModel.State.Loading -> {
+                handleLoadingState()
+            }
+
+            is RepositoriesListViewModel.State.Loaded -> {
+                handleLoadedState(state)
+            }
+
+            is RepositoriesListViewModel.State.Error -> {
+                handleErrorState(state)
+            }
+        }
+    }
+
+    private fun handleAction(action: RepositoriesListViewModel.Action) {
+        when (action) {
+            is RepositoriesListViewModel.Action.RouteToDetail -> {
+                navigateToDetails(
+                    owner = action.owner,
+                    repositoryName = action.repositoryName,
+                    branch = action.branch
+                )
+            }
+
+            RepositoriesListViewModel.Action.Logout -> {
+                navigateToAuth()
             }
         }
     }
@@ -151,28 +171,6 @@ class RepositoriesListFragment : Fragment() {
         binding.placeholderView.showError(error = state.error, action = {
             viewModel.onRetryButtonPressed()
         })
-    }
-
-    private fun bindActions() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.actions.collect { action ->
-                    when (action) {
-                        is RepositoriesListViewModel.Action.RouteToDetail -> {
-                            navigateToDetails(
-                                owner = action.owner,
-                                repositoryName = action.repositoryName,
-                                branch = action.branch
-                            )
-                        }
-
-                        RepositoriesListViewModel.Action.Logout -> {
-                            navigateToAuth()
-                        }
-                    }
-                }
-            }
-        }
     }
 
     private fun navigateToAuth() {

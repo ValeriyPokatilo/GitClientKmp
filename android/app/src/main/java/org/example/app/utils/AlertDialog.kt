@@ -1,31 +1,35 @@
 package org.example.app.utils
 
 import android.app.AlertDialog
-import android.widget.Button
-import android.widget.TextView
+import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
-import org.example.app.R
+import org.example.app.databinding.FragmentAlertBinding
 
 fun Fragment.showErrorAlertDialog(
     title: String,
     message: String,
     buttonTitle: String
 ) {
-    val dialogView = layoutInflater.inflate(R.layout.fragment_alert, null)
+    val context = context ?: return
 
-    val titleTextView = dialogView.findViewById<TextView>(R.id.dialogTitle)
-    val messageTextView = dialogView.findViewById<TextView>(R.id.dialogMessage)
-    val okButton = dialogView.findViewById<Button>(R.id.dialogButton)
+    val binding = FragmentAlertBinding.inflate(
+        LayoutInflater.from(context)
+    )
 
-    titleTextView.text = title
-    messageTextView.text = message
-    okButton.text = buttonTitle
+    with(binding) {
+        dialogTitle.text = title
+        dialogMessage.text = message
+        dialogButton.text = buttonTitle
+    }
 
-    val dialog = AlertDialog.Builder(requireContext())
-        .setView(dialogView)
+    val dialog = AlertDialog.Builder(context)
+        .setView(binding.root)
+        .setCancelable(true)
         .create()
 
-    okButton.setOnClickListener { dialog.dismiss() }
+    binding.dialogButton.setOnClickListener {
+        dialog.dismiss()
+    }
 
     dialog.show()
 }

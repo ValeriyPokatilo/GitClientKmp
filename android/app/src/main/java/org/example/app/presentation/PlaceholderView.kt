@@ -38,7 +38,7 @@ class PlaceholderView @JvmOverloads constructor(
             placeholderTitle.text = MR.strings.repositories_empty_title.getString(context)
             placeholderTitle.setTextColor(ContextCompat.getColor(context, R.color.blue))
             placeholderMessage.text = MR.strings.repositories_empty_message.getString(context)
-            button.text = MR.strings.refresh.getString(context)
+            button.text = MR.strings.refresh.getString(context).uppercase()
             button.visibility = VISIBLE
         }
 
@@ -59,7 +59,7 @@ class PlaceholderView @JvmOverloads constructor(
             is AppError.Http -> {
                 iconRes = R.drawable.ic_error
                 titleText = error.code.toString()
-                messageText = error.message ?: ""
+                messageText = error.message.orEmpty()
                 titleColorRes = R.color.error
             }
 
@@ -73,7 +73,7 @@ class PlaceholderView @JvmOverloads constructor(
             else -> {
                 iconRes = R.drawable.ic_error
                 titleText = ""
-                messageText = error.message ?: ""
+                messageText = error.message.orEmpty()
                 titleColorRes = R.color.error
             }
         }
@@ -83,7 +83,7 @@ class PlaceholderView @JvmOverloads constructor(
             placeholderTitle.text = titleText
             placeholderTitle.setTextColor(ContextCompat.getColor(context, titleColorRes))
             placeholderMessage.text = messageText
-            button.text = MR.strings.retry.getString(context)
+            button.text = MR.strings.retry.getString(context).uppercase()
             button.visibility = VISIBLE
         }
 

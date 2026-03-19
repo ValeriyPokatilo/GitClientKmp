@@ -22,6 +22,7 @@ import kotlinx.coroutines.launch
 import org.example.app.R
 import org.example.app.databinding.FragmentDetailInfoBinding
 import org.example.app.extensions.openUrl
+import org.example.app.extensions.toDisplayUrl
 import org.example.app.utils.MarkwonFactory
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -40,8 +41,8 @@ class DetailInfoFragment : Fragment() {
     private val repositoryName: String
         get() = args.repositoryName
 
-    private val markwon by lazy {
-        MarkwonFactory.createMarkwon(requireContext())
+    private val markwon by lazy(LazyThreadSafetyMode.NONE) {
+        MarkwonFactory.createMarkwon(requireContext().applicationContext)
     }
 
     override fun onCreateView(
@@ -65,55 +66,55 @@ class DetailInfoFragment : Fragment() {
     }
 
     private fun bindToViewModel() {
-        bindActions()
-        bindState()
-    }
-
-    private fun bindActions() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.actions.collect { action ->
-                    when (action) {
-                        RepositoryInfoViewModel.Action.Logout -> {
-                            navigateToAuth()
-                        }
-
-                        RepositoryInfoViewModel.Action.RouteBack -> {
-                            navigateToList()
-                        }
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                launch {
+                    viewModel.state.collect { state ->
+                        renderState(state)
+                    }
+                }
+                launch {
+                    viewModel.action.collect { action ->
+                        handleAction(action)
                     }
                 }
             }
         }
     }
 
-    private fun bindState() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.state.collect { state ->
-                    when (state) {
-                        RepositoryInfoViewModel.State.Loading -> {
-                            binding.detailsProgressIndicator.show()
-                            binding.scrollView.isVisible = false
-                            binding.placeholderView.hide()
-                        }
+    private fun renderState(state: RepositoryInfoViewModel.State) {
+        when (state) {
+            RepositoryInfoViewModel.State.Loading -> {
+                binding.detailsProgressIndicator.show()
+                binding.scrollView.isVisible = false
+                binding.placeholderView.hide()
+            }
 
-                        is RepositoryInfoViewModel.State.Loaded -> {
-                            binding.detailsProgressIndicator.hide()
-                            binding.scrollView.isVisible = true
-                            binding.placeholderView.hide()
+            is RepositoryInfoViewModel.State.Loaded -> {
+                binding.detailsProgressIndicator.hide()
+                binding.scrollView.isVisible = true
+                binding.placeholderView.hide()
 
-                            setupDetails(state.githubRepo)
-                            handleReadmeState(state.readmeState)
-                        }
+                setupDetails(state.githubRepo)
+                handleReadmeState(state.readmeState)
+            }
 
-                        is RepositoryInfoViewModel.State.Error -> {
-                            binding.detailsProgressIndicator.hide()
-                            binding.scrollView.isVisible = false
-                            showError(state.error)
-                        }
-                    }
-                }
+            is RepositoryInfoViewModel.State.Error -> {
+                binding.detailsProgressIndicator.hide()
+                binding.scrollView.isVisible = false
+                showError(state.error)
+            }
+        }
+    }
+
+    private fun handleAction(action: RepositoryInfoViewModel.Action) {
+        when (action) {
+            RepositoryInfoViewModel.Action.Logout -> {
+                navigateToAuth()
+            }
+
+            RepositoryInfoViewModel.Action.RouteBack -> {
+                navigateToList()
             }
         }
     }
@@ -157,8 +158,7 @@ class DetailInfoFragment : Fragment() {
     }
 
     private fun setupRepositoryLink(url: String) {
-        val displayUrl = url.removePrefix("https://").removePrefix("http://")
-        binding.linkTextView.text = displayUrl
+        binding.linkTextView.text = url.toDisplayUrl()
         binding.linkTextView.movementMethod = LinkMovementMethod.getInstance()
         binding.linkTextView.setOnClickListener {
             openUrl(url)
@@ -208,9 +208,9 @@ class DetailInfoFragment : Fragment() {
     }
 
     private fun showError(error: AppError) {
-        binding.placeholderView.showError(error = error, action = {
+        binding.placeholderView.showError(error = error) {
             viewModel.onRetryButtonPressed()
-        })
+        }
     }
 
     private fun navigateToAuth() {

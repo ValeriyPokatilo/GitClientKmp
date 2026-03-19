@@ -1,16 +1,17 @@
 package org.example.app.presentation
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.annotation.LayoutRes
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
 import app.xl.gitclientkmp.domain.entity.Repository
 import dev.icerock.moko.units.UnitItem
 import org.example.app.R
+import org.example.app.databinding.RepositoryItemBinding
 
 class RepoUnitItem(
     override val itemId: Long,
@@ -23,20 +24,22 @@ class RepoUnitItem(
     override val viewType: Int get() = layoutId
 
     override fun bindViewHolder(viewHolder: RecyclerView.ViewHolder) {
-        viewHolder as ViewHolder
+        val holder = viewHolder as? ViewHolder ?: return
+        val context = holder.itemView.context
 
-        viewHolder.repositoryName.text = repository.name
-        viewHolder.repositoryLanguage.text = repository.language
-        viewHolder.repositoryLanguage.setTextColor(
-            repository.languageColor ?: R.color.white
-        )
+        holder.repositoryName.text = repository.name
+        holder.repositoryLanguage.text = repository.language.orEmpty()
 
-        viewHolder.repositoryDescription.apply {
-            text = repository.description
-            isVisible = !repository.description.isNullOrBlank()
+        val color = repository.languageColor
+            ?: ContextCompat.getColor(context, R.color.white)
+        holder.repositoryLanguage.setTextColor(color)
+
+        holder.repositoryDescription.apply {
+            text = repository.descriptionText
+            isVisible = !repository.descriptionText.isNullOrBlank()
         }
 
-        viewHolder.itemView.setOnClickListener {
+        holder.itemView.setOnClickListener {
             onClick(repository)
         }
     }
@@ -45,14 +48,20 @@ class RepoUnitItem(
         parent: ViewGroup,
         lifecycleOwner: LifecycleOwner
     ): RecyclerView.ViewHolder {
-        val view = LayoutInflater.from(parent.context)
-            .inflate(layoutId, parent, false)
-        return ViewHolder(view)
+        val binding = RepositoryItemBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
+
+        return ViewHolder(binding)
     }
 
-    class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val repositoryName: TextView = view.findViewById(R.id.repositoryName)
-        val repositoryLanguage: TextView = view.findViewById(R.id.repositoryLanguage)
-        val repositoryDescription: TextView = view.findViewById(R.id.repositoryDescription)
+    class ViewHolder(
+        val binding: RepositoryItemBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
+        val repositoryName: TextView = binding.repositoryName
+        val repositoryLanguage: TextView = binding.repositoryLanguage
+        val repositoryDescription: TextView = binding.repositoryDescription
     }
 }

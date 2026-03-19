@@ -9,12 +9,15 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.fragment.NavHostFragment
+import org.example.app.databinding.ActivityMainBinding
 import org.example.library.appRouter.AppRouter
 import org.koin.android.ext.android.inject
 
 class AppActivity : FragmentActivity() {
 
     private val router: AppRouter by inject()
+
+    private lateinit var binding: ActivityMainBinding
 
     private var isAppReadyForStart = false
 
@@ -38,15 +41,15 @@ class AppActivity : FragmentActivity() {
             !isAppReadyForStart
         }
 
-        setContentView(R.layout.activity_main)
+        binding = ActivityMainBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         setupInsets()
-
         setupNavigation()
     }
 
     private fun setupInsets() {
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main)) { v, insets ->
+        ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
             val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
             val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
 
