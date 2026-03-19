@@ -1,11 +1,13 @@
 import UIKit
 
 final class IconLabelView: UIView {
-    
+
     @IBOutlet private weak var iconImageView: UIImageView!
     @IBOutlet private weak var titleLabel: UILabel!
     @IBOutlet private weak var additionalLabel: UILabel!
-    
+
+    var onTap: EmptyBlock?
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         loadFromNib()
@@ -29,6 +31,8 @@ final class IconLabelView: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
         addSubview(view)
+
+        setupTapGesture()
     }
 
     func configure(
@@ -41,5 +45,17 @@ final class IconLabelView: UIView {
         titleLabel.text = title
         titleLabel.textColor = titleColor
         additionalLabel.text = additional ?? ""
+    }
+
+    private func setupTapGesture() {
+        let tap = UITapGestureRecognizer(
+            target: self,
+            action: #selector(handleTap)
+        )
+        addGestureRecognizer(tap)
+    }
+
+    @objc private func handleTap() {
+        onTap?()
     }
 }

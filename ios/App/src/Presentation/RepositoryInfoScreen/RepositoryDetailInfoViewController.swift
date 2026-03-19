@@ -14,9 +14,8 @@ final class RepositoryDetailInfoViewController: UIViewController {
     @IBOutlet private weak var readmeIndicator: NVActivityIndicatorView!
     @IBOutlet private weak var mainIndicator: NVActivityIndicatorView!
     @IBOutlet private weak var markdownTextView: UITextView!
-
     @IBOutlet private weak var placeholderView: PlaceholderView!
-    
+
     private let owner: String
     private let repositoryName: String
     private let branch: String
@@ -27,7 +26,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
             repositoryName: repositoryName,
             branch: branch
         )
-    
+
     private var stateTask: Task<Void, Never>?
     private var actionTask: Task<Void, Never>?
 
@@ -97,20 +96,20 @@ final class RepositoryDetailInfoViewController: UIViewController {
 
     private func renderState(_ state: RepositoryInfoViewModelState) {
         placeholderView.isHidden = true
-        
+
         switch state {
         case is RepositoryInfoViewModelStateLoading:
             handleLoadingState()
-            
+
         case let loadedState as RepositoryInfoViewModelStateLoaded:
             handleLoadedState(
                 details: loadedState.githubRepo,
                 readmeState: loadedState.readmeState
             )
-            
+
         case let state as RepositoryInfoViewModelStateError:
             handleErrorState(error: state.error)
-            
+
         default: break
         }
     }
@@ -131,10 +130,15 @@ final class RepositoryDetailInfoViewController: UIViewController {
     private func setupDetails(details: RepositoryDetails) {
         linkView.configure(
             icon: R.image.ic_link(),
-            title: details.url,
+            title: details.url.toDisplayUrl(),
             titleColor: .appBlue,
             additional: nil
         )
+
+        linkView.onTap = {
+            guard let url = URL(string: details.url) else { return }
+            UIApplication.shared.open(url)
+        }
 
         licenseView.configure(
             icon: R.image.ic_license(),
@@ -175,19 +179,19 @@ final class RepositoryDetailInfoViewController: UIViewController {
         switch readmeState {
         case is RepositoryInfoViewModelReadmeStateLoading:
             readmeIndicator.startAnimating()
-            
+
         case let state as RepositoryInfoViewModelReadmeStateLoaded:
             readmeIndicator.stopAnimating()
             handleMarkdown(markdownString: state.markdown)
-            
+
         case is RepositoryInfoViewModelReadmeStateEmpty:
             readmeIndicator.stopAnimating()
             markdownTextView.text = MR.strings().no_readme_md.desc().localized()
-            
+
         case let state as RepositoryInfoViewModelReadmeStateError:
             readmeIndicator.stopAnimating()
             handleErrorState(error: state.error)
-            
+
         default: break
         }
     }
@@ -210,7 +214,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
 
     private func handleErrorState(error: AppError) {
         placeholderView.isHidden = false
-        
+
         placeholderView.configure(with: error) { [weak self] in
             self?.viewModel.onRetryButtonPressed()
         }
@@ -220,11 +224,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
         switch action {
         case is RepositoryInfoViewModelActionLogout:
             onLogout?()
-
-            // TODO: - 
-//        case is RepositoryInfoViewModelActionRouteBack:
-            // onGoBack?()
-
+            
         default: break
         }
     }
@@ -232,7 +232,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
     @objc private func onLogoutTap() {
         viewModel.onLogoutPressed()
     }
-    
+
     deinit {
         stateTask?.cancel()
         actionTask?.cancel()
