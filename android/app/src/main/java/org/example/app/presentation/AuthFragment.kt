@@ -12,6 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import app.xl.gitclientkmp.MR
+import app.xl.gitclientkmp.domain.error.ErrorModel
 import app.xl.gitclientkmp.viewModel.AuthViewModel
 import kotlinx.coroutines.launch
 import org.example.app.R
@@ -108,7 +109,7 @@ class AuthFragment : Fragment() {
             }
 
             is AuthViewModel.Action.ShowError -> {
-                showErrorDialog(action.message)
+                showErrorDialog(action.error)
             }
 
             is AuthViewModel.Action.FocusOnTokenField -> {
@@ -127,11 +128,11 @@ class AuthFragment : Fragment() {
         binding.tokenInputEdit.hint = placeholder
     }
 
-    private fun showErrorDialog(message: String?) {
+    private fun showErrorDialog(model: ErrorModel) {
         val title = MR.strings.error.getString(requireContext())
-        val baseMessage = message ?: MR.strings.check_connection.getString(requireContext())
-        val messagePostfix = MR.strings.info_for_developer.getString(requireContext())
-        val fullMessage = "$baseMessage\n$messagePostfix"
+        val code = model.title.toString(requireContext())
+        val message = model.message.toString(requireContext())
+        val fullMessage = "$code / $message"
         val buttonTitle = MR.strings.ok.getString(requireContext())
 
         showErrorAlertDialog(title = title, message = fullMessage, buttonTitle = buttonTitle)

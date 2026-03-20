@@ -17,6 +17,7 @@ import app.xl.gitclientkmp.MR
 import app.xl.gitclientkmp.domain.entity.AppError
 import app.xl.gitclientkmp.domain.entity.License
 import app.xl.gitclientkmp.domain.entity.RepositoryDetails
+import app.xl.gitclientkmp.domain.error.ErrorModel
 import app.xl.gitclientkmp.domain.extensions.toDisplayUrl
 import app.xl.gitclientkmp.viewModels.RepositoryInfoViewModel
 import kotlinx.coroutines.launch
@@ -207,7 +208,7 @@ class DetailInfoFragment : Fragment() {
         }
     }
 
-    private fun showError(error: AppError) {
+    private fun showError(error: ErrorModel) {
         binding.placeholderView.showError(error = error) {
             viewModel.onRetryButtonPressed()
         }

@@ -8,8 +8,10 @@ import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import app.xl.gitclientkmp.MR
 import app.xl.gitclientkmp.domain.entity.AppError
+import app.xl.gitclientkmp.domain.error.ErrorModel
 import org.example.app.R
 import org.example.app.databinding.ViewPlaceholderBinding
+import org.example.app.extensions.toDrawableRes
 
 class PlaceholderView @JvmOverloads constructor(
     context: Context,
@@ -46,37 +48,14 @@ class PlaceholderView @JvmOverloads constructor(
         binding.button.setOnClickListener { this.action?.invoke() }
     }
 
-    fun showError(error: AppError, action: () -> Unit) {
+    fun showError(error: ErrorModel, action: () -> Unit) {
         reset()
         visibility = VISIBLE
 
-        val iconRes: Int
-        val titleText: String
-        val messageText: String
-        val titleColorRes: Int
-
-        when (error) {
-            is AppError.Http -> {
-                iconRes = R.drawable.ic_error
-                titleText = error.code.toString()
-                messageText = error.message.orEmpty()
-                titleColorRes = R.color.error
-            }
-
-            is AppError.Network -> {
-                iconRes = R.drawable.ic_not_connected
-                titleText = MR.strings.repositories_connection_error_title.getString(context)
-                messageText = MR.strings.repositories_connection_error_message.getString(context)
-                titleColorRes = R.color.error
-            }
-
-            else -> {
-                iconRes = R.drawable.ic_error
-                titleText = ""
-                messageText = error.message.orEmpty()
-                titleColorRes = R.color.error
-            }
-        }
+        val iconRes = error.icon.toDrawableRes()
+        val titleText = error.title.toString(context)
+        val messageText = error.message.toString(context)
+        val titleColorRes = R.color.error
 
         binding.apply {
             placeholderIcon.setImageResource(iconRes)

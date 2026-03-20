@@ -14,6 +14,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.xl.gitclientkmp.viewModels.RepositoriesListViewModel
+import dev.icerock.moko.errors.mappers.mapThrowable
 import dev.icerock.moko.units.adapter.UnitsRecyclerViewAdapter
 import kotlinx.coroutines.launch
 import org.example.app.R
@@ -168,9 +169,9 @@ class RepositoriesListFragment : Fragment() {
     private fun handleErrorState(state: RepositoriesListViewModel.State.Error) {
         binding.recyclerView.isVisible = false
         binding.progressIndicator.hide()
-        binding.placeholderView.showError(error = state.error, action = {
+        binding.placeholderView.showError(error = state.error) {
             viewModel.onRetryButtonPressed()
-        })
+        }
     }
 
     private fun navigateToAuth() {

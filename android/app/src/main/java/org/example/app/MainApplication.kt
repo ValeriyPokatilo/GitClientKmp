@@ -8,6 +8,9 @@ import android.app.Application
 import app.xl.gitclientkmp.di.authModule
 import app.xl.gitclientkmp.di.commonModule
 import app.xl.gitclientkmp.di.repoModule
+import app.xl.gitclientkmp.domain.error.Configurator
+import com.google.firebase.FirebaseApp
+import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dev.icerock.moko.crashreporting.crashlytics.CrashlyticsLogger
 import org.example.android.utils.LogcatAntilog
 import org.example.android.utils.navigation.ScreenNameExtension
@@ -44,5 +47,7 @@ class MainApplication : Application() {
 
             modules(authModule, commonModule, repoModule)
         }
+
+        Configurator.init()
     }
 }
