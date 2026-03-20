@@ -44,10 +44,11 @@
                 android:gravity="center_vertical"
                 android:singleLine="true"
                 android:ellipsize="end"
-                app:drawableStartCompat="@drawable/ic_link"
+                android:drawableStart="@drawable/ic_link"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"/>
+                app:layout_constraintEnd_toEndOf="parent"
+                tools:ignore="UseCompatTextViewDrawableXml"/>
 
             <LinearLayout
                 android:id="@+id/licenseLayout"
@@ -66,11 +67,12 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="8dp"
                     android:gravity="center_vertical"
-                    app:drawableStartCompat="@drawable/ic_license"
+                    android:drawableStart="@drawable/ic_license"
                     android:text="@string/license"
                     android:textColor="@color/white"
                     android:textStyle="bold"
-                    android:textSize="@dimen/text_medium"/>
+                    android:textSize="@dimen/text_medium"
+                    tools:ignore="UseCompatTextViewDrawableXml"/>
 
                 <View
                     android:layout_width="0dp"
@@ -104,9 +106,10 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="4dp"
                     android:gravity="center_vertical"
-                    app:drawableStartCompat="@drawable/ic_star"
+                    android:drawableStart="@drawable/ic_star"
                     android:textColor="@color/yellow"
-                    android:textStyle="bold"/>
+                    android:textStyle="bold"
+                    tools:ignore="UseCompatTextViewDrawableXml"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -129,10 +132,11 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="4dp"
                     android:gravity="center_vertical"
-                    app:drawableStartCompat="@drawable/ic_fork"
+                    android:drawableStart="@drawable/ic_fork"
                     android:textColor="@color/light_green"
                     android:textStyle="bold"
-                    android:textSize="@dimen/text_medium"/>
+                    android:textSize="@dimen/text_medium"
+                    tools:ignore="UseCompatTextViewDrawableXml"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -155,10 +159,11 @@
                     android:layout_height="wrap_content"
                     android:drawablePadding="4dp"
                     android:gravity="center_vertical"
-                    app:drawableStartCompat="@drawable/ic_watch"
+                    android:drawableStart="@drawable/ic_watch"
                     android:textColor="@color/cyan"
                     android:textStyle="bold"
-                    android:textSize="@dimen/text_medium"/>
+                    android:textSize="@dimen/text_medium"
+                    tools:ignore="UseCompatTextViewDrawableXml"/>
 
                 <TextView
                     android:layout_width="wrap_content"
