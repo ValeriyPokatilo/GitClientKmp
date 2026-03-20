@@ -128,7 +128,7 @@ final class RepositoriesListViewController: UIViewController {
         }
     }
 
-    private func handleErrorState(error: AppError) {
+    private func handleErrorState(error: ErrorModel) {
         indicatorView.stopAnimating()
 
         placeholderView.isHidden = false

@@ -16,6 +16,7 @@
 		76350DA32F5F216F009D4FD1 /* Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76350DA22F5F216F009D4FD1 /* Aliases.swift */; };
 		76350DA62F5FF5F8009D4FD1 /* Ext+UIAlertController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76350DA52F5FF5F8009D4FD1 /* Ext+UIAlertController.swift */; };
 		76350DA82F5FF776009D4FD1 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76350DA72F5FF776009D4FD1 /* AlertViewController.swift */; };
+		7635F5442F6DAEAB00258AB7 /* Ext+ErrorIcon.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7635F5432F6DAEAB00258AB7 /* Ext+ErrorIcon.swift */; };
 		7650E1002F695415004CA6AE /* RepositoryDetailsRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7650E0FF2F695415004CA6AE /* RepositoryDetailsRoute.swift */; };
 		7650E1072F695EF2004CA6AE /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7650E1062F695EF2004CA6AE /* AlertModel.swift */; };
 		7650E1092F696242004CA6AE /* Ext+UITextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7650E1082F696242004CA6AE /* Ext+UITextField.swift */; };
@@ -91,6 +92,7 @@
 		76350DA22F5F216F009D4FD1 /* Aliases.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Aliases.swift; sourceTree = "<group>"; };
 		76350DA52F5FF5F8009D4FD1 /* Ext+UIAlertController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UIAlertController.swift"; sourceTree = "<group>"; };
 		76350DA72F5FF776009D4FD1 /* AlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertViewController.swift; sourceTree = "<group>"; };
+		7635F5432F6DAEAB00258AB7 /* Ext+ErrorIcon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+ErrorIcon.swift"; sourceTree = "<group>"; };
 		7650E0FF2F695415004CA6AE /* RepositoryDetailsRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsRoute.swift; sourceTree = "<group>"; };
 		7650E1062F695EF2004CA6AE /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		7650E1082F696242004CA6AE /* Ext+UITextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Ext+UITextField.swift"; sourceTree = "<group>"; };
@@ -251,6 +253,7 @@
 			isa = PBXGroup;
 			children = (
 				76350DA52F5FF5F8009D4FD1 /* Ext+UIAlertController.swift */,
+				7635F5432F6DAEAB00258AB7 /* Ext+ErrorIcon.swift */,
 				7697AB352F6A8B9200C333E7 /* Ext+Repository.swift */,
 				7650E1082F696242004CA6AE /* Ext+UITextField.swift */,
 			);
@@ -623,6 +626,7 @@
 				D2E6AC0D2DAE1D4900D01DC1 /* MobileApp.swift in Sources */,
 				45F47922219463C7003D25FA /* AppDelegate.swift in Sources */,
 				76350DA32F5F216F009D4FD1 /* Aliases.swift in Sources */,
+				7635F5442F6DAEAB00258AB7 /* Ext+ErrorIcon.swift in Sources */,
 				D2F8433B2ADF0D9300657354 /* Koin.swift in Sources */,
 				76D6763D2F66EBA700DA76F5 /* IconLabelView.swift in Sources */,
 				76350DA62F5FF5F8009D4FD1 /* Ext+UIAlertController.swift in Sources */,

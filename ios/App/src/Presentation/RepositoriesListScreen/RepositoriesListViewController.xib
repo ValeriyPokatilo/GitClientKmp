@@ -36,7 +36,7 @@
                         <constraint firstAttribute="width" constant="56" id="y6Z-3C-cij"/>
                     </constraints>
                 </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UNv-A8-XBy" customClass="PlaceholderView" customModule="mokoApp" customModuleProvider="target">
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UNv-A8-XBy" customClass="PlaceholderView" customModule="mokoApp" customModuleProvider="target">
                     <rect key="frame" x="0.0" y="118" width="393" height="666"/>
                 </view>
             </subviews>

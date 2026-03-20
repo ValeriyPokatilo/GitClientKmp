@@ -18,6 +18,8 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
             Crashlytics.crashlytics().setCrashlyticsCollectionEnabled(false)
         #endif
 
+        Configurator.shared.doInit()
+
         Koin.setup()
 
         setupNavigationBar()

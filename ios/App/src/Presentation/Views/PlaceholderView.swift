@@ -35,36 +35,13 @@ final class PlaceholderView: UIView {
         addSubview(view)
     }
 
-    func configure(with error: AppError, action: @escaping EmptyBlock) {
+    func configure(with error: ErrorModel, action: @escaping EmptyBlock) {
         reset()
-        
-        let title: String
-        let message: String
-        let icon: UIImage?
 
-        switch error {
-        case let httpError as AppError.Http:
-            title = "\(httpError.code)"
-            message = httpError.message ?? ""
-            icon = R.image.ic_error()
-
-        case is AppError.Network:
-            title = MR.strings().repositories_connection_error_title.desc()
-                .localized()
-            message = MR.strings().repositories_connection_error_message.desc()
-                .localized()
-            icon = R.image.ic_connection_error()
-
-        default:
-            title = ""
-            message = error.message ?? ""
-            icon = R.image.ic_error()
-        }
-
-        imageView.image = icon
-        titleLabel.text = title
+        imageView.image = error.icon.toUIImage()
+        titleLabel.text = error.title.localized()
         titleLabel.textColor = .appError
-        messageLabel.text = message
+        messageLabel.text = error.message.localized()
         refreshButton.setTitle(
             MR.strings().retry.desc().localized(),
             for: .normal
@@ -75,7 +52,7 @@ final class PlaceholderView: UIView {
 
     func configureEmpty(action: @escaping EmptyBlock) {
         reset()
-        
+
         imageView.image = R.image.ic_empty()
         titleLabel.text = MR.strings().repositories_empty_title.desc()
             .localized()
@@ -93,7 +70,7 @@ final class PlaceholderView: UIView {
     @IBAction private func refreshAction(_ sender: Any) {
         action?()
     }
-    
+
     private func reset() {
         imageView.image = nil
         titleLabel.text = nil

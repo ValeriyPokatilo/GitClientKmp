@@ -212,7 +212,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
         }
     }
 
-    private func handleErrorState(error: AppError) {
+    private func handleErrorState(error: ErrorModel) {
         placeholderView.isHidden = false
 
         placeholderView.configure(with: error) { [weak self] in

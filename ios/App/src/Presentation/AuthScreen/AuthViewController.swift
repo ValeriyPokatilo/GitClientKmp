@@ -128,18 +128,17 @@ final class AuthViewController: UIViewController {
         if action is AuthViewModelActionRouteToMain {
             routeToMain?()
         } else if let errorAction = action as? AuthViewModelActionShowError {
-            showErrorAlert(message: errorAction.message)
+            showErrorAlert(error: errorAction.error)
         } else if action is AuthViewModelActionFocusOnTokenField {
             tokenTextField.becomeFirstResponder()
         }
     }
 
-    private func showErrorAlert(message: String?) {
+    private func showErrorAlert(error: ErrorModel) {
         let title = MR.strings().error.desc().localized()
-        let baseMessage =
-            message ?? MR.strings().check_connection.desc().localized()
-        let messagePostfix = MR.strings().info_for_developer.desc().localized()
-        let fullMessage = "\(baseMessage)\n\(messagePostfix)"
+        let code = error.title.localized()
+        let message = error.message.localized()
+        let fullMessage = "\(code) / \(message)"
 
         showAlert?(AlertModel(title: title, message: fullMessage))
     }
