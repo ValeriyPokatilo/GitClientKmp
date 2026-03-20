@@ -1,7 +1,9 @@
 package app.xl.gitclientkmp.viewModel
 
 import app.xl.gitclientkmp.domain.entity.AppError
+import app.xl.gitclientkmp.domain.error.ErrorModel
 import app.xl.gitclientkmp.domain.repository.AppRepository
+import dev.icerock.moko.errors.mappers.mapThrowable
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -48,21 +50,18 @@ class AuthViewModel(
             } catch (exc: AppError) {
                 _state.value = State.Idle
                 handleError(exc)
-            } catch (exc: Exception) {
+            } catch (exc: Throwable) {
                 _state.value = State.Idle
                 handleError(AppError.Network(exc))
             }
         }
     }
 
-    private suspend fun handleError(error: AppError) {
-        val message = when (error) {
-            is AppError.Http -> "${error.errorMessage} / ${error.code}"
-            is AppError.Network -> null
-        }
+    private suspend fun handleError(error: Throwable) {
+        val errorModel: ErrorModel = error.mapThrowable()
 
         _actions.emit(
-            Action.ShowError(message)
+            Action.ShowError(errorModel)
         )
     }
 
@@ -73,7 +72,7 @@ class AuthViewModel(
     }
 
     sealed interface Action {
-        data class ShowError(val message: String?) : Action
+        data class ShowError(val error: ErrorModel) : Action
         object RouteToMain : Action
         object FocusOnTokenField : Action
     }

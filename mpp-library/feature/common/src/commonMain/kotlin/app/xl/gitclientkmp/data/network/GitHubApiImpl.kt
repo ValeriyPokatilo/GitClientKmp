@@ -7,6 +7,8 @@ import app.xl.gitclientkmp.data.dto.UserInfoDto
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
+import io.ktor.http.HttpHeaders
+import io.ktor.client.request.header
 import io.ktor.client.request.parameter
 
 class GitHubApiImpl(
@@ -14,26 +16,35 @@ class GitHubApiImpl(
 ) : GitHubApi {
 
     override suspend fun getUser(header: String): UserInfoDto {
-        return client.get("user").body()
+        return client.get("user") {
+            header(HttpHeaders.Authorization, header)
+        }.body()
     }
 
     override suspend fun getRepositories(header: String): List<RepoDto> {
-        return client.get("user/repos").body()
+        return client.get("user/repos") {
+            header(HttpHeaders.Authorization, header)
+        }.body()
     }
 
     override suspend fun getRepository(
+        header: String,
         ownerName: String,
         repositoryName: String
     ): RepoDetailsDto {
-        return client.get("repos/$ownerName/$repositoryName").body()
+        return client.get("repos/$ownerName/$repositoryName"){
+            headers.append(HttpHeaders.Authorization, header)
+        }.body()
     }
 
     override suspend fun getRepositoryReadme(
+        header: String,
         ownerName: String,
         repositoryName: String,
         branchName: String?
     ): ReadmeDto {
         return client.get("repos/$ownerName/$repositoryName/readme") {
+            headers.append(HttpHeaders.Authorization, header)
             branchName?.let { parameter("ref", it) }
         }.body()
     }

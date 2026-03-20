@@ -3,6 +3,7 @@ plugins {
     id("multiplatform-library-convention")
     id("feature-android-convention")
     id("dev.icerock.mobile.multiplatform-resources")
+    id("com.android.library")
     kotlin("plugin.serialization")
 }
 
@@ -18,6 +19,7 @@ dependencies {
     commonMainImplementation(libs.ktorClient.content.negotiation)
     commonMainImplementation(libs.ktorSerialization.kotlinx.json)
     commonMainImplementation(libs.moko.units)
+    commonMainImplementation(libs.moko.errors)
 }
 
 multiplatformResources {

@@ -2,7 +2,9 @@ package app.xl.gitclientkmp.viewModels
 
 import app.xl.gitclientkmp.domain.entity.AppError
 import app.xl.gitclientkmp.domain.entity.Repository
+import app.xl.gitclientkmp.domain.error.ErrorModel
 import app.xl.gitclientkmp.domain.repository.AppRepository
+import dev.icerock.moko.errors.mappers.mapThrowable
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.MutableSharedFlow
@@ -58,8 +60,9 @@ class RepositoriesListViewModel(
                 } else {
                     _state.value = State.Loaded(repositories)
                 }
-            } catch (error: AppError) {
-                _state.value = State.Error(error)
+            } catch (error: Throwable) {
+                val errorModel: ErrorModel = error.mapThrowable()
+                _state.value = State.Error(errorModel)
             }
         }
     }
@@ -67,7 +70,7 @@ class RepositoriesListViewModel(
     sealed interface State {
         object Loading : State
         data class Loaded(val repositories: List<Repository>) : State
-        data class Error(val error: AppError) : State
+        data class Error(val error: ErrorModel) : State
         object Empty : State
     }
 

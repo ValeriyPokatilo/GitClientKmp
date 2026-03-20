@@ -36,11 +36,7 @@ val commonModule = module {
 
     single {
         createHttpClient(
-            json = get(),
-            tokenProvider = {
-                val storage: KeyValueStorage = get()
-                storage.getToken().orEmpty()
-            }
+            json = get()
         )
     }
 

@@ -11,11 +11,13 @@ interface GitHubApi {
     suspend fun getRepositories(header: String): List<RepoDto>
 
     suspend fun getRepository(
+        header: String,
         ownerName: String,
         repositoryName: String
     ): RepoDetailsDto
 
     suspend fun getRepositoryReadme(
+        header: String,
         ownerName: String,
         repositoryName: String,
         branchName: String? = null

@@ -26,8 +26,9 @@ class AppRepositoryImpl(
         val authHeader = token.toBearerHeader()
 
         try {
+            val user = api.getUser(authHeader).toEntity()
             keyValueStorage.saveToken(token)
-            return api.getUser(authHeader).toEntity()
+            return user
         } catch (exception: ResponseException) {
             val body = runCatching {
                 exception.response.bodyAsText()
@@ -79,9 +80,15 @@ class AppRepositoryImpl(
         ownerName: String,
         repositoryName: String
     ): RepositoryDetails {
+        val authHeader = createAuthHeader()
+
         try {
             return api
-                .getRepository(ownerName = ownerName, repositoryName = repositoryName)
+                .getRepository(
+                    header = authHeader,
+                    ownerName = ownerName,
+                    repositoryName = repositoryName
+                )
                 .toEntity()
         } catch (exception: ResponseException) {
 
@@ -110,7 +117,10 @@ class AppRepositoryImpl(
         branchName: String?
     ): String {
         return try {
+            val authHeader = createAuthHeader()
+            
             val readmeDto = api.getRepositoryReadme(
+                header = authHeader,
                 ownerName = ownerName,
                 repositoryName = repositoryName,
                 branchName = branchName
