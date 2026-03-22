@@ -15,6 +15,7 @@ import io.ktor.client.plugins.ResponseException
 import io.ktor.client.statement.bodyAsText
 import kotlinx.serialization.json.Json
 
+@Suppress("TooGenericExceptionCaught")
 class AppRepositoryImpl(
     private val api: GitHubApi,
     private val json: Json,
@@ -29,22 +30,8 @@ class AppRepositoryImpl(
             val user = api.getUser(authHeader).toEntity()
             keyValueStorage.saveToken(token)
             return user
-        } catch (exception: ResponseException) {
-            val body = runCatching {
-                exception.response.bodyAsText()
-            }.getOrNull()
-
-            val message = runCatching {
-                body?.let { json.decodeFromString<GitHubErrorDto>(it).message }
-            }.getOrNull()
-
-            throw AppError.Http(
-                code = exception.response.status.value,
-                errorMessage = message,
-                cause = exception
-            )
-        } catch (exception: Exception) {
-            throw AppError.Network(exception)
+        } catch (exception: Throwable) {
+            mapException(exception)
         }
     }
 
@@ -55,22 +42,8 @@ class AppRepositoryImpl(
             return api
                 .getRepositories(authHeader)
                 .map { it.toEntity() }
-        } catch (exception: ResponseException) {
-            val body = runCatching {
-                exception.response.bodyAsText()
-            }.getOrNull()
-
-            val message = runCatching {
-                body?.let { json.decodeFromString<GitHubErrorDto>(it).message }
-            }.getOrNull()
-
-            throw AppError.Http(
-                code = exception.response.status.value,
-                errorMessage = message,
-                cause = exception
-            )
-        } catch (exception: Exception) {
-            throw AppError.Network(exception)
+        } catch (exception: Throwable) {
+            mapException(exception)
         }
     }
 
@@ -88,22 +61,8 @@ class AppRepositoryImpl(
                     repositoryName = repositoryName
                 )
                 .toEntity()
-        } catch (exception: ResponseException) {
-            val body = runCatching {
-                exception.response.bodyAsText()
-            }.getOrNull()
-
-            val message = runCatching {
-                body?.let { json.decodeFromString<GitHubErrorDto>(it).message }
-            }.getOrNull()
-
-            throw AppError.Http(
-                code = exception.response.status.value,
-                errorMessage = message,
-                cause = exception
-            )
-        } catch (exception: Exception) {
-            throw AppError.Network(exception)
+        } catch (exception: Throwable) {
+            mapException(exception)
         }
     }
 
@@ -132,19 +91,32 @@ class AppRepositoryImpl(
             if (exception.response.status.value == NOT_FOUND) {
                 ""
             } else {
+                mapException(exception)
+            }
+        } catch (exception: Throwable) {
+            mapException(exception)
+        }
+    }
+
+    private suspend fun mapException(exception: Throwable): Nothing {
+        when (exception) {
+            is ResponseException -> {
                 val body = runCatching { exception.response.bodyAsText() }.getOrNull()
-                val message =
-                    runCatching { body?.let { json.decodeFromString<GitHubErrorDto>(it).message } }
-                        .getOrNull()
+
+                val message = runCatching {
+                    body?.let { json.decodeFromString<GitHubErrorDto>(it).message }
+                }.getOrNull()
+
+                val code = exception.response.status.value
 
                 throw AppError.Http(
-                    code = exception.response.status.value,
+                    code = code,
                     errorMessage = message,
                     cause = exception
                 )
             }
-        } catch (exception: Exception) {
-            throw AppError.Network(exception)
+
+            else -> throw AppError.Network(exception)
         }
     }
 
