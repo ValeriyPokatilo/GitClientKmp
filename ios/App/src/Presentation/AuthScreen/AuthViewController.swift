@@ -28,12 +28,9 @@ final class AuthViewController: UIViewController {
         bindViewModel()
     }
 
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-    }
-
     private func setupUI() {
+        navigationController?.setNavigationBarHidden(true, animated: animated)
+
         let placeholder = MR.strings().token_text_field_placeholder.desc()
             .localized()
         tokenTextField.setupBorderedField(placeholder: placeholder)

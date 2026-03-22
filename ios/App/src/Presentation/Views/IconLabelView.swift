@@ -30,7 +30,6 @@ final class IconLabelView: UIView {
         view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
 
         addSubview(view)
-
         setupTapGesture()
     }
 
