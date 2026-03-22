@@ -18,7 +18,6 @@ object Configurator {
             .register<AppError.Network, StringDesc> {
                 MR.strings.repositories_connection_error_message.desc()
             }
-
             .condition<ErrorModel>({ it is AppError.Http }) { exc ->
                 val http = exc as AppError.Http
 
@@ -28,7 +27,6 @@ object Configurator {
                     icon = ErrorIcon.Http
                 )
             }
-
             .condition<ErrorModel>({ it is AppError.Network }) {
                 ErrorModel(
                     title = MR.strings.repositories_connection_error_title.desc(),
@@ -36,7 +34,6 @@ object Configurator {
                     icon = ErrorIcon.Network
                 )
             }
-
             .condition<ErrorModel>({ true }) {
                 ErrorModel(
                     title = MR.strings.repositories_connection_error_title.desc(),
@@ -44,7 +41,6 @@ object Configurator {
                     icon = ErrorIcon.Network
                 )
             }
-
             .setFallbackValue(
                 ErrorModel(
                     title = MR.strings.repositories_connection_error_title.desc(),

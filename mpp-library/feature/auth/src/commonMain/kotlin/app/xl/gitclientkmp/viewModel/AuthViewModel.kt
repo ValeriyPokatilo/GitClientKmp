@@ -1,6 +1,5 @@
 package app.xl.gitclientkmp.viewModel
 
-import app.xl.gitclientkmp.domain.entity.AppError
 import app.xl.gitclientkmp.domain.error.ErrorModel
 import app.xl.gitclientkmp.domain.repository.AppRepository
 import dev.icerock.moko.errors.mappers.mapThrowable
@@ -47,17 +46,14 @@ class AuthViewModel(
                 repository.signIn(token)
                 _state.value = State.Idle
                 _actions.emit(Action.RouteToMain)
-            } catch (exc: AppError) {
+            } catch (error: Exception) {
                 _state.value = State.Idle
-                handleError(exc)
-            } catch (exc: Throwable) {
-                _state.value = State.Idle
-                handleError(AppError.Network(exc))
+                handleError(error)
             }
         }
     }
 
-    private suspend fun handleError(error: Throwable) {
+    private suspend fun handleError(error: Exception) {
         val errorModel: ErrorModel = error.mapThrowable()
 
         _actions.emit(

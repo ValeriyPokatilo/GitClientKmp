@@ -21,15 +21,19 @@ actual class ColorProvider {
     private fun parseColor(colorString: String): Int {
         val hex = colorString.removePrefix("#")
         val fullHex = when (hex.length) {
-            6 -> "FF$hex"
-            8 -> hex
-            else -> "FFFFFFFF"
+            HEX_LENGTH_RGB -> "FF$hex"
+            HEX_LENGTH_ARGB -> hex
+            else -> DEFAULT_HEX
         }
-        return fullHex.toLong(16).toInt()
+        return fullHex.toLong(HEX_RADIX).toInt()
     }
 
     companion object {
         private const val DEFAULT_COLOR = 0xFFFFFFFF.toInt()
+        private const val HEX_RADIX = 16
+        private const val HEX_LENGTH_RGB = 6
+        private const val HEX_LENGTH_ARGB = 8
+        private const val DEFAULT_HEX = "FFFFFFFF"
 
         private val json = Json {
             ignoreUnknownKeys = true

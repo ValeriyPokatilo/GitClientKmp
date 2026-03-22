@@ -7,9 +7,9 @@ import app.xl.gitclientkmp.data.dto.UserInfoDto
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
 import io.ktor.client.request.get
-import io.ktor.http.HttpHeaders
 import io.ktor.client.request.header
 import io.ktor.client.request.parameter
+import io.ktor.http.HttpHeaders
 
 class GitHubApiImpl(
     private val client: HttpClient
@@ -32,7 +32,7 @@ class GitHubApiImpl(
         ownerName: String,
         repositoryName: String
     ): RepoDetailsDto {
-        return client.get("repos/$ownerName/$repositoryName"){
+        return client.get("repos/$ownerName/$repositoryName") {
             headers.append(HttpHeaders.Authorization, header)
         }.body()
     }

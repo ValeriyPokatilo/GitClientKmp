@@ -62,7 +62,7 @@ class RepositoriesListViewModel(
                     val repositoriesWithColors = addLanguageColors(repositories)
                     _state.value = State.Loaded(repositoriesWithColors)
                 }
-            } catch (error: Throwable) {
+            } catch (error: Exception) {
                 val errorModel: ErrorModel = error.mapThrowable()
                 _state.value = State.Error(errorModel)
             }

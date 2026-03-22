@@ -1,6 +1,5 @@
 package app.xl.gitclientkmp.viewModels
 
-import app.xl.gitclientkmp.domain.entity.AppError
 import app.xl.gitclientkmp.domain.entity.RepositoryDetails
 import app.xl.gitclientkmp.domain.error.ErrorModel
 import app.xl.gitclientkmp.domain.repository.AppRepository
@@ -61,7 +60,7 @@ class RepositoryInfoViewModel(
                 )
 
                 loadReadme()
-            } catch (error: Throwable) {
+            } catch (error: Exception) {
                 val errorModel: ErrorModel = error.mapThrowable()
                 _state.value = State.Error(errorModel)
             }
@@ -83,7 +82,7 @@ class RepositoryInfoViewModel(
             }
 
             updateReadmeState(readmeState)
-        } catch (error: Throwable) {
+        } catch (error: Exception) {
             val errorModel: ErrorModel = error.mapThrowable()
             updateReadmeState(ReadmeState.Error(errorModel))
         }

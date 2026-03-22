@@ -118,7 +118,7 @@ class AppRepositoryImpl(
     ): String {
         return try {
             val authHeader = createAuthHeader()
-            
+
             val readmeDto = api.getRepositoryReadme(
                 header = authHeader,
                 ownerName = ownerName,
@@ -137,8 +137,9 @@ class AppRepositoryImpl(
                 ""
             } else {
                 val body = runCatching { exception.response.bodyAsText() }.getOrNull()
-                val message = runCatching { body?.let { json.decodeFromString<GitHubErrorDto>(it).message } }
-                    .getOrNull()
+                val message =
+                    runCatching { body?.let { json.decodeFromString<GitHubErrorDto>(it).message } }
+                        .getOrNull()
 
                 throw AppError.Http(
                     code = exception.response.status.value,
