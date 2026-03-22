@@ -20,4 +20,11 @@ sealed class AppError(
         message = cause.message,
         cause = cause
     )
+
+    class Unauthorized(
+        cause: Throwable
+    ) : AppError(
+        message = cause.message,
+        cause = cause
+    )
 }

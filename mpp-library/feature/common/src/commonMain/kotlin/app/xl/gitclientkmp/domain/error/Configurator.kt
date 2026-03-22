@@ -18,6 +18,9 @@ object Configurator {
             .register<AppError.Network, StringDesc> {
                 MR.strings.repositories_connection_error_message.desc()
             }
+            .register<AppError.Unauthorized, StringDesc> {
+                MR.strings.invalid_token_reason.desc()
+            }
             .condition<ErrorModel>({ it is AppError.Http }) { exc ->
                 val http = exc as AppError.Http
 
@@ -32,6 +35,13 @@ object Configurator {
                     title = MR.strings.repositories_connection_error_title.desc(),
                     message = MR.strings.repositories_connection_error_message.desc(),
                     icon = ErrorIcon.Network
+                )
+            }
+            .condition<ErrorModel>({ it is AppError.Unauthorized }) {
+                ErrorModel(
+                    title = MR.strings.invalid_token_reason.desc(),
+                    message = MR.strings.info_for_developer.desc(),
+                    icon = ErrorIcon.Http
                 )
             }
             .condition<ErrorModel>({ true }) {

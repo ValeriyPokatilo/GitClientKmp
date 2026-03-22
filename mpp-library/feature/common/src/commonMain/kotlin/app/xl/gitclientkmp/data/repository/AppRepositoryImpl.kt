@@ -51,7 +51,6 @@ class AppRepositoryImpl(
     @Throws(Exception::class)
     override suspend fun getRepositories(): List<Repository> {
         val authHeader = createAuthHeader()
-
         try {
             return api
                 .getRepositories(authHeader)
@@ -81,7 +80,6 @@ class AppRepositoryImpl(
         repositoryName: String
     ): RepositoryDetails {
         val authHeader = createAuthHeader()
-
         try {
             return api
                 .getRepository(
@@ -91,7 +89,6 @@ class AppRepositoryImpl(
                 )
                 .toEntity()
         } catch (exception: ResponseException) {
-
             val body = runCatching {
                 exception.response.bodyAsText()
             }.getOrNull()
@@ -118,7 +115,6 @@ class AppRepositoryImpl(
     ): String {
         return try {
             val authHeader = createAuthHeader()
-
             val readmeDto = api.getRepositoryReadme(
                 header = authHeader,
                 ownerName = ownerName,
@@ -157,8 +153,8 @@ class AppRepositoryImpl(
     }
 
     private fun createAuthHeader(): String {
-        val token = keyValueStorage.getToken() ?: throw AppError.Network(
-            Exception("invalid_token") // TODO: - make error
+        val token = keyValueStorage.getToken() ?: throw AppError.Unauthorized(
+            Exception("invalid_token")
         )
         return token.toBearerHeader()
     }
