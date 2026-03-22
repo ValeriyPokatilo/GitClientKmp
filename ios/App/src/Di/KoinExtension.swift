@@ -28,6 +28,8 @@ extension Koin {
             antilog: antilog,
             exceptionLogger: CrashlyticsExceptionLogger()
         )
+        
+        koinApp.modules(modules: commonIosModule)
 
         koinInstance = koinApp.koin
     }

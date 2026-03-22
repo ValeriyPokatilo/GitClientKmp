@@ -26,6 +26,7 @@ final class RepositoryItemCell: UITableViewCell, Fillable {
 
         nameLabel.text = repo.name
         languageLabel.text = repo.language
+        languageLabel.textColor = repo.languageColor.uiColor
 
         if let description = repo.descriptionText, !description.isEmpty {
             descriptionLabel.text = description
