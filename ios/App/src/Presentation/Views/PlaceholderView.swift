@@ -2,11 +2,10 @@ import MultiPlatformLibrary
 import UIKit
 
 final class PlaceholderView: UIView {
-
-    @IBOutlet private weak var imageView: UIImageView!
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var messageLabel: UILabel!
-    @IBOutlet private weak var refreshButton: UIButton!
+    @IBOutlet private var imageView: UIImageView!
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var messageLabel: UILabel!
+    @IBOutlet private var refreshButton: UIButton!
 
     private var action: EmptyBlock?
 
@@ -67,7 +66,7 @@ final class PlaceholderView: UIView {
         self.action = action
     }
 
-    @IBAction private func refreshAction(_ sender: Any) {
+    @IBAction private func refreshAction(_ sender: UIButton) {
         action?()
     }
 

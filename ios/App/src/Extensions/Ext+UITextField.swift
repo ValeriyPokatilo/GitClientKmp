@@ -3,12 +3,10 @@ import UIKit
 extension UITextField {
     func setupBorderedField(placeholder: String) {
         self.layer.borderColor = UIColor.appGrey.cgColor
-        
+
         self.attributedPlaceholder = NSAttributedString(
             string: placeholder,
-            attributes: [
-                NSAttributedString.Key.foregroundColor: UIColor.white50
-            ]
+            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white50]
         )
 
         let paddingView = UIView(
@@ -22,6 +20,5 @@ extension UITextField {
 
         self.leftView = paddingView
         self.leftViewMode = .always
-
     }
 }

@@ -1,7 +1,6 @@
 import UIKit
 
 final class AuthorizedCoordinator {
-
     private let navigationController: UINavigationController
     private var repositoryDetailCoordinator: RepositoryDetailInfoCoordinator?
 

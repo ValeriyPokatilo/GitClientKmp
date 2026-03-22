@@ -4,17 +4,16 @@ import NVActivityIndicatorView
 import UIKit
 
 final class RepositoryDetailInfoViewController: UIViewController {
-
-    @IBOutlet private weak var linkView: IconLabelView!
-    @IBOutlet private weak var licenseView: IconLabelView!
-    @IBOutlet private weak var licenseNameLabel: UILabel!
-    @IBOutlet private weak var starsView: IconLabelView!
-    @IBOutlet private weak var forksView: IconLabelView!
-    @IBOutlet private weak var watchersView: IconLabelView!
-    @IBOutlet private weak var readmeIndicator: NVActivityIndicatorView!
-    @IBOutlet private weak var mainIndicator: NVActivityIndicatorView!
-    @IBOutlet private weak var markdownTextView: UITextView!
-    @IBOutlet private weak var placeholderView: PlaceholderView!
+    @IBOutlet private var linkView: IconLabelView!
+    @IBOutlet private var licenseView: IconLabelView!
+    @IBOutlet private var licenseNameLabel: UILabel!
+    @IBOutlet private var starsView: IconLabelView!
+    @IBOutlet private var forksView: IconLabelView!
+    @IBOutlet private var watchersView: IconLabelView!
+    @IBOutlet private var readmeIndicator: NVActivityIndicatorView!
+    @IBOutlet private var mainIndicator: NVActivityIndicatorView!
+    @IBOutlet private var markdownTextView: UITextView!
+    @IBOutlet private var placeholderView: PlaceholderView!
 
     private let owner: String
     private let repositoryName: String
@@ -43,7 +42,8 @@ final class RepositoryDetailInfoViewController: UIViewController {
         super.init(nibName: "RepositoryDetailInfoViewController", bundle: nil)
     }
 
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -224,7 +224,6 @@ final class RepositoryDetailInfoViewController: UIViewController {
         switch action {
         case is RepositoryInfoViewModelActionLogout:
             onLogout?()
-            
         default: break
         }
     }

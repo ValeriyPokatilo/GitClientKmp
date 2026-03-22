@@ -1,7 +1,6 @@
 import UIKit
 
 final class RepositoryDetailInfoCoordinator {
-
     private let navigationController: UINavigationController
     private let owner: String
     private let repositoryName: String

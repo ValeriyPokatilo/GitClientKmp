@@ -5,17 +5,16 @@ import RxSwift
 import UIKit
 
 final class AuthViewController: UIViewController {
-
-    @IBOutlet private weak var tokenTextField: UITextField!
-    @IBOutlet private weak var errorLabel: UILabel!
-    @IBOutlet private weak var signInButton: UIButton!
-    @IBOutlet private weak var bottomConstraint: NSLayoutConstraint!
-    @IBOutlet private weak var indicatorView: NVActivityIndicatorView!
+    @IBOutlet private var tokenTextField: UITextField!
+    @IBOutlet private var errorLabel: UILabel!
+    @IBOutlet private var signInButton: UIButton!
+    @IBOutlet private var bottomConstraint: NSLayoutConstraint!
+    @IBOutlet private var indicatorView: NVActivityIndicatorView!
 
     private lazy var viewModel: AuthViewModel = Koin.instance.getAuthViewModel()
 
     private let disposeBag = DisposeBag()
-    
+
     private var stateTask: Task<Void, Never>?
     private var actionTask: Task<Void, Never>?
 
@@ -38,8 +37,7 @@ final class AuthViewController: UIViewController {
         let placeholder = MR.strings().token_text_field_placeholder.desc()
             .localized()
         tokenTextField.setupBorderedField(placeholder: placeholder)
-        
-        
+
         signInButton.setTitle(
             MR.strings().sign_in_button_title.desc().localized(),
             for: .normal
@@ -99,7 +97,7 @@ final class AuthViewController: UIViewController {
         default: break
         }
     }
-    
+
     private func handleIdleState() {
         errorLabel.isHidden = true
         signInButton.isEnabled = true
@@ -107,14 +105,14 @@ final class AuthViewController: UIViewController {
         tokenTextField.layer.borderColor = UIColor.appGrey.cgColor
         indicatorView.stopAnimating()
     }
-    
+
     private func handleLoadingState() {
         errorLabel.isHidden = true
         signInButton.isEnabled = false
         signInButton.titleLabel?.isHidden = true
         indicatorView.startAnimating()
     }
-    
+
     private func handleInvalidInputState() {
         errorLabel.isHidden = false
         errorLabel.text = MR.strings().invalid_token_reason.desc()
@@ -143,10 +141,10 @@ final class AuthViewController: UIViewController {
         showAlert?(AlertModel(title: title, message: fullMessage))
     }
 
-    @IBAction private func signInButtonAction(_ sender: Any) {
+    @IBAction private func signInButtonAction(_ sender: UIButton) {
         viewModel.onSignButtonPressed()
     }
-    
+
     deinit {
         stateTask?.cancel()
         actionTask?.cancel()

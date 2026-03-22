@@ -1,10 +1,9 @@
 import UIKit
 
 final class IconLabelView: UIView {
-
-    @IBOutlet private weak var iconImageView: UIImageView!
-    @IBOutlet private weak var titleLabel: UILabel!
-    @IBOutlet private weak var additionalLabel: UILabel!
+    @IBOutlet private var iconImageView: UIImageView!
+    @IBOutlet private var titleLabel: UILabel!
+    @IBOutlet private var additionalLabel: UILabel!
 
     var onTap: EmptyBlock?
 

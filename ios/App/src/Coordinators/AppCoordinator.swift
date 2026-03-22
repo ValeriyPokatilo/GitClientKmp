@@ -2,7 +2,6 @@ import MultiPlatformLibrary
 import UIKit
 
 final class AppCoordinator {
-
     private let window: UIWindow
     private let navigationController: UINavigationController
     private let router: AppRouter

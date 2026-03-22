@@ -1,5 +1,5 @@
-import UIKit
 import MultiPlatformLibrary
+import UIKit
 
 extension Optional where Wrapped == KotlinInt {
     var uiColor: UIColor {

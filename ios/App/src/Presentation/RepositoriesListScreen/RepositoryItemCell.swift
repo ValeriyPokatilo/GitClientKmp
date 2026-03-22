@@ -3,7 +3,6 @@ import MultiPlatformLibraryUnits
 import UIKit
 
 final class RepositoryItemCell: UITableViewCell, Fillable {
-
     struct Data {
         let repository: Repository
         let onClick: (Repository) -> Void
@@ -14,9 +13,9 @@ final class RepositoryItemCell: UITableViewCell, Fillable {
     private var repository: Repository?
     private var onClick: ((Repository) -> Void)?
 
-    @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var languageLabel: UILabel!
-    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private var nameLabel: UILabel!
+    @IBOutlet private var languageLabel: UILabel!
+    @IBOutlet private var descriptionLabel: UILabel!
 
     func fill(_ data: Data) {
         let repo = data.repository

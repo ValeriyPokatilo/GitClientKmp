@@ -1,9 +1,8 @@
 import CoreImage
-import UIKit
 import MultiPlatformLibrary
+import UIKit
 
 final class AlertViewController: UIViewController {
-
     private let alertTitle: String
     private let alertMessage: String
 
@@ -16,7 +15,8 @@ final class AlertViewController: UIViewController {
         modalTransitionStyle = .crossDissolve
     }
 
-    required init?(coder: NSCoder) {
+    @available(*, unavailable)
+    required init?(coder _: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 
@@ -56,9 +56,9 @@ final class AlertViewController: UIViewController {
         let context = CIContext()
 
         guard let cgImage = context.createCGImage(
-                blurredOutput,
-                from: ciImage.extent
-            )
+            blurredOutput,
+            from: ciImage.extent
+        )
         else { return }
 
         let blurredImage = UIImage(cgImage: cgImage)

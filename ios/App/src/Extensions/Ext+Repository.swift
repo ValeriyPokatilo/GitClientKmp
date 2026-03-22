@@ -6,7 +6,6 @@ extension Repository {
     func toTableUnitItem(
         onClick: @escaping (Repository) -> Void
     ) -> TableUnitItem {
-
         UITableViewCellUnit<RepositoryItemCell>(
             data: RepositoryItemCell.Data(
                 repository: self,

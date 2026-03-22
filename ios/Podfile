@@ -1,5 +1,7 @@
 source 'https://cdn.cocoapods.org/'
 
+install! 'cocoapods', :warn_for_unused_master_specs_repo => false
+
 # ignore all warnings from all pods
 inhibit_all_warnings!
 

@@ -4,12 +4,9 @@ import MultiPlatformLibrary
 import UIKit
 
 final class AppDelegate: NSObject, UIApplicationDelegate {
-
     func application(
-        _ application: UIApplication,
-        didFinishLaunchingWithOptions launchOptions: [
-            UIApplication.LaunchOptionsKey: Any
-        ]? = nil
+        _: UIApplication,
+        didFinishLaunchingWithOptions _: [UIApplication.LaunchOptionsKey: Any]? = nil
     ) -> Bool {
         // TODO: - Uncomment Build Phases script
         // FirebaseApp.configure()
@@ -28,9 +25,9 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     }
 
     func application(
-        _ application: UIApplication,
+        _: UIApplication,
         configurationForConnecting connectingSceneSession: UISceneSession,
-        options: UIScene.ConnectionOptions
+        options _: UIScene.ConnectionOptions
     ) -> UISceneConfiguration {
         let sceneConfiguration = UISceneConfiguration(
             name: "Default Configuration",

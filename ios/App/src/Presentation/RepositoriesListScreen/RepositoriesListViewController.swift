@@ -4,20 +4,16 @@ import NVActivityIndicatorView
 import UIKit
 
 final class RepositoriesListViewController: UIViewController {
+    @IBOutlet private var tableView: UITableView!
+    @IBOutlet private var indicatorView: NVActivityIndicatorView!
+    @IBOutlet private var placeholderView: PlaceholderView!
 
-    @IBOutlet private weak var tableView: UITableView!
-    @IBOutlet private weak var indicatorView: NVActivityIndicatorView!
-    @IBOutlet private weak var placeholderView: PlaceholderView!
-
-    private lazy var viewModel: RepositoriesListViewModel = Koin.instance
-        .getRepositoriesListViewModel()
+    private lazy var viewModel: RepositoriesListViewModel = Koin.instance.getRepositoriesListViewModel()
 
     private var stateTask: Task<Void, Never>?
     private var actionTask: Task<Void, Never>?
 
-    private lazy var dataSource: TableUnitsSource = {
-        TableUnitsSourceKt.default(for: tableView)
-    }()
+    private lazy var dataSource: TableUnitsSource = TableUnitsSourceKt.default(for: tableView)
 
     var logout: EmptyBlock?
     var showDetails: ParameterBlock<RepositoryDetailsRoute>?

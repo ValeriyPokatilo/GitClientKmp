@@ -1,10 +1,9 @@
 import UIKit
 
 final class RepositoryItemCell: UITableViewCell {
-
-    @IBOutlet private weak var nameLabel: UILabel!
-    @IBOutlet private weak var languageLabel: UILabel!
-    @IBOutlet private weak var descriptionLabel: UILabel!
+    @IBOutlet private var nameLabel: UILabel!
+    @IBOutlet private var languageLabel: UILabel!
+    @IBOutlet private var descriptionLabel: UILabel!
 
     func configure(name: String, language: String?, description: String?) {
         nameLabel.text = name
