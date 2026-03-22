@@ -16,7 +16,7 @@ import org.koin.android.ext.android.inject
 
 class AppActivity : FragmentActivity() {
 
-    private val router: AppRouter by inject()
+    private val appRouter: AppRouter by inject()
 
     private lateinit var binding: ActivityMainBinding
 
@@ -72,7 +72,7 @@ class AppActivity : FragmentActivity() {
         val navController = navHost.navController
         val navGraph = navController.navInflater.inflate(R.navigation.main_navigation)
 
-        val route = router.getDestination()
+        val route = appRouter.getDestination()
 
         val startDestination = when (route) {
             AppRouter.Route.AuthRoute -> R.id.authFragment
@@ -84,6 +84,7 @@ class AppActivity : FragmentActivity() {
 
         isAppReadyForStart = true
 
-        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars = false
+        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars =
+            false
     }
 }
