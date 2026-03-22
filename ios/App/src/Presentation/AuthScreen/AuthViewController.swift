@@ -29,7 +29,7 @@ final class AuthViewController: UIViewController {
     }
 
     private func setupUI() {
-        navigationController?.setNavigationBarHidden(true, animated: animated)
+        navigationController?.setNavigationBarHidden(true, animated: false)
 
         let placeholder = MR.strings().token_text_field_placeholder.desc()
             .localized()
