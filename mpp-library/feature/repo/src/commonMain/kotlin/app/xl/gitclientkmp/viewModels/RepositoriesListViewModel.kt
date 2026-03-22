@@ -1,6 +1,6 @@
 package app.xl.gitclientkmp.viewModels
 
-import app.xl.gitclientkmp.domain.entity.AppError
+import app.xl.gitclientkmp.data.utils.ColorProvider
 import app.xl.gitclientkmp.domain.entity.Repository
 import app.xl.gitclientkmp.domain.error.ErrorModel
 import app.xl.gitclientkmp.domain.repository.AppRepository
@@ -13,7 +13,8 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class RepositoriesListViewModel(
-    private val repository: AppRepository
+    private val repository: AppRepository,
+    private val colorProvider: ColorProvider
 ) : ViewModel() {
 
     private val _state = MutableStateFlow<State>(State.Loading)
@@ -58,12 +59,24 @@ class RepositoriesListViewModel(
                 if (repositories.isEmpty()) {
                     _state.value = State.Empty
                 } else {
-                    _state.value = State.Loaded(repositories)
+                    val repositoriesWithColors = addLanguageColors(repositories)
+                    _state.value = State.Loaded(repositoriesWithColors)
                 }
             } catch (error: Throwable) {
                 val errorModel: ErrorModel = error.mapThrowable()
                 _state.value = State.Error(errorModel)
             }
+        }
+    }
+
+    private fun addLanguageColors(repositories: List<Repository>): List<Repository> {
+        val languages = repositories.mapNotNull { it.language }.toSet()
+        val languageColorMap = languages.associateWith {
+            colorProvider.getColor(it)
+        }
+
+        return repositories.map { repo ->
+            repo.copy(languageColor = repo.language?.let { languageColorMap[it] })
         }
     }
 

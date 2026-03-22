@@ -6,7 +6,10 @@ import org.koin.dsl.module
 
 val repoModule = module {
     factory {
-        RepositoriesListViewModel(get())
+        RepositoriesListViewModel(
+            repository = get(),
+            colorProvider = get()
+        )
     }
 
     factory { (owner: String, repositoryName: String, branch: String) ->
