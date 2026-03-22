@@ -14,7 +14,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.xl.gitclientkmp.viewModels.RepositoriesListViewModel
-import dev.icerock.moko.errors.mappers.mapThrowable
 import dev.icerock.moko.units.adapter.UnitsRecyclerViewAdapter
 import kotlinx.coroutines.launch
 import org.example.app.R

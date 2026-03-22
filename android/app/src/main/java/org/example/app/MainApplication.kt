@@ -24,8 +24,8 @@ class MainApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
-        // FirebaseApp.initializeApp(this)
-        // FirebaseCrashlytics.getInstance().isCrashlyticsCollectionEnabled = BuildConfig.DEBUG.not()
+        FirebaseApp.initializeApp(this)
+        FirebaseCrashlytics.getInstance().isCrashlyticsCollectionEnabled = BuildConfig.DEBUG.not()
 
         val antilog: LogcatAntilog? = if (BuildConfig.DEBUG) {
             LogcatAntilog()

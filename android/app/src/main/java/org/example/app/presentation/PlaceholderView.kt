@@ -7,7 +7,6 @@ import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import app.xl.gitclientkmp.MR
-import app.xl.gitclientkmp.domain.entity.AppError
 import app.xl.gitclientkmp.domain.error.ErrorModel
 import org.example.app.R
 import org.example.app.databinding.ViewPlaceholderBinding
