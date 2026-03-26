@@ -1,27 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
-    <string name="app_name">AndroidApp</string>
-    <string name="sign_in_button_title">Войти</string>
-    <string name="token_text_field_placeholder">Личный токен доступа</string>
-    <string name="check_connection">Пожалуйста, проверьте соединение</string>
     <string name="info_for_developer">информация для разработчиков</string>
     <string name="invalid_token_reason">Неверный токен</string>
-    <string name="error">Ошибка</string>
-    <string name="ok">Ок</string>
-    <string name="logout">Выйти</string>
-    <string name="repositories">Репозитории</string>
-    <string name="repositories_empty_title">Пусто</string>
-    <string name="repositories_empty_message">На данный момент репозиториев нет</string>
     <string name="repositories_connection_error_title">Ошибка соединения</string>
     <string name="repositories_connection_error_message">Проверьте интернет-соединение</string>
-    <string name="no_readme_md">Файл README.md отсутствует</string>
-    <string name="license">Лицензия</string>
-    <string name="stars">звезды</string>
-    <string name="forks">форки</string>
-    <string name="watchers">просмотры</string>
-    <string name="refresh">Обновить</string>
-    <string name="retry">Повторить</string>
-    <string name="github_logo_description">Логотип Github</string>
-    <string name="placeholder_icon_description">Иконка-заглушка</string>
-    <string name="reload_data_description">Обновить данные</string>
 </resources>

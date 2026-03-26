@@ -1,27 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
-    <string name="app_name">AndroidApp</string>
-    <string name="sign_in_button_title">Sign In</string>
-    <string name="token_text_field_placeholder">Personal access token</string>
-    <string name="check_connection">Please check your connection</string>
     <string name="info_for_developer">information for developers</string>
     <string name="invalid_token_reason">Invalid token</string>
-    <string name="error">Error</string>
-    <string name="ok">Ok</string>
-    <string name="logout">Logout</string>
-    <string name="repositories">Repositories</string>
-    <string name="repositories_empty_title">Empty</string>
-    <string name="repositories_empty_message">No repositories at the moment</string>
     <string name="repositories_connection_error_title">Connection error</string>
     <string name="repositories_connection_error_message">Check your Internet connection</string>
-    <string name="no_readme_md">No README.md</string>
-    <string name="license">License</string>
-    <string name="stars">stars</string>
-    <string name="forks">forks</string>
-    <string name="watchers">watchers</string>
-    <string name="refresh">Refresh</string>
-    <string name="retry">Retry</string>
-    <string name="github_logo_description">Github logo</string>
-    <string name="placeholder_icon_description">Placeholder icon</string>
-    <string name="reload_data_description">Reload data</string>
 </resources>
