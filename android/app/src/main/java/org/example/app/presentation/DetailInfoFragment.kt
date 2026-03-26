@@ -21,7 +21,7 @@ import app.xl.gitclientkmp.domain.extensions.toDisplayUrl
 import app.xl.gitclientkmp.viewModels.RepositoryInfoViewModel
 import kotlinx.coroutines.launch
 import org.example.app.R
-import org.example.app.databinding.FragmentDetailInfoBinding
+import org.example.app.databinding.DetailInfoFragmentBinding
 import org.example.app.extensions.openUrl
 import org.example.app.utils.MarkwonFactory
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -29,7 +29,7 @@ import org.koin.core.parameter.parametersOf
 
 class DetailInfoFragment : Fragment() {
 
-    private var _binding: FragmentDetailInfoBinding? = null
+    private var _binding: DetailInfoFragmentBinding? = null
     private val binding
         get() = _binding ?: error("Binding is only valid between onCreateView and onDestroyView")
 
@@ -50,7 +50,7 @@ class DetailInfoFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentDetailInfoBinding.inflate(inflater, container, false)
+        _binding = DetailInfoFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 

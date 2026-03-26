@@ -3,7 +3,7 @@ package org.example.app.utils
 import android.app.AlertDialog
 import android.view.LayoutInflater
 import androidx.fragment.app.Fragment
-import org.example.app.databinding.FragmentAlertBinding
+import org.example.app.databinding.AlertFragmentBinding
 
 fun Fragment.showErrorAlertDialog(
     title: String,
@@ -12,7 +12,7 @@ fun Fragment.showErrorAlertDialog(
 ) {
     val context = context ?: return
 
-    val binding = FragmentAlertBinding.inflate(
+    val binding = AlertFragmentBinding.inflate(
         LayoutInflater.from(context)
     )
 

@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat
 import app.xl.gitclientkmp.MR
 import app.xl.gitclientkmp.domain.error.ErrorModel
 import org.example.app.R
-import org.example.app.databinding.ViewPlaceholderBinding
+import org.example.app.databinding.PlaceholderViewBinding
 import org.example.app.extensions.toDrawableRes
 
 class PlaceholderView @JvmOverloads constructor(
@@ -18,7 +18,7 @@ class PlaceholderView @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
-    private val binding: ViewPlaceholderBinding = ViewPlaceholderBinding.inflate(
+    private val binding: PlaceholderViewBinding = PlaceholderViewBinding.inflate(
         LayoutInflater.from(context), this
     )
 

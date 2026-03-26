@@ -17,7 +17,7 @@
         android:id="@+id/authFragment"
         android:name="org.example.app.presentation.AuthFragment"
         android:label="fragment_auth"
-        tools:layout="@layout/fragment_auth" >
+        tools:layout="@layout/auth_fragment" >
         <action
             android:id="@+id/action_authFragment_to_repositoriesListFragment"
             app:destination="@id/repositoriesListFragment"
@@ -31,7 +31,7 @@
         android:id="@+id/repositoriesListFragment"
         android:name="org.example.app.presentation.RepositoriesListFragment"
         android:label="fragment_repositories_list"
-        tools:layout="@layout/fragment_repositories_list">
+        tools:layout="@layout/repositories_list_fragment">
         <action
             android:id="@+id/action_repositoriesListFragment_to_detailInfoFragment"
             app:destination="@id/detailInfoFragment"
@@ -44,7 +44,7 @@
         android:id="@+id/detailInfoFragment"
         android:name="org.example.app.presentation.DetailInfoFragment"
         android:label="fragment_detail_info"
-        tools:layout="@layout/fragment_detail_info" >
+        tools:layout="@layout/detail_info_fragment" >
         <argument
             android:name="owner"
             app:argType="string" />

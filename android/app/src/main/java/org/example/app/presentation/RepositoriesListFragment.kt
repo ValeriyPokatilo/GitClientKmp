@@ -17,13 +17,13 @@ import app.xl.gitclientkmp.viewModels.RepositoriesListViewModel
 import dev.icerock.moko.units.adapter.UnitsRecyclerViewAdapter
 import kotlinx.coroutines.launch
 import org.example.app.R
-import org.example.app.databinding.FragmentRepositoriesListBinding
+import org.example.app.databinding.RepositoriesListFragmentBinding
 import org.example.app.utils.toUnitItem
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RepositoriesListFragment : Fragment() {
 
-    private var _binding: FragmentRepositoriesListBinding? = null
+    private var _binding: RepositoriesListFragmentBinding? = null
     private val binding
         get() = _binding ?: error("Binding is only valid between onCreateView and onDestroyView")
 
@@ -44,7 +44,7 @@ class RepositoriesListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentRepositoriesListBinding.inflate(
+        _binding = RepositoriesListFragmentBinding.inflate(
             inflater,
             container,
             false

@@ -10,7 +10,7 @@ import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.FragmentActivity
 import androidx.navigation.fragment.NavHostFragment
-import org.example.app.databinding.ActivityMainBinding
+import org.example.app.databinding.MainActivityBinding
 import org.example.library.appRouter.AppRouter
 import org.koin.android.ext.android.inject
 
@@ -18,7 +18,7 @@ class AppActivity : FragmentActivity() {
 
     private val appRouter: AppRouter by inject()
 
-    private lateinit var binding: ActivityMainBinding
+    private lateinit var binding: MainActivityBinding
 
     private var isAppReadyForStart = false
 
@@ -42,7 +42,7 @@ class AppActivity : FragmentActivity() {
             !isAppReadyForStart
         }
 
-        binding = ActivityMainBinding.inflate(layoutInflater)
+        binding = MainActivityBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         setupInsets()

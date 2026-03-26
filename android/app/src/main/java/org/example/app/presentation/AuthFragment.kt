@@ -16,14 +16,14 @@ import app.xl.gitclientkmp.domain.error.ErrorModel
 import app.xl.gitclientkmp.viewModel.AuthViewModel
 import kotlinx.coroutines.launch
 import org.example.app.R
-import org.example.app.databinding.FragmentAuthBinding
+import org.example.app.databinding.AuthFragmentBinding
 import org.example.app.extensions.showKeyboard
 import org.example.app.utils.showErrorAlertDialog
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AuthFragment : Fragment() {
 
-    private var _binding: FragmentAuthBinding? = null
+    private var _binding: AuthFragmentBinding? = null
     private val binding
         get() = _binding ?: error("Binding is only valid between onCreateView and onDestroyView")
 
@@ -34,7 +34,7 @@ class AuthFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        _binding = FragmentAuthBinding.inflate(inflater, container, false)
+        _binding = AuthFragmentBinding.inflate(inflater, container, false)
         return binding.root
     }
 
