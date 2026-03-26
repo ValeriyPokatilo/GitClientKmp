@@ -77,26 +77,20 @@ class AuthFragment : Fragment() {
     }
 
     private fun renderState(state: AuthViewModel.State) {
-        when (state) {
-            AuthViewModel.State.Idle -> {
-                binding.tokenInputLayout.error = null
-                binding.signInButton.isEnabled = true
-                binding.signInButton.setTextColor(Color.WHITE)
-                binding.progressIndicator.hide()
-            }
+        val isLoading = state == AuthViewModel.State.Loading
+        val isInvalid = state is AuthViewModel.State.InvalidInput
 
-            AuthViewModel.State.Loading -> {
-                binding.signInButton.isEnabled = false
-                binding.signInButton.setTextColor(Color.TRANSPARENT)
-                binding.progressIndicator.show()
-            }
+        binding.progressIndicator.visibility =
+            if (isLoading) View.VISIBLE else View.GONE
 
-            is AuthViewModel.State.InvalidInput -> {
-                binding.signInButton.isEnabled = false
-                binding.tokenInputLayout.error =
-                    getString(R.string.invalid_token_reason)
-            }
-        }
+        binding.signInButton.isEnabled = !isLoading && !isInvalid
+
+        binding.signInButton.setTextColor(
+            if (isLoading) Color.TRANSPARENT else Color.WHITE
+        )
+
+        binding.tokenInputLayout.error =
+            if (isInvalid) getString(R.string.invalid_token_reason) else null
     }
 
     private fun handleAction(action: AuthViewModel.Action) {

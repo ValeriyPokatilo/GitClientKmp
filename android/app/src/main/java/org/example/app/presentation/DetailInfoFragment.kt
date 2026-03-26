@@ -82,27 +82,20 @@ class DetailInfoFragment : Fragment() {
     }
 
     private fun renderState(state: RepositoryInfoViewModel.State) {
-        when (state) {
-            RepositoryInfoViewModel.State.Loading -> {
-                binding.detailsProgressIndicator.show()
-                binding.scrollView.isVisible = false
-                binding.placeholderView.hide()
-            }
+        binding.detailsProgressIndicator.isVisible = state == RepositoryInfoViewModel.State.Loading
 
-            is RepositoryInfoViewModel.State.Loaded -> {
-                binding.detailsProgressIndicator.hide()
-                binding.scrollView.isVisible = true
-                binding.placeholderView.hide()
+        binding.scrollView.isVisible = state is RepositoryInfoViewModel.State.Loaded
 
-                setupDetails(state.githubRepo)
-                handleReadmeState(state.readmeState)
-            }
+        binding.placeholderView.isVisible =
+            state != RepositoryInfoViewModel.State.Loading && state !is RepositoryInfoViewModel.State.Loaded
 
-            is RepositoryInfoViewModel.State.Error -> {
-                binding.detailsProgressIndicator.hide()
-                binding.scrollView.isVisible = false
-                showError(state.error)
-            }
+        if (state is RepositoryInfoViewModel.State.Error) {
+            showError(state.error)
+        }
+
+        if (state is RepositoryInfoViewModel.State.Loaded) {
+            setupDetails(state.githubRepo)
+            handleReadmeState(state.readmeState)
         }
     }
 
@@ -120,31 +113,26 @@ class DetailInfoFragment : Fragment() {
 
     private fun handleReadmeState(readmeState: RepositoryInfoViewModel.ReadmeState) {
         val readmeTextView = binding.readmeTextView
-        when (readmeState) {
-            RepositoryInfoViewModel.ReadmeState.Loading -> {
-                binding.readmeProgressIndicator.show()
-            }
 
-            is RepositoryInfoViewModel.ReadmeState.Loaded -> {
-                binding.readmeProgressIndicator.hide()
-                val markdown = readmeState.markdown
-                if (!markdown.isNullOrEmpty()) {
-                    markwon.setMarkdown(readmeTextView, markdown)
-                }
-            }
+        binding.readmeProgressIndicator.isVisible = readmeState == RepositoryInfoViewModel.ReadmeState.Loading
 
-            RepositoryInfoViewModel.ReadmeState.Empty -> {
-                binding.readmeProgressIndicator.hide()
-                readmeTextView.setTextColor(
-                    ContextCompat.getColor(requireContext(), R.color.white_70)
-                )
+        if (readmeState is RepositoryInfoViewModel.ReadmeState.Loaded) {
+            val markdown = readmeState.markdown
+            if (!markdown.isNullOrEmpty()) {
+                markwon.setMarkdown(readmeTextView, markdown)
+            } else {
                 readmeTextView.text = getString(R.string.no_readme_md)
+                readmeTextView.setTextColor(ContextCompat.getColor(requireContext(), R.color.white_70))
             }
+        }
 
-            is RepositoryInfoViewModel.ReadmeState.Error -> {
-                binding.readmeProgressIndicator.hide()
-                showError(readmeState.error)
-            }
+        if (readmeState == RepositoryInfoViewModel.ReadmeState.Empty) {
+            readmeTextView.text = getString(R.string.no_readme_md)
+            readmeTextView.setTextColor(ContextCompat.getColor(requireContext(), R.color.white_70))
+        }
+
+        if (readmeState is RepositoryInfoViewModel.ReadmeState.Error) {
+            showError(readmeState.error)
         }
     }
 

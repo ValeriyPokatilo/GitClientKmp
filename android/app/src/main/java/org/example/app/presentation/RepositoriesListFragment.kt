@@ -102,25 +102,32 @@ class RepositoriesListFragment : Fragment() {
     }
 
     private fun renderState(state: RepositoriesListViewModel.State) {
-        when (state) {
-            RepositoriesListViewModel.State.Empty -> {
-                handleEmptyState()
-            }
+        binding.progressIndicator.isVisible = state is RepositoriesListViewModel.State.Loading
+        binding.recyclerView.isVisible = state is RepositoriesListViewModel.State.Loaded
+        binding.placeholderView.isVisible =
+            state !is RepositoriesListViewModel.State.Loaded && state !is RepositoriesListViewModel.State.Loading
 
-            RepositoriesListViewModel.State.Loading -> {
-                handleLoadingState()
+        when {
+            state is RepositoriesListViewModel.State.Empty -> {
+                binding.placeholderView.showEmpty { viewModel.onRetryButtonPressed() }
             }
-
-            is RepositoriesListViewModel.State.Loaded -> {
-                handleLoadedState(state)
+            state is RepositoriesListViewModel.State.Error -> {
+                binding.placeholderView.showError(state.error) { viewModel.onRetryButtonPressed() }
             }
-
-            is RepositoriesListViewModel.State.Error -> {
-                handleErrorState(state)
+            else -> {
+                binding.placeholderView.hide()
             }
         }
-    }
 
+        if (state is RepositoriesListViewModel.State.Loaded) {
+            val units = state.repositories.map { repo ->
+                repo.toUnitItem { clickedRepo ->
+                    viewModel.onRepositoryItemPressed(clickedRepo)
+                }
+            }
+            unitsAdapter.units = units
+        }
+    }
     private fun handleAction(action: RepositoriesListViewModel.Action) {
         when (action) {
             is RepositoriesListViewModel.Action.RouteToDetail -> {
@@ -134,42 +141,6 @@ class RepositoriesListFragment : Fragment() {
             RepositoriesListViewModel.Action.Logout -> {
                 navigateToAuth()
             }
-        }
-    }
-
-    private fun handleEmptyState() {
-        binding.recyclerView.isVisible = false
-        binding.progressIndicator.hide()
-        binding.placeholderView.showEmpty {
-            viewModel.onRetryButtonPressed()
-        }
-    }
-
-    private fun handleLoadedState(state: RepositoriesListViewModel.State.Loaded) {
-        val units = state.repositories.map { repo ->
-            repo.toUnitItem { clickedRepo ->
-                viewModel.onRepositoryItemPressed(clickedRepo)
-            }
-        }
-
-        unitsAdapter.units = units
-
-        binding.recyclerView.isVisible = true
-        binding.progressIndicator.hide()
-        binding.placeholderView.hide()
-    }
-
-    private fun handleLoadingState() {
-        binding.recyclerView.isVisible = false
-        binding.progressIndicator.show()
-        binding.placeholderView.hide()
-    }
-
-    private fun handleErrorState(state: RepositoriesListViewModel.State.Error) {
-        binding.recyclerView.isVisible = false
-        binding.progressIndicator.hide()
-        binding.placeholderView.showError(error = state.error) {
-            viewModel.onRetryButtonPressed()
         }
     }
 
