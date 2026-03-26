@@ -1,9 +1,9 @@
 import MultiPlatformLibrary
 import NVActivityIndicatorView
+import RswiftResources
 import RxKeyboard
 import RxSwift
 import UIKit
-import RswiftResources
 
 final class AuthViewController: UIViewController {
     @IBOutlet private var mainLogoImageView: UIImageView!
@@ -33,16 +33,16 @@ final class AuthViewController: UIViewController {
 
     private func setupUI() {
         navigationController?.setNavigationBarHidden(true, animated: false)
-        
+
         mainLogoImageView.image = R.image.main_logo()
 
         indicatorView.type = .circleStrokeSpin
     }
-    
+
     private func localize() {
         let placeholder = R.string.localizable.token_text_field_placeholder()
         tokenTextField.setupBorderedField(placeholder: placeholder)
-        
+
         signInButton.setTitle(
             R.string.localizable.sign_in_button_title(),
             for: .normal
@@ -87,42 +87,26 @@ final class AuthViewController: UIViewController {
     }
 
     private func renderState(_ state: AuthViewModelState) {
-        switch state {
-        case is AuthViewModelStateIdle:
-            handleIdleState()
+        let isLoading = state is AuthViewModelStateLoading
+        let isInvalid = state is AuthViewModelStateInvalidInput
 
-        case is AuthViewModelStateLoading:
-            handleLoadingState()
-
-        case is AuthViewModelStateInvalidInput:
-            handleInvalidInputState()
-
-        default: break
+        errorLabel.isHidden = !isInvalid
+        if state as? AuthViewModelStateInvalidInput != nil {
+            errorLabel.text = MR.strings().invalid_token_reason.desc()
+                .localized()
         }
-    }
 
-    private func handleIdleState() {
-        errorLabel.isHidden = true
-        signInButton.isEnabled = true
-        signInButton.titleLabel?.isHidden = false
-        tokenTextField.layer.borderColor = R.color.appGrey()!.cgColor
-        indicatorView.stopAnimating()
-    }
+        signInButton.isEnabled = !isLoading && !isInvalid
+        signInButton.titleLabel?.isHidden = isLoading
 
-    private func handleLoadingState() {
-        errorLabel.isHidden = true
-        signInButton.isEnabled = false
-        signInButton.titleLabel?.isHidden = true
-        indicatorView.startAnimating()
-    }
+        tokenTextField.layer.borderColor =
+            (isInvalid ? UIColor.red : R.color.appGrey()!).cgColor
 
-    private func handleInvalidInputState() {
-        errorLabel.isHidden = false
-        errorLabel.text = MR.strings().invalid_token_reason.desc()
-            .localized()
-        tokenTextField.layer.borderColor = UIColor.red.cgColor
-        signInButton.isEnabled = false
-        indicatorView.stopAnimating()
+        if isLoading {
+            indicatorView.startAnimating()
+        } else {
+            indicatorView.stopAnimating()
+        }
     }
 
     private func handleAction(_ action: AuthViewModelAction) {

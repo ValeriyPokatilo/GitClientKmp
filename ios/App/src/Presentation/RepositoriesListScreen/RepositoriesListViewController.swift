@@ -8,12 +8,15 @@ final class RepositoriesListViewController: UIViewController {
     @IBOutlet private var indicatorView: NVActivityIndicatorView!
     @IBOutlet private var placeholderView: PlaceholderView!
 
-    private lazy var viewModel: RepositoriesListViewModel = Koin.instance.getRepositoriesListViewModel()
+    private lazy var viewModel: RepositoriesListViewModel = Koin.instance
+        .getRepositoriesListViewModel()
 
     private var stateTask: Task<Void, Never>?
     private var actionTask: Task<Void, Never>?
 
-    private lazy var dataSource: TableUnitsSource = TableUnitsSourceKt.default(for: tableView)
+    private lazy var dataSource: TableUnitsSource = TableUnitsSourceKt.default(
+        for: tableView
+    )
 
     var logout: EmptyBlock?
     var showDetails: ParameterBlock<RepositoryDetailsRoute>?
@@ -54,7 +57,7 @@ final class RepositoriesListViewController: UIViewController {
         navigationItem.rightBarButtonItem = button
         navigationItem.backButtonTitle = ""
     }
-    
+
     private func localize() {
         navigationItem.title = R.string.localizable.repositories()
     }
@@ -80,64 +83,44 @@ final class RepositoriesListViewController: UIViewController {
     }
 
     private func renderState(_ state: RepositoriesListViewModelState) {
-        placeholderView.isHidden = true
+        let isLoading = state is RepositoriesListViewModelStateLoading
+        let isLoaded = state is RepositoriesListViewModelStateLoaded
+        let isEmpty = state is RepositoriesListViewModelStateEmpty
+        let isError = state is RepositoriesListViewModelStateError
 
-        switch state {
-        case is RepositoriesListViewModelStateLoading:
-            handleLoadingState()
-
-        case let loadedState as RepositoriesListViewModelStateLoaded:
-            handleLoadedState(items: loadedState.repositories)
-
-        case is RepositoriesListViewModelStateEmpty:
-            handleEmptyState()
-
-        case let errorState as RepositoriesListViewModelStateError:
-            handleErrorState(error: errorState.error)
-
-        default: break
-        }
-    }
-
-    private func handleLoadingState() {
-        indicatorView.startAnimating()
-        tableView.isHidden = true
-        dataSource.unitItems = []
-    }
-
-    private func handleLoadedState(items: [Repository]) {
-        indicatorView.stopAnimating()
-        tableView.isHidden = false
-
-        let units = items.map { repo in
-            repo.toTableUnitItem { [weak self] selected in
-                self?.viewModel.onRepositoryItemPressed(repository: selected)
-            }
+        if isLoading {
+            indicatorView.startAnimating()
+        } else {
+            indicatorView.stopAnimating()
         }
 
-        dataSource.unitItems = units
-    }
+        tableView.isHidden = !isLoaded
 
-    private func handleEmptyState() {
-        indicatorView.stopAnimating()
-        tableView.isHidden = true
-
-        placeholderView.isHidden = false
-        placeholderView.configureEmpty { [weak self] in
-            self?.viewModel.onRetryButtonPressed()
-        }
-    }
-
-    private func handleErrorState(error: ErrorModel) {
-        indicatorView.stopAnimating()
-
-        placeholderView.isHidden = false
-        placeholderView.configure(
-            with: error,
-            action: { [weak self] in
+        placeholderView.isHidden = isLoaded || isLoading
+        if let emptyState = state as? RepositoriesListViewModelStateEmpty {
+            placeholderView.configureEmpty { [weak self] in
                 self?.viewModel.onRetryButtonPressed()
             }
-        )
+        } else if let errorState = state as? RepositoriesListViewModelStateError {
+            placeholderView.configure(with: errorState.error) { [weak self] in
+                self?.viewModel.onRetryButtonPressed()
+            }
+        } else {
+            placeholderView.isHidden = true
+        }
+
+        if let loadedState = state as? RepositoriesListViewModelStateLoaded {
+            let units = loadedState.repositories.map { repo in
+                repo.toTableUnitItem { [weak self] selected in
+                    self?.viewModel.onRepositoryItemPressed(
+                        repository: selected
+                    )
+                }
+            }
+            dataSource.unitItems = units
+        } else {
+            dataSource.unitItems = []
+        }
     }
 
     private func handleAction(_ action: RepositoriesListViewModelAction) {

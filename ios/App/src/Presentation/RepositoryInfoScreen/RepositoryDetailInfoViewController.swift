@@ -95,36 +95,58 @@ final class RepositoryDetailInfoViewController: UIViewController {
     }
 
     private func renderState(_ state: RepositoryInfoViewModelState) {
-        placeholderView.isHidden = true
+        let isLoading = state is RepositoryInfoViewModelStateLoading
+        let isLoaded = state is RepositoryInfoViewModelStateLoaded
+        let isError = state is RepositoryInfoViewModelStateError
 
-        switch state {
-        case is RepositoryInfoViewModelStateLoading:
-            handleLoadingState()
+        mainIndicator.isHidden = !isLoading
+        if isLoading {
+            mainIndicator.startAnimating()
+        } else {
+            mainIndicator.stopAnimating()
+        }
 
-        case let loadedState as RepositoryInfoViewModelStateLoaded:
-            handleLoadedState(
-                details: loadedState.githubRepo,
-                readmeState: loadedState.readmeState
-            )
+        placeholderView.isHidden = isLoaded || isLoading
+        if let errorState = state as? RepositoryInfoViewModelStateError {
+            placeholderView.configure(with: errorState.error) { [weak self] in
+                self?.viewModel.onRetryButtonPressed()
+            }
+        }
 
-        case let state as RepositoryInfoViewModelStateError:
-            handleErrorState(error: state.error)
-
-        default: break
+        if let loadedState = state as? RepositoryInfoViewModelStateLoaded {
+            mainIndicator.stopAnimating()
+            setupDetails(details: loadedState.githubRepo)
+            renderReadmeState(loadedState.readmeState)
         }
     }
 
-    private func handleLoadingState() {
-        mainIndicator.startAnimating()
-    }
-
-    private func handleLoadedState(
-        details: RepositoryDetails,
-        readmeState: RepositoryInfoViewModelReadmeState
+    private func renderReadmeState(
+        _ readmeState: RepositoryInfoViewModelReadmeState
     ) {
-        mainIndicator.stopAnimating()
-        setupDetails(details: details)
-        handleReadmeState(readmeState: readmeState)
+        let isLoading = readmeState is RepositoryInfoViewModelReadmeStateLoading
+        let isError = readmeState is RepositoryInfoViewModelReadmeStateError
+
+        readmeIndicator.isHidden = !isLoading
+        if isLoading {
+            readmeIndicator.startAnimating()
+        } else {
+            readmeIndicator.stopAnimating()
+        }
+
+        markdownTextView.isHidden = isLoading || isError
+
+        switch readmeState {
+        case let loaded as RepositoryInfoViewModelReadmeStateLoaded:
+            handleMarkdown(markdownString: loaded.markdown)
+
+        case is RepositoryInfoViewModelReadmeStateEmpty:
+            markdownTextView.text = R.string.localizable.no_readme_md()
+
+        case let error as RepositoryInfoViewModelReadmeStateError:
+            handleErrorState(error: error.error)
+
+        default: break
+        }
     }
 
     private func setupDetails(details: RepositoryDetails) {
@@ -169,31 +191,6 @@ final class RepositoryDetailInfoViewController: UIViewController {
             titleColor: R.color.appCyan()!,
             additional: R.string.localizable.watchers()
         )
-    }
-
-    private func handleReadmeState(
-        readmeState: RepositoryInfoViewModelReadmeState
-    ) {
-        placeholderView.isHidden = true
-
-        switch readmeState {
-        case is RepositoryInfoViewModelReadmeStateLoading:
-            readmeIndicator.startAnimating()
-
-        case let state as RepositoryInfoViewModelReadmeStateLoaded:
-            readmeIndicator.stopAnimating()
-            handleMarkdown(markdownString: state.markdown)
-
-        case is RepositoryInfoViewModelReadmeStateEmpty:
-            readmeIndicator.stopAnimating()
-            markdownTextView.text = R.string.localizable.no_readme_md()
-
-        case let state as RepositoryInfoViewModelReadmeStateError:
-            readmeIndicator.stopAnimating()
-            handleErrorState(error: state.error)
-
-        default: break
-        }
     }
 
     private func handleMarkdown(markdownString: String?) {
