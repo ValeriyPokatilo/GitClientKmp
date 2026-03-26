@@ -5,10 +5,10 @@ extension ErrorIcon {
     func toUIImage() -> UIImage? {
         switch self {
         case is ErrorIcon.Network:
-            UIImage.icConnectionError
+            R.image.ic_connection_error()
 
         case is ErrorIcon.Http:
-            UIImage.icError
+            R.image.ic_error()
 
         default:
             nil

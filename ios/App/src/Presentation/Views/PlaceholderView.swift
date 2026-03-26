@@ -42,7 +42,7 @@ final class PlaceholderView: UIView {
         titleLabel.textColor = .appError
         messageLabel.text = error.message.localized()
         refreshButton.setTitle(
-            MR.strings().retry.desc().localized(),
+            R.string.localizable.retry(),
             for: .normal
         )
 
@@ -53,13 +53,11 @@ final class PlaceholderView: UIView {
         reset()
 
         imageView.image = R.image.ic_empty()
-        titleLabel.text = MR.strings().repositories_empty_title.desc()
-            .localized()
-        titleLabel.textColor = .appBlue
-        messageLabel.text = MR.strings().repositories_empty_message.desc()
-            .localized()
+        titleLabel.text = R.string.localizable.repositories_empty_title()
+        titleLabel.textColor = R.color.appBlue()!
+        messageLabel.text = R.string.localizable.repositories_empty_message()
         refreshButton.setTitle(
-            MR.strings().refresh.desc().localized(),
+            R.string.localizable.refresh(),
             for: .normal
         )
 

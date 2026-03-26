@@ -20,6 +20,7 @@ final class RepositoriesListViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        localize()
         setupNavigation()
         setupIndicator()
         setupTableView()
@@ -40,7 +41,6 @@ final class RepositoriesListViewController: UIViewController {
         navigationController?.setNavigationBarHidden(false, animated: false)
 
         navigationItem.hidesBackButton = true
-        navigationItem.title = MR.strings().repositories.desc().localized()
 
         let button = UIBarButtonItem(
             image: R.image.ic_logout(),
@@ -53,6 +53,10 @@ final class RepositoriesListViewController: UIViewController {
 
         navigationItem.rightBarButtonItem = button
         navigationItem.backButtonTitle = ""
+    }
+    
+    private func localize() {
+        navigationItem.title = R.string.localizable.repositories()
     }
 
     private func bindViewModel() {

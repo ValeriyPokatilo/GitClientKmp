@@ -3,8 +3,10 @@ import NVActivityIndicatorView
 import RxKeyboard
 import RxSwift
 import UIKit
+import RswiftResources
 
 final class AuthViewController: UIViewController {
+    @IBOutlet private var mainLogoImageView: UIImageView!
     @IBOutlet private var tokenTextField: UITextField!
     @IBOutlet private var errorLabel: UILabel!
     @IBOutlet private var signInButton: UIButton!
@@ -24,23 +26,27 @@ final class AuthViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
+        localize()
         bindKeyboard()
         bindViewModel()
     }
 
     private func setupUI() {
         navigationController?.setNavigationBarHidden(true, animated: false)
-
-        let placeholder = MR.strings().token_text_field_placeholder.desc()
-            .localized()
-        tokenTextField.setupBorderedField(placeholder: placeholder)
-
-        signInButton.setTitle(
-            MR.strings().sign_in_button_title.desc().localized(),
-            for: .normal
-        )
+        
+        mainLogoImageView.image = R.image.main_logo()
 
         indicatorView.type = .circleStrokeSpin
+    }
+    
+    private func localize() {
+        let placeholder = R.string.localizable.token_text_field_placeholder()
+        tokenTextField.setupBorderedField(placeholder: placeholder)
+        
+        signInButton.setTitle(
+            R.string.localizable.sign_in_button_title(),
+            for: .normal
+        )
     }
 
     private func bindKeyboard() {
@@ -99,7 +105,7 @@ final class AuthViewController: UIViewController {
         errorLabel.isHidden = true
         signInButton.isEnabled = true
         signInButton.titleLabel?.isHidden = false
-        tokenTextField.layer.borderColor = UIColor.appGrey.cgColor
+        tokenTextField.layer.borderColor = R.color.appGrey()!.cgColor
         indicatorView.stopAnimating()
     }
 
@@ -130,7 +136,7 @@ final class AuthViewController: UIViewController {
     }
 
     private func showErrorAlert(error: ErrorModel) {
-        let title = MR.strings().error.desc().localized()
+        let title = R.string.localizable.error()
         let code = error.title.localized()
         let message = error.message.localized()
         let fullMessage = "\(code) / \(message)"

@@ -40,7 +40,7 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
     private func setupNavigationBar() {
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
-        appearance.backgroundColor = .appBackground
+        appearance.backgroundColor = R.color.appBackground()!
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
 
         UINavigationBar.appearance().standardAppearance = appearance

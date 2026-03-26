@@ -131,7 +131,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
         linkView.configure(
             icon: R.image.ic_link(),
             title: details.url.toDisplayUrl(),
-            titleColor: .appBlue,
+            titleColor: R.color.appBlue()!,
             additional: nil
         )
 
@@ -142,7 +142,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
 
         licenseView.configure(
             icon: R.image.ic_license(),
-            title: MR.strings().license.desc().localized(),
+            title: R.string.localizable.license(),
             titleColor: .white,
             additional: nil
         )
@@ -152,22 +152,22 @@ final class RepositoryDetailInfoViewController: UIViewController {
         starsView.configure(
             icon: R.image.ic_star(),
             title: "\(details.stargazersCount)",
-            titleColor: .appYellow,
-            additional: MR.strings().stars.desc().localized()
+            titleColor: R.color.appYellow()!,
+            additional: R.string.localizable.stars()
         )
 
         forksView.configure(
             icon: R.image.ic_fork(),
             title: "\(details.forksCount)",
-            titleColor: .appGreen,
-            additional: MR.strings().forks.desc().localized()
+            titleColor: R.color.appGreen()!,
+            additional: R.string.localizable.forks()
         )
 
         watchersView.configure(
             icon: R.image.ic_watch(),
             title: "\(details.subscribersCount)",
-            titleColor: .appCyan,
-            additional: MR.strings().watchers.desc().localized()
+            titleColor: R.color.appCyan()!,
+            additional: R.string.localizable.watchers()
         )
     }
 
@@ -186,7 +186,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
 
         case is RepositoryInfoViewModelReadmeStateEmpty:
             readmeIndicator.stopAnimating()
-            markdownTextView.text = MR.strings().no_readme_md.desc().localized()
+            markdownTextView.text = R.string.localizable.no_readme_md()
 
         case let state as RepositoryInfoViewModelReadmeStateError:
             readmeIndicator.stopAnimating()
@@ -200,7 +200,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
         if let markdownString {
             let parser = MarkdownParser(
                 font: UIFont.systemFont(ofSize: 16),
-                color: .white70
+                color: R.color.white70()!
             )
 
             parser.enabledElements = [.header, .bold, .italic, .link]

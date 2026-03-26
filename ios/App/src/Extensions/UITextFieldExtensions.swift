@@ -6,7 +6,9 @@ extension UITextField {
 
         self.attributedPlaceholder = NSAttributedString(
             string: placeholder,
-            attributes: [NSAttributedString.Key.foregroundColor: UIColor.white50]
+            attributes: [
+                NSAttributedString.Key.foregroundColor: R.color.white50()!
+            ]
         )
 
         let paddingView = UIView(

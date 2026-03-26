@@ -83,13 +83,13 @@ final class AlertViewController: UIViewController {
             preferredStyle: .alert
         )
 
-        alertController.setBackgroundColor(.appBackground)
+        alertController.setBackgroundColor(R.color.appBackground()!)
         alertController.setTitleColor(.white)
         alertController.setMessageColor(.white)
-        alertController.setTintColor(.appBlue)
+        alertController.setTintColor(R.color.appBlue()!)
 
         let okAction = UIAlertAction(
-            title: MR.strings().ok.desc().localized(),
+            title: R.string.localizable.ok(),
             style: .default
         ) { [weak self] _ in
             self?.dismiss(animated: true)
