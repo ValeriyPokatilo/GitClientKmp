@@ -6,7 +6,7 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
-import app.xl.gitclientkmp.MR
+import androidx.core.content.ContextCompat.getString
 import app.xl.gitclientkmp.domain.error.ErrorModel
 import org.example.app.R
 import org.example.app.databinding.PlaceholderViewBinding
@@ -36,10 +36,10 @@ class PlaceholderView @JvmOverloads constructor(
 
         binding.apply {
             placeholderIcon.setImageResource(R.drawable.ic_empty)
-            placeholderTitle.text = MR.strings.repositories_empty_title.getString(context)
+            placeholderTitle.text = getString(context, R.string.repositories_empty_title)
             placeholderTitle.setTextColor(ContextCompat.getColor(context, R.color.blue))
-            placeholderMessage.text = MR.strings.repositories_empty_message.getString(context)
-            button.text = MR.strings.refresh.getString(context).uppercase()
+            placeholderMessage.text = getString(context, R.string.repositories_empty_message)
+            button.text = getString(context, R.string.refresh)
             button.visibility = VISIBLE
         }
 
@@ -61,7 +61,7 @@ class PlaceholderView @JvmOverloads constructor(
             placeholderTitle.text = titleText
             placeholderTitle.setTextColor(ContextCompat.getColor(context, titleColorRes))
             placeholderMessage.text = messageText
-            button.text = MR.strings.retry.getString(context).uppercase()
+            button.text = R.string.retry.toString()
             button.visibility = VISIBLE
         }
 

@@ -11,7 +11,6 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
-import app.xl.gitclientkmp.MR
 import app.xl.gitclientkmp.domain.error.ErrorModel
 import app.xl.gitclientkmp.viewModel.AuthViewModel
 import kotlinx.coroutines.launch
@@ -95,7 +94,7 @@ class AuthFragment : Fragment() {
             is AuthViewModel.State.InvalidInput -> {
                 binding.signInButton.isEnabled = false
                 binding.tokenInputLayout.error =
-                    MR.strings.invalid_token_reason.getString(requireContext())
+                    getString(R.string.invalid_token_reason)
             }
         }
     }
@@ -120,20 +119,19 @@ class AuthFragment : Fragment() {
     }
 
     private fun setupUI() {
-        val context = requireContext()
-        val placeholder = MR.strings.token_text_field_placeholder.getString(context)
+        val placeholder = getString(R.string.token_text_field_placeholder)
 
-        binding.signInButton.text = MR.strings.sign_in_button_title.getString(context).uppercase()
+        binding.signInButton.text = getString(R.string.sign_in_button_title)
         binding.tokenInputLayout.hint = placeholder
         binding.tokenInputEdit.hint = placeholder
     }
 
     private fun showErrorDialog(model: ErrorModel) {
-        val title = MR.strings.error.getString(requireContext())
+        val title = getString(R.string.error)
         val code = model.title.toString(requireContext())
         val message = model.message.toString(requireContext())
         val fullMessage = "$code / $message"
-        val buttonTitle = MR.strings.ok.getString(requireContext())
+        val buttonTitle = getString(R.string.ok)
 
         showErrorAlertDialog(title = title, message = fullMessage, buttonTitle = buttonTitle)
     }

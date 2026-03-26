@@ -13,7 +13,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import app.xl.gitclientkmp.MR
 import app.xl.gitclientkmp.domain.entity.License
 import app.xl.gitclientkmp.domain.entity.RepositoryDetails
 import app.xl.gitclientkmp.domain.error.ErrorModel
@@ -139,9 +138,7 @@ class DetailInfoFragment : Fragment() {
                 readmeTextView.setTextColor(
                     ContextCompat.getColor(requireContext(), R.color.white_70)
                 )
-                readmeTextView.text = MR.strings.no_readme_md.getString(
-                    requireContext()
-                )
+                readmeTextView.text = getString(R.string.no_readme_md)
             }
 
             is RepositoryInfoViewModel.ReadmeState.Error -> {
