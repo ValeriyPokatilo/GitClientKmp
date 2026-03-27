@@ -7,8 +7,8 @@ final class AlertViewController: UIViewController {
     private let alertMessage: String
 
     init(title: String, message: String) {
-        self.alertTitle = title
-        self.alertMessage = message
+        alertTitle = title
+        alertMessage = message
         super.init(nibName: nil, bundle: nil)
 
         modalPresentationStyle = .overFullScreen

@@ -64,7 +64,7 @@ final class PlaceholderView: UIView {
         self.action = action
     }
 
-    @IBAction private func refreshAction(_ sender: UIButton) {
+    @IBAction private func refreshAction(_ _: UIButton) {
         action?()
     }
 

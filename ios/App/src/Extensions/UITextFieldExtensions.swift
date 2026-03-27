@@ -2,12 +2,12 @@ import UIKit
 
 extension UITextField {
     func setupBorderedField(placeholder: String) {
-        self.layer.borderColor = UIColor.appGrey.cgColor
+        layer.borderColor = UIColor.appGrey.cgColor
 
-        self.attributedPlaceholder = NSAttributedString(
+        attributedPlaceholder = NSAttributedString(
             string: placeholder,
             attributes: [
-                NSAttributedString.Key.foregroundColor: R.color.white50()!
+                NSAttributedString.Key.foregroundColor: R.color.white50()!,
             ]
         )
 
@@ -16,11 +16,11 @@ extension UITextField {
                 x: 0,
                 y: 0,
                 width: 16,
-                height: self.frame.height
+                height: frame.height
             )
         )
 
-        self.leftView = paddingView
-        self.leftViewMode = .always
+        leftView = paddingView
+        leftViewMode = .always
     }
 }

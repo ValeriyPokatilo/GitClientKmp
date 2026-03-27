@@ -128,7 +128,7 @@ final class AuthViewController: UIViewController {
         showAlert?(AlertModel(title: title, message: fullMessage))
     }
 
-    @IBAction private func signInButtonAction(_ sender: UIButton) {
+    @IBAction private func signInButtonAction(_ _: UIButton) {
         viewModel.onSignButtonPressed()
     }
 
