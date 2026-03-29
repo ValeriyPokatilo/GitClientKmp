@@ -91,22 +91,21 @@ final class AuthViewController: UIViewController {
         let isInvalid = state is AuthViewModelStateInvalidInput
 
         errorLabel.isHidden = !isInvalid
-        if state as? AuthViewModelStateInvalidInput != nil {
-            errorLabel.text = MR.strings().invalid_token_reason.desc()
-                .localized()
-        }
+        errorLabel.text = isInvalid
+            ? MR.strings().invalid_token_reason.desc().localized()
+            : nil
 
         signInButton.isEnabled = !isLoading && !isInvalid
         signInButton.titleLabel?.isHidden = isLoading
 
-        tokenTextField.layer.borderColor =
-            (isInvalid ? UIColor.red : R.color.appGrey()!).cgColor
+        let borderColor = isInvalid
+            ? UIColor.red
+            : R.color.appGrey()!
+        tokenTextField.layer.borderColor = borderColor.cgColor
 
-        if isLoading {
-            indicatorView.startAnimating()
-        } else {
-            indicatorView.stopAnimating()
-        }
+        isLoading
+            ? indicatorView.startAnimating()
+            : indicatorView.stopAnimating()
     }
 
     private func handleAction(_ action: AuthViewModelAction) {

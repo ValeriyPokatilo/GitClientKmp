@@ -83,43 +83,53 @@ final class RepositoriesListViewController: UIViewController {
     }
 
     private func renderState(_ state: RepositoriesListViewModelState) {
-        let isLoading = state is RepositoriesListViewModelStateLoading
-        let isLoaded = state is RepositoriesListViewModelStateLoaded
-        let isEmpty = state is RepositoriesListViewModelStateEmpty
-        let isError = state is RepositoriesListViewModelStateError
+        renderLoading(state)
+        renderContent(state)
+        renderPlaceholder(state)
+    }
 
-        if isLoading {
-            indicatorView.startAnimating()
-        } else {
-            indicatorView.stopAnimating()
+    private func renderLoading(_ state: RepositoriesListViewModelState) {
+        let isLoading = state is RepositoriesListViewModelStateLoading
+
+        isLoading
+            ? indicatorView.startAnimating()
+            : indicatorView.stopAnimating()
+    }
+
+    private func renderContent(_ state: RepositoriesListViewModelState) {
+        guard let loadedState = state as? RepositoriesListViewModelStateLoaded else {
+            tableView.isHidden = true
+            dataSource.unitItems = []
+            return
         }
 
-        tableView.isHidden = !isLoaded
+        tableView.isHidden = false
 
-        placeholderView.isHidden = isLoaded || isLoading
-        if let emptyState = state as? RepositoriesListViewModelStateEmpty {
+        let units = loadedState.repositories.map { repo in
+            repo.toTableUnitItem { [weak self] selected in
+                self?.viewModel.onRepositoryItemPressed(repository: selected)
+            }
+        }
+
+        dataSource.unitItems = units
+    }
+
+    private func renderPlaceholder(_ state: RepositoriesListViewModelState) {
+        switch state {
+        case is RepositoriesListViewModelStateEmpty:
+            placeholderView.isHidden = false
             placeholderView.configureEmpty { [weak self] in
                 self?.viewModel.onRetryButtonPressed()
             }
-        } else if let errorState = state as? RepositoriesListViewModelStateError {
+
+        case let errorState as RepositoriesListViewModelStateError:
+            placeholderView.isHidden = false
             placeholderView.configure(with: errorState.error) { [weak self] in
                 self?.viewModel.onRetryButtonPressed()
             }
-        } else {
-            placeholderView.isHidden = true
-        }
 
-        if let loadedState = state as? RepositoriesListViewModelStateLoaded {
-            let units = loadedState.repositories.map { repo in
-                repo.toTableUnitItem { [weak self] selected in
-                    self?.viewModel.onRepositoryItemPressed(
-                        repository: selected
-                    )
-                }
-            }
-            dataSource.unitItems = units
-        } else {
-            dataSource.unitItems = []
+        default:
+            placeholderView.isHidden = true
         }
     }
 

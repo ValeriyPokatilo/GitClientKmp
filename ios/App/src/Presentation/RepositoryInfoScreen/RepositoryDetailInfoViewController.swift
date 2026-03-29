@@ -95,58 +95,75 @@ final class RepositoryDetailInfoViewController: UIViewController {
     }
 
     private func renderState(_ state: RepositoryInfoViewModelState) {
+        renderLoading(state)
+        renderPlaceholder(state)
+        renderContent(state)
+    }
+
+    private func renderLoading(_ state: RepositoryInfoViewModelState) {
         let isLoading = state is RepositoryInfoViewModelStateLoading
-        let isLoaded = state is RepositoryInfoViewModelStateLoaded
-        let isError = state is RepositoryInfoViewModelStateError
 
-        mainIndicator.isHidden = !isLoading
-        if isLoading {
-            mainIndicator.startAnimating()
-        } else {
-            mainIndicator.stopAnimating()
-        }
+        isLoading
+            ? mainIndicator.startAnimating()
+            : mainIndicator.stopAnimating()
+    }
 
-        placeholderView.isHidden = isLoaded || isLoading
-        if let errorState = state as? RepositoryInfoViewModelStateError {
-            placeholderView.configure(with: errorState.error) { [weak self] in
+    private func renderPlaceholder(_ state: RepositoryInfoViewModelState) {
+        switch state {
+        case let error as RepositoryInfoViewModelStateError:
+            placeholderView.isHidden = false
+            placeholderView.configure(with: error.error) { [weak self] in
                 self?.viewModel.onRetryButtonPressed()
             }
+        default:
+            placeholderView.isHidden = true
+        }
+    }
+
+    private func renderContent(_ state: RepositoryInfoViewModelState) {
+        guard let loadedState = state as? RepositoryInfoViewModelStateLoaded else {
+            return
         }
 
-        if let loadedState = state as? RepositoryInfoViewModelStateLoaded {
-            mainIndicator.stopAnimating()
-            setupDetails(details: loadedState.githubRepo)
-            renderReadmeState(loadedState.readmeState)
-        }
+        mainIndicator.stopAnimating()
+        setupDetails(details: loadedState.githubRepo)
+        renderReadmeState(loadedState.readmeState)
     }
 
     private func renderReadmeState(
         _ readmeState: RepositoryInfoViewModelReadmeState
     ) {
-        let isLoading = readmeState is RepositoryInfoViewModelReadmeStateLoading
-        let isError = readmeState is RepositoryInfoViewModelReadmeStateError
-
-        readmeIndicator.isHidden = !isLoading
-        if isLoading {
-            readmeIndicator.startAnimating()
-        } else {
-            readmeIndicator.stopAnimating()
-        }
-
-        markdownTextView.isHidden = isLoading || isError
+        renderReadmeLoading(readmeState)
 
         switch readmeState {
         case let loaded as RepositoryInfoViewModelReadmeStateLoaded:
+            markdownTextView.isHidden = false
             handleMarkdown(markdownString: loaded.markdown)
 
         case is RepositoryInfoViewModelReadmeStateEmpty:
+            markdownTextView.isHidden = false
             markdownTextView.text = R.string.localizable.no_readme_md()
 
         case let error as RepositoryInfoViewModelReadmeStateError:
+            markdownTextView.isHidden = true
             handleErrorState(error: error.error)
 
-        default: break
+        default:
+            break
         }
+    }
+
+    private func renderReadmeLoading(
+        _ readmeState: RepositoryInfoViewModelReadmeState
+    ) {
+        let isLoading = readmeState is RepositoryInfoViewModelReadmeStateLoading
+
+        isLoading
+            ? readmeIndicator.startAnimating()
+            : readmeIndicator.stopAnimating()
+
+        markdownTextView.isHidden =
+            isLoading || readmeState is RepositoryInfoViewModelReadmeStateError
     }
 
     private func setupDetails(details: RepositoryDetails) {
