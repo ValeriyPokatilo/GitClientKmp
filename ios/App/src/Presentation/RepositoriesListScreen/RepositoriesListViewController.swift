@@ -115,14 +115,14 @@ final class RepositoriesListViewController: UIViewController {
     }
 
     private func renderPlaceholder(_ state: RepositoriesListViewModelState) {
-        switch state {
-        case is RepositoriesListViewModelStateEmpty:
+        switch onEnum(of: state) {
+        case .empty:
             placeholderView.isHidden = false
             placeholderView.configureEmpty { [weak self] in
                 self?.viewModel.onRetryButtonPressed()
             }
 
-        case let errorState as RepositoriesListViewModelStateError:
+        case let .error(errorState):
             placeholderView.isHidden = false
             placeholderView.configure(with: errorState.error) { [weak self] in
                 self?.viewModel.onRetryButtonPressed()
@@ -134,11 +134,10 @@ final class RepositoriesListViewController: UIViewController {
     }
 
     private func handleAction(_ action: RepositoriesListViewModelAction) {
-        switch action {
-        case is RepositoriesListViewModelActionLogout:
+        switch onEnum(of: action) {
+        case .logout:
             logout?()
-
-        case let details as RepositoriesListViewModelActionRouteToDetail:
+        case let .routeToDetail(details):
             showDetails?(
                 RepositoryDetailsRoute(
                     owner: details.owner,
@@ -146,8 +145,6 @@ final class RepositoriesListViewController: UIViewController {
                     branch: details.branch
                 )
             )
-
-        default: break
         }
     }
 

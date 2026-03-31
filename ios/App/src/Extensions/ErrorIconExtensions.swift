@@ -3,15 +3,11 @@ import UIKit
 
 extension ErrorIcon {
     func toUIImage() -> UIImage? {
-        switch self {
-        case is ErrorIcon.Network:
+        switch onEnum(of: self) {
+        case .network:
             R.image.ic_connection_error()
-
-        case is ErrorIcon.Http:
+        case .http:
             R.image.ic_error()
-
-        default:
-            nil
         }
     }
 }

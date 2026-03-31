@@ -109,10 +109,10 @@ final class RepositoryDetailInfoViewController: UIViewController {
     }
 
     private func renderPlaceholder(_ state: RepositoryInfoViewModelState) {
-        switch state {
-        case let error as RepositoryInfoViewModelStateError:
+        switch onEnum(of: state) {
+        case let .error(errorState):
             placeholderView.isHidden = false
-            placeholderView.configure(with: error.error) { [weak self] in
+            placeholderView.configure(with: errorState.error) { [weak self] in
                 self?.viewModel.onRetryButtonPressed()
             }
         default:
@@ -135,18 +135,16 @@ final class RepositoryDetailInfoViewController: UIViewController {
     ) {
         renderReadmeLoading(readmeState)
 
-        switch readmeState {
-        case let loaded as RepositoryInfoViewModelReadmeStateLoaded:
+        switch onEnum(of: readmeState) {
+        case let .loaded(loadedState):
             markdownTextView.isHidden = false
-            handleMarkdown(markdownString: loaded.markdown)
-
-        case is RepositoryInfoViewModelReadmeStateEmpty:
+            handleMarkdown(markdownString: loadedState.markdown)
+        case .empty:
             markdownTextView.isHidden = false
             markdownTextView.text = R.string.localizable.no_readme_md()
-
-        case let error as RepositoryInfoViewModelReadmeStateError:
+        case let .error(errorState):
             markdownTextView.isHidden = true
-            handleErrorState(error: error.error)
+            handleErrorState(error: errorState.error)
 
         default:
             break
@@ -235,8 +233,8 @@ final class RepositoryDetailInfoViewController: UIViewController {
     }
 
     private func handleAction(_ action: RepositoryInfoViewModelAction) {
-        switch action {
-        case is RepositoryInfoViewModelActionLogout:
+        switch onEnum(of: action) {
+        case .logout:
             onLogout?()
         default: break
         }

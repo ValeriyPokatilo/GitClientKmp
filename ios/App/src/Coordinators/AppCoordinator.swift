@@ -22,10 +22,12 @@ final class AppCoordinator {
     func start() {
         window.rootViewController = navigationController
 
-        switch router.getDestination() {
-        case is AppRouterRouteRepositoriesRoute:
+        let destination = router.getDestination()
+
+        switch onEnum(of: destination) {
+        case .repositoriesRoute:
             authorizedFlow()
-        default:
+        case .authRoute:
             unauthorizedFlow()
         }
     }

@@ -109,11 +109,12 @@ final class AuthViewController: UIViewController {
     }
 
     private func handleAction(_ action: AuthViewModelAction) {
-        if action is AuthViewModelActionRouteToMain {
+        switch onEnum(of: action) {
+        case .routeToMain:
             routeToMain?()
-        } else if let errorAction = action as? AuthViewModelActionShowError {
-            showErrorAlert(error: errorAction.error)
-        } else if action is AuthViewModelActionFocusOnTokenField {
+        case let .showError(errorState):
+            showErrorAlert(error: errorState.error)
+        case .focusOnTokenField:
             tokenTextField.becomeFirstResponder()
         }
     }
