@@ -42,17 +42,17 @@
                     </connections>
                 </button>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="NxG-zy-37z">
-                    <rect key="frame" x="154.66666666666666" y="352" width="84" height="148.33333333333337"/>
+                    <rect key="frame" x="16" y="352" width="361" height="148.33333333333337"/>
                     <subviews>
                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="AkI-S4-4DK">
-                            <rect key="frame" x="0.0" y="0.0" width="84" height="84"/>
+                            <rect key="frame" x="138.66666666666666" y="0.0" width="84" height="84"/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="84" id="3NJ-B5-Xe1"/>
                                 <constraint firstAttribute="height" constant="84" id="Zgq-5S-JLb"/>
                             </constraints>
                         </imageView>
                         <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="k3X-Gv-Lwi">
-                            <rect key="frame" x="21.999999999999996" y="107.99999999999999" width="39.666666666666657" height="40.333333333333329"/>
+                            <rect key="frame" x="160.66666666666666" y="107.99999999999999" width="39.666666666666657" height="40.333333333333329"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Edy-y9-cJQ">
                                     <rect key="frame" x="0.0" y="0.0" width="39.666666666666664" height="19.333333333333332"/>
@@ -60,7 +60,7 @@
                                     <color key="textColor" name="white"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Osh-ff-nRG">
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Osh-ff-nRG">
                                     <rect key="frame" x="2.3333333333333428" y="23.333333333333314" width="35.333333333333336" height="17"/>
                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                     <color key="textColor" name="white"/>
@@ -75,7 +75,9 @@
             <color key="backgroundColor" name="appBackground"/>
             <constraints>
                 <constraint firstItem="SjK-i8-62j" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="6Q8-lK-udf"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="NxG-zy-37z" secondAttribute="trailing" constant="16" id="AW3-9K-s5g"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="SjK-i8-62j" secondAttribute="trailing" constant="16" id="Rk1-IX-z5c"/>
+                <constraint firstItem="NxG-zy-37z" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="SOL-xt-0Ig"/>
                 <constraint firstItem="NxG-zy-37z" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="gGv-IG-ZCB"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="SjK-i8-62j" secondAttribute="bottom" constant="16" id="xtH-jF-JmE"/>
                 <constraint firstItem="NxG-zy-37z" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="yYV-pD-eGX"/>
