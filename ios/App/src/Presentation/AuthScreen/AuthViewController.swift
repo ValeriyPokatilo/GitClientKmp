@@ -92,7 +92,7 @@ final class AuthViewController: UIViewController {
 
         errorLabel.isHidden = !isInvalid
         errorLabel.text = isInvalid
-            ? MR.strings().invalid_token_reason.desc().localized()
+            ? R.string.localizable.invalid_token_reason()
             : nil
 
         signInButton.isEnabled = !isLoading && !isInvalid
