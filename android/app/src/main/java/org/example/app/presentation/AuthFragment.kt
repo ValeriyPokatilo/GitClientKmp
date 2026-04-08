@@ -49,11 +49,18 @@ class AuthFragment : Fragment() {
         _binding = null
     }
 
-    private fun bindToViewModel() {
+    private fun setupUI() {
+        val placeholder = getString(R.string.token_text_field_placeholder)
+        binding.tokenInputLayout.hint = placeholder
+        binding.tokenInputEdit.hint = placeholder
+
+        binding.signInButton.text = getString(R.string.sign_in_button_title)
         binding.signInButton.setOnClickListener {
             viewModel.onSignButtonPressed()
         }
+    }
 
+    private fun bindToViewModel() {
         viewLifecycleOwner.lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 launch {
@@ -110,14 +117,6 @@ class AuthFragment : Fragment() {
                 binding.tokenInputEdit.showKeyboard()
             }
         }
-    }
-
-    private fun setupUI() {
-        val placeholder = getString(R.string.token_text_field_placeholder)
-
-        binding.signInButton.text = getString(R.string.sign_in_button_title)
-        binding.tokenInputLayout.hint = placeholder
-        binding.tokenInputEdit.hint = placeholder
     }
 
     private fun showErrorDialog(model: ErrorModel) {

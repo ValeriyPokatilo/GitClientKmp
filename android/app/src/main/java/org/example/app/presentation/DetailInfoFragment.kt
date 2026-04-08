@@ -118,11 +118,11 @@ class DetailInfoFragment : Fragment() {
 
         if (readmeState is RepositoryInfoViewModel.ReadmeState.Loaded) {
             val markdown = readmeState.markdown
-            if (!markdown.isNullOrEmpty()) {
-                markwon.setMarkdown(readmeTextView, markdown)
-            } else {
+            if (markdown.isNullOrEmpty()) {
                 readmeTextView.text = getString(R.string.no_readme_md)
                 readmeTextView.setTextColor(ContextCompat.getColor(requireContext(), R.color.white_70))
+            } else {
+                markwon.setMarkdown(readmeTextView, markdown)
             }
         }
 
