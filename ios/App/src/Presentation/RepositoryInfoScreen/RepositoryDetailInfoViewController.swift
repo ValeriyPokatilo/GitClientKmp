@@ -53,6 +53,8 @@ final class RepositoryDetailInfoViewController: UIViewController {
         setupUI()
         setupIndicators()
         bindViewModel()
+        
+        viewModel.onStart()
     }
 
     private func setupNavigation() {

@@ -28,6 +28,8 @@ final class RepositoriesListViewController: UIViewController {
         setupIndicator()
         setupTableView()
         bindViewModel()
+        
+        viewModel.onStart()
     }
 
     private func setupIndicator() {
