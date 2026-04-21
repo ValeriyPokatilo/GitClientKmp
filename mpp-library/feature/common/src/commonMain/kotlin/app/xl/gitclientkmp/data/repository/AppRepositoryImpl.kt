@@ -2,7 +2,6 @@ package app.xl.gitclientkmp.data.repository
 
 import app.xl.gitclientkmp.data.dto.GitHubErrorDto
 import app.xl.gitclientkmp.data.network.GitHubApi
-import app.xl.gitclientkmp.data.network.toBearerHeader
 import app.xl.gitclientkmp.data.repository.mappers.toEntity
 import app.xl.gitclientkmp.data.storage.KeyValueStorage
 import app.xl.gitclientkmp.data.utils.Base64Decoder
@@ -24,7 +23,7 @@ class AppRepositoryImpl(
 
     @Throws(Exception::class)
     override suspend fun signIn(token: String): UserInfo {
-        val authHeader = token.toBearerHeader()
+        val authHeader = "Bearer $token"
 
         try {
             val user = api.getUser(authHeader).toEntity()
@@ -128,7 +127,7 @@ class AppRepositoryImpl(
         val token = keyValueStorage.getToken() ?: throw AppError.Unauthorized(
             Exception("invalid_token")
         )
-        return token.toBearerHeader()
+        return "Bearer $token"
     }
 
     companion object {
