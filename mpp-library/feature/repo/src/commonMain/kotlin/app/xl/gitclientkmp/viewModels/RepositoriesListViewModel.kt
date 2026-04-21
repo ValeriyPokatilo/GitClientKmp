@@ -23,7 +23,7 @@ class RepositoriesListViewModel(
     private val _action = MutableSharedFlow<Action>()
     val action: Flow<Action> = _action
 
-    init {
+    fun onStart() {
         loadRepositories()
     }
 
