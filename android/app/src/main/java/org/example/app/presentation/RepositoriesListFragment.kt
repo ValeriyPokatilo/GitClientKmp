@@ -57,6 +57,8 @@ class RepositoriesListFragment : Fragment() {
         setupNavigationBar()
         setupRecyclerView()
         bindToViewModel()
+
+        viewModel.onStart()
     }
 
     override fun onDestroyView() {

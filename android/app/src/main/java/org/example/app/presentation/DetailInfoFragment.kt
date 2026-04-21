@@ -58,6 +58,8 @@ class DetailInfoFragment : Fragment() {
         setupNavigationBar()
         setupUI(view.context)
         bindToViewModel()
+
+        viewModel.onStart()
     }
 
     override fun onDestroyView() {
