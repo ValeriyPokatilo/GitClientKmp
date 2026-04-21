@@ -50,6 +50,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigation()
+        setupUI()
         setupIndicators()
         bindViewModel()
     }
@@ -67,6 +68,15 @@ final class RepositoryDetailInfoViewController: UIViewController {
         button.tintColor = .white
 
         navigationItem.rightBarButtonItem = button
+    }
+
+    private func setupUI() {
+        markdownTextView.textContainerInset = UIEdgeInsets(
+            top: 0,
+            left: 0,
+            bottom: 24,
+            right: 0
+        )
     }
 
     private func setupIndicators() {
