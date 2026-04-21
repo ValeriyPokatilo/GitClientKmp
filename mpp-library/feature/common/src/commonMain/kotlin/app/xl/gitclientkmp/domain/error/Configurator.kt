@@ -24,9 +24,12 @@ object Configurator {
             .condition<ErrorModel>({ it is AppError.Http }) { exc ->
                 val http = exc as AppError.Http
 
+                val errorCode = http.code.toString()
+                val errorMessage = http.message.toString()
+
                 ErrorModel(
-                    title = StringDesc.Raw(http.code.toString()),
-                    message = exc.mapThrowable(),
+                    title = StringDesc.Raw("$errorMessage / $errorCode"),
+                    message = MR.strings.info_for_developer.desc(),
                     icon = ErrorIcon.Http
                 )
             }
