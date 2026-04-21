@@ -120,12 +120,14 @@ final class AuthViewController: UIViewController {
     }
 
     private func showErrorAlert(error: ErrorModel) {
-        let title = R.string.localizable.error()
         let message = error.title.localized()
         let postfix = error.message.localized()
         let fullMessage = "\(message) \n\(postfix)"
 
-        showAlert?(AlertModel(title: title, message: fullMessage))
+        showAlert?(AlertModel(
+            title: R.string.localizable.error(),
+            message: fullMessage
+        ))
     }
 
     @IBAction private func signInButtonAction(_ _: UIButton) {
