@@ -36,8 +36,13 @@ final class PlaceholderView: UIView {
 
     func configure(with error: ErrorModel, action: @escaping EmptyBlock) {
         reset()
+        
+        if error.isNetworkError {
+            imageView.image = R.image.ic_connection_error()
+        } else {
+            imageView.image = R.image.ic_error()
+        }
 
-        imageView.image = error.icon.toUIImage()
         titleLabel.text = error.title.localized()
         titleLabel.textColor = .appError
         messageLabel.text = error.message.localized()
