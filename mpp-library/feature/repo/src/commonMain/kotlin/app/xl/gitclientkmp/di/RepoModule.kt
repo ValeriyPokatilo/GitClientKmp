@@ -1,7 +1,7 @@
 package app.xl.gitclientkmp.di
 
-import app.xl.gitclientkmp.viewModels.RepositoriesListViewModel
-import app.xl.gitclientkmp.viewModels.RepositoryInfoViewModel
+import app.xl.gitclientkmp.presentation.RepositoriesListViewModel
+import app.xl.gitclientkmp.presentation.RepositoryInfoViewModel
 import org.koin.dsl.module
 
 val repoModule = module {

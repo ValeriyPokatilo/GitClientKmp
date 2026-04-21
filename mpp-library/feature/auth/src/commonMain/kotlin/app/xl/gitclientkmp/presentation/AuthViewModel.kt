@@ -1,4 +1,4 @@
-package app.xl.gitclientkmp.viewModel
+package app.xl.gitclientkmp.presentation
 
 import app.xl.gitclientkmp.domain.error.ErrorModel
 import app.xl.gitclientkmp.domain.repository.AppRepository

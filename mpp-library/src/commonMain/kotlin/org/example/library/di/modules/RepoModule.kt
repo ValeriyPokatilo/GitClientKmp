@@ -1,7 +1,7 @@
 package org.example.library.di.modules
 
-import app.xl.gitclientkmp.viewModels.RepositoriesListViewModel
-import app.xl.gitclientkmp.viewModels.RepositoryInfoViewModel
+import app.xl.gitclientkmp.presentation.RepositoriesListViewModel
+import app.xl.gitclientkmp.presentation.RepositoryInfoViewModel
 import org.koin.core.Koin
 import org.koin.core.parameter.parametersOf
 
