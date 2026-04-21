@@ -1,5 +1,6 @@
 package org.example.app.presentation
 
+import android.content.Context
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
@@ -18,6 +19,7 @@ import app.xl.gitclientkmp.domain.entity.RepositoryDetails
 import app.xl.gitclientkmp.domain.error.ErrorModel
 import app.xl.gitclientkmp.domain.extensions.toDisplayUrl
 import app.xl.gitclientkmp.viewModels.RepositoryInfoViewModel
+import io.noties.markwon.Markwon
 import kotlinx.coroutines.launch
 import org.example.app.R
 import org.example.app.databinding.DetailInfoFragmentBinding
@@ -40,9 +42,7 @@ class DetailInfoFragment : Fragment() {
     private val repositoryName: String
         get() = args.repositoryName
 
-    private val markwon by lazy(LazyThreadSafetyMode.NONE) {
-        MarkwonFactory.createMarkwon(requireContext().applicationContext)
-    }
+    private lateinit var markwon: Markwon
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -56,12 +56,40 @@ class DetailInfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupNavigationBar()
+        setupUI(view.context)
         bindToViewModel()
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun setupNavigationBar() {
+        binding.toolbar.title = repositoryName
+
+        binding.toolbar.setNavigationIcon(
+            R.drawable.ic_back
+        )
+
+        binding.toolbar.setNavigationOnClickListener {
+            viewModel.onBackButtonPressed()
+        }
+
+        binding.toolbar.setOnMenuItemClickListener {
+            when (it.itemId) {
+                R.id.action_logout -> {
+                    viewModel.onLogoutPressed()
+                    true
+                }
+
+                else -> false
+            }
+        }
+    }
+
+    private fun setupUI(context: Context) {
+        markwon = MarkwonFactory.createMarkwon(context)
     }
 
     private fun bindToViewModel() {
@@ -167,29 +195,6 @@ class DetailInfoFragment : Fragment() {
         binding.starsCounter.text = details.stargazersCount.toString()
         binding.forksCounter.text = details.forksCount.toString()
         binding.watchersCounter.text = details.subscribersCount.toString()
-    }
-
-    private fun setupNavigationBar() {
-        binding.toolbar.title = repositoryName
-
-        binding.toolbar.setNavigationIcon(
-            R.drawable.ic_back
-        )
-
-        binding.toolbar.setNavigationOnClickListener {
-            viewModel.onBackButtonPressed()
-        }
-
-        binding.toolbar.setOnMenuItemClickListener {
-            when (it.itemId) {
-                R.id.action_logout -> {
-                    viewModel.onLogoutPressed()
-                    true
-                }
-
-                else -> false
-            }
-        }
     }
 
     private fun showError(error: ErrorModel) {
