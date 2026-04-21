@@ -1,4 +1,4 @@
-package org.example.app.extensions
+package org.example.app.utils
 
 import android.content.Context
 import android.view.View

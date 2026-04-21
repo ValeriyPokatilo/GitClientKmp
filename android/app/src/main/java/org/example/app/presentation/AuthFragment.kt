@@ -16,7 +16,7 @@ import app.xl.gitclientkmp.viewModel.AuthViewModel
 import kotlinx.coroutines.launch
 import org.example.app.R
 import org.example.app.databinding.AuthFragmentBinding
-import org.example.app.extensions.showKeyboard
+import org.example.app.utils.showKeyboard
 import org.example.app.utils.showErrorAlertDialog
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
