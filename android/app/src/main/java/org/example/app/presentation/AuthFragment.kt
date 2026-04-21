@@ -119,9 +119,9 @@ class AuthFragment : Fragment() {
 
     private fun showErrorDialog(model: ErrorModel) {
         val title = getString(R.string.error)
-        val code = model.title.toString(requireContext())
-        val message = model.message.toString(requireContext())
-        val fullMessage = "$code / $message"
+        val message = model.title.toString(requireContext())
+        val postfix = model.message.toString(requireContext())
+        val fullMessage = "$message\n$postfix"
         val buttonTitle = getString(R.string.ok)
 
         showErrorAlertDialog(title = title, message = fullMessage, buttonTitle = buttonTitle)
