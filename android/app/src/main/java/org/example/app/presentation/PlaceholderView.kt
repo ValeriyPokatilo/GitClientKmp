@@ -10,7 +10,6 @@ import androidx.core.content.ContextCompat.getString
 import app.xl.gitclientkmp.domain.error.ErrorModel
 import org.example.app.R
 import org.example.app.databinding.PlaceholderViewBinding
-import org.example.app.extensions.toDrawableRes
 
 class PlaceholderView @JvmOverloads constructor(
     context: Context,
@@ -51,7 +50,11 @@ class PlaceholderView @JvmOverloads constructor(
         reset()
         visibility = VISIBLE
 
-        val iconRes = error.icon.toDrawableRes()
+        val iconRes = if (error.isNetworkError) {
+            R.drawable.ic_not_connected
+        } else {
+            R.drawable.ic_error
+        }
         val titleText = error.title.toString(context)
         val messageText = error.message.toString(context)
         val titleColorRes = R.color.error
