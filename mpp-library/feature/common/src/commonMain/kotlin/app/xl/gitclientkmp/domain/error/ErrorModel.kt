@@ -5,5 +5,5 @@ import dev.icerock.moko.resources.desc.StringDesc
 data class ErrorModel(
     val title: StringDesc,
     val message: StringDesc,
-    val icon: ErrorIcon
+    val isNetworkError: Boolean
 )

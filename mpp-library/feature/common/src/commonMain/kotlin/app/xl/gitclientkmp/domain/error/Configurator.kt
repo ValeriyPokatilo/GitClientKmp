@@ -30,35 +30,35 @@ object Configurator {
                 ErrorModel(
                     title = StringDesc.Raw("$errorMessage / $errorCode"),
                     message = MR.strings.info_for_developer.desc(),
-                    icon = ErrorIcon.Http
+                    isNetworkError = false
                 )
             }
             .condition<ErrorModel>({ it is AppError.Network }) {
                 ErrorModel(
                     title = MR.strings.repositories_connection_error_title.desc(),
                     message = MR.strings.repositories_connection_error_message.desc(),
-                    icon = ErrorIcon.Network
+                    isNetworkError = true
                 )
             }
             .condition<ErrorModel>({ it is AppError.Unauthorized }) {
                 ErrorModel(
                     title = MR.strings.invalid_token_reason.desc(),
                     message = MR.strings.info_for_developer.desc(),
-                    icon = ErrorIcon.Http
+                    isNetworkError = false
                 )
             }
             .condition<ErrorModel>({ true }) {
                 ErrorModel(
                     title = MR.strings.repositories_connection_error_title.desc(),
                     message = MR.strings.repositories_connection_error_message.desc(),
-                    icon = ErrorIcon.Network
+                    isNetworkError = true
                 )
             }
             .setFallbackValue(
                 ErrorModel(
                     title = MR.strings.repositories_connection_error_title.desc(),
                     message = MR.strings.repositories_connection_error_message.desc(),
-                    icon = ErrorIcon.Network
+                    isNetworkError = true
                 )
             )
     }
