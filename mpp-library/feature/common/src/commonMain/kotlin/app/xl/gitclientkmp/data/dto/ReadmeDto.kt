@@ -1,9 +1,10 @@
 package app.xl.gitclientkmp.data.dto
 
+import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
 data class ReadmeDto(
-    val encoding: String,
-    val content: String
+    @SerialName("encoding") val encoding: String,
+    @SerialName("content") val content: String
 )
