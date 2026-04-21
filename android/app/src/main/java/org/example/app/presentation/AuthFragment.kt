@@ -12,7 +12,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import app.xl.gitclientkmp.domain.error.ErrorModel
-import app.xl.gitclientkmp.viewModel.AuthViewModel
+import app.xl.gitclientkmp.presentation.AuthViewModel
 import kotlinx.coroutines.launch
 import org.example.app.R
 import org.example.app.databinding.AuthFragmentBinding

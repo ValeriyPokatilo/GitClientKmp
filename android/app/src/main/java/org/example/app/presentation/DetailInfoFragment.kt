@@ -18,7 +18,7 @@ import app.xl.gitclientkmp.domain.entity.License
 import app.xl.gitclientkmp.domain.entity.RepositoryDetails
 import app.xl.gitclientkmp.domain.error.ErrorModel
 import app.xl.gitclientkmp.domain.extensions.toDisplayUrl
-import app.xl.gitclientkmp.viewModels.RepositoryInfoViewModel
+import app.xl.gitclientkmp.presentation.RepositoryInfoViewModel
 import io.noties.markwon.Markwon
 import kotlinx.coroutines.launch
 import org.example.app.R
