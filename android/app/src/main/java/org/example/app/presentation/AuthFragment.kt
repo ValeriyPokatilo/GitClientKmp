@@ -50,9 +50,7 @@ class AuthFragment : Fragment() {
     }
 
     private fun setupUI() {
-        val placeholder = getString(R.string.token_text_field_placeholder)
-        binding.tokenInputLayout.hint = placeholder
-        binding.tokenInputEdit.hint = placeholder
+        binding.tokenInputLayout.hint = getString(R.string.token_text_field_placeholder)
 
         binding.signInButton.text = getString(R.string.sign_in_button_title)
         binding.signInButton.setOnClickListener {
