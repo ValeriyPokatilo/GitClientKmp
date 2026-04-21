@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <resources>
-    <string name="app_name">AndroidApp</string>
+    <string name="app_name">GitClient</string>
     <string name="sign_in_button_title">ВОЙТИ</string>
     <string name="token_text_field_placeholder">Персональный токен доступа</string>
     <string name="check_connection">Пожалуйста, проверьте подключение к интернету</string>
