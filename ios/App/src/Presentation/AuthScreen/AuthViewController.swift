@@ -121,9 +121,9 @@ final class AuthViewController: UIViewController {
 
     private func showErrorAlert(error: ErrorModel) {
         let title = R.string.localizable.error()
-        let code = error.title.localized()
-        let message = error.message.localized()
-        let fullMessage = "\(code) / \(message)"
+        let message = error.title.localized()
+        let postfix = error.message.localized()
+        let fullMessage = "\(message) \n\(postfix)"
 
         showAlert?(AlertModel(title: title, message: fullMessage))
     }
