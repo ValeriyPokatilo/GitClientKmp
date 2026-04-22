@@ -109,11 +109,11 @@ class RepositoriesListFragment : Fragment() {
         binding.placeholderView.isVisible =
             state !is RepositoriesListViewModel.State.Loaded && state !is RepositoriesListViewModel.State.Loading
 
-        when {
-            state is RepositoriesListViewModel.State.Empty -> {
+        when (state) {
+            is RepositoriesListViewModel.State.Empty -> {
                 binding.placeholderView.showEmpty { viewModel.onRetryButtonPressed() }
             }
-            state is RepositoriesListViewModel.State.Error -> {
+            is RepositoriesListViewModel.State.Error -> {
                 binding.placeholderView.showError(state.error) { viewModel.onRetryButtonPressed() }
             }
             else -> {
