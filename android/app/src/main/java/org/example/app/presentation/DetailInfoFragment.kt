@@ -142,28 +142,66 @@ class DetailInfoFragment : Fragment() {
     }
 
     private fun handleReadmeState(readmeState: RepositoryInfoViewModel.ReadmeState) {
-        val readmeTextView = binding.readmeTextView
+        when (readmeState) {
+            RepositoryInfoViewModel.ReadmeState.Loading ->  {
+                renderReadmeLoading()
+            }
 
-        binding.readmeProgressIndicator.isVisible = readmeState == RepositoryInfoViewModel.ReadmeState.Loading
+            is RepositoryInfoViewModel.ReadmeState.Loaded -> {
+                val markdown = readmeState.markdown?.takeIf { it.isNotEmpty() }
+                if (markdown == null) {
+                    renderReadmeEmpty()
+                } else {
+                    renderReadmeMarkdown(markdown)
+                }
+            }
 
-        if (readmeState is RepositoryInfoViewModel.ReadmeState.Loaded) {
-            val markdown = readmeState.markdown
-            if (markdown.isNullOrEmpty()) {
-                readmeTextView.text = getString(R.string.no_readme_md)
-                readmeTextView.setTextColor(ContextCompat.getColor(requireContext(), R.color.white_70))
-            } else {
-                markwon.setMarkdown(readmeTextView, markdown)
+            RepositoryInfoViewModel.ReadmeState.Empty -> {
+                renderReadmeEmpty()
+            }
+
+            is RepositoryInfoViewModel.ReadmeState.Error -> {
+                renderReadmeError(readmeState.error)
             }
         }
+    }
 
-        if (readmeState == RepositoryInfoViewModel.ReadmeState.Empty) {
-            readmeTextView.text = getString(R.string.no_readme_md)
-            readmeTextView.setTextColor(ContextCompat.getColor(requireContext(), R.color.white_70))
-        }
+    private fun renderReadmeLoading() {
+        binding.readmeProgressIndicator.isVisible = true
 
-        if (readmeState is RepositoryInfoViewModel.ReadmeState.Error) {
-            showError(readmeState.error)
-        }
+        binding.readmeTextView.text = ""
+        binding.readmeTextView.setTextColor(
+            ContextCompat.getColor(requireContext(), R.color.white)
+        )
+    }
+
+    private fun renderReadmeEmpty() {
+        binding.readmeProgressIndicator.isVisible = false
+
+        binding.readmeTextView.text = getString(R.string.no_readme_md)
+        binding.readmeTextView.setTextColor(
+            ContextCompat.getColor(requireContext(), R.color.white_70)
+        )
+    }
+
+    private fun renderReadmeMarkdown(markdown: String) {
+        binding.readmeProgressIndicator.isVisible = false
+
+        binding.readmeTextView.setTextColor(
+            ContextCompat.getColor(requireContext(), R.color.white)
+        )
+        markwon.setMarkdown(binding.readmeTextView, markdown)
+    }
+
+    private fun renderReadmeError(error: ErrorModel) {
+        binding.readmeProgressIndicator.isVisible = false
+
+        binding.readmeTextView.text = ""
+        binding.readmeTextView.setTextColor(
+            ContextCompat.getColor(requireContext(), R.color.white)
+        )
+
+        showError(error)
     }
 
     private fun setupDetails(details: RepositoryDetails) {
