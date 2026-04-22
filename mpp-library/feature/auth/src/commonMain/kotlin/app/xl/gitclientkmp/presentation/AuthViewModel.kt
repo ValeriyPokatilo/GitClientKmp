@@ -40,11 +40,14 @@ class AuthViewModel(
             return
         }
 
+        login()
+    }
+
+    private fun login() {
         viewModelScope.launch {
             _state.value = State.Loading
             try {
                 repository.signIn(token)
-                _state.value = State.Idle
                 _actions.emit(Action.RouteToMain)
             } catch (error: Exception) {
                 _state.value = State.Idle
