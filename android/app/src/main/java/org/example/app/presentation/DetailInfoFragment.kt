@@ -42,7 +42,7 @@ class DetailInfoFragment : Fragment() {
     private val repositoryName: String
         get() = args.repositoryName
 
-    private lateinit var markwon: Markwon
+    private var markwon: Markwon? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -190,7 +190,7 @@ class DetailInfoFragment : Fragment() {
         binding.readmeTextView.setTextColor(
             ContextCompat.getColor(requireContext(), R.color.white)
         )
-        markwon.setMarkdown(binding.readmeTextView, markdown)
+        markwon?.setMarkdown(binding.readmeTextView, markdown)
     }
 
     private fun renderReadmeError(error: ErrorModel) {

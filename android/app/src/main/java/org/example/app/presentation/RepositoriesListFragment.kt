@@ -29,7 +29,7 @@ class RepositoriesListFragment : Fragment() {
 
     private val viewModel: RepositoriesListViewModel by viewModel()
 
-    private lateinit var unitsAdapter: UnitsRecyclerViewAdapter
+    private var unitsAdapter: UnitsRecyclerViewAdapter? = null
 
     private val divider by lazy {
         DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL).apply {
@@ -127,7 +127,7 @@ class RepositoriesListFragment : Fragment() {
                     viewModel.onRepositoryItemPressed(clickedRepo)
                 }
             }
-            unitsAdapter.units = units
+            unitsAdapter?.units = units
         }
     }
     private fun handleAction(action: RepositoriesListViewModel.Action) {
