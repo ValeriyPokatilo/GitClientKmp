@@ -15,3 +15,20 @@ fun Fragment.openUrl(url: String) {
         startActivity(intent)
     }
 }
+
+fun Fragment.showErrorAlertDialog(
+    title: String,
+    message: String,
+    buttonTitle: String
+) {
+    val context = context ?: return
+
+    CustomAlertDialog
+        .create(
+            context = context,
+            title = title,
+            message = message,
+            buttonTitle = buttonTitle
+        )
+        .show()
+}
