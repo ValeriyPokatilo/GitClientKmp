@@ -32,7 +32,7 @@ import org.koin.core.parameter.parametersOf
 class DetailInfoFragment : Fragment() {
 
     private var _binding: DetailInfoFragmentBinding? = null
-    private val binding
+    private val binding: DetailInfoFragmentBinding
         get() = _binding ?: error("Binding is only valid between onCreateView and onDestroyView")
 
     private val args: DetailInfoFragmentArgs by navArgs()
@@ -137,7 +137,7 @@ class DetailInfoFragment : Fragment() {
             }
 
             is RepositoryInfoViewModel.ReadmeState.Loaded -> {
-                val markdown = readmeState.markdown?.takeIf { it.isNotEmpty() }
+                val markdown: String? = readmeState.markdown?.takeIf { it.isNotEmpty() }
                 if (markdown == null) {
                     renderReadmeEmpty()
                 } else {
@@ -211,7 +211,7 @@ class DetailInfoFragment : Fragment() {
         license?.let {
             binding.licenselink.text = license.name
             binding.licenselink.movementMethod = LinkMovementMethod.getInstance()
-            val url = it.url
+            val url: String? = it.url
             if (!url.isNullOrBlank()) {
                 binding.licenselink.setOnClickListener {
                     openUrl(url)

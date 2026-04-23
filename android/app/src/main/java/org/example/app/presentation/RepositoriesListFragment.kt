@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.xl.gitclientkmp.presentation.RepositoriesListViewModel
+import dev.icerock.moko.units.UnitItem
 import dev.icerock.moko.units.adapter.UnitsRecyclerViewAdapter
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
@@ -28,14 +29,14 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class RepositoriesListFragment : Fragment() {
 
     private var _binding: RepositoriesListFragmentBinding? = null
-    private val binding
+    private val binding: RepositoriesListFragmentBinding
         get() = _binding ?: error("Binding is only valid between onCreateView and onDestroyView")
 
     private val viewModel: RepositoriesListViewModel by viewModel()
 
     private var unitsAdapter: UnitsRecyclerViewAdapter? = null
 
-    private val divider by lazy {
+    private val divider: DividerItemDecoration by lazy {
         DividerItemDecoration(requireContext(), DividerItemDecoration.VERTICAL).apply {
             ContextCompat.getDrawable(requireContext(), R.drawable.divider)?.let {
                 setDrawable(it)
@@ -114,7 +115,7 @@ class RepositoriesListFragment : Fragment() {
         }
 
         if (state is RepositoriesListViewModel.State.Loaded) {
-            val units = state.repositories.map { repo ->
+            val units: List<UnitItem> = state.repositories.map { repo ->
                 repo.toUnitItem { clickedRepo ->
                     viewModel.onRepositoryItemPressed(clickedRepo)
                 }

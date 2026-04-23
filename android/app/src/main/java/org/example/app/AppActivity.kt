@@ -4,11 +4,15 @@ import android.graphics.Color
 import android.os.Bundle
 import androidx.activity.SystemBarStyle
 import androidx.activity.enableEdgeToEdge
+import androidx.core.graphics.Insets
+import androidx.core.splashscreen.SplashScreen
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.FragmentActivity
+import androidx.navigation.NavController
+import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
 import org.example.app.databinding.MainActivityBinding
 import org.example.library.appRouter.AppRouter
@@ -23,7 +27,7 @@ class AppActivity : FragmentActivity() {
     private var isAppReadyForStart = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
-        val splashScreen = installSplashScreen()
+        val splashScreen: SplashScreen = installSplashScreen()
 
         enableEdgeToEdge(
             statusBarStyle = SystemBarStyle.auto(
@@ -51,10 +55,10 @@ class AppActivity : FragmentActivity() {
 
     private fun setupInsets() {
         ViewCompat.setOnApplyWindowInsetsListener(binding.root) { v, insets ->
-            val systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars())
-            val imeInsets = insets.getInsets(WindowInsetsCompat.Type.ime())
+            val systemBars: Insets = insets.getInsets(WindowInsetsCompat.Type.systemBars())
+            val imeInsets: Insets = insets.getInsets(WindowInsetsCompat.Type.ime())
 
-            val bottomPadding = if (imeInsets.bottom > 0) {
+            val bottomPadding: Int = if (imeInsets.bottom > 0) {
                 imeInsets.bottom
             } else {
                 systemBars.bottom
@@ -66,15 +70,15 @@ class AppActivity : FragmentActivity() {
     }
 
     private fun setupNavigation() {
-        val navHost =
+        val navHost: NavHostFragment =
             supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 
-        val navController = navHost.navController
-        val navGraph = navController.navInflater.inflate(R.navigation.main_navigation)
+        val navController: NavController = navHost.navController
+        val navGraph: NavGraph = navController.navInflater.inflate(R.navigation.main_navigation)
 
-        val route = appRouter.getDestination()
+        val route: AppRouter.Route = appRouter.getDestination()
 
-        val startDestination = when (route) {
+        val startDestination: Int = when (route) {
             AppRouter.Route.AuthRoute -> R.id.authFragment
             AppRouter.Route.RepositoriesRoute -> R.id.repositoriesListFragment
         }

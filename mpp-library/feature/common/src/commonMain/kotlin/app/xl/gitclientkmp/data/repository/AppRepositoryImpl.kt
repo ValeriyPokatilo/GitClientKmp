@@ -24,7 +24,7 @@ class AppRepositoryImpl(
 
     @Throws(Exception::class)
     override suspend fun signIn(token: String): UserInfo {
-        val authHeader = "Bearer $token"
+        val authHeader: String = "Bearer $token"
 
         try {
             val user: UserInfo = api.getUser(authHeader).toEntity()

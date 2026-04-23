@@ -50,14 +50,14 @@ class PlaceholderView @JvmOverloads constructor(
         reset()
         visibility = VISIBLE
 
-        val iconRes = if (error.isNetworkError) {
+        val iconRes: Int = if (error.isNetworkError) {
             R.drawable.ic_not_connected
         } else {
             R.drawable.ic_error
         }
-        val titleText = error.title.toString(context)
-        val messageText = error.message.toString(context)
-        val titleColorRes = R.color.error
+        val titleText: String = error.title.toString(context)
+        val messageText: String = error.message.toString(context)
+        val titleColorRes: Int = R.color.error
 
         binding.apply {
             placeholderIcon.setImageResource(iconRes)

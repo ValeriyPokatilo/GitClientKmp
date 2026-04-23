@@ -24,7 +24,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 class AuthFragment : Fragment() {
 
     private var _binding: AuthFragmentBinding? = null
-    private val binding
+    private val binding: AuthFragmentBinding
         get() = _binding ?: error("Binding is only valid between onCreateView and onDestroyView")
 
     private val viewModel: AuthViewModel by viewModel()
@@ -71,8 +71,8 @@ class AuthFragment : Fragment() {
     }
 
     private fun renderState(state: AuthViewModel.State) {
-        val isLoading = state == AuthViewModel.State.Loading
-        val isInvalid = state is AuthViewModel.State.InvalidInput
+        val isLoading: Boolean = state == AuthViewModel.State.Loading
+        val isInvalid: Boolean = state is AuthViewModel.State.InvalidInput
 
         binding.progressIndicator.visibility =
             if (isLoading) View.VISIBLE else View.GONE
@@ -107,9 +107,9 @@ class AuthFragment : Fragment() {
     }
 
     private fun showErrorDialog(model: ErrorModel) {
-        val message = model.title.toString(requireContext())
-        val postfix = model.message.toString(requireContext())
-        val fullMessage = "$message\n$postfix"
+        val message: String = model.title.toString(requireContext())
+        val postfix: String = model.message.toString(requireContext())
+        val fullMessage: String = "$message\n$postfix"
 
         showErrorAlertDialog(
             title = getString(R.string.error),

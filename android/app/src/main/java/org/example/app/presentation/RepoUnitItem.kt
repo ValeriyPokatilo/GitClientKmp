@@ -1,5 +1,6 @@
 package org.example.app.presentation
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.TextView
@@ -24,13 +25,13 @@ class RepoUnitItem(
     override val viewType: Int get() = layoutId
 
     override fun bindViewHolder(viewHolder: RecyclerView.ViewHolder) {
-        val holder = viewHolder as? ViewHolder ?: return
-        val context = holder.itemView.context
+        val holder: ViewHolder = viewHolder as? ViewHolder ?: return
+        val context: Context = holder.itemView.context
 
         holder.repositoryName.text = repository.name
         holder.repositoryLanguage.text = repository.language.orEmpty()
 
-        val color = repository.languageColor
+        val color: Int = repository.languageColor
             ?: ContextCompat.getColor(context, R.color.white)
         holder.repositoryLanguage.setTextColor(color)
 
@@ -48,7 +49,7 @@ class RepoUnitItem(
         parent: ViewGroup,
         lifecycleOwner: LifecycleOwner
     ): RecyclerView.ViewHolder {
-        val binding = RepositoryItemBinding.inflate(
+        val binding: RepositoryItemBinding = RepositoryItemBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
