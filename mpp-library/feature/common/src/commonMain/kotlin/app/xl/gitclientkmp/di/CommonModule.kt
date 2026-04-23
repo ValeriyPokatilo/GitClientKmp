@@ -37,7 +37,8 @@ val commonModule: Module = module {
 
     single {
         createHttpClient(
-            json = get()
+            json = get(),
+            keyValueStorage = get()
         )
     }
 

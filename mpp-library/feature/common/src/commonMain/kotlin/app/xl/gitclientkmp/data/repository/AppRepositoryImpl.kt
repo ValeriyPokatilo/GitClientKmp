@@ -24,10 +24,10 @@ class AppRepositoryImpl(
 
     @Throws(Exception::class)
     override suspend fun signIn(token: String): UserInfo {
-        val authHeader: String = "Bearer $token"
+        keyValueStorage.saveToken(token)
 
         try {
-            val user: UserInfo = api.getUser(authHeader).toEntity()
+            val user: UserInfo = api.getUser().toEntity()
             keyValueStorage.saveToken(token)
             return user
         } catch (exception: Throwable) {
@@ -37,10 +37,9 @@ class AppRepositoryImpl(
 
     @Throws(Exception::class)
     override suspend fun getRepositories(): List<Repository> {
-        val authHeader: String = createAuthHeader()
         try {
             return api
-                .getRepositories(authHeader)
+                .getRepositories()
                 .map { it.toEntity() }
         } catch (exception: Throwable) {
             mapException(exception)
@@ -52,11 +51,9 @@ class AppRepositoryImpl(
         ownerName: String,
         repositoryName: String
     ): RepositoryDetails {
-        val authHeader: String = createAuthHeader()
         try {
             return api
                 .getRepository(
-                    header = authHeader,
                     ownerName = ownerName,
                     repositoryName = repositoryName
                 )
@@ -73,9 +70,7 @@ class AppRepositoryImpl(
         branchName: String?
     ): String {
         return try {
-            val authHeader: String = createAuthHeader()
             val readmeDto: ReadmeDto = api.getRepositoryReadme(
-                header = authHeader,
                 ownerName = ownerName,
                 repositoryName = repositoryName,
                 branchName = branchName
@@ -122,13 +117,6 @@ class AppRepositoryImpl(
 
     override fun logout() {
         keyValueStorage.clearToken()
-    }
-
-    private fun createAuthHeader(): String {
-        val token: String = keyValueStorage.getToken() ?: throw AppError.Unauthorized(
-            Exception("invalid_token")
-        )
-        return "Bearer $token"
     }
 
     companion object {
