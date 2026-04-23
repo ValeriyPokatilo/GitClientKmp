@@ -14,7 +14,7 @@ object CustomAlertDialog {
     ): AlertDialog {
         val binding = AlertFragmentBinding.inflate(LayoutInflater.from(context))
 
-        with(binding) {
+        with(receiver = binding) {
             dialogTitle.text = title
             dialogMessage.text = message
             dialogButton.text = buttonTitle

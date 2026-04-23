@@ -13,7 +13,7 @@ inline fun <T> Flow<T>.collectIn(
     crossinline action: suspend (T) -> Unit
 ) {
     owner.lifecycleScope.launch {
-        owner.repeatOnLifecycle(state) {
+        owner.repeatOnLifecycle(state = state) {
             collect { action(it) }
         }
     }

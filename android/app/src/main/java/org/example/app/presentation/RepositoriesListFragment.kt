@@ -82,32 +82,33 @@ class RepositoriesListFragment : Fragment() {
         }
     }
 
-    private fun setupRecyclerView() = with(binding.recyclerView) {
+    private fun setupRecyclerView() = with(receiver = binding.recyclerView) {
         layoutManager = LinearLayoutManager(requireContext())
 
-        unitsAdapter = UnitsRecyclerViewAdapter(viewLifecycleOwner)
+        unitsAdapter = UnitsRecyclerViewAdapter(lifecycleOwner = viewLifecycleOwner)
         adapter = unitsAdapter
 
         addItemDecoration(divider)
     }
 
     private fun bindToViewModel() {
-        viewModel.state.collectIn(viewLifecycleOwner, action = ::renderState)
-        viewModel.action.collectIn(viewLifecycleOwner, action = ::handleAction)
+        viewModel.state.collectIn(owner = viewLifecycleOwner, action = ::renderState)
+        viewModel.action.collectIn(owner = viewLifecycleOwner, action = ::handleAction)
     }
 
     private fun renderState(state: RepositoriesListViewModel.State) {
         binding.progressIndicator.isVisible = state is RepositoriesListViewModel.State.Loading
         binding.recyclerView.isVisible = state is RepositoriesListViewModel.State.Loaded
         binding.placeholderView.isVisible =
-            state !is RepositoriesListViewModel.State.Loaded && state !is RepositoriesListViewModel.State.Loading
+            state !is RepositoriesListViewModel.State.Loaded &&
+            state !is RepositoriesListViewModel.State.Loading
 
         when (state) {
             is RepositoriesListViewModel.State.Empty -> {
                 binding.placeholderView.showEmpty { viewModel.onRetryButtonPressed() }
             }
             is RepositoriesListViewModel.State.Error -> {
-                binding.placeholderView.showError(state.error) { viewModel.onRetryButtonPressed() }
+                binding.placeholderView.showError(error = state.error) { viewModel.onRetryButtonPressed() }
             }
             else -> {
                 binding.placeholderView.hide()
@@ -117,7 +118,7 @@ class RepositoriesListFragment : Fragment() {
         if (state is RepositoriesListViewModel.State.Loaded) {
             val units: List<UnitItem> = state.repositories.map { repo ->
                 repo.toUnitItem { clickedRepo ->
-                    viewModel.onRepositoryItemPressed(clickedRepo)
+                    viewModel.onRepositoryItemPressed(repository = clickedRepo)
                 }
             }
             unitsAdapter?.units = units
@@ -140,7 +141,7 @@ class RepositoriesListFragment : Fragment() {
     }
 
     private fun navigateToAuth() {
-        findNavController().navigate(R.id.action_global_authFragment)
+        findNavController().navigate(resId = R.id.action_global_authFragment)
     }
 
     private fun navigateToDetails(owner: String, repositoryName: String, branch: String) {

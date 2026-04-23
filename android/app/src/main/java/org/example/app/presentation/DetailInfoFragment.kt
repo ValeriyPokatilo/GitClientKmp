@@ -57,7 +57,7 @@ class DetailInfoFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupNavigationBar()
-        setupUI(view.context)
+        setupUI(context = view.context)
         bindToViewModel()
 
         viewModel.onStart()
@@ -141,7 +141,7 @@ class DetailInfoFragment : Fragment() {
                 if (markdown == null) {
                     renderReadmeEmpty()
                 } else {
-                    renderReadmeMarkdown(markdown)
+                    renderReadmeMarkdown(markdown = markdown)
                 }
             }
 
@@ -150,7 +150,7 @@ class DetailInfoFragment : Fragment() {
             }
 
             is RepositoryInfoViewModel.ReadmeState.Error -> {
-                renderReadmeError(readmeState.error)
+                renderReadmeError(error = readmeState.error)
             }
         }
     }
@@ -194,9 +194,9 @@ class DetailInfoFragment : Fragment() {
     }
 
     private fun setupDetails(details: RepositoryDetails) {
-        setupRepositoryLink(details.url)
-        setupLicense(details.license)
-        setupCounters(details)
+        setupRepositoryLink(url = details.url)
+        setupLicense(license = details.license)
+        setupCounters(details = details)
     }
 
     private fun setupRepositoryLink(url: String) {
@@ -214,7 +214,7 @@ class DetailInfoFragment : Fragment() {
             val url: String? = it.url
             if (!url.isNullOrBlank()) {
                 binding.licenselink.setOnClickListener {
-                    openUrl(url)
+                    openUrl(url = url)
                 }
             }
         }
@@ -233,7 +233,7 @@ class DetailInfoFragment : Fragment() {
     }
 
     private fun navigateToAuth() {
-        findNavController().navigate(R.id.action_global_authFragment)
+        findNavController().navigate(resId = R.id.action_global_authFragment)
     }
 
     private fun navigateToList() {

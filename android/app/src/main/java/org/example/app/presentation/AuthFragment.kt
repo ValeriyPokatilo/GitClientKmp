@@ -60,13 +60,13 @@ class AuthFragment : Fragment() {
     }
 
     private fun bindToViewModel() {
-        viewModel.state.collectIn(viewLifecycleOwner, action = ::renderState)
-        viewModel.action.collectIn(viewLifecycleOwner, action = ::handleAction)
+        viewModel.state.collectIn(owner = viewLifecycleOwner, action = ::renderState)
+        viewModel.action.collectIn(owner = viewLifecycleOwner, action = ::handleAction)
     }
 
     private fun bindInputs() {
         binding.tokenInputEdit.doAfterTextChanged {
-            viewModel.onTokenChanged(it?.toString().orEmpty())
+            viewModel.onTokenChanged(text = it?.toString().orEmpty())
         }
     }
 
@@ -91,12 +91,12 @@ class AuthFragment : Fragment() {
         when (action) {
             is AuthViewModel.Action.RouteToMain -> {
                 findNavController().navigate(
-                    R.id.action_authFragment_to_repositoriesListFragment
+                    resId = R.id.action_authFragment_to_repositoriesListFragment
                 )
             }
 
             is AuthViewModel.Action.ShowError -> {
-                showErrorDialog(action.error)
+                showErrorDialog(model = action.error)
             }
 
             is AuthViewModel.Action.FocusOnTokenField -> {
@@ -107,8 +107,8 @@ class AuthFragment : Fragment() {
     }
 
     private fun showErrorDialog(model: ErrorModel) {
-        val message: String = model.title.toString(requireContext())
-        val postfix: String = model.message.toString(requireContext())
+        val message: String = model.title.toString(context = requireContext())
+        val postfix: String = model.message.toString(context = requireContext())
         val fullMessage: String = "$message\n$postfix"
 
         showErrorAlertDialog(

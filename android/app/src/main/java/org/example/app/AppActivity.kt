@@ -47,7 +47,7 @@ class AppActivity : FragmentActivity() {
         }
 
         binding = MainActivityBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(view = binding.root)
 
         setupInsets()
         setupNavigation()
@@ -83,7 +83,7 @@ class AppActivity : FragmentActivity() {
             AppRouter.Route.RepositoriesRoute -> R.id.repositoriesListFragment
         }
 
-        navGraph.setStartDestination(startDestination)
+        navGraph.setStartDestination(startDestId = startDestination)
         navController.graph = navGraph
 
         isAppReadyForStart = true
