@@ -22,10 +22,10 @@ object Configurator {
                 MR.strings.invalid_token_reason.desc()
             }
             .condition<ErrorModel>({ it is AppError.Http }) { exc ->
-                val http = exc as AppError.Http
+                val http: AppError.Http = exc as AppError.Http
 
-                val errorCode = http.code.toString()
-                val errorMessage = http.message.toString()
+                val errorCode: String = http.code.toString()
+                val errorMessage: String = http.message.toString()
 
                 ErrorModel(
                     title = StringDesc.Raw("$errorMessage / $errorCode"),

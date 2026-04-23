@@ -17,10 +17,10 @@ class RepositoriesListViewModel(
     private val colorProvider: ColorProvider
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow<State>(State.Loading)
+    private val _state: MutableStateFlow<State> = MutableStateFlow<State>(State.Loading)
     val state: StateFlow<State> = _state
 
-    private val _action = MutableSharedFlow<Action>()
+    private val _action: MutableSharedFlow<Action> = MutableSharedFlow<Action>()
     val action: Flow<Action> = _action
 
     fun onStart() {
@@ -54,12 +54,12 @@ class RepositoriesListViewModel(
         viewModelScope.launch {
             _state.value = State.Loading
             try {
-                val repositories = repository.getRepositories()
+                val repositories: List<Repository> = repository.getRepositories()
 
                 if (repositories.isEmpty()) {
                     _state.value = State.Empty
                 } else {
-                    val repositoriesWithColors = addLanguageColors(repositories)
+                    val repositoriesWithColors: List<Repository> = addLanguageColors(repositories)
                     _state.value = State.Loaded(repositoriesWithColors)
                 }
             } catch (error: Exception) {
@@ -70,8 +70,8 @@ class RepositoriesListViewModel(
     }
 
     private fun addLanguageColors(repositories: List<Repository>): List<Repository> {
-        val languages = repositories.mapNotNull { it.language }.toSet()
-        val languageColorMap = languages.associateWith {
+        val languages: Set<String> = repositories.mapNotNull { it.language }.toSet()
+        val languageColorMap: Map<String, Int> = languages.associateWith {
             colorProvider.getColor(it)
         }
 

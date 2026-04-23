@@ -18,10 +18,10 @@ class RepositoryInfoViewModel(
     private val branch: String
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow<State>(State.Loading)
+    private val _state: MutableStateFlow<State> = MutableStateFlow<State>(State.Loading)
     val state: StateFlow<State> = _state
 
-    private val _action = MutableSharedFlow<Action>()
+    private val _action: MutableSharedFlow<Action> = MutableSharedFlow<Action>()
     val action: Flow<Action> = _action
 
     fun onStart() {
@@ -69,13 +69,13 @@ class RepositoryInfoViewModel(
 
     private suspend fun loadReadme() {
         try {
-            val readme = repository.getRepositoryReadme(
+            val readme: String = repository.getRepositoryReadme(
                 ownerName = owner,
                 repositoryName = repositoryName,
                 branchName = branch
             )
 
-            val readmeState = if (readme.isBlank()) {
+            val readmeState: ReadmeState = if (readme.isBlank()) {
                 ReadmeState.Empty
             } else {
                 ReadmeState.Loaded(readme)
@@ -89,7 +89,7 @@ class RepositoryInfoViewModel(
     }
 
     private fun updateReadmeState(readmeState: ReadmeState) {
-        val current = _state.value
+        val current: State = _state.value
         if (current is State.Loaded) {
             _state.value = current.copy(readmeState = readmeState)
         }

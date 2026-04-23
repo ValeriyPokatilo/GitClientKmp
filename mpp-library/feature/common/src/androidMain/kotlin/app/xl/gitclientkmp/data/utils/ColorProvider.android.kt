@@ -7,10 +7,10 @@ import kotlinx.serialization.json.Json
 actual class ColorProvider(
     private val context: Context
 ) {
-    private val hexRadix = 16
-    internal val jsonFormat = Json { ignoreUnknownKeys = true }
+    private val hexRadix: Int = 16
+    internal val jsonFormat: Json = Json { ignoreUnknownKeys = true }
     private val colors: Map<String, Int> by lazy {
-        val json = MR.files.color_map_json.readText(context)
+        val json: String = MR.files.color_map_json.readText(context)
 
         val stringMap: Map<String, String> =
             jsonFormat.decodeFromString(json)
@@ -23,8 +23,8 @@ actual class ColorProvider(
     }
 
     private fun parseColor(colorString: String): Int {
-        val hex = colorString.removePrefix("#")
-        val fullHex = when (hex.length) {
+        val hex: String = colorString.removePrefix("#")
+        val fullHex: String = when (hex.length) {
             HEX_LENGTH_RGB -> "FF$hex"
             HEX_LENGTH_ARGB -> hex
             else -> DEFAULT_HEX

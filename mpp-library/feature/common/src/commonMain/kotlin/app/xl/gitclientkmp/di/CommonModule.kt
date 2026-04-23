@@ -8,9 +8,10 @@ import app.xl.gitclientkmp.data.storage.KeyValueStorage
 import app.xl.gitclientkmp.domain.repository.AppRepository
 import com.russhwolf.settings.Settings
 import kotlinx.serialization.json.Json
+import org.koin.core.module.Module
 import org.koin.dsl.module
 
-val commonModule = module {
+val commonModule: Module = module {
     single<Settings> {
         Settings()
     }

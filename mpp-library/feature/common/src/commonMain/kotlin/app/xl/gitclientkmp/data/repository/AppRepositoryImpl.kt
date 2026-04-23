@@ -1,6 +1,7 @@
 package app.xl.gitclientkmp.data.repository
 
 import app.xl.gitclientkmp.data.dto.GitHubErrorDto
+import app.xl.gitclientkmp.data.dto.ReadmeDto
 import app.xl.gitclientkmp.data.network.GitHubApi
 import app.xl.gitclientkmp.data.repository.mappers.toEntity
 import app.xl.gitclientkmp.data.storage.KeyValueStorage
@@ -26,7 +27,7 @@ class AppRepositoryImpl(
         val authHeader = "Bearer $token"
 
         try {
-            val user = api.getUser(authHeader).toEntity()
+            val user: UserInfo = api.getUser(authHeader).toEntity()
             keyValueStorage.saveToken(token)
             return user
         } catch (exception: Throwable) {
@@ -36,7 +37,7 @@ class AppRepositoryImpl(
 
     @Throws(Exception::class)
     override suspend fun getRepositories(): List<Repository> {
-        val authHeader = createAuthHeader()
+        val authHeader: String = createAuthHeader()
         try {
             return api
                 .getRepositories(authHeader)
@@ -51,7 +52,7 @@ class AppRepositoryImpl(
         ownerName: String,
         repositoryName: String
     ): RepositoryDetails {
-        val authHeader = createAuthHeader()
+        val authHeader: String = createAuthHeader()
         try {
             return api
                 .getRepository(
@@ -72,8 +73,8 @@ class AppRepositoryImpl(
         branchName: String?
     ): String {
         return try {
-            val authHeader = createAuthHeader()
-            val readmeDto = api.getRepositoryReadme(
+            val authHeader: String = createAuthHeader()
+            val readmeDto: ReadmeDto = api.getRepositoryReadme(
                 header = authHeader,
                 ownerName = ownerName,
                 repositoryName = repositoryName,
@@ -83,7 +84,7 @@ class AppRepositoryImpl(
             if (readmeDto.encoding != BASE64_ENCODING) {
                 ""
             } else {
-                val decodedBytes = Base64Decoder.decode(readmeDto.content)
+                val decodedBytes: ByteArray = Base64Decoder.decode(readmeDto.content)
                 decodedBytes.decodeToString()
             }
         } catch (exception: ResponseException) {
@@ -100,13 +101,13 @@ class AppRepositoryImpl(
     private suspend fun mapException(exception: Throwable): Nothing {
         when (exception) {
             is ResponseException -> {
-                val body = runCatching { exception.response.bodyAsText() }.getOrNull()
+                val body: String? = runCatching { exception.response.bodyAsText() }.getOrNull()
 
-                val message = runCatching {
+                val message: String? = runCatching {
                     body?.let { json.decodeFromString<GitHubErrorDto>(it).message }
                 }.getOrNull()
 
-                val code = exception.response.status.value
+                val code: Int = exception.response.status.value
 
                 throw AppError.Http(
                     code = code,
@@ -124,7 +125,7 @@ class AppRepositoryImpl(
     }
 
     private fun createAuthHeader(): String {
-        val token = keyValueStorage.getToken() ?: throw AppError.Unauthorized(
+        val token: String = keyValueStorage.getToken() ?: throw AppError.Unauthorized(
             Exception("invalid_token")
         )
         return "Bearer $token"

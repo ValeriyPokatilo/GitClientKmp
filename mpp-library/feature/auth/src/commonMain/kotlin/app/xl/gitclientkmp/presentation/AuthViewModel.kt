@@ -14,15 +14,15 @@ class AuthViewModel(
     private val repository: AppRepository
 ) : ViewModel() {
 
-    private var token = ""
+    private var token: String = ""
 
     private val _state = MutableStateFlow<State>(State.Idle)
     val state: StateFlow<State> = _state
 
-    private val _actions = MutableSharedFlow<Action>()
+    private val _actions: MutableSharedFlow<Action> = MutableSharedFlow<Action>()
     val action: Flow<Action> = _actions
 
-    private val githubTokenRegex = Regex("^[A-Za-z0-9_-]*$")
+    private val githubTokenRegex: Regex = Regex("^[A-Za-z0-9_-]*$")
 
     fun onTokenChanged(text: String) {
         token = text
