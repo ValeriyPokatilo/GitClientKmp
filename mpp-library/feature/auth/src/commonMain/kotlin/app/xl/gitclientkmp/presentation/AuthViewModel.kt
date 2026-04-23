@@ -22,12 +22,13 @@ class AuthViewModel(
     private val _actions: MutableSharedFlow<Action> = MutableSharedFlow<Action>()
     val action: Flow<Action> = _actions
 
-    private val githubTokenRegex: Regex = Regex("^[A-Za-z0-9_-]*$")
+    private val githubTokenInputRegex: Regex = Regex("^g?$|^gh?$|^ghp?$|^ghp_?[a-zA-Z0-9]*$")
+    private val githubTokenValidateRegex: Regex = Regex("^ghp_[a-zA-Z0-9]{36}$")
 
     fun onTokenChanged(text: String) {
         token = text
         _state.value = when {
-            !githubTokenRegex.matches(text) -> State.InvalidInput
+            !githubTokenInputRegex.matches(text) -> State.InvalidInput
             else -> State.Idle
         }
     }
@@ -37,6 +38,11 @@ class AuthViewModel(
             viewModelScope.launch {
                 _actions.emit(Action.FocusOnTokenField)
             }
+            return
+        }
+
+        if (!githubTokenValidateRegex.matches(token)) {
+            _state.value = State.InvalidInput
             return
         }
 
