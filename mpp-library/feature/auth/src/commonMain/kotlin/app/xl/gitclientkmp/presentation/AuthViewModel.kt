@@ -41,7 +41,7 @@ class AuthViewModel(
             return
         }
 
-        if (!githubTokenValidateRegex.matches(token)) {
+        if (!githubTokenValidateRegex.matches(input = token)) {
             _state.value = State.InvalidInput
             return
         }

@@ -59,7 +59,9 @@ class RepositoriesListViewModel(
                 if (repositories.isEmpty()) {
                     _state.value = State.Empty
                 } else {
-                    val repositoriesWithColors: List<Repository> = addLanguageColors(repositories)
+                    val repositoriesWithColors: List<Repository> = addLanguageColors(
+                        repositories = repositories
+                    )
                     _state.value = State.Loaded(repositoriesWithColors)
                 }
             } catch (error: Exception) {
