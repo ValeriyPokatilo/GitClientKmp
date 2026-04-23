@@ -25,6 +25,7 @@ import org.example.app.R
 import org.example.app.databinding.DetailInfoFragmentBinding
 import org.example.app.utils.openUrl
 import org.example.app.utils.MarkwonFactory
+import org.example.app.utils.collectIn
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -95,20 +96,8 @@ class DetailInfoFragment : Fragment() {
     }
 
     private fun bindToViewModel() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch {
-                    viewModel.state.collect { state ->
-                        renderState(state)
-                    }
-                }
-                launch {
-                    viewModel.action.collect { action ->
-                        handleAction(action)
-                    }
-                }
-            }
-        }
+        viewModel.state.collectIn(viewLifecycleOwner, action = ::renderState)
+        viewModel.action.collectIn(viewLifecycleOwner, action = ::handleAction)
     }
 
     private fun renderState(state: RepositoryInfoViewModel.State) {

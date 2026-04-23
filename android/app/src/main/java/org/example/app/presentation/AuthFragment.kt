@@ -16,6 +16,7 @@ import app.xl.gitclientkmp.presentation.AuthViewModel
 import kotlinx.coroutines.launch
 import org.example.app.R
 import org.example.app.databinding.AuthFragmentBinding
+import org.example.app.utils.collectIn
 import org.example.app.utils.showKeyboard
 import org.example.app.utils.showErrorAlertDialog
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -59,20 +60,8 @@ class AuthFragment : Fragment() {
     }
 
     private fun bindToViewModel() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch {
-                    viewModel.state.collect { state ->
-                        renderState(state)
-                    }
-                }
-                launch {
-                    viewModel.action.collect { action ->
-                        handleAction(action)
-                    }
-                }
-            }
-        }
+        viewModel.state.collectIn(viewLifecycleOwner, action = ::renderState)
+        viewModel.action.collectIn(viewLifecycleOwner, action = ::handleAction)
     }
 
     private fun bindInputs() {

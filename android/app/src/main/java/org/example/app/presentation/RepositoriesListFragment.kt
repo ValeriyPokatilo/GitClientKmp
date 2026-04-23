@@ -8,6 +8,8 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.LifecycleOwner
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
@@ -15,9 +17,11 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import app.xl.gitclientkmp.presentation.RepositoriesListViewModel
 import dev.icerock.moko.units.adapter.UnitsRecyclerViewAdapter
+import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import org.example.app.R
 import org.example.app.databinding.RepositoriesListFragmentBinding
+import org.example.app.utils.collectIn
 import org.example.app.utils.toUnitItem
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
@@ -87,20 +91,8 @@ class RepositoriesListFragment : Fragment() {
     }
 
     private fun bindToViewModel() {
-        viewLifecycleOwner.lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                launch {
-                    viewModel.state.collect { state ->
-                        renderState(state)
-                    }
-                }
-                launch {
-                    viewModel.action.collect { action ->
-                        handleAction(action)
-                    }
-                }
-            }
-        }
+        viewModel.state.collectIn(viewLifecycleOwner, action = ::renderState)
+        viewModel.action.collectIn(viewLifecycleOwner, action = ::handleAction)
     }
 
     private fun renderState(state: RepositoriesListViewModel.State) {
