@@ -17,17 +17,17 @@ fun createHttpClient(
 
         expectSuccess = true
 
-        install(ContentNegotiation) {
+        install(plugin = ContentNegotiation) {
             json(json)
         }
 
         defaultRequest {
-            url("https://api.github.com")
-            header("Accept", "application/vnd.github+json")
-            header("User-Agent", "GitClientKMP")
+            url(urlString = "https://api.github.com")
+            header(key = "Accept", value = "application/vnd.github+json")
+            header(key = "User-Agent", value = "GitClientKMP")
 
             keyValueStorage.getToken()?.let {
-                header(HttpHeaders.Authorization, "Bearer $it")
+                header(key = HttpHeaders.Authorization, value = "Bearer $it")
             }
         }
     }

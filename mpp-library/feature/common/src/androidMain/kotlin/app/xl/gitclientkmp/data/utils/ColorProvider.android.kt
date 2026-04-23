@@ -13,9 +13,9 @@ actual class ColorProvider(
         val json: String = MR.files.color_map_json.readText(context)
 
         val stringMap: Map<String, String> =
-            jsonFormat.decodeFromString(json)
+            jsonFormat.decodeFromString(string = json)
 
-        stringMap.mapValues { parseColor(it.value) }
+        stringMap.mapValues { parseColor(colorString = it.value) }
     }
 
     actual fun getColor(language: String): Int {
@@ -23,13 +23,13 @@ actual class ColorProvider(
     }
 
     private fun parseColor(colorString: String): Int {
-        val hex: String = colorString.removePrefix("#")
+        val hex: String = colorString.removePrefix(prefix = "#")
         val fullHex: String = when (hex.length) {
             HEX_LENGTH_RGB -> "FF$hex"
             HEX_LENGTH_ARGB -> hex
             else -> DEFAULT_HEX
         }
-        return fullHex.toLong(hexRadix).toInt()
+        return fullHex.toLong(radix = hexRadix).toInt()
     }
 
     companion object {

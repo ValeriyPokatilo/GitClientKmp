@@ -6,6 +6,6 @@ import org.koin.dsl.module
 
 val commonAndroidModule: Module = module {
     single {
-        ColorProvider(get())
+        ColorProvider(context = get())
     }
 }

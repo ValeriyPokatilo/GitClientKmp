@@ -30,14 +30,14 @@ class RepositoriesListViewModel(
     fun onLogoutButtonPressed() {
         viewModelScope.launch {
             repository.logout()
-            _action.emit(Action.Logout)
+            _action.emit(value = Action.Logout)
         }
     }
 
     fun onRepositoryItemPressed(repository: Repository) {
         viewModelScope.launch {
             _action.emit(
-                Action.RouteToDetail(
+                value = Action.RouteToDetail(
                     owner = repository.owner.login,
                     repositoryName = repository.name,
                     branch = repository.defaultBranch
@@ -64,7 +64,7 @@ class RepositoriesListViewModel(
                 }
             } catch (error: Exception) {
                 val errorModel: ErrorModel = error.mapThrowable()
-                _state.value = State.Error(errorModel)
+                _state.value = State.Error(error = errorModel)
             }
         }
     }
@@ -72,7 +72,7 @@ class RepositoriesListViewModel(
     private fun addLanguageColors(repositories: List<Repository>): List<Repository> {
         val languages: Set<String> = repositories.mapNotNull { it.language }.toSet()
         val languageColorMap: Map<String, Int> = languages.associateWith {
-            colorProvider.getColor(it)
+            colorProvider.getColor(language = it)
         }
 
         return repositories.map { repo ->

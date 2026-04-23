@@ -30,14 +30,14 @@ class RepositoryInfoViewModel(
 
     fun onBackButtonPressed() {
         viewModelScope.launch {
-            _action.emit(Action.RouteBack)
+            _action.emit(value = Action.RouteBack)
         }
     }
 
     fun onLogoutPressed() {
         viewModelScope.launch {
             repository.logout()
-            _action.emit(Action.Logout)
+            _action.emit(value = Action.Logout)
         }
     }
 
@@ -62,7 +62,7 @@ class RepositoryInfoViewModel(
                 loadReadme()
             } catch (error: Exception) {
                 val errorModel: ErrorModel = error.mapThrowable()
-                _state.value = State.Error(errorModel)
+                _state.value = State.Error(error = errorModel)
             }
         }
     }
@@ -78,13 +78,13 @@ class RepositoryInfoViewModel(
             val readmeState: ReadmeState = if (readme.isBlank()) {
                 ReadmeState.Empty
             } else {
-                ReadmeState.Loaded(readme)
+                ReadmeState.Loaded(markdown = readme)
             }
 
             updateReadmeState(readmeState)
         } catch (error: Exception) {
             val errorModel: ErrorModel = error.mapThrowable()
-            updateReadmeState(ReadmeState.Error(errorModel))
+            updateReadmeState(ReadmeState.Error(error = errorModel))
         }
     }
 

@@ -16,18 +16,18 @@ class GitHubApiImpl(
 ) : GitHubApi {
 
     override suspend fun getUser(): UserInfoDto {
-        return client.get("user").body()
+        return client.get(urlString = "user").body()
     }
 
     override suspend fun getRepositories(): List<RepoDto> {
-        return client.get("user/repos").body()
+        return client.get(urlString = "user/repos").body()
     }
 
     override suspend fun getRepository(
         ownerName: String,
         repositoryName: String
     ): RepoDetailsDto {
-        return client.get("repos/$ownerName/$repositoryName").body()
+        return client.get(urlString = "repos/$ownerName/$repositoryName").body()
     }
 
     override suspend fun getRepositoryReadme(
@@ -35,7 +35,7 @@ class GitHubApiImpl(
         repositoryName: String,
         branchName: String?
     ): ReadmeDto {
-        return client.get("repos/$ownerName/$repositoryName/readme") {
+        return client.get(urlString = "repos/$ownerName/$repositoryName/readme") {
             branchName?.let { parameter("ref", it) }
         }.body()
     }

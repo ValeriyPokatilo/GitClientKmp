@@ -11,14 +11,14 @@ class KeyValueStorage(
     }
 
     fun saveToken(token: String) {
-        settings.putString(KEY_AUTH_TOKEN, token)
+        settings.putString(key = KEY_AUTH_TOKEN, value = token)
     }
 
     fun getToken(): String? {
-        return settings.getStringOrNull(KEY_AUTH_TOKEN)
+        return settings.getStringOrNull(key = KEY_AUTH_TOKEN)
     }
 
     fun clearToken() {
-        settings.remove(KEY_AUTH_TOKEN)
+        settings.remove(key = KEY_AUTH_TOKEN)
     }
 }

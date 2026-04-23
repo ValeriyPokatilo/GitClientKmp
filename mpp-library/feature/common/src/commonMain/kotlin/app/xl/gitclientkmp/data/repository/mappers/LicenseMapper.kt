@@ -6,8 +6,8 @@ import app.xl.gitclientkmp.domain.entity.License
 fun LicenseDto?.toEntity(): License? {
     return this?.let {
         License(
-            it.name,
-            it.url
+            name = it.name,
+            url = it.url
         )
     }
 }

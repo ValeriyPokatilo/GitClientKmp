@@ -14,6 +14,11 @@ val repoModule: Module = module {
     }
 
     factory { (owner: String, repositoryName: String, branch: String) ->
-        RepositoryInfoViewModel(get(), owner, repositoryName, branch)
+        RepositoryInfoViewModel(
+            repository = get(),
+            owner = owner,
+            repositoryName = repositoryName,
+            branch = branch
+        )
     }
 }

@@ -24,14 +24,14 @@ class AppRepositoryImpl(
 
     @Throws(Exception::class)
     override suspend fun signIn(token: String): UserInfo {
-        keyValueStorage.saveToken(token)
+        keyValueStorage.saveToken(token = token)
 
         try {
             val user: UserInfo = api.getUser().toEntity()
-            keyValueStorage.saveToken(token)
+            keyValueStorage.saveToken(token = token)
             return user
         } catch (exception: Throwable) {
-            mapException(exception)
+            mapException(exception = exception)
         }
     }
 
@@ -42,7 +42,7 @@ class AppRepositoryImpl(
                 .getRepositories()
                 .map { it.toEntity() }
         } catch (exception: Throwable) {
-            mapException(exception)
+            mapException(exception = exception)
         }
     }
 
@@ -59,7 +59,7 @@ class AppRepositoryImpl(
                 )
                 .toEntity()
         } catch (exception: Throwable) {
-            mapException(exception)
+            mapException(exception = exception)
         }
     }
 
@@ -79,17 +79,17 @@ class AppRepositoryImpl(
             if (readmeDto.encoding != BASE64_ENCODING) {
                 ""
             } else {
-                val decodedBytes: ByteArray = Base64Decoder.decode(readmeDto.content)
+                val decodedBytes: ByteArray = Base64Decoder.decode(encoded = readmeDto.content)
                 decodedBytes.decodeToString()
             }
         } catch (exception: ResponseException) {
             if (exception.response.status.value == NOT_FOUND) {
                 ""
             } else {
-                mapException(exception)
+                mapException(exception = exception)
             }
         } catch (exception: Throwable) {
-            mapException(exception)
+            mapException(exception = exception)
         }
     }
 
@@ -99,7 +99,7 @@ class AppRepositoryImpl(
                 val body: String? = runCatching { exception.response.bodyAsText() }.getOrNull()
 
                 val message: String? = runCatching {
-                    body?.let { json.decodeFromString<GitHubErrorDto>(it).message }
+                    body?.let { json.decodeFromString<GitHubErrorDto>(string = it).message }
                 }.getOrNull()
 
                 val code: Int = exception.response.status.value
@@ -111,7 +111,7 @@ class AppRepositoryImpl(
                 )
             }
 
-            else -> throw AppError.Network(exception)
+            else -> throw AppError.Network(cause = exception)
         }
     }
 

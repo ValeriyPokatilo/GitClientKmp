@@ -152,6 +152,6 @@ class RepositoriesListFragment : Fragment() {
                 branch = branch
             )
 
-        findNavController().navigate(action)
+        findNavController().navigate(directions = action)
     }
 }

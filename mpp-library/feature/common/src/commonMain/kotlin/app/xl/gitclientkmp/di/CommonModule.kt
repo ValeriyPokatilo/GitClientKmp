@@ -17,7 +17,7 @@ val commonModule: Module = module {
     }
 
     single {
-        KeyValueStorage(get())
+        KeyValueStorage(settings = get())
     }
 
     single<AppRepository> {
@@ -43,6 +43,6 @@ val commonModule: Module = module {
     }
 
     single<GitHubApi> {
-        GitHubApiImpl(get())
+        GitHubApiImpl(client = get())
     }
 }

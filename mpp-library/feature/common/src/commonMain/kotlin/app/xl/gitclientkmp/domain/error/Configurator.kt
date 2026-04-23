@@ -21,33 +21,33 @@ object Configurator {
             .register<AppError.Unauthorized, StringDesc> {
                 MR.strings.invalid_token_reason.desc()
             }
-            .condition<ErrorModel>({ it is AppError.Http }) { exc ->
+            .condition<ErrorModel>(condition = { it is AppError.Http }) { exc ->
                 val http: AppError.Http = exc as AppError.Http
 
                 val errorCode: String = http.code.toString()
                 val errorMessage: String = http.message.toString()
 
                 ErrorModel(
-                    title = StringDesc.Raw("$errorMessage / $errorCode"),
+                    title = StringDesc.Raw(string = "$errorMessage / $errorCode"),
                     message = MR.strings.info_for_developer.desc(),
                     isNetworkError = false
                 )
             }
-            .condition<ErrorModel>({ it is AppError.Network }) {
+            .condition<ErrorModel>(condition = { it is AppError.Network }) {
                 ErrorModel(
                     title = MR.strings.repositories_connection_error_title.desc(),
                     message = MR.strings.repositories_connection_error_message.desc(),
                     isNetworkError = true
                 )
             }
-            .condition<ErrorModel>({ it is AppError.Unauthorized }) {
+            .condition<ErrorModel>(condition = { it is AppError.Unauthorized }) {
                 ErrorModel(
                     title = MR.strings.invalid_token_reason.desc(),
                     message = MR.strings.info_for_developer.desc(),
                     isNetworkError = false
                 )
             }
-            .condition<ErrorModel>({ true }) {
+            .condition<ErrorModel>(condition = { true }) {
                 ErrorModel(
                     title = MR.strings.repositories_connection_error_title.desc(),
                     message = MR.strings.repositories_connection_error_message.desc(),
@@ -55,7 +55,7 @@ object Configurator {
                 )
             }
             .setFallbackValue(
-                ErrorModel(
+                value = ErrorModel(
                     title = MR.strings.repositories_connection_error_title.desc(),
                     message = MR.strings.repositories_connection_error_message.desc(),
                     isNetworkError = true

@@ -21,9 +21,9 @@ actual object Base64Decoder {
 
         val result = if (data != null && data.length.toInt() > 0) {
             val length = data.length.toInt()
-            val array = ByteArray(length)
+            val array = ByteArray(size = length)
             array.usePinned { pinned ->
-                memcpy(pinned.addressOf(0), data.bytes, data.length)
+                memcpy(__dst = pinned.addressOf(0), __src = data.bytes, __n = data.length)
             }
             array
         } else {

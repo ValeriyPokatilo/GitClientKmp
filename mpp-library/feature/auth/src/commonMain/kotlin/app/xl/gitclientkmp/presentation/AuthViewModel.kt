@@ -28,7 +28,7 @@ class AuthViewModel(
     fun onTokenChanged(text: String) {
         token = text
         _state.value = when {
-            !githubTokenInputRegex.matches(text) -> State.InvalidInput
+            !githubTokenInputRegex.matches(input = text) -> State.InvalidInput
             else -> State.Idle
         }
     }
@@ -36,7 +36,7 @@ class AuthViewModel(
     fun onSignButtonPressed() {
         if (token.isBlank()) {
             viewModelScope.launch {
-                _actions.emit(Action.FocusOnTokenField)
+                _actions.emit(value = Action.FocusOnTokenField)
             }
             return
         }
@@ -53,11 +53,11 @@ class AuthViewModel(
         viewModelScope.launch {
             _state.value = State.Loading
             try {
-                repository.signIn(token)
-                _actions.emit(Action.RouteToMain)
+                repository.signIn(token = token)
+                _actions.emit(value = Action.RouteToMain)
             } catch (error: Exception) {
                 _state.value = State.Idle
-                handleError(error)
+                handleError(error = error)
             }
         }
     }
@@ -66,7 +66,7 @@ class AuthViewModel(
         val errorModel: ErrorModel = error.mapThrowable()
 
         _actions.emit(
-            Action.ShowError(errorModel)
+            Action.ShowError(error = errorModel)
         )
     }
 
