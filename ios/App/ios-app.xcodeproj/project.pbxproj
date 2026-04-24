@@ -19,7 +19,6 @@
 		D25029FE2DB0F579000149C7 /* SwiftEnumConvertibleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25029FD2DB0F579000149C7 /* SwiftEnumConvertibleProtocol.swift */; };
 		D251A4A12D1412A700A7236D /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A4A02D1412A700A7236D /* R.generated.swift */; };
 		D2E6AC0D2DAE1D4900D01DC1 /* MobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E6AC0C2DAE1D4900D01DC1 /* MobileApp.swift */; };
-		D2F446F52D13459500A410C5 /* LogoutNavigationHook.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F446F42D13459500A410C5 /* LogoutNavigationHook.swift */; };
 		D2F446F72D13468300A410C5 /* KoinExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F446F62D13468300A410C5 /* KoinExtension.swift */; };
 		D2F446FB2D1405E900A410C5 /* ImageDesc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F446FA2D1405E900A410C5 /* ImageDesc.swift */; };
 		D2F8433B2ADF0D9300657354 /* Koin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F8433A2ADF0D9300657354 /* Koin.swift */; };
@@ -29,7 +28,6 @@
 		D2FD61E92DAE4AEE00A37209 /* ViewModelBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD61E32DAE4AEE00A37209 /* ViewModelBinding.swift */; };
 		D2FD61EA2DAE4AEE00A37209 /* ViewModelObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD61E42DAE4AEE00A37209 /* ViewModelObservable.swift */; };
 		D2FD61EB2DAE4AEE00A37209 /* ViewModelStateNullable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD61E62DAE4AEE00A37209 /* ViewModelStateNullable.swift */; };
-		D2FD62822DAF71CB00A37209 /* RemoteStateContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD62812DAF71CB00A37209 /* RemoteStateContent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -80,7 +78,6 @@
 		D251A4A02D1412A700A7236D /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		D28F70F16E4D2C6510E2A7D9 /* Pods-ios-app.dev-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-app.dev-debug.xcconfig"; path = "Target Support Files/Pods-ios-app/Pods-ios-app.dev-debug.xcconfig"; sourceTree = "<group>"; };
 		D2E6AC0C2DAE1D4900D01DC1 /* MobileApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileApp.swift; sourceTree = "<group>"; };
-		D2F446F42D13459500A410C5 /* LogoutNavigationHook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutNavigationHook.swift; sourceTree = "<group>"; };
 		D2F446F62D13468300A410C5 /* KoinExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoinExtension.swift; sourceTree = "<group>"; };
 		D2F446FA2D1405E900A410C5 /* ImageDesc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDesc.swift; sourceTree = "<group>"; };
 		D2F8433A2ADF0D9300657354 /* Koin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koin.swift; sourceTree = "<group>"; };
@@ -90,7 +87,6 @@
 		D2FD61E42DAE4AEE00A37209 /* ViewModelObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelObservable.swift; sourceTree = "<group>"; };
 		D2FD61E52DAE4AEE00A37209 /* ViewModelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelState.swift; sourceTree = "<group>"; };
 		D2FD61E62DAE4AEE00A37209 /* ViewModelStateNullable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelStateNullable.swift; sourceTree = "<group>"; };
-		D2FD62812DAF71CB00A37209 /* RemoteStateContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteStateContent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,14 +111,6 @@
 				221908102CC6B83A00A045C4 /* CrashlyticsExceptionLogger.swift */,
 			);
 			path = Firebase;
-			sourceTree = "<group>";
-		};
-		2219A11F2DB563E9009E1BE0 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				D2FD62812DAF71CB00A37209 /* RemoteStateContent.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		2219A1202DB5644B009E1BE0 /* moko-resources */ = {
@@ -174,10 +162,8 @@
 				D2E6AC0C2DAE1D4900D01DC1 /* MobileApp.swift */,
 				D2F843392ADF0D8200657354 /* Di */,
 				0E5748052660B2E800C9BCDB /* Firebase */,
-				D27C14612D13432F002FB963 /* Navigation */,
 				D25029EF2DB0CD7E000149C7 /* Preview Content */,
 				45F47911219463C7003D25FA /* Resources */,
-				2219A11F2DB563E9009E1BE0 /* Views */,
 				D2F446F92D1405A900A410C5 /* Utils */,
 			);
 			path = src;
@@ -237,14 +223,6 @@
 				D25029EE2DB0CD7E000149C7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		D27C14612D13432F002FB963 /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-				D2F446F42D13459500A410C5 /* LogoutNavigationHook.swift */,
-			);
-			path = Navigation;
 			sourceTree = "<group>";
 		};
 		D2F446F92D1405A900A410C5 /* Utils */ = {
@@ -329,6 +307,7 @@
 			knownRegions = (
 				Base,
 				en,
+				ru,
 			);
 			mainGroup = 287627F61F319065007FA12B;
 			productRefGroup = 287628001F319065007FA12B /* Products */;
@@ -369,7 +348,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "cp \"${PROJECT_DIR}/GoogleService/GoogleService-Info-${PRODUCT_BUNDLE_IDENTIFIER}.plist\" \"${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}/GoogleService-Info.plist\" \n";
+			shellScript = "#cp \"${PROJECT_DIR}/GoogleService/GoogleService-Info-${PRODUCT_BUNDLE_IDENTIFIER}.plist\" \"${BUILT_PRODUCTS_DIR}/${CONTENTS_FOLDER_PATH}/GoogleService-Info.plist\" \n";
 		};
 		559D87BD6FD631B7A2DA2715 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -452,9 +431,7 @@
 				D251A4A12D1412A700A7236D /* R.generated.swift in Sources */,
 				45D8D7FA26FB24AE00DD3A58 /* Environment.swift in Sources */,
 				221908112CC6B83A00A045C4 /* CrashlyticsExceptionLogger.swift in Sources */,
-				D2F446F52D13459500A410C5 /* LogoutNavigationHook.swift in Sources */,
 				D2F446FB2D1405E900A410C5 /* ImageDesc.swift in Sources */,
-				D2FD62822DAF71CB00A37209 /* RemoteStateContent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -466,7 +443,9 @@
 			baseConfigurationReference = B37F2F2726E0C5FE0054DB95 /* ios-app.dev-debug.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 0;
+				DEVELOPMENT_TEAM = 4LK42L3F84;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = "dev-debug";
 		};
@@ -475,7 +454,9 @@
 			baseConfigurationReference = B37F2F2A26E0C6330054DB95 /* ios-app.dev-release.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 0;
+				DEVELOPMENT_TEAM = 4LK42L3F84;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = "dev-release";
 		};
@@ -483,6 +464,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = D28F70F16E4D2C6510E2A7D9 /* Pods-ios-app.dev-debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = CUGUBFWQR9;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(BUNDLE_DISPLAY_NAME)";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "\"IceRock Development\"";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 			};
 			name = "dev-debug";
@@ -491,6 +483,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 6D54CCFF2548C00718908712 /* Pods-ios-app.dev-release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = CUGUBFWQR9;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(BUNDLE_DISPLAY_NAME)";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "\"IceRock Development\"";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 			};
 			name = "dev-release";
@@ -500,7 +503,9 @@
 			baseConfigurationReference = B37F2F2926E0C6290054DB95 /* ios-app.stage-debug.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 0;
+				DEVELOPMENT_TEAM = 4LK42L3F84;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = "stage-debug";
 		};
@@ -508,6 +513,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4E85A7C63199C53C79B0C01E /* Pods-ios-app.stage-debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = CUGUBFWQR9;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(BUNDLE_DISPLAY_NAME)";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "\"IceRock Development\"";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 			};
 			name = "stage-debug";
@@ -517,7 +533,9 @@
 			baseConfigurationReference = B37F2F2826E0C60B0054DB95 /* ios-app.prod-debug.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 0;
+				DEVELOPMENT_TEAM = 4LK42L3F84;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = "prod-debug";
 		};
@@ -525,6 +543,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 8F39AE06F9CE75BFD6022A6C /* Pods-ios-app.prod-debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = CUGUBFWQR9;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(BUNDLE_DISPLAY_NAME)";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "\"IceRock Development\"";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 			};
 			name = "prod-debug";
@@ -534,7 +563,9 @@
 			baseConfigurationReference = B37F2F2B26E0C6580054DB95 /* ios-app.prod-release.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 0;
+				DEVELOPMENT_TEAM = 4LK42L3F84;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = "prod-release";
 		};
@@ -542,6 +573,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 307CBACFCFE62C2C9FCC5724 /* Pods-ios-app.prod-release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = CUGUBFWQR9;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(BUNDLE_DISPLAY_NAME)";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "\"IceRock Development\"";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 			};
 			name = "prod-release";
@@ -551,7 +593,9 @@
 			baseConfigurationReference = B37F2F2C26E0C6720054DB95 /* ios-app.stage-release.xcconfig */;
 			buildSettings = {
 				CURRENT_PROJECT_VERSION = 0;
+				DEVELOPMENT_TEAM = 4LK42L3F84;
 				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				SWIFT_EMIT_LOC_STRINGS = YES;
 			};
 			name = "stage-release";
 		};
@@ -559,6 +603,17 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 2D7851452088C3C91A9B800E /* Pods-ios-app.stage-release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = CUGUBFWQR9;
+				INFOPLIST_KEY_CFBundleDisplayName = "$(BUNDLE_DISPLAY_NAME)";
+				INFOPLIST_KEY_ITSAppUsesNonExemptEncryption = NO;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.developer-tools";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "\"IceRock Development\"";
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
+				INFOPLIST_KEY_UIRequiredDeviceCapabilities = armv7;
+				INFOPLIST_KEY_UIRequiresFullScreen = YES;
+				INFOPLIST_KEY_UIStatusBarHidden = NO;
+				INFOPLIST_KEY_UIStatusBarStyle = UIStatusBarStyleLightContent;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.6;
 			};
 			name = "stage-release";

@@ -9,17 +9,10 @@ import SwiftUI
 struct MobileApp: App {
     @UIApplicationDelegateAdaptor(AppDelegate.self) var appDelegate
 
-    @ViewModelWrapper private var viewModel: ExampleViewModel = Koin.instance.getExampleViewModel(
-        params: ExampleViewModel.Params(argument: "iOS")
-    )
-
     var body: some Scene {
         WindowGroup {
             ZStack {
                 Color.white.ignoresSafeArea()
-                Text(viewModel.getArgValue())
-                    .font(.largeTitle)
-                    .foregroundColor(.blue)
             }
         }
     }

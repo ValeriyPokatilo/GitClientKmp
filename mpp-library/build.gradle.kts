@@ -15,7 +15,6 @@ plugins {
 }
 
 val projectModules = listOf(
-    projects.mppLibrary.feature.example,
     projects.mppLibrary.utils
 )
 
@@ -92,9 +91,6 @@ dependencies {
     androidMainApi(libs.koin.android)
     androidMainApi(libs.koin.android.compose)
     commonMainImplementation(libs.koin.core.coroutines)
-
-    //Tests
-    commonTestImplementation(projects.mppLibrary.testUtils)
 }
 
 multiplatformResources {

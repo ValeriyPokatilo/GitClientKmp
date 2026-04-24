@@ -7,8 +7,6 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.core.splashscreen.SplashScreen.Companion.installSplashScreen
 import androidx.fragment.app.FragmentActivity
-import org.example.android.uikit.theme.AppTheme
-import org.example.app.navigation.RootContainer
 import org.example.library.appRouter.AppRouter
 import org.koin.android.ext.android.inject
 
@@ -35,14 +33,6 @@ class AppActivity : FragmentActivity() {
         splashScreen.setKeepOnScreenCondition {
             //TODO: Add logic with appRouter
             false
-        }
-
-        setContent {
-            AppTheme {
-                RootContainer(
-                    destinationRoute = appRouter.getDestination()
-                )
-            }
         }
     }
 }

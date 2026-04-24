@@ -40,6 +40,6 @@ dependencies {
     implementation(libs.moko.crashReporting.crashlytics)
 
     implementation(projects.mppLibrary)
-    implementation(projects.android.utils)
-    implementation(projects.android.uikit)
+
+    api(libs.kotlinxDateTime)
 }
