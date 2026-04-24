@@ -23,6 +23,7 @@ import io.noties.markwon.Markwon
 import kotlinx.coroutines.launch
 import org.example.app.R
 import org.example.app.databinding.DetailInfoFragmentBinding
+import org.example.app.model.PlaceholderState
 import org.example.app.utils.openUrl
 import org.example.app.utils.MarkwonFactory
 import org.example.app.utils.collectIn
@@ -227,9 +228,9 @@ class DetailInfoFragment : Fragment() {
     }
 
     private fun showError(error: ErrorModel) {
-        binding.placeholderView.showError(error = error) {
-            viewModel.onRetryButtonPressed()
-        }
+        binding.placeholderView.render(
+            state = PlaceholderState.Error(error = error)
+        )
     }
 
     private fun navigateToAuth() {

@@ -6,10 +6,10 @@ import android.view.Gravity
 import android.view.LayoutInflater
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
-import androidx.core.content.ContextCompat.getString
 import app.xl.gitclientkmp.domain.error.ErrorModel
 import org.example.app.R
 import org.example.app.databinding.PlaceholderViewBinding
+import org.example.app.model.PlaceholderState
 
 class PlaceholderView @JvmOverloads constructor(
     context: Context,
@@ -21,33 +21,37 @@ class PlaceholderView @JvmOverloads constructor(
         LayoutInflater.from(context), this
     )
 
-    private var action: (() -> Unit)? = null
-
     init {
         orientation = VERTICAL
         gravity = Gravity.CENTER
         visibility = GONE
     }
 
-    fun showEmpty(action: () -> Unit) {
-        reset()
+    fun render(state: PlaceholderState) {
+        when (state) {
+            PlaceholderState.Hidden -> hide()
+
+            is PlaceholderState.Empty -> showEmpty(
+                title = state.title,
+                message = state.message
+            )
+
+            is PlaceholderState.Error -> showError(state.error)
+        }
+    }
+
+    private fun showEmpty(title: String, message: String) {
         visibility = VISIBLE
 
         binding.apply {
             placeholderIcon.setImageResource(R.drawable.ic_empty)
-            placeholderTitle.text = getString(context, R.string.repositories_empty_title)
+            placeholderTitle.text = title
             placeholderTitle.setTextColor(ContextCompat.getColor(context, R.color.blue))
-            placeholderMessage.text = getString(context, R.string.repositories_empty_message)
-            button.text = getString(context, R.string.refresh)
-            button.visibility = VISIBLE
+            placeholderMessage.text = message
         }
-
-        this.action = action
-        binding.button.setOnClickListener { this.action?.invoke() }
     }
 
-    fun showError(error: ErrorModel, action: () -> Unit) {
-        reset()
+    private fun showError(error: ErrorModel) {
         visibility = VISIBLE
 
         val iconRes: Int = if (error.isNetworkError) {
@@ -55,6 +59,7 @@ class PlaceholderView @JvmOverloads constructor(
         } else {
             R.drawable.ic_error
         }
+
         val titleText: String = error.title.toString(context = context)
         val messageText: String = error.message.toString(context = context)
         val titleColorRes: Int = R.color.error
@@ -64,27 +69,16 @@ class PlaceholderView @JvmOverloads constructor(
             placeholderTitle.text = titleText
             placeholderTitle.setTextColor(ContextCompat.getColor(context, titleColorRes))
             placeholderMessage.text = messageText
-            button.text = R.string.retry.toString()
-            button.visibility = VISIBLE
         }
-
-        this.action = action
-        binding.button.setOnClickListener { this.action?.invoke() }
     }
 
-    fun hide() {
+    private fun hide() {
         visibility = GONE
-        reset()
-    }
-
-    private fun reset() {
         binding.apply {
             placeholderIcon.setImageDrawable(null)
             placeholderTitle.text = null
             placeholderTitle.setTextColor(ContextCompat.getColor(context, android.R.color.black))
             placeholderMessage.text = null
-            button.visibility = GONE
         }
-        action = null
     }
 }

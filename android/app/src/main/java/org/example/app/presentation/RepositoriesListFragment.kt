@@ -12,6 +12,7 @@ import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -22,6 +23,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.launch
 import org.example.app.R
 import org.example.app.databinding.RepositoriesListFragmentBinding
+import org.example.app.model.PlaceholderState
 import org.example.app.utils.collectIn
 import org.example.app.utils.toUnitItem
 import org.koin.androidx.viewmodel.ext.android.viewModel
@@ -59,6 +61,7 @@ class RepositoriesListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupUI()
         setupNavigationBar()
         setupRecyclerView()
         bindToViewModel()
@@ -69,6 +72,13 @@ class RepositoriesListFragment : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    private fun setupUI() {
+        binding.retryButton.setPrimaryStyle()
+        binding.retryButton.setButtonClickListener {
+            viewModel.onRetryButtonPressed()
+        }
     }
 
     private fun setupNavigationBar() {
@@ -99,21 +109,42 @@ class RepositoriesListFragment : Fragment() {
     private fun renderState(state: RepositoriesListViewModel.State) {
         binding.progressIndicator.isVisible = state is RepositoriesListViewModel.State.Loading
         binding.recyclerView.isVisible = state is RepositoriesListViewModel.State.Loaded
-        binding.placeholderView.isVisible =
-            state !is RepositoriesListViewModel.State.Loaded &&
-            state !is RepositoriesListViewModel.State.Loading
 
         when (state) {
             is RepositoriesListViewModel.State.Empty -> {
-                binding.placeholderView.showEmpty { viewModel.onRetryButtonPressed() }
+                binding.placeholderView.render(
+                    state = PlaceholderState.Empty(
+                        title = ContextCompat.getString(
+                            requireContext(),
+                            R.string.repositories_empty_title
+                        ),
+                        message = ContextCompat.getString(
+                            requireContext(),
+                            R.string.repositories_empty_message
+                        )
+                    )
+                )
+                binding.retryButton.setTitle(title = getString(R.string.refresh))
             }
+
             is RepositoriesListViewModel.State.Error -> {
-                binding.placeholderView.showError(error = state.error) { viewModel.onRetryButtonPressed() }
+                binding.placeholderView.render(
+                    state = PlaceholderState.Error(error = state.error)
+                )
+                binding.retryButton.setTitle(title = getString(R.string.retry))
             }
+
             else -> {
-                binding.placeholderView.hide()
+                binding.placeholderView.render(PlaceholderState.Hidden)
             }
         }
+
+        binding.placeholderView.isVisible =
+            state !is RepositoriesListViewModel.State.Loaded &&
+                    state !is RepositoriesListViewModel.State.Loading
+        binding.retryButton.isVisible =
+            state is RepositoriesListViewModel.State.Empty ||
+                    state is RepositoriesListViewModel.State.Error
 
         if (state is RepositoriesListViewModel.State.Loaded) {
             val units: List<UnitItem> = state.repositories.map { repo ->
@@ -124,6 +155,7 @@ class RepositoriesListFragment : Fragment() {
             unitsAdapter?.units = units
         }
     }
+
     private fun handleAction(action: RepositoriesListViewModel.Action) {
         when (action) {
             is RepositoriesListViewModel.Action.RouteToDetail -> {
@@ -145,7 +177,7 @@ class RepositoriesListFragment : Fragment() {
     }
 
     private fun navigateToDetails(owner: String, repositoryName: String, branch: String) {
-        val action = RepositoriesListFragmentDirections
+        val action: NavDirections = RepositoriesListFragmentDirections
             .actionRepositoriesListFragmentToDetailInfoFragment(
                 owner = owner,
                 repositoryName = repositoryName,
