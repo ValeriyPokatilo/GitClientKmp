@@ -12,35 +12,35 @@ import platform.Foundation.NSDate
 import platform.Foundation.NSDateComponents
 
 fun LocalDate.toSwiftDate(): NSDate {
-    val dateComponents = NSDateComponents()
+    val dateComponents: NSDateComponents = NSDateComponents()
     dateComponents.year = this.year.toLong()
     dateComponents.month = this.monthNumber.toLong()
     dateComponents.day = this.dayOfMonth.toLong()
-    val calendar = NSCalendar.currentCalendar
+    val calendar: NSCalendar = NSCalendar.currentCalendar
     // согласно документации
     // Returns nil if the receiver cannot convert the components given in comps into an NSDate object.
     // но у нас точно компоненты корректные, поэтому ситуация null нереалистична
-    return requireNotNull(calendar.dateFromComponents(dateComponents)) {
+    return requireNotNull(value = calendar.dateFromComponents(comps = dateComponents)) {
         "NSCalendar return nil"
     }
 }
 
 fun LocalTime.toSwiftDate(): NSDate {
-    val dateComponents = NSDateComponents()
+    val dateComponents: NSDateComponents = NSDateComponents()
     dateComponents.hour = this.hour.toLong()
     dateComponents.minute = this.minute.toLong()
-    val calendar = NSCalendar.currentCalendar
+    val calendar: NSCalendar = NSCalendar.currentCalendar
     // согласно документации
     // Returns nil if the receiver cannot convert the components given in comps into an NSDate object.
     // но у нас точно компоненты корректные, поэтому ситуация null нереалистична
-    return requireNotNull(calendar.dateFromComponents(dateComponents)) {
+    return requireNotNull(value = calendar.dateFromComponents(comps = dateComponents)) {
         "NSCalendar return nil"
     }
 }
 
 fun NSDate.toLocalDate(): LocalDate {
-    val calendar = NSCalendar.currentCalendar
-    val dateComponents = calendar.components(
+    val calendar: NSCalendar = NSCalendar.currentCalendar
+    val dateComponents: NSDateComponents = calendar.components(
         unitFlags = kCFCalendarUnitYear or kCFCalendarUnitMonth or kCFCalendarUnitDay,
         fromDate = this
     )
@@ -53,8 +53,8 @@ fun NSDate.toLocalDate(): LocalDate {
 }
 
 fun NSDate.toLocalTime(): LocalTime {
-    val calendar = NSCalendar.currentCalendar
-    val dateComponents = calendar.components(
+    val calendar: NSCalendar = NSCalendar.currentCalendar
+    val dateComponents: NSDateComponents = calendar.components(
         unitFlags = kCFCalendarUnitHour or kCFCalendarUnitMinute,
         fromDate = this
     )

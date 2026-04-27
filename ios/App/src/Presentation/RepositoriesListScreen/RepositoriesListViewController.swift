@@ -28,7 +28,7 @@ final class RepositoriesListViewController: UIViewController {
         setupIndicator()
         setupTableView()
         bindViewModel()
-        
+
         viewModel.onStart()
     }
 

@@ -1,4 +1,4 @@
-package org.example.android.utils
+package org.example.app.utils
 
 import android.util.Log
 import io.github.aakira.napier.Antilog

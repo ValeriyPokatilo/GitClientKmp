@@ -46,7 +46,6 @@
 		D25029FE2DB0F579000149C7 /* SwiftEnumConvertibleProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = D25029FD2DB0F579000149C7 /* SwiftEnumConvertibleProtocol.swift */; };
 		D251A4A12D1412A700A7236D /* R.generated.swift in Sources */ = {isa = PBXBuildFile; fileRef = D251A4A02D1412A700A7236D /* R.generated.swift */; };
 		D2E6AC0D2DAE1D4900D01DC1 /* MobileApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E6AC0C2DAE1D4900D01DC1 /* MobileApp.swift */; };
-		D2F446F52D13459500A410C5 /* LogoutNavigationHook.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F446F42D13459500A410C5 /* LogoutNavigationHook.swift */; };
 		D2F446F72D13468300A410C5 /* KoinExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F446F62D13468300A410C5 /* KoinExtension.swift */; };
 		D2F446FB2D1405E900A410C5 /* ImageDesc.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F446FA2D1405E900A410C5 /* ImageDesc.swift */; };
 		D2F8433B2ADF0D9300657354 /* Koin.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F8433A2ADF0D9300657354 /* Koin.swift */; };
@@ -56,7 +55,6 @@
 		D2FD61E92DAE4AEE00A37209 /* ViewModelBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD61E32DAE4AEE00A37209 /* ViewModelBinding.swift */; };
 		D2FD61EA2DAE4AEE00A37209 /* ViewModelObservable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD61E42DAE4AEE00A37209 /* ViewModelObservable.swift */; };
 		D2FD61EB2DAE4AEE00A37209 /* ViewModelStateNullable.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD61E62DAE4AEE00A37209 /* ViewModelStateNullable.swift */; };
-		D2FD62822DAF71CB00A37209 /* RemoteStateContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2FD62812DAF71CB00A37209 /* RemoteStateContent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -135,7 +133,6 @@
 		D251A4A02D1412A700A7236D /* R.generated.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = R.generated.swift; sourceTree = SOURCE_ROOT; };
 		D28F70F16E4D2C6510E2A7D9 /* Pods-ios-app.dev-debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ios-app.dev-debug.xcconfig"; path = "Target Support Files/Pods-ios-app/Pods-ios-app.dev-debug.xcconfig"; sourceTree = "<group>"; };
 		D2E6AC0C2DAE1D4900D01DC1 /* MobileApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MobileApp.swift; sourceTree = "<group>"; };
-		D2F446F42D13459500A410C5 /* LogoutNavigationHook.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoutNavigationHook.swift; sourceTree = "<group>"; };
 		D2F446F62D13468300A410C5 /* KoinExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KoinExtension.swift; sourceTree = "<group>"; };
 		D2F446FA2D1405E900A410C5 /* ImageDesc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageDesc.swift; sourceTree = "<group>"; };
 		D2F8433A2ADF0D9300657354 /* Koin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Koin.swift; sourceTree = "<group>"; };
@@ -145,7 +142,6 @@
 		D2FD61E42DAE4AEE00A37209 /* ViewModelObservable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelObservable.swift; sourceTree = "<group>"; };
 		D2FD61E52DAE4AEE00A37209 /* ViewModelState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelState.swift; sourceTree = "<group>"; };
 		D2FD61E62DAE4AEE00A37209 /* ViewModelStateNullable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelStateNullable.swift; sourceTree = "<group>"; };
-		D2FD62812DAF71CB00A37209 /* RemoteStateContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteStateContent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -170,14 +166,6 @@
 				221908102CC6B83A00A045C4 /* CrashlyticsExceptionLogger.swift */,
 			);
 			path = Firebase;
-			sourceTree = "<group>";
-		};
-		2219A11F2DB563E9009E1BE0 /* Views */ = {
-			isa = PBXGroup;
-			children = (
-				D2FD62812DAF71CB00A37209 /* RemoteStateContent.swift */,
-			);
-			path = Views;
 			sourceTree = "<group>";
 		};
 		2219A1202DB5644B009E1BE0 /* moko-resources */ = {
@@ -234,11 +222,9 @@
 				D2F843392ADF0D8200657354 /* Di */,
 				760116902F75AF0200DB7004 /* Localize */,
 				0E5748052660B2E800C9BCDB /* Firebase */,
-				D27C14612D13432F002FB963 /* Navigation */,
 				D25029EF2DB0CD7E000149C7 /* Preview Content */,
 				45F47911219463C7003D25FA /* Resources */,
 				76350DA42F5FF5C5009D4FD1 /* Extensions */,
-				2219A11F2DB563E9009E1BE0 /* Views */,
 				D2F446F92D1405A900A410C5 /* Utils */,
 			);
 			path = src;
@@ -406,14 +392,6 @@
 				D25029EE2DB0CD7E000149C7 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
-			sourceTree = "<group>";
-		};
-		D27C14612D13432F002FB963 /* Navigation */ = {
-			isa = PBXGroup;
-			children = (
-				D2F446F42D13459500A410C5 /* LogoutNavigationHook.swift */,
-			);
-			path = Navigation;
 			sourceTree = "<group>";
 		};
 		D2F446F92D1405A900A410C5 /* Utils */ = {
@@ -652,11 +630,9 @@
 				76829CDF2F66B90F00969E6F /* AuthorizedCoordinator.swift in Sources */,
 				76EF931F2F5A1440001B63C8 /* SceneDelegate.swift in Sources */,
 				7697AB332F6A847600C333E7 /* RepositoriesListViewController.swift in Sources */,
-				D2F446F52D13459500A410C5 /* LogoutNavigationHook.swift in Sources */,
 				76EF930C2F5A120A001B63C8 /* AuthViewController.swift in Sources */,
 				D2F446FB2D1405E900A410C5 /* ImageDesc.swift in Sources */,
 				76829CDD2F66B8EF00969E6F /* UnauthorizedCoordinator.swift in Sources */,
-				D2FD62822DAF71CB00A37209 /* RemoteStateContent.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

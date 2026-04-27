@@ -7,18 +7,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import app.xl.gitclientkmp.domain.error.ErrorModel
 import app.xl.gitclientkmp.presentation.AuthViewModel
-import kotlinx.coroutines.launch
 import org.example.app.R
 import org.example.app.databinding.AuthFragmentBinding
 import org.example.app.utils.collectIn
-import org.example.app.utils.showKeyboard
 import org.example.app.utils.showErrorAlertDialog
+import org.example.app.utils.showKeyboard
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class AuthFragment : Fragment() {

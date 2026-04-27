@@ -20,7 +20,6 @@ extension Koin {
         #endif
 
         let koinApp: KoinApplication = KoinKt.startDI(
-            baseUrl: Environment.Keys.serverBaseUrl.value(),
             antilog: antilog,
             exceptionLogger: CrashlyticsExceptionLogger()
         )

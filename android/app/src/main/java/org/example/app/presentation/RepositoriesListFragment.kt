@@ -7,11 +7,6 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.flowWithLifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -19,8 +14,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import app.xl.gitclientkmp.presentation.RepositoriesListViewModel
 import dev.icerock.moko.units.UnitItem
 import dev.icerock.moko.units.adapter.UnitsRecyclerViewAdapter
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.launch
 import org.example.app.R
 import org.example.app.databinding.RepositoriesListFragmentBinding
 import org.example.app.model.PlaceholderState
@@ -141,10 +134,10 @@ class RepositoriesListFragment : Fragment() {
 
         binding.placeholderView.isVisible =
             state !is RepositoriesListViewModel.State.Loaded &&
-                    state !is RepositoriesListViewModel.State.Loading
+            state !is RepositoriesListViewModel.State.Loading
         binding.retryButton.isVisible =
             state is RepositoriesListViewModel.State.Empty ||
-                    state is RepositoriesListViewModel.State.Error
+            state is RepositoriesListViewModel.State.Error
 
         if (state is RepositoriesListViewModel.State.Loaded) {
             val units: List<UnitItem> = state.repositories.map { repo ->

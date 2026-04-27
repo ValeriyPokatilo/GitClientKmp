@@ -9,9 +9,6 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import app.xl.gitclientkmp.domain.entity.License
@@ -20,13 +17,12 @@ import app.xl.gitclientkmp.domain.error.ErrorModel
 import app.xl.gitclientkmp.domain.extensions.toDisplayUrl
 import app.xl.gitclientkmp.presentation.RepositoryInfoViewModel
 import io.noties.markwon.Markwon
-import kotlinx.coroutines.launch
 import org.example.app.R
 import org.example.app.databinding.DetailInfoFragmentBinding
 import org.example.app.model.PlaceholderState
-import org.example.app.utils.openUrl
 import org.example.app.utils.MarkwonFactory
 import org.example.app.utils.collectIn
+import org.example.app.utils.openUrl
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -133,7 +129,7 @@ class DetailInfoFragment : Fragment() {
 
     private fun handleReadmeState(readmeState: RepositoryInfoViewModel.ReadmeState) {
         when (readmeState) {
-            RepositoryInfoViewModel.ReadmeState.Loading ->  {
+            RepositoryInfoViewModel.ReadmeState.Loading -> {
                 renderReadmeLoading()
             }
 
