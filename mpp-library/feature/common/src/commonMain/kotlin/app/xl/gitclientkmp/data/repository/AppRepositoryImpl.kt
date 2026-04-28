@@ -24,10 +24,8 @@ class AppRepositoryImpl(
 
     @Throws(Exception::class)
     override suspend fun signIn(token: String): UserInfo {
-        keyValueStorage.saveToken(token = token)
-
         try {
-            val user: UserInfo = api.getUser().toEntity()
+            val user: UserInfo = api.getUser(token = token).toEntity()
             keyValueStorage.saveToken(token = token)
             return user
         } catch (exception: Throwable) {
