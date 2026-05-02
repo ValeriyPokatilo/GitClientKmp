@@ -11,8 +11,8 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import app.xl.gitclientkmp.domain.entity.License
-import app.xl.gitclientkmp.domain.entity.RepositoryDetails
+import app.xl.gitclientkmp.License
+import app.xl.gitclientkmp.RepositoryDetails
 import app.xl.gitclientkmp.domain.error.ErrorModel
 import app.xl.gitclientkmp.domain.extensions.toDisplayUrl
 import app.xl.gitclientkmp.presentation.RepositoryInfoViewModel

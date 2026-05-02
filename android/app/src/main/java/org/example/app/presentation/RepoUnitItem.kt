@@ -9,7 +9,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.lifecycle.LifecycleOwner
 import androidx.recyclerview.widget.RecyclerView
-import app.xl.gitclientkmp.domain.entity.Repository
+import app.xl.gitclientkmp.Repository
 import dev.icerock.moko.units.UnitItem
 import org.example.app.R
 import org.example.app.databinding.RepositoryItemBinding

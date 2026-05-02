@@ -50,4 +50,6 @@ dependencies {
     implementation(libs.moko.units)
 
     api(libs.kotlinxDateTime)
+
+    implementation(project(":mpp-library:entity"))
 }
