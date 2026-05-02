@@ -43,9 +43,9 @@ final class PlaceholderView: UIView {
             imageView.image = R.image.ic_error()
         }
 
-        titleLabel.text = error.title.localized()
+        titleLabel.text = error.placeholderTitle.localized()
         titleLabel.textColor = .appError
-        messageLabel.text = error.message.localized()
+        messageLabel.text = error.placeholderMessage.localized()
         refreshButton.setTitle(
             R.string.localizable.retry(),
             for: .normal
