@@ -34,7 +34,7 @@ final class PlaceholderView: UIView {
         addSubview(view)
     }
 
-    func configure(with error: ErrorModel, action: @escaping EmptyBlock) {
+    func show(with error: ErrorModel, action: @escaping EmptyBlock) {
         reset()
 
         if error.isNetworkError {
@@ -54,13 +54,17 @@ final class PlaceholderView: UIView {
         self.action = action
     }
 
-    func configureEmpty(action: @escaping EmptyBlock) {
+    func showEmpty(
+        title: String,
+        message: String,
+        action: @escaping EmptyBlock
+    ) {
         reset()
 
         imageView.image = R.image.ic_empty()
-        titleLabel.text = R.string.localizable.repositories_empty_title()
+        titleLabel.text = title
         titleLabel.textColor = R.color.appBlue()!
-        messageLabel.text = R.string.localizable.repositories_empty_message()
+        messageLabel.text = message
         refreshButton.setTitle(
             R.string.localizable.refresh(),
             for: .normal

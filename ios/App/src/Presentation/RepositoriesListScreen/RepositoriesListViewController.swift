@@ -120,13 +120,17 @@ final class RepositoriesListViewController: UIViewController {
         switch onEnum(of: state) {
         case .empty:
             placeholderView.isHidden = false
-            placeholderView.configureEmpty { [weak self] in
-                self?.viewModel.onRetryButtonPressed()
-            }
+            placeholderView.showEmpty(
+                title: R.string.localizable.repositories_empty_title(),
+                message: R.string.localizable.repositories_empty_message(),
+                action: { [weak self] in
+                    self?.viewModel.onRetryButtonPressed()
+                }
+            )
 
         case let .error(errorState):
             placeholderView.isHidden = false
-            placeholderView.configure(with: errorState.error) { [weak self] in
+            placeholderView.show(with: errorState.error) { [weak self] in
                 self?.viewModel.onRetryButtonPressed()
             }
 

@@ -124,7 +124,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
         switch onEnum(of: state) {
         case let .error(errorState):
             placeholderView.isHidden = false
-            placeholderView.configure(with: errorState.error) { [weak self] in
+            placeholderView.show(with: errorState.error) { [weak self] in
                 self?.viewModel.onRetryButtonPressed()
             }
         default:
@@ -239,7 +239,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
     private func handleErrorState(error: ErrorModel) {
         placeholderView.isHidden = false
 
-        placeholderView.configure(with: error) { [weak self] in
+        placeholderView.show(with: error) { [weak self] in
             self?.viewModel.onRetryButtonPressed()
         }
     }
