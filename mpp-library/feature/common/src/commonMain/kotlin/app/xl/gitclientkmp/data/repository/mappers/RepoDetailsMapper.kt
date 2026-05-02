@@ -1,7 +1,7 @@
 package app.xl.gitclientkmp.data.repository.mappers
 
+import app.xl.gitclientkmp.RepositoryDetails
 import app.xl.gitclientkmp.data.dto.RepoDetailsDto
-import app.xl.gitclientkmp.domain.entity.RepositoryDetails
 
 fun RepoDetailsDto.toEntity(): RepositoryDetails {
     return RepositoryDetails(

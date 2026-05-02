@@ -20,6 +20,7 @@ dependencies {
     commonMainImplementation(libs.ktorSerialization.kotlinx.json)
     commonMainImplementation(libs.moko.units)
     commonMainImplementation(libs.moko.errors)
+    commonMainImplementation(project(":mpp-library:entity"))
 }
 
 multiplatformResources {

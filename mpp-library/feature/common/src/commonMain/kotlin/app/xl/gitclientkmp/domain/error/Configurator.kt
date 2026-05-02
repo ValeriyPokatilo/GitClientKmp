@@ -1,7 +1,7 @@
 package app.xl.gitclientkmp.domain.error
 
+import app.xl.gitclientkmp.AppError
 import app.xl.gitclientkmp.MR
-import app.xl.gitclientkmp.domain.entity.AppError
 import dev.icerock.moko.errors.mappers.ExceptionMappersStorage
 import dev.icerock.moko.resources.desc.Raw
 import dev.icerock.moko.resources.desc.StringDesc

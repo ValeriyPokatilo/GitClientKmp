@@ -1,5 +1,9 @@
 package app.xl.gitclientkmp.data.repository
 
+import app.xl.gitclientkmp.AppError
+import app.xl.gitclientkmp.Repository
+import app.xl.gitclientkmp.RepositoryDetails
+import app.xl.gitclientkmp.UserInfo
 import app.xl.gitclientkmp.data.dto.GitHubErrorDto
 import app.xl.gitclientkmp.data.dto.ReadmeDto
 import app.xl.gitclientkmp.data.network.GitHubApi
@@ -7,10 +11,6 @@ import app.xl.gitclientkmp.data.repository.mappers.toEntity
 import app.xl.gitclientkmp.data.storage.KeyValueStorage
 import app.xl.gitclientkmp.data.utils.Base64Decoder
 import app.xl.gitclientkmp.data.utils.Logger
-import app.xl.gitclientkmp.domain.entity.AppError
-import app.xl.gitclientkmp.domain.entity.Repository
-import app.xl.gitclientkmp.domain.entity.RepositoryDetails
-import app.xl.gitclientkmp.domain.entity.UserInfo
 import app.xl.gitclientkmp.domain.repository.AppRepository
 import io.ktor.client.plugins.ResponseException
 import io.ktor.client.statement.bodyAsText

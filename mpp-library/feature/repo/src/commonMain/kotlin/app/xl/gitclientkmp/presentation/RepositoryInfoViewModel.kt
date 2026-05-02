@@ -1,7 +1,7 @@
 package app.xl.gitclientkmp.presentation
 
+import app.xl.gitclientkmp.RepositoryDetails
 import app.xl.gitclientkmp.data.utils.Logger
-import app.xl.gitclientkmp.domain.entity.RepositoryDetails
 import app.xl.gitclientkmp.domain.error.ErrorModel
 import app.xl.gitclientkmp.domain.repository.AppRepository
 import dev.icerock.moko.errors.mappers.mapThrowable

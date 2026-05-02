@@ -1,4 +1,4 @@
-package app.xl.gitclientkmp.domain.entity
+package app.xl.gitclientkmp
 
 sealed class AppError(
     message: String?,

@@ -11,4 +11,5 @@ dependencies {
     commonMainImplementation(libs.koin.core)
     commonMainImplementation(libs.moko.errors)
     commonMainImplementation(project(":mpp-library:feature:common"))
+    commonMainImplementation(project(":mpp-library:entity"))
 }

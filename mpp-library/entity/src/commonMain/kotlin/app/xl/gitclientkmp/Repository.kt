@@ -1,4 +1,4 @@
-package app.xl.gitclientkmp.domain.entity
+package app.xl.gitclientkmp
 
 data class Repository(
     val id: Long,

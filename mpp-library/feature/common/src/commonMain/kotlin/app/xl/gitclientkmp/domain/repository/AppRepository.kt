@@ -1,8 +1,8 @@
 package app.xl.gitclientkmp.domain.repository
 
-import app.xl.gitclientkmp.domain.entity.Repository
-import app.xl.gitclientkmp.domain.entity.RepositoryDetails
-import app.xl.gitclientkmp.domain.entity.UserInfo
+import app.xl.gitclientkmp.Repository
+import app.xl.gitclientkmp.RepositoryDetails
+import app.xl.gitclientkmp.UserInfo
 
 interface AppRepository {
 
