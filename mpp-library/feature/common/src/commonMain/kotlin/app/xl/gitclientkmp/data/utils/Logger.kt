@@ -5,6 +5,6 @@ import io.github.aakira.napier.log
 
 object Logger {
     fun info(message: String) {
-        log(LogLevel.INFO, null, "GitApp", { message})
+        log(LogLevel.INFO, null, "GitApp", { message })
     }
 }

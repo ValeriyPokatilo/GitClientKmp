@@ -6,16 +6,17 @@ import dev.icerock.moko.errors.mappers.ExceptionMappersStorage
 import dev.icerock.moko.resources.desc.Raw
 import dev.icerock.moko.resources.desc.StringDesc
 import dev.icerock.moko.resources.desc.desc
+import dev.icerock.moko.resources.format
 
 object Configurator {
     fun init() {
         ExceptionMappersStorage
             .register<AppError.Http, StringDesc> { exc ->
                 exc.errorMessage?.let { StringDesc.Raw(it) }
-                    ?: MR.strings.repositories_connection_error_message.desc()
+                    ?: MR.strings.connection_error_message.desc()
             }
             .register<AppError.Network, StringDesc> {
-                MR.strings.repositories_connection_error_message.desc()
+                MR.strings.connection_error_message.desc()
             }
             .register<AppError.Unauthorized, StringDesc> {
                 MR.strings.invalid_token_reason.desc()
@@ -27,36 +28,40 @@ object Configurator {
                 val errorMessage: String = http.message.toString()
 
                 ErrorModel(
-                    title = StringDesc.Raw(string = "$errorMessage / $errorCode"),
-                    message = MR.strings.info_for_developer.desc(),
+                    placeholderTitle = MR.strings.request_error_title.desc(),
+                    placeholderMessage = MR.strings.request_error_message.desc(),
+                    alertMessage = MR.strings.error_with_dev_info.format(
+                        "$errorMessage / $errorCode",
+                        MR.strings.info_for_developer.desc()
+                    ),
                     isNetworkError = false
                 )
             }
             .condition<ErrorModel>(condition = { it is AppError.Network }) {
                 ErrorModel(
-                    title = MR.strings.repositories_connection_error_title.desc(),
-                    message = MR.strings.repositories_connection_error_message.desc(),
+                    placeholderTitle = MR.strings.connection_error_title.desc(),
+                    placeholderMessage = MR.strings.connection_error_message.desc(),
                     isNetworkError = true
                 )
             }
             .condition<ErrorModel>(condition = { it is AppError.Unauthorized }) {
                 ErrorModel(
-                    title = MR.strings.invalid_token_reason.desc(),
-                    message = MR.strings.info_for_developer.desc(),
+                    placeholderTitle = MR.strings.invalid_token_reason.desc(),
+                    placeholderMessage = MR.strings.info_for_developer.desc(),
                     isNetworkError = false
                 )
             }
             .condition<ErrorModel>(condition = { true }) {
                 ErrorModel(
-                    title = MR.strings.repositories_connection_error_title.desc(),
-                    message = MR.strings.repositories_connection_error_message.desc(),
+                    placeholderTitle = MR.strings.connection_error_title.desc(),
+                    placeholderMessage = MR.strings.connection_error_message.desc(),
                     isNetworkError = true
                 )
             }
             .setFallbackValue(
                 value = ErrorModel(
-                    title = MR.strings.repositories_connection_error_title.desc(),
-                    message = MR.strings.repositories_connection_error_message.desc(),
+                    placeholderTitle = MR.strings.connection_error_title.desc(),
+                    placeholderMessage = MR.strings.connection_error_message.desc(),
                     isNetworkError = true
                 )
             )
