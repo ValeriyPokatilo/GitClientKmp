@@ -1,5 +1,6 @@
 package app.xl.gitclientkmp.data.storage
 
+import app.xl.gitclientkmp.data.utils.Logger
 import com.russhwolf.settings.Settings
 
 class KeyValueStorage(
@@ -11,14 +12,18 @@ class KeyValueStorage(
     }
 
     fun saveToken(token: String) {
+        Logger.info(message = "KeyValueStorage: save token")
         settings.putString(key = KEY_AUTH_TOKEN, value = token)
     }
 
     fun getToken(): String? {
-        return settings.getStringOrNull(key = KEY_AUTH_TOKEN)
+        val token = settings.getStringOrNull(key = KEY_AUTH_TOKEN)
+        Logger.info(message = "KeyValueStorage: get token - $token")
+        return token
     }
 
     fun clearToken() {
+        Logger.info(message = "KeyValueStorage: clear token")
         settings.remove(key = KEY_AUTH_TOKEN)
     }
 }

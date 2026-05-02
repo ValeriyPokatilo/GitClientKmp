@@ -1,5 +1,6 @@
 package app.xl.gitclientkmp.presentation
 
+import app.xl.gitclientkmp.data.utils.Logger
 import app.xl.gitclientkmp.domain.entity.RepositoryDetails
 import app.xl.gitclientkmp.domain.error.ErrorModel
 import app.xl.gitclientkmp.domain.repository.AppRepository
@@ -29,24 +30,29 @@ class RepositoryInfoViewModel(
     }
 
     fun onBackButtonPressed() {
+        Logger.info(message = "RepositoryInfoViewModel: onBackButtonPressed")
         viewModelScope.launch {
             _action.emit(value = Action.RouteBack)
         }
     }
 
     fun onLogoutPressed() {
+        Logger.info(message = "RepositoryInfoViewModel: onLogoutPressed")
         viewModelScope.launch {
             repository.logout()
+            Logger.info(message = "RepositoryInfoViewModel: Action - Logout")
             _action.emit(value = Action.Logout)
         }
     }
 
     fun onRetryButtonPressed() {
+        Logger.info(message = "RepositoryInfoViewModel: onRetryButtonPressed")
         loadRepositoryInfo()
     }
 
     private fun loadRepositoryInfo() {
         viewModelScope.launch {
+            Logger.info(message = "RepositoryInfoViewModel: State - Loading")
             _state.value = State.Loading
             try {
                 val details = repository.getRepository(
@@ -61,6 +67,7 @@ class RepositoryInfoViewModel(
 
                 loadReadme()
             } catch (error: Exception) {
+                Logger.info(message = "RepositoryInfoViewModel: State - Error")
                 val errorModel: ErrorModel = error.mapThrowable()
                 _state.value = State.Error(error = errorModel)
             }
@@ -76,13 +83,16 @@ class RepositoryInfoViewModel(
             )
 
             val readmeState: ReadmeState = if (readme.isBlank()) {
+                Logger.info(message = "RepositoryInfoViewModel: ReadmeState - Empty")
                 ReadmeState.Empty
             } else {
+                Logger.info(message = "RepositoryInfoViewModel: ReadmeState - Loaded")
                 ReadmeState.Loaded(markdown = readme)
             }
 
             updateReadmeState(readmeState)
         } catch (error: Exception) {
+            Logger.info(message = "RepositoryInfoViewModel: ReadmeState - Error")
             val errorModel: ErrorModel = error.mapThrowable()
             updateReadmeState(ReadmeState.Error(error = errorModel))
         }

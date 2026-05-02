@@ -1,5 +1,6 @@
 package app.xl.gitclientkmp.presentation
 
+import app.xl.gitclientkmp.data.utils.Logger
 import app.xl.gitclientkmp.domain.error.ErrorModel
 import app.xl.gitclientkmp.domain.repository.AppRepository
 import dev.icerock.moko.errors.mappers.mapThrowable
@@ -26,6 +27,7 @@ class AuthViewModel(
     private val githubTokenValidateRegex: Regex = Regex("^ghp_[a-zA-Z0-9]{36}$")
 
     fun onTokenChanged(text: String) {
+        Logger.info(message = "AuthViewModel: onTokenChanged $text")
         token = text
         _state.value = when {
             !githubTokenInputRegex.matches(input = text) -> State.InvalidInput
@@ -34,14 +36,17 @@ class AuthViewModel(
     }
 
     fun onSignButtonPressed() {
+        Logger.info(message = "AuthViewModel: onSignButtonPressed")
         if (token.isBlank()) {
             viewModelScope.launch {
+                Logger.info(message = "AuthViewModel: Action - FocusOnTokenField")
                 _actions.emit(value = Action.FocusOnTokenField)
             }
             return
         }
 
         if (!githubTokenValidateRegex.matches(input = token)) {
+            Logger.info(message = "AuthViewModel: State - InvalidInput")
             _state.value = State.InvalidInput
             return
         }
@@ -54,8 +59,10 @@ class AuthViewModel(
             _state.value = State.Loading
             try {
                 repository.signIn(token = token)
+                Logger.info(message = "AuthViewModel: Action - RouteToMain")
                 _actions.emit(value = Action.RouteToMain)
             } catch (error: Exception) {
+                Logger.info(message = "AuthViewModel: State - Idle")
                 _state.value = State.Idle
                 handleError(error = error)
             }
@@ -65,6 +72,7 @@ class AuthViewModel(
     private suspend fun handleError(error: Exception) {
         val errorModel: ErrorModel = error.mapThrowable()
 
+        Logger.info(message = "AuthViewModel: Action - ShowError")
         _actions.emit(
             Action.ShowError(error = errorModel)
         )

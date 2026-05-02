@@ -6,6 +6,7 @@ import app.xl.gitclientkmp.data.network.GitHubApi
 import app.xl.gitclientkmp.data.repository.mappers.toEntity
 import app.xl.gitclientkmp.data.storage.KeyValueStorage
 import app.xl.gitclientkmp.data.utils.Base64Decoder
+import app.xl.gitclientkmp.data.utils.Logger
 import app.xl.gitclientkmp.domain.entity.AppError
 import app.xl.gitclientkmp.domain.entity.Repository
 import app.xl.gitclientkmp.domain.entity.RepositoryDetails
@@ -24,22 +25,29 @@ class AppRepositoryImpl(
 
     @Throws(Exception::class)
     override suspend fun signIn(token: String): UserInfo {
+        Logger.info(message = "AppRepositoryImpl: sign in started")
         try {
             val user: UserInfo = api.getUser(token = token).toEntity()
+            Logger.info(message = "AppRepositoryImpl: sign in success - ${user.login}")
             keyValueStorage.saveToken(token = token)
             return user
         } catch (exception: Throwable) {
+            Logger.info(message = "AppRepositoryImpl: sign in failed - $exception")
             mapException(exception = exception)
         }
     }
 
     @Throws(Exception::class)
     override suspend fun getRepositories(): List<Repository> {
+        Logger.info(message = "AppRepositoryImpl: get repositories started")
         try {
-            return api
-                .getRepositories()
-                .map { it.toEntity() }
+            val result = api.getRepositories()
+            Logger.info(
+                message = "AppRepositoryImpl: get repositories success - ${result.size} items"
+            )
+            return result.map { it.toEntity() }
         } catch (exception: Throwable) {
+            Logger.info(message = "AppRepositoryImpl: get repositories failed - $exception")
             mapException(exception = exception)
         }
     }
@@ -49,14 +57,16 @@ class AppRepositoryImpl(
         ownerName: String,
         repositoryName: String
     ): RepositoryDetails {
+        Logger.info(message = "AppRepositoryImpl: get repository started")
         try {
-            return api
-                .getRepository(
-                    ownerName = ownerName,
-                    repositoryName = repositoryName
-                )
-                .toEntity()
+            val result = api.getRepository(
+                ownerName = ownerName,
+                repositoryName = repositoryName
+            )
+            Logger.info(message = "AppRepositoryImpl: get repository success")
+            return result.toEntity()
         } catch (exception: Throwable) {
+            Logger.info(message = "AppRepositoryImpl: get repository failed - $exception")
             mapException(exception = exception)
         }
     }
@@ -67,6 +77,7 @@ class AppRepositoryImpl(
         repositoryName: String,
         branchName: String?
     ): String {
+        Logger.info(message = "AppRepositoryImpl: get repository readme started")
         return try {
             val readmeDto: ReadmeDto = api.getRepositoryReadme(
                 ownerName = ownerName,
@@ -75,18 +86,26 @@ class AppRepositoryImpl(
             )
 
             if (readmeDto.encoding != BASE64_ENCODING) {
+                Logger.info(
+                    message = "AppRepositoryImpl: get repository readme success, but not decoded"
+                )
                 ""
             } else {
                 val decodedBytes: ByteArray = Base64Decoder.decode(encoded = readmeDto.content)
+                Logger.info(
+                    message = "AppRepositoryImpl: get repository readme success - $decodedBytes"
+                )
                 decodedBytes.decodeToString()
             }
         } catch (exception: ResponseException) {
+            Logger.info(message = "AppRepositoryImpl: get repository readme failed - $exception")
             if (exception.response.status.value == NOT_FOUND) {
                 ""
             } else {
                 mapException(exception = exception)
             }
         } catch (exception: Throwable) {
+            Logger.info(message = "AppRepositoryImpl: get repository readme failed - $exception")
             mapException(exception = exception)
         }
     }
@@ -114,6 +133,7 @@ class AppRepositoryImpl(
     }
 
     override fun logout() {
+        Logger.info(message = "AppRepositoryImpl: logout")
         keyValueStorage.clearToken()
     }
 

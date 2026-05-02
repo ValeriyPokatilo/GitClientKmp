@@ -1,6 +1,7 @@
 package app.xl.gitclientkmp.presentation
 
 import app.xl.gitclientkmp.data.utils.ColorProvider
+import app.xl.gitclientkmp.data.utils.Logger
 import app.xl.gitclientkmp.domain.entity.Repository
 import app.xl.gitclientkmp.domain.error.ErrorModel
 import app.xl.gitclientkmp.domain.repository.AppRepository
@@ -28,14 +29,18 @@ class RepositoriesListViewModel(
     }
 
     fun onLogoutButtonPressed() {
+        Logger.info(message = "RepositoriesListViewModel: onLogoutButtonPressed")
         viewModelScope.launch {
             repository.logout()
+            Logger.info(message = "RepositoriesListViewModel: Action - Logout")
             _action.emit(value = Action.Logout)
         }
     }
 
     fun onRepositoryItemPressed(repository: Repository) {
+        Logger.info(message = "RepositoriesListViewModel: onRepositoryItemPressed - ${repository.name}")
         viewModelScope.launch {
+            Logger.info(message = "RepositoriesListViewModel: Action - RouteToDetail - ${repository.name}")
             _action.emit(
                 value = Action.RouteToDetail(
                     owner = repository.owner.login,
@@ -47,24 +52,29 @@ class RepositoriesListViewModel(
     }
 
     fun onRetryButtonPressed() {
+        Logger.info(message = "RepositoriesListViewModel: onRetryButtonPressed")
         loadRepositories()
     }
 
     private fun loadRepositories() {
         viewModelScope.launch {
+            Logger.info(message = "RepositoriesListViewModel: State - Loading")
             _state.value = State.Loading
             try {
                 val repositories: List<Repository> = repository.getRepositories()
 
                 if (repositories.isEmpty()) {
+                    Logger.info(message = "RepositoriesListViewModel: State - Empty")
                     _state.value = State.Empty
                 } else {
                     val repositoriesWithColors: List<Repository> = addLanguageColors(
                         repositories = repositories
                     )
+                    Logger.info(message = "RepositoriesListViewModel: State - Loaded")
                     _state.value = State.Loaded(repositoriesWithColors)
                 }
             } catch (error: Exception) {
+                Logger.info(message = "RepositoriesListViewModel: State - Error")
                 val errorModel: ErrorModel = error.mapThrowable()
                 _state.value = State.Error(error = errorModel)
             }
