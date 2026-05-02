@@ -90,6 +90,11 @@ class DetailInfoFragment : Fragment() {
 
     private fun setupUI(context: Context) {
         markwon = MarkwonFactory.createMarkwon(context)
+
+        binding.retryButton.setTitle(getString(R.string.retry))
+        binding.retryButton.setButtonClickListener {
+            viewModel.onRetryButtonPressed()
+        }
     }
 
     private fun bindToViewModel() {
@@ -104,6 +109,8 @@ class DetailInfoFragment : Fragment() {
 
         binding.placeholderView.isVisible =
             state != RepositoryInfoViewModel.State.Loading && state !is RepositoryInfoViewModel.State.Loaded
+
+        binding.retryButton.isVisible = state is RepositoryInfoViewModel.State.Error
 
         if (state is RepositoryInfoViewModel.State.Error) {
             showError(state.error)

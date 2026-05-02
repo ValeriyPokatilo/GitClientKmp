@@ -60,8 +60,8 @@ class PlaceholderView @JvmOverloads constructor(
             R.drawable.ic_error
         }
 
-        val titleText: String = error.title.toString(context = context)
-        val messageText: String = error.message.toString(context = context)
+        val titleText: String = error.placeholderTitle.toString(context = context)
+        val messageText: String = error.placeholderMessage.toString(context = context)
         val titleColorRes: Int = R.color.error
 
         binding.apply {
