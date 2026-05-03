@@ -10,6 +10,6 @@ dependencies {
     commonMainImplementation(platform(libs.koin.bom))
     commonMainImplementation(libs.koin.core)
     commonMainImplementation(libs.moko.errors)
-    commonMainImplementation(project(":mpp-library:feature:common"))
+    "commonMainImplementation"(project(":mpp-library:network"))
     commonMainImplementation(project(":mpp-library:entity"))
 }
