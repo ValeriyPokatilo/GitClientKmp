@@ -21,7 +21,6 @@ dependencies {
     commonMainImplementation(libs.moko.units)
     commonMainImplementation(libs.moko.errors)
     commonMainImplementation(project(":mpp-library:entity"))
-    commonMainImplementation(project(":mpp-library:res"))
 }
 
 multiplatformResources {
