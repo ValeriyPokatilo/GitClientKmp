@@ -8,20 +8,10 @@ plugins {
 }
 
 dependencies {
-    commonMainApi(libs.moko.mvvm.flow)
-    commonMainImplementation(libs.moko.resources)
     commonMainImplementation(platform(libs.koin.bom))
     commonMainImplementation(libs.koin.core)
-    commonMainImplementation(libs.kotlinSerialization)
     commonMainImplementation(libs.multiplatformSettings)
     commonMainImplementation(libs.multiplatformSettings.noArg)
-    commonMainImplementation(libs.ktorClient)
-    commonMainImplementation(libs.ktorClient.content.negotiation)
-    commonMainImplementation(libs.ktorSerialization.kotlinx.json)
-    commonMainImplementation(libs.moko.units)
-    commonMainImplementation(libs.moko.errors)
-    commonMainImplementation(project(":mpp-library:entity"))
-    commonMainImplementation(project(":mpp-library:res"))
     commonMainImplementation(project(":mpp-library:utils"))
 }
 
