@@ -9,9 +9,9 @@ import app.xl.gitclientkmp.data.dto.ReadmeDto
 import app.xl.gitclientkmp.data.network.GitHubApi
 import app.xl.gitclientkmp.data.repository.mappers.toEntity
 import app.xl.gitclientkmp.data.storage.KeyValueStorage
-import app.xl.gitclientkmp.data.utils.Base64Decoder
-import app.xl.gitclientkmp.data.utils.Logger
+import app.xl.gitclientkmp.decoder.Base64Decoder
 import app.xl.gitclientkmp.domain.repository.AppRepository
+import app.xl.gitclientkmp.logger.Logger
 import io.ktor.client.plugins.ResponseException
 import io.ktor.client.statement.bodyAsText
 import kotlinx.serialization.json.Json

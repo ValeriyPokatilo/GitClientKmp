@@ -12,5 +12,6 @@ dependencies {
     commonMainImplementation(libs.moko.errors)
     "commonMainImplementation"(project(":mpp-library:network"))
     "commonMainImplementation"(project(":mpp-library:res"))
+    "commonMainImplementation"(project(":mpp-library:utils"))
     commonMainImplementation(project(":mpp-library:entity"))
 }

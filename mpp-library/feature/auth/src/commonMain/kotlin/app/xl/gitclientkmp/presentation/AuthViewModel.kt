@@ -1,8 +1,8 @@
 package app.xl.gitclientkmp.presentation
 
-import app.xl.gitclientkmp.data.utils.Logger
 import app.xl.gitclientkmp.domain.error.ErrorModel
 import app.xl.gitclientkmp.domain.repository.AppRepository
+import app.xl.gitclientkmp.logger.Logger
 import dev.icerock.moko.errors.mappers.mapThrowable
 import dev.icerock.moko.mvvm.viewmodel.ViewModel
 import kotlinx.coroutines.flow.Flow

@@ -5,8 +5,8 @@
 package org.example.app
 
 import android.app.Application
-import app.xl.gitclientkmp.data.di.commonAndroidModule
 import app.xl.gitclientkmp.di.authModule
+import app.xl.gitclientkmp.di.commonAndroidModule
 import app.xl.gitclientkmp.di.commonModule
 import app.xl.gitclientkmp.di.repoModule
 import app.xl.gitclientkmp.domain.error.Configurator

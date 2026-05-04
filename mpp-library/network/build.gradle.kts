@@ -22,8 +22,13 @@ dependencies {
     commonMainImplementation(libs.moko.errors)
     commonMainImplementation(project(":mpp-library:entity"))
     commonMainImplementation(project(":mpp-library:res"))
+    commonMainImplementation(project(":mpp-library:utils"))
 }
 
 multiplatformResources {
     resourcesPackage = "app.xl.gitclientkmp"
+}
+
+android {
+    namespace = "app.xl.gitclientkmp.network"
 }

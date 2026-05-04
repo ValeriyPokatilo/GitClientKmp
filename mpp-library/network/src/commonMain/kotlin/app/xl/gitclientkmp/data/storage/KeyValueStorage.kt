@@ -1,6 +1,6 @@
 package app.xl.gitclientkmp.data.storage
 
-import app.xl.gitclientkmp.data.utils.Logger
+import app.xl.gitclientkmp.logger.Logger
 import com.russhwolf.settings.Settings
 
 class KeyValueStorage(
