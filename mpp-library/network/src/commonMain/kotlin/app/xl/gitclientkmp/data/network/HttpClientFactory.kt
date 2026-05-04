@@ -1,6 +1,6 @@
 package app.xl.gitclientkmp.data.network
 
-import app.xl.gitclientkmp.data.storage.KeyValueStorage
+import app.xl.gitclientkmp.storage.KeyValueStorage
 import io.ktor.client.HttpClient
 import io.ktor.client.plugins.contentnegotiation.ContentNegotiation
 import io.ktor.client.plugins.defaultRequest

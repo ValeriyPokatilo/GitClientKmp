@@ -7,8 +7,9 @@ package org.example.app
 import android.app.Application
 import app.xl.gitclientkmp.di.authModule
 import app.xl.gitclientkmp.di.commonAndroidModule
-import app.xl.gitclientkmp.di.commonModule
+import app.xl.gitclientkmp.di.networkModule
 import app.xl.gitclientkmp.di.repoModule
+import app.xl.gitclientkmp.di.storageModule
 import app.xl.gitclientkmp.domain.error.Configurator
 import com.google.firebase.FirebaseApp
 import com.google.firebase.crashlytics.FirebaseCrashlytics
@@ -41,7 +42,7 @@ class MainApplication : Application() {
 
             androidContext(this@MainApplication)
 
-            modules(authModule, commonModule, commonAndroidModule, repoModule)
+            modules(authModule, networkModule, commonAndroidModule, repoModule, storageModule)
         }
 
         Configurator.init()

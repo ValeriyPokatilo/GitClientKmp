@@ -19,7 +19,8 @@ val projectModules = listOf(
     projects.mppLibrary.feature.repo,
     projects.mppLibrary.network,
     projects.mppLibrary.utils,
-    projects.mppLibrary.entity
+    projects.mppLibrary.entity,
+    projects.mppLibrary.storage
 )
 
 kotlin {

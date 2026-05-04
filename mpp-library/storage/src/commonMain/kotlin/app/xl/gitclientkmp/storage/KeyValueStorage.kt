@@ -1,4 +1,4 @@
-package app.xl.gitclientkmp.data.storage
+package app.xl.gitclientkmp.storage
 
 import app.xl.gitclientkmp.logger.Logger
 import com.russhwolf.settings.Settings

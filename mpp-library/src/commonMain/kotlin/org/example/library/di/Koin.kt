@@ -1,7 +1,7 @@
 package org.example.library.di
 
 import app.xl.gitclientkmp.di.authModule
-import app.xl.gitclientkmp.di.commonModule
+import app.xl.gitclientkmp.di.networkModule
 import app.xl.gitclientkmp.di.repoModule
 import dev.icerock.moko.crashreporting.core.ExceptionLogger
 import dev.icerock.moko.crashreporting.napier.CrashReportingAntilog
@@ -33,6 +33,6 @@ internal fun registerKoinModules(): List<Module> = listOf(
     appRouterModule,
     authModule,
     repoModule,
-    commonModule,
+    networkModule,
     appRouterModule
 )

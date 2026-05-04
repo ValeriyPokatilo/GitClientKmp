@@ -23,7 +23,6 @@ dependencies {
     commonMainImplementation(project(":mpp-library:entity"))
     commonMainImplementation(project(":mpp-library:res"))
     commonMainImplementation(project(":mpp-library:utils"))
-    commonMainImplementation(project(":mpp-library:storage"))
 }
 
 multiplatformResources {
@@ -31,5 +30,5 @@ multiplatformResources {
 }
 
 android {
-    namespace = "app.xl.gitclientkmp.network"
+    namespace = "app.xl.gitclientkmp.storage"
 }
