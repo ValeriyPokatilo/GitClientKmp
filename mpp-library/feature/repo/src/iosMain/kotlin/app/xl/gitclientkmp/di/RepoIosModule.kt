@@ -1,3 +1,5 @@
+package app.xl.gitclientkmp.di
+
 import app.xl.gitclientkmp.presentation.RepositoriesListViewModel
 import app.xl.gitclientkmp.presentation.RepositoryInfoViewModel
 import org.koin.core.module.Module
