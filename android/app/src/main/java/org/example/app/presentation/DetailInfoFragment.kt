@@ -23,6 +23,7 @@ import org.example.app.model.PlaceholderState
 import org.example.app.utils.MarkwonFactory
 import org.example.app.utils.collectIn
 import org.example.app.utils.openUrl
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -34,7 +35,7 @@ class DetailInfoFragment : Fragment() {
 
     private val args: DetailInfoFragmentArgs by navArgs()
 
-    private val viewModel: RepositoryInfoViewModel by viewModel {
+    private val viewModel: RepositoryInfoViewModel by activityViewModel {
         parametersOf(args.owner, args.repositoryName, args.branch)
     }
     private val repositoryName: String

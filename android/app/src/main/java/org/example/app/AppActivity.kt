@@ -11,8 +11,6 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.fragment.app.FragmentActivity
-import androidx.navigation.NavController
-import androidx.navigation.NavGraph
 import androidx.navigation.fragment.NavHostFragment
 import org.example.app.databinding.MainActivityBinding
 import org.example.library.appRouter.AppRouter
@@ -50,7 +48,7 @@ class AppActivity : FragmentActivity() {
         setContentView(view = binding.root)
 
         setupInsets()
-        setupNavigation()
+        setupNavigation(savedInstanceState)
     }
 
     private fun setupInsets() {
@@ -69,26 +67,30 @@ class AppActivity : FragmentActivity() {
         }
     }
 
-    private fun setupNavigation() {
-        val navHost: NavHostFragment =
-            supportFragmentManager.findFragmentById(R.id.nav_host_fragment) as NavHostFragment
+    private fun setupNavigation(savedInstanceState: Bundle?) {
+        val navHost = supportFragmentManager
+            .findFragmentById(R.id.nav_host_fragment) as NavHostFragment
 
-        val navController: NavController = navHost.navController
-        val navGraph: NavGraph = navController.navInflater.inflate(R.navigation.main_navigation)
+        val navController = navHost.navController
 
-        val route: AppRouter.Route = appRouter.getDestination()
+        if (savedInstanceState == null) {
+            val navGraph = navController.navInflater
+                .inflate(R.navigation.main_navigation)
 
-        val startDestination: Int = when (route) {
-            AppRouter.Route.AuthRoute -> R.id.authFragment
-            AppRouter.Route.RepositoriesRoute -> R.id.repositoriesListFragment
+            val route: AppRouter.Route = appRouter.getDestination()
+
+            val startDestination = when (route) {
+                AppRouter.Route.AuthRoute -> R.id.authFragment
+                AppRouter.Route.RepositoriesRoute -> R.id.repositoriesListFragment
+            }
+
+            navGraph.setStartDestination(startDestination)
+            navController.graph = navGraph
         }
-
-        navGraph.setStartDestination(startDestId = startDestination)
-        navController.graph = navGraph
 
         isAppReadyForStart = true
 
-        WindowCompat.getInsetsController(window, window.decorView).isAppearanceLightStatusBars =
-            false
+        WindowCompat.getInsetsController(window, window.decorView)
+            .isAppearanceLightStatusBars = false
     }
 }
