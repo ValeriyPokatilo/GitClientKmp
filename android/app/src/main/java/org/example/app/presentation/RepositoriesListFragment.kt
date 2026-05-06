@@ -19,7 +19,7 @@ import org.example.app.databinding.RepositoriesListFragmentBinding
 import org.example.app.model.PlaceholderState
 import org.example.app.utils.collectIn
 import org.example.app.utils.toUnitItem
-import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 
 class RepositoriesListFragment : Fragment() {
 
@@ -27,7 +27,7 @@ class RepositoriesListFragment : Fragment() {
     private val binding: RepositoriesListFragmentBinding
         get() = _binding ?: error("Binding is only valid between onCreateView and onDestroyView")
 
-    private val viewModel: RepositoriesListViewModel by viewModel()
+    private val viewModel: RepositoriesListViewModel by activityViewModel()
 
     private var unitsAdapter: UnitsRecyclerViewAdapter? = null
 
