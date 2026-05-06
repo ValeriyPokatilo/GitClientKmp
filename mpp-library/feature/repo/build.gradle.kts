@@ -8,6 +8,7 @@ dependencies {
     commonMainApi(libs.moko.mvvm.flow)
     commonMainImplementation(platform(libs.koin.bom))
     commonMainImplementation(libs.koin.core)
+    androidMainImplementation(libs.koin.android)
     commonMainImplementation(libs.moko.errors)
     commonMainImplementation(project(":mpp-library:network"))
     commonMainImplementation(project(":mpp-library:utils"))

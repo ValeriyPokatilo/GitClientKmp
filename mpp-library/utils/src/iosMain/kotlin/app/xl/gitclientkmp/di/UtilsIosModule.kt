@@ -4,7 +4,7 @@ import app.xl.gitclientkmp.colorProvider.ColorProvider
 import org.koin.core.module.Module
 import org.koin.dsl.module
 
-val commonIosModule: Module = module {
+val utilsIosModule: Module = module {
     single {
         ColorProvider()
     }

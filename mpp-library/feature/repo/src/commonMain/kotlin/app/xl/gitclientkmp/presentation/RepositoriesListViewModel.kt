@@ -24,7 +24,11 @@ class RepositoriesListViewModel(
     private val _action: MutableSharedFlow<Action> = MutableSharedFlow<Action>()
     val action: Flow<Action> = _action
 
+    private var isLoaded = false
+
     fun onStart() {
+        if (isLoaded) return
+        isLoaded = true
         loadRepositories()
     }
 
