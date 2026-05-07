@@ -1,4 +1,4 @@
-import MarkdownKit
+import Down
 import MultiPlatformLibrary
 import NVActivityIndicatorView
 import UIKit
@@ -12,7 +12,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
     @IBOutlet private var watchersView: IconLabelView!
     @IBOutlet private var readmeIndicator: NVActivityIndicatorView!
     @IBOutlet private var mainIndicator: NVActivityIndicatorView!
-    @IBOutlet private var markdownTextView: UITextView!
+    @IBOutlet private var markdownView: UIView!
     @IBOutlet private var placeholderView: PlaceholderView!
 
     private let owner: String
@@ -50,7 +50,6 @@ final class RepositoryDetailInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigation()
-        setupUI()
         setupIndicators()
         bindViewModel()
 
@@ -70,15 +69,6 @@ final class RepositoryDetailInfoViewController: UIViewController {
         button.tintColor = .white
 
         navigationItem.rightBarButtonItem = button
-    }
-
-    private func setupUI() {
-        markdownTextView.textContainerInset = UIEdgeInsets(
-            top: 0,
-            left: 0,
-            bottom: 24,
-            right: 0
-        )
     }
 
     private func setupIndicators() {
@@ -133,7 +123,8 @@ final class RepositoryDetailInfoViewController: UIViewController {
     }
 
     private func renderContent(_ state: RepositoryInfoViewModelState) {
-        guard let loadedState = state as? RepositoryInfoViewModelStateLoaded else {
+        guard let loadedState = state as? RepositoryInfoViewModelStateLoaded
+        else {
             return
         }
 
@@ -149,13 +140,15 @@ final class RepositoryDetailInfoViewController: UIViewController {
 
         switch onEnum(of: readmeState) {
         case let .loaded(loadedState):
-            markdownTextView.isHidden = false
+            markdownView.isHidden = false
             handleMarkdown(markdownString: loadedState.markdown)
         case .empty:
-            markdownTextView.isHidden = false
-            markdownTextView.text = R.string.localizable.no_readme_md()
+            markdownView.isHidden = false
+            handleMarkdown(
+                markdownString: R.string.localizable.no_readme_md()
+            )
         case let .error(errorState):
-            markdownTextView.isHidden = true
+            markdownView.isHidden = true
             handleErrorState(error: errorState.error)
 
         default:
@@ -172,7 +165,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
             ? readmeIndicator.startAnimating()
             : readmeIndicator.stopAnimating()
 
-        markdownTextView.isHidden =
+        markdownView.isHidden =
             isLoading || readmeState is RepositoryInfoViewModelReadmeStateError
     }
 
@@ -221,19 +214,20 @@ final class RepositoryDetailInfoViewController: UIViewController {
     }
 
     private func handleMarkdown(markdownString: String?) {
-        if let markdownString {
-            let parser = MarkdownParser(
-                font: UIFont.systemFont(ofSize: 16),
-                color: R.color.white70()!
-            )
-
-            parser.enabledElements = [.header, .bold, .italic, .link]
-
-            parser.header.font = UIFont.boldSystemFont(ofSize: 20)
-            parser.header.color = .white
-
-            markdownTextView.attributedText = parser.parse(markdownString)
+        guard let downView = try? DownView(
+            frame: view.bounds,
+            markdownString: markdownString ?? "",
+            templateBundle: Bundle.main
+        ) else {
+            return
         }
+
+        downView.translatesAutoresizingMaskIntoConstraints = false
+        downView.scrollView.showsHorizontalScrollIndicator = false
+        downView.scrollView.alwaysBounceHorizontal = false
+
+        markdownView.addSubview(downView)
+        downView.frame = markdownView.bounds
     }
 
     private func handleErrorState(error: ErrorModel) {

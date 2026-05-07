@@ -13,6 +13,7 @@
 		45D8D7FA26FB24AE00DD3A58 /* Environment.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45D8D7F926FB24AE00DD3A58 /* Environment.swift */; };
 		45F47921219463C7003D25FA /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 45F4791A219463C7003D25FA /* Assets.xcassets */; };
 		45F47922219463C7003D25FA /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 45F4791B219463C7003D25FA /* AppDelegate.swift */; };
+		762CAEB52FAC89EC00243890 /* Down in Frameworks */ = {isa = PBXBuildFile; productRef = 762CAEB42FAC89EC00243890 /* Down */; };
 		76350DA32F5F216F009D4FD1 /* Aliases.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76350DA22F5F216F009D4FD1 /* Aliases.swift */; };
 		76350DA62F5FF5F8009D4FD1 /* UIAlertControllerExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76350DA52F5FF5F8009D4FD1 /* UIAlertControllerExtensions.swift */; };
 		76350DA82F5FF776009D4FD1 /* AlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76350DA72F5FF776009D4FD1 /* AlertViewController.swift */; };
@@ -25,6 +26,8 @@
 		7697AB332F6A847600C333E7 /* RepositoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697AB312F6A847600C333E7 /* RepositoriesListViewController.swift */; };
 		7697AB342F6A847600C333E7 /* RepositoriesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7697AB322F6A847600C333E7 /* RepositoriesListViewController.xib */; };
 		7697AB362F6A8B9200C333E7 /* RepositoryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697AB352F6A8B9200C333E7 /* RepositoryExtensions.swift */; };
+		76AF30712FAC903100D377BC /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 76AF30702FAC903100D377BC /* style.css */; };
+		76AF30732FAC905E00D377BC /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 76AF30722FAC905B00D377BC /* index.html */; };
 		76D676382F66C4E600DA76F5 /* PlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76D676362F66C4E500DA76F5 /* PlaceholderView.xib */; };
 		76D676392F66C4E600DA76F5 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D676352F66C4E500DA76F5 /* PlaceholderView.swift */; };
 		76D6763B2F66EB9900DA76F5 /* IconLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76D6763A2F66EB9900DA76F5 /* IconLabelView.xib */; };
@@ -101,6 +104,8 @@
 		7697AB312F6A847600C333E7 /* RepositoriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesListViewController.swift; sourceTree = "<group>"; };
 		7697AB322F6A847600C333E7 /* RepositoriesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoriesListViewController.xib; sourceTree = "<group>"; };
 		7697AB352F6A8B9200C333E7 /* RepositoryExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryExtensions.swift; sourceTree = "<group>"; };
+		76AF30702FAC903100D377BC /* style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		76AF30722FAC905B00D377BC /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
 		76D676352F66C4E500DA76F5 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
 		76D676362F66C4E500DA76F5 /* PlaceholderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceholderView.xib; sourceTree = "<group>"; };
 		76D6763A2F66EB9900DA76F5 /* IconLabelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IconLabelView.xib; sourceTree = "<group>"; };
@@ -151,6 +156,7 @@
 			files = (
 				94108688E7D935C98DA98035 /* Pods_ios_app.framework in Frameworks */,
 				2219A1222DB56528009E1BE0 /* DesignSystem.framework in Frameworks */,
+				762CAEB52FAC89EC00243890 /* Down in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -265,6 +271,15 @@
 				7650E1062F695EF2004CA6AE /* AlertModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		76AF306F2FAC902300D377BC /* MarkdownTheme */ = {
+			isa = PBXGroup;
+			children = (
+				76AF30722FAC905B00D377BC /* index.html */,
+				76AF30702FAC903100D377BC /* style.css */,
+			);
+			path = MarkdownTheme;
 			sourceTree = "<group>";
 		};
 		76D676372F66C4E500DA76F5 /* Views */ = {
@@ -397,6 +412,7 @@
 		D2F446F92D1405A900A410C5 /* Utils */ = {
 			isa = PBXGroup;
 			children = (
+				76AF306F2FAC902300D377BC /* MarkdownTheme */,
 				D25029FD2DB0F579000149C7 /* SwiftEnumConvertibleProtocol.swift */,
 				76350DA22F5F216F009D4FD1 /* Aliases.swift */,
 				D25029FB2DB0F55F000149C7 /* CombineObservableObject.swift */,
@@ -480,6 +496,9 @@
 				ru,
 			);
 			mainGroup = 287627F61F319065007FA12B;
+			packageReferences = (
+				762CAEB32FAC89EC00243890 /* XCRemoteSwiftPackageReference "Down" */,
+			);
 			productRefGroup = 287628001F319065007FA12B /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -496,6 +515,8 @@
 			files = (
 				76D6763B2F66EB9900DA76F5 /* IconLabelView.xib in Resources */,
 				D25029F02DB0CD7E000149C7 /* Preview Assets.xcassets in Resources */,
+				76AF30712FAC903100D377BC /* style.css in Resources */,
+				76AF30732FAC905E00D377BC /* index.html in Resources */,
 				767503FD2F75B23F003D5CAC /* Localizable.strings in Resources */,
 				76EF930B2F5A120A001B63C8 /* AuthViewController.xib in Resources */,
 				76D676382F66C4E600DA76F5 /* PlaceholderView.xib in Resources */,
@@ -857,6 +878,25 @@
 			defaultConfigurationName = "dev-release";
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		762CAEB32FAC89EC00243890 /* XCRemoteSwiftPackageReference "Down" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/johnxnguyen/Down.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		762CAEB42FAC89EC00243890 /* Down */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 762CAEB32FAC89EC00243890 /* XCRemoteSwiftPackageReference "Down" */;
+			productName = Down;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 287627F71F319065007FA12B /* Project object */;
 }
