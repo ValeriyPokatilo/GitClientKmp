@@ -3,8 +3,8 @@
  */
 
 plugins {
-    id("com.google.gms.google-services")
     id("android-app-convention")
+    id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
     id("android-compose-convention")
     id("androidx.navigation.safeargs.kotlin")
@@ -45,11 +45,9 @@ dependencies {
     implementation(libs.moko.crashReporting.crashlytics)
 
     implementation(projects.mppLibrary)
-
     implementation(libs.markwon)
     implementation(libs.moko.units)
 
     api(libs.kotlinxDateTime)
-
     implementation(project(":mpp-library:entity"))
 }

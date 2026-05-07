@@ -126,7 +126,6 @@ class RepositoriesListFragment : Fragment() {
                 )
                 binding.retryButton.setTitle(title = getString(R.string.retry))
             }
-
             else -> {
                 binding.placeholderView.render(PlaceholderState.Hidden)
             }
