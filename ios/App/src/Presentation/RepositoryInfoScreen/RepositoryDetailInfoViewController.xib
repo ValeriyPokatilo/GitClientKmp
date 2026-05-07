@@ -88,9 +88,6 @@
                             <viewLayoutGuide key="safeArea" id="b76-Jz-Ogl"/>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         </view>
-                        <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tf9-5h-kCV" customClass="PlaceholderView" customModule="mokoApp" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="24"/>
-                        </view>
                         <view contentMode="scaleToFill" id="aWV-g2-jK8" customClass="IconLabelView" customModule="mokoApp" customModuleProvider="target">
                             <rect key="frame" x="180.66666666666666" y="0.0" width="0.0" height="24"/>
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -109,6 +106,9 @@
                         <constraint firstAttribute="height" constant="24" id="0Gx-1q-ZXt"/>
                     </constraints>
                 </stackView>
+                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tf9-5h-kCV" customClass="PlaceholderView" customModule="mokoApp" customModuleProvider="target">
+                    <rect key="frame" x="0.0" y="0.0" width="442" height="852"/>
+                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="appBackground"/>
@@ -123,10 +123,14 @@
                 <constraint firstItem="5b2-E2-WzN" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="Lh9-EK-S3H"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="YR5-J5-tf6" secondAttribute="trailing" constant="16" id="MqX-JH-30f"/>
                 <constraint firstItem="t26-RI-8Be" firstAttribute="top" secondItem="YR5-J5-tf6" secondAttribute="bottom" constant="24" id="Or4-PI-IRd"/>
+                <constraint firstAttribute="bottom" secondItem="tf9-5h-kCV" secondAttribute="bottom" id="SkZ-lr-orj"/>
                 <constraint firstItem="RT2-ph-wcl" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="T3Y-ku-4JW"/>
                 <constraint firstItem="nRT-xo-t2V" firstAttribute="top" secondItem="t26-RI-8Be" secondAttribute="bottom" constant="24" id="VNU-J0-iDY"/>
+                <constraint firstItem="tf9-5h-kCV" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="XFC-5J-zzb"/>
                 <constraint firstItem="5b2-E2-WzN" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="YfZ-hp-xUL"/>
+                <constraint firstItem="tf9-5h-kCV" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="ZvJ-4n-Lwy"/>
                 <constraint firstItem="YR5-J5-tf6" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="abY-6b-kes"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="tf9-5h-kCV" secondAttribute="trailing" id="f64-BO-oGC"/>
                 <constraint firstItem="t26-RI-8Be" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="oCN-sX-fob"/>
                 <constraint firstItem="nRT-xo-t2V" firstAttribute="leading" secondItem="t26-RI-8Be" secondAttribute="leading" id="yTb-rn-c0k"/>
                 <constraint firstItem="G1D-F0-aRW" firstAttribute="top" secondItem="nRT-xo-t2V" secondAttribute="bottom" constant="32" id="zZU-Lu-fFS"/>
