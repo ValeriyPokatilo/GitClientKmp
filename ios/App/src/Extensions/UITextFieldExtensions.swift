@@ -22,7 +22,7 @@ extension UITextField {
 
         leftView = paddingView
         leftViewMode = .always
-        
+
         rightView = paddingView
         rightViewMode = .always
     }

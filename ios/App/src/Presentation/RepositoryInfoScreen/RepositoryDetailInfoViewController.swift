@@ -15,6 +15,8 @@ final class RepositoryDetailInfoViewController: UIViewController {
     @IBOutlet private var markdownView: UIView!
     @IBOutlet private var placeholderView: PlaceholderView!
 
+    private var downView: DownView?
+
     private let owner: String
     private let repositoryName: String
     private let branch: String
@@ -51,6 +53,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
         super.viewDidLoad()
         setupNavigation()
         setupIndicators()
+        setupDown()
         bindViewModel()
 
         viewModel.onStart()
@@ -74,6 +77,32 @@ final class RepositoryDetailInfoViewController: UIViewController {
     private func setupIndicators() {
         mainIndicator.type = .circleStrokeSpin
         readmeIndicator.type = .circleStrokeSpin
+    }
+
+    private func setupDown() {
+        guard let downView = try? DownView(
+            frame: .zero,
+            markdownString: "",
+            templateBundle: Bundle.main
+        ) else {
+            return
+        }
+
+        downView.backgroundColor = R.color.appBackground()!
+        downView.translatesAutoresizingMaskIntoConstraints = false
+        downView.scrollView.showsHorizontalScrollIndicator = false
+        downView.scrollView.alwaysBounceHorizontal = false
+
+        markdownView.addSubview(downView)
+        
+        NSLayoutConstraint.activate([
+            downView.topAnchor.constraint(equalTo: markdownView.topAnchor),
+            downView.leadingAnchor.constraint(equalTo: markdownView.leadingAnchor),
+            downView.trailingAnchor.constraint(equalTo: markdownView.trailingAnchor),
+            downView.bottomAnchor.constraint(equalTo: markdownView.bottomAnchor),
+        ])
+        
+        self.downView = downView
     }
 
     private func bindViewModel() {
@@ -214,20 +243,15 @@ final class RepositoryDetailInfoViewController: UIViewController {
     }
 
     private func handleMarkdown(markdownString: String?) {
-        guard let downView = try? DownView(
-            frame: view.bounds,
-            markdownString: markdownString ?? "",
-            templateBundle: Bundle.main
-        ) else {
-            return
+        do {
+            try downView?.update(
+                markdownString: markdownString ?? "",
+                options: nil,
+                didLoadSuccessfully: nil
+            )
+        } catch {
+            assertionFailure("DownView update failed: \(error)")
         }
-
-        downView.translatesAutoresizingMaskIntoConstraints = false
-        downView.scrollView.showsHorizontalScrollIndicator = false
-        downView.scrollView.alwaysBounceHorizontal = false
-
-        markdownView.addSubview(downView)
-        downView.frame = markdownView.bounds
     }
 
     private func handleErrorState(error: ErrorModel) {
