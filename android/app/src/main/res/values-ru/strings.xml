@@ -27,4 +27,6 @@
     <string name="new_issue">Новая задача</string>
     <string name="issues_empty_title">Пусто</string>
     <string name="issues_empty_message">На данный момент задач нет</string>
+    <string name="issue_number">Задача #</string>
+    <string name="description">Описание</string>
 </resources>

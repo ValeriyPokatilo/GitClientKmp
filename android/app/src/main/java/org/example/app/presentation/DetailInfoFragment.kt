@@ -25,7 +25,6 @@ import org.example.app.model.PlaceholderState
 import org.example.app.utils.MarkwonFactory
 import org.example.app.utils.collectIn
 import org.example.app.utils.openUrl
-import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 

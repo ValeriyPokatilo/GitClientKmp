@@ -27,4 +27,6 @@
     <string name="new_issue">New Issue</string>
     <string name="issues_empty_title">Empty</string>
     <string name="issues_empty_message">No issues at the moment</string>
+    <string name="issue_number">Issue #</string>
+    <string name="description">Description</string>
 </resources>

@@ -9,6 +9,7 @@ import androidx.core.content.ContextCompat.getString
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.SavedStateHandle
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
@@ -221,7 +222,13 @@ class IssuesListFragment : Fragment() {
     }
 
     private fun navigateToDetails(owner: String, repositoryName: String, issueNumber: Int) {
-        // TODO: -
+        val action: NavDirections = IssuesListFragmentDirections
+            .actionIssuesListFragmentToIssueInfoFragment(
+                owner = owner,
+                repositoryName = repositoryName,
+                issueNumber = issueNumber
+            )
+        findNavController().navigate(directions = action)
     }
 
     private fun observeCreateIssueResult() {
