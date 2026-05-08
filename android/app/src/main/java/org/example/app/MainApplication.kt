@@ -5,6 +5,7 @@
 package org.example.app
 
 import android.app.Application
+import app.xl.gitclientkmp.di.issueAndroidModule
 import app.xl.gitclientkmp.di.repoAndroidModule
 import app.xl.gitclientkmp.di.utilsAndroidModule
 import app.xl.gitclientkmp.domain.error.Configurator
@@ -39,7 +40,7 @@ class MainApplication : Application() {
 
             androidContext(this@MainApplication)
 
-            modules(repoAndroidModule, utilsAndroidModule)
+            modules(repoAndroidModule, issueAndroidModule, utilsAndroidModule)
         }
 
         Configurator.init()

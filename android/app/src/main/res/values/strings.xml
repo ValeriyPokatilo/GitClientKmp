@@ -21,4 +21,10 @@
     <string name="github_logo_description">Github logo</string>
     <string name="placeholder_icon_description">Placeholder icon</string>
     <string name="reload_data_description">Reload data</string>
+    <string name="issues">Issues</string>
+    <string name="view_issues">View issues</string>
+    <string name="new_issue_button_title">CREATE NEW ISSUE</string>
+    <string name="new_issue">New Issue</string>
+    <string name="issues_empty_title">Empty</string>
+    <string name="issues_empty_message">No issues at the moment</string>
 </resources>

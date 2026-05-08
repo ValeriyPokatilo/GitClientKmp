@@ -57,5 +57,24 @@
         <action
             android:id="@+id/action_detailInfoFragment_to_authFragment"
             app:destination="@id/authFragment" />
+        <action
+            android:id="@+id/action_detailInfoFragment_to_issuesListFragment"
+            app:destination="@id/issuesListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/issuesListFragment"
+        android:name="org.example.app.presentation.IssuesListFragment"
+        android:label="issues_list_fragment"
+        tools:layout="@layout/issues_list_fragment">
+        <argument
+            android:name="owner"
+            app:argType="string" />
+        <argument
+            android:name="repositoryName"
+            app:argType="string" />
     </fragment>
 </navigation>

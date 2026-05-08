@@ -21,4 +21,10 @@
     <string name="github_logo_description">Логотип GitHub</string>
     <string name="placeholder_icon_description">Иконка-заглушка</string>
     <string name="reload_data_description">Обновить данные</string>
+    <string name="issues">Задачи</string>
+    <string name="view_issues">Просмотреть задачи</string>
+    <string name="new_issue_button_title">СОЗДАТЬ ЗАДАЧУ</string>
+    <string name="new_issue">Новая задача</string>
+    <string name="issues_empty_title">Пусто</string>
+    <string name="issues_empty_message">На данный момент задач нет</string>
 </resources>
