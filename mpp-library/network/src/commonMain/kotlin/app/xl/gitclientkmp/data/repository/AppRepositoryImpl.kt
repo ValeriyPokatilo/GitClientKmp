@@ -131,6 +131,23 @@ class AppRepositoryImpl(
         }
     }
 
+    @Throws(Exception::class)
+    override suspend fun getIssue(
+        ownerName: String,
+        repositoryName: String,
+        issueNumber: Int
+    ): Issue {
+        try {
+            return api.getIssue(
+                ownerName = ownerName,
+                repositoryName = repositoryName,
+                issueNumber = issueNumber
+            ).toEntity()
+        } catch (exception: Throwable) {
+            mapException(exception = exception)
+        }
+    }
+
     private suspend fun mapException(exception: Throwable): Nothing {
         when (exception) {
             is ResponseException -> {

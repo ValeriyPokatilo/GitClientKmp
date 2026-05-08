@@ -28,4 +28,10 @@ interface GitHubApi {
         pageSize: Int,
         page: Int,
     ): List<IssueDto>
+
+    suspend fun getIssue(
+        ownerName: String,
+        repositoryName: String,
+        issueNumber: Int
+    ): IssueDto
 }

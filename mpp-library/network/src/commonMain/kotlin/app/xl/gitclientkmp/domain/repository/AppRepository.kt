@@ -36,5 +36,12 @@ interface AppRepository {
         page: Int
     ): List<Issue>
 
+    @Throws(Exception::class)
+    suspend fun getIssue(
+        ownerName: String,
+        repositoryName: String,
+        issueNumber: Int
+    ): Issue
+
     fun logout()
 }

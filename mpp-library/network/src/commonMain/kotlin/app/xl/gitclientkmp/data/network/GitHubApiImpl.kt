@@ -57,4 +57,12 @@ class GitHubApiImpl(
             parameter(key = "direction", value = "desc")
         }.body()
     }
+
+    override suspend fun getIssue(
+        ownerName: String,
+        repositoryName: String,
+        issueNumber: Int
+    ): IssueDto {
+        return client.get(urlString = "repos/$ownerName/$repositoryName/issues/$issueNumber").body()
+    }
 }
