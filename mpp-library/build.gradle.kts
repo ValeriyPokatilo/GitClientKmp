@@ -17,6 +17,7 @@ plugins {
 val projectModules = listOf(
     projects.mppLibrary.feature.auth,
     projects.mppLibrary.feature.repo,
+    projects.mppLibrary.feature.issue,
     projects.mppLibrary.network,
     projects.mppLibrary.utils,
     projects.mppLibrary.entity,

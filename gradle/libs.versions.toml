@@ -28,6 +28,7 @@ mokoUtilsVersion = "0.3.0"
 mokoFieldsVersion = "0.12.0"
 mokoTestVersion = "0.6.1"
 mokoCrashReportingVersion = "0.4.0"
+mokoPaging = "0.7.1"
 
 # multiplatform
 multiplatformSettingsVersion = "1.3.0"
@@ -121,6 +122,8 @@ moko-permissions-compose = { module = "dev.icerock.moko:permissions-compose", ve
 moko-media = { module = "dev.icerock.moko:media", version.ref = "mokoMediaVersion" }
 moko-fields-core = { module = "dev.icerock.moko:fields-core", version.ref = "mokoFieldsVersion" }
 moko-fields-flow = { module = "dev.icerock.moko:fields-flow", version.ref = "mokoFieldsVersion" }
+moko-fields-livedata = { module = "dev.icerock.moko:fields-livedata", version.ref = "mokoFieldsVersion" }
+moko-paging = { module = "dev.icerock.moko:paging", version.ref = "mokoPaging" }
 moko-test-core = { module = "dev.icerock.moko:test-core", version.ref = "mokoTestVersion" }
 moko-test-robolectric = { module = "dev.icerock.moko:test-robolectric", version.ref = "mokoTestVersion" }
 
