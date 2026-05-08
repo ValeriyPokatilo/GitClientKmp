@@ -1,6 +1,7 @@
 package app.xl.gitclientkmp.data.repository
 
 import app.xl.gitclientkmp.AppError
+import app.xl.gitclientkmp.Issue
 import app.xl.gitclientkmp.Repository
 import app.xl.gitclientkmp.RepositoryDetails
 import app.xl.gitclientkmp.UserInfo
@@ -106,6 +107,26 @@ class AppRepositoryImpl(
             }
         } catch (exception: Throwable) {
             Logger.info(message = "AppRepositoryImpl: get repository readme failed - $exception")
+            mapException(exception = exception)
+        }
+    }
+
+    @Throws(Exception::class)
+    override suspend fun getIssues(
+        ownerName: String,
+        repositoryName: String,
+        pageSize: Int,
+        page: Int
+    ): List<Issue> {
+        try {
+            return api.getIssues(
+                ownerName = ownerName,
+                repositoryName = repositoryName,
+                pageSize = pageSize,
+                page = page
+            )
+                .map { it.toEntity() }
+        } catch (exception: Throwable) {
             mapException(exception = exception)
         }
     }

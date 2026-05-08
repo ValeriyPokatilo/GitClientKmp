@@ -140,6 +140,7 @@ moko-network-Engine = { module = "dev.icerock.moko:network-engine", version.ref 
 moko-network-Errors = { module = "dev.icerock.moko:network-errors", version.ref = "mokoNetworkVersion" }
 
 moko-units = { module = "dev.icerock.moko:units", version.ref = "mokoUnitsVersion" }
+moko-units-viewbinding = { module = "dev.icerock.moko:units-viewbinding", version.ref = "mokoUnitsVersion" }
 moko-unitsTest = { module = "dev.icerock.moko:units-test", version.ref = "mokoUnitsVersion" }
 
 moko-crashReporting-core = { module = "dev.icerock.moko:crash-reporting-core", version.ref = "mokoCrashReportingVersion" }

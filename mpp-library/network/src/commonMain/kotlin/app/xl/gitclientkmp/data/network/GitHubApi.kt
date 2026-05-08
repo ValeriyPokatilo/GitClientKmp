@@ -1,5 +1,6 @@
 package app.xl.gitclientkmp.data.network
 
+import app.xl.gitclientkmp.data.dto.IssueDto
 import app.xl.gitclientkmp.data.dto.ReadmeDto
 import app.xl.gitclientkmp.data.dto.RepoDetailsDto
 import app.xl.gitclientkmp.data.dto.RepoDto
@@ -20,4 +21,11 @@ interface GitHubApi {
         repositoryName: String,
         branchName: String? = null
     ): ReadmeDto
+
+    suspend fun getIssues(
+        ownerName: String,
+        repositoryName: String,
+        pageSize: Int,
+        page: Int,
+    ): List<IssueDto>
 }
