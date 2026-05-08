@@ -37,7 +37,7 @@ class DetailInfoFragment : Fragment() {
 
     private val args: DetailInfoFragmentArgs by navArgs()
 
-    private val viewModel: RepositoryInfoViewModel by activityViewModel {
+    private val viewModel: RepositoryInfoViewModel by viewModel {
         parametersOf(args.owner, args.repositoryName, args.branch)
     }
     private val repositoryName: String
