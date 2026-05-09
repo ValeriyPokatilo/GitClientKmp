@@ -187,7 +187,8 @@ class IssuesListFragment : Fragment() {
         binding.retryButton.isVisible =
             state is ResourceState.Empty || state is ResourceState.Failed
 
-        binding.createIssueButton.isVisible = !state.isLoading()
+        binding.createIssueButton.isVisible =
+            state is ResourceState.Success || state is ResourceState.Empty
     }
 
     private fun handleAction(action: IssuesListViewModel.Action) {
