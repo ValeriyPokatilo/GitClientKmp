@@ -43,5 +43,16 @@ interface AppRepository {
         issueNumber: Int
     ): Issue
 
+    @Throws(Exception::class)
+    suspend fun createIssue(
+        ownerName: String,
+        repositoryName: String,
+        title: String,
+        body: String
+    ): Issue
+
+    @Throws(Exception::class)
+    suspend fun uploadImage(bytes: ByteArray): String
+
     fun logout()
 }

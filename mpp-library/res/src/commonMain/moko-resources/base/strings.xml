@@ -7,4 +7,6 @@
     <string name="connection_error_message">Check your Internet connection</string>
     <string name="request_error_title">Something error</string>
     <string name="request_error_message">Check your something</string>
+    <string name="invalid_title">Invalid title</string>
+    <string name="invalid_description">Invalid description</string>
 </resources>

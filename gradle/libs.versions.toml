@@ -86,10 +86,13 @@ koinBomVersion = "4.0.0"
 
 markwon = "4.6.2"
 
+buildKonfig = "0.18.0"
+
 [libraries]
 detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detektVersion" }
 
 markwon = { module = "io.noties.markwon:core", version.ref = "markwon" }
+markwon-image-coil = { module = "io.noties.markwon:image-coil", version.ref = "markwon" }
 
 # kotlin
 junit = { module = "junit:junit", version.ref = "junitVersion" }
@@ -287,3 +290,6 @@ koin-androidx-compose = { module = "io.insert-koin:koin-androidx-compose" }
 koin-ktor = { module = "io.insert-koin:koin-ktor" }
 koin-loggerSlf4j = { module = "io.insert-koin:koin-logger-slf4j" }
 koin-annotations = { module = "io.insert-koin:koin-annotations" }
+
+[plugins]
+buildKonfig = { id = "com.codingfeline.buildkonfig", version.ref = "buildKonfig" }

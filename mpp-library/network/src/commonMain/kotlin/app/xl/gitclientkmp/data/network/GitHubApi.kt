@@ -34,4 +34,11 @@ interface GitHubApi {
         repositoryName: String,
         issueNumber: Int
     ): IssueDto
+
+    suspend fun createIssue(
+        ownerName: String,
+        repositoryName: String,
+        title: String,
+        body: String
+    ): IssueDto
 }
