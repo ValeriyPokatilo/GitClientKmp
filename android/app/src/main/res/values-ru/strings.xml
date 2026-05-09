@@ -29,4 +29,10 @@
     <string name="issues_empty_message">На данный момент задач нет</string>
     <string name="issue_number">Задача #</string>
     <string name="description">Описание</string>
+    <string name="attach_files">Прикрепить файл</string>
+    <string name="attached_photos">Прикрепленных изображений</string>
+    <string name="upload_files">Загрузка файлов… (%1$d/%2$d)</string>
+    <string name="arrow_icon_description">Значок стрелки</string>
+    <string name="submit_new_issue_button_title">ОТПРАВИТЬ ЗАДАЧУ</string>
+    <string name="title">Заголовок</string>
 </resources>

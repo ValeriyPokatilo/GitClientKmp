@@ -83,6 +83,9 @@
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
             app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_issuesListFragment_to_createIssueFragment"
+            app:destination="@id/createIssueFragment" />
     </fragment>
     <fragment
         android:id="@+id/issueInfoFragment"
@@ -98,5 +101,17 @@
         <argument
             android:name="issueNumber"
             app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/createIssueFragment"
+        android:name="org.example.app.presentation.CreateIssueFragment"
+        android:label="create_issue_fragment"
+        tools:layout="@layout/create_issue_fragment">
+        <argument
+            android:name="owner"
+            app:argType="string" />
+        <argument
+            android:name="repositoryName"
+            app:argType="string" />
     </fragment>
 </navigation>

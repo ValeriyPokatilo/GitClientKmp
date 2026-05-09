@@ -218,7 +218,12 @@ class IssuesListFragment : Fragment() {
     }
 
     private fun navigateToCreateIssue() {
-        // TODO: -
+        val action: NavDirections = IssuesListFragmentDirections
+            .actionIssuesListFragmentToCreateIssueFragment(
+                owner = args.owner,
+                repositoryName = args.repositoryName
+            )
+        findNavController().navigate(directions = action)
     }
 
     private fun navigateToDetails(owner: String, repositoryName: String, issueNumber: Int) {

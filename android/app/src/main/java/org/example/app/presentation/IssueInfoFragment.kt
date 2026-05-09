@@ -33,7 +33,7 @@ class IssueInfoFragment : Fragment() {
 
     private val args: IssueInfoFragmentArgs by navArgs()
 
-    private val viewModel: IssueInfoViewModel by activityViewModel {
+    private val viewModel: IssueInfoViewModel by viewModel {
         parametersOf(args.owner, args.repositoryName, args.issueNumber)
     }
 
