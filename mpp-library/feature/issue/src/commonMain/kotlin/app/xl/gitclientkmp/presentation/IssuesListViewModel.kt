@@ -57,7 +57,10 @@ class IssuesListViewModel(
                         UiItem.IssueItem(issue = issue)
                     }
 
-                    if (isNextLoading) {
+                    val shouldShowLoader: Boolean =
+                        isNextLoading && list.size >= issuesPerPage
+
+                    if (shouldShowLoader) {
                         units + UiItem.LoaderItem
                     } else {
                         units
