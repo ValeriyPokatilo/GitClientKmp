@@ -8,7 +8,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.ContextCompat.getString
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.SavedStateHandle
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -25,7 +24,6 @@ import dev.icerock.moko.units.adapter.UnitsRecyclerViewAdapter
 import org.example.app.R
 import org.example.app.databinding.IssuesListFragmentBinding
 import org.example.app.model.PlaceholderState
-import org.example.app.utils.CreateIssueResultContract
 import org.example.app.utils.collectIn
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
@@ -72,7 +70,6 @@ class IssuesListFragment : Fragment() {
         setupRecyclerView()
         bindToViewModel()
         bindPaging()
-        observeCreateIssueResult()
 
         viewModel.onStart()
     }
@@ -234,18 +231,6 @@ class IssuesListFragment : Fragment() {
                 issueNumber = issueNumber
             )
         findNavController().navigate(directions = action)
-    }
-
-    private fun observeCreateIssueResult() {
-        val handle: SavedStateHandle = findNavController().currentBackStackEntry?.savedStateHandle
-            ?: return
-
-        CreateIssueResultContract.observe(
-            handle = handle,
-            owner = viewLifecycleOwner
-        ) {
-            viewModel.onRetryButtonPressed()
-        }
     }
 
     private fun IssuesListViewModel.UiItem.toUnitItem(

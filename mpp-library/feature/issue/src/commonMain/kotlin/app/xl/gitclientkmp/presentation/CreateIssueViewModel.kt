@@ -58,8 +58,6 @@ class CreateIssueViewModel(
                     title = title.value().trim(),
                     body = body.value().trim()
                 )
-
-                _action.emit(value = Action.RouteBackWithRefresh)
             } catch (error: Exception) {
                 _state.value = _state.value.copy(isLoading = false)
                 handleError(error = error)
