@@ -25,7 +25,6 @@ import org.example.app.utils.MarkwonFactory
 import org.example.app.utils.bindField
 import org.example.app.utils.collectIn
 import org.example.app.utils.showErrorAlertDialog
-import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 import java.io.InputStream

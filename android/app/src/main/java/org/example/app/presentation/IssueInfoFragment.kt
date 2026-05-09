@@ -21,7 +21,6 @@ import org.example.app.model.PlaceholderState
 import org.example.app.utils.MarkwonFactory
 import org.example.app.utils.collectIn
 import org.example.app.utils.toShortDate
-import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.parameter.parametersOf
 
@@ -112,12 +111,12 @@ class IssueInfoFragment : Fragment() {
         val (textColor, backgroundColor) = when (issue.state) {
             IssueState.OPEN -> {
                 ContextCompat.getColor(context, R.color.light_green) to
-                ContextCompat.getColorStateList(context, R.color.light_green_20)
+                    ContextCompat.getColorStateList(context, R.color.light_green_20)
             }
 
             IssueState.CLOSED -> {
                 ContextCompat.getColor(context, R.color.error) to
-                ContextCompat.getColorStateList(context, R.color.error_20)
+                    ContextCompat.getColorStateList(context, R.color.error_20)
             }
         }
 
