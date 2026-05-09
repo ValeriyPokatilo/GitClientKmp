@@ -8,7 +8,6 @@ import android.view.ViewGroup
 import androidx.core.widget.doAfterTextChanged
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import app.xl.gitclientkmp.domain.error.ErrorModel
 import app.xl.gitclientkmp.presentation.AuthViewModel
 import org.example.app.R
 import org.example.app.databinding.AuthFragmentBinding
@@ -92,7 +91,7 @@ class AuthFragment : Fragment() {
             }
 
             is AuthViewModel.Action.ShowError -> {
-                showErrorDialog(model = action.error)
+                showErrorAlertDialog(errorModel = action.error)
             }
 
             is AuthViewModel.Action.FocusOnTokenField -> {
@@ -100,15 +99,5 @@ class AuthFragment : Fragment() {
                 binding.tokenInputEdit.showKeyboard()
             }
         }
-    }
-
-    private fun showErrorDialog(model: ErrorModel) {
-        showErrorAlertDialog(
-            title = getString(R.string.error),
-            message = model.alertMessage
-                ?.toString(requireContext())
-                .orEmpty(),
-            buttonTitle = getString(R.string.ok)
-        )
     }
 }
