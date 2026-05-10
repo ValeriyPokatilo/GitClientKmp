@@ -33,6 +33,10 @@
 		765594CD2FB0C32300C3D894 /* IssueExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765594CC2FB0C32300C3D894 /* IssueExtensions.swift */; };
 		765594CF2FB0C34600C3D894 /* StringExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765594CE2FB0C34600C3D894 /* StringExtensions.swift */; };
 		765594D12FB0C39600C3D894 /* IssuesListCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765594D02FB0C39600C3D894 /* IssuesListCoordinator.swift */; };
+		765594DE2FB1066E00C3D894 /* IssueInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 765594DC2FB1066E00C3D894 /* IssueInfoViewController.xib */; };
+		765594DF2FB1066E00C3D894 /* IssueInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765594DB2FB1066E00C3D894 /* IssueInfoViewController.swift */; };
+		765594E12FB1067900C3D894 /* IssueInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765594E02FB1067900C3D894 /* IssueInfoCoordinator.swift */; };
+		765594E32FB1088A00C3D894 /* ChipLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765594E22FB1088A00C3D894 /* ChipLabel.swift */; };
 		767503FD2F75B23F003D5CAC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 767503FB2F75B23F003D5CAC /* Localizable.strings */; };
 		76829CDD2F66B8EF00969E6F /* UnauthorizedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76829CDC2F66B8EF00969E6F /* UnauthorizedCoordinator.swift */; };
 		76829CDF2F66B90F00969E6F /* AuthorizedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76829CDE2F66B90F00969E6F /* AuthorizedCoordinator.swift */; };
@@ -122,6 +126,10 @@
 		765594CC2FB0C32300C3D894 /* IssueExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueExtensions.swift; sourceTree = "<group>"; };
 		765594CE2FB0C34600C3D894 /* StringExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtensions.swift; sourceTree = "<group>"; };
 		765594D02FB0C39600C3D894 /* IssuesListCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssuesListCoordinator.swift; sourceTree = "<group>"; };
+		765594DB2FB1066E00C3D894 /* IssueInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueInfoViewController.swift; sourceTree = "<group>"; };
+		765594DC2FB1066E00C3D894 /* IssueInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IssueInfoViewController.xib; sourceTree = "<group>"; };
+		765594E02FB1067900C3D894 /* IssueInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IssueInfoCoordinator.swift; sourceTree = "<group>"; };
+		765594E22FB1088A00C3D894 /* ChipLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChipLabel.swift; sourceTree = "<group>"; };
 		767503FC2F75B23F003D5CAC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		767503FE2F75B2D6003D5CAC /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		76829CDC2F66B8EF00969E6F /* UnauthorizedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthorizedCoordinator.swift; sourceTree = "<group>"; };
@@ -312,6 +320,15 @@
 			path = IssuesListScreen;
 			sourceTree = "<group>";
 		};
+		765594DD2FB1066E00C3D894 /* IssueInfoScreen */ = {
+			isa = PBXGroup;
+			children = (
+				765594DB2FB1066E00C3D894 /* IssueInfoViewController.swift */,
+				765594DC2FB1066E00C3D894 /* IssueInfoViewController.xib */,
+			);
+			path = IssueInfoScreen;
+			sourceTree = "<group>";
+		};
 		769EC0A52FAFD912004BAB6C /* BaseViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -333,6 +350,7 @@
 		76D676372F66C4E500DA76F5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				765594E22FB1088A00C3D894 /* ChipLabel.swift */,
 				769EC0AE2FAFDB6E004BAB6C /* LoadingButton.swift */,
 				769EC0A82FAFD9D3004BAB6C /* PlaceholderView.swift */,
 				769EC0A92FAFD9D3004BAB6C /* PlaceholderView.xib */,
@@ -396,6 +414,7 @@
 				76D7CF9D2F6314C9008104A0 /* RepositoriesListScreen */,
 				76D7CF9F2F631501008104A0 /* RepositoryInfoScreen */,
 				765594C32FB0C2B700C3D894 /* IssuesListScreen */,
+				765594DD2FB1066E00C3D894 /* IssueInfoScreen */,
 				76D676372F66C4E500DA76F5 /* Views */,
 				76D7CFA02F63151B008104A0 /* AlertController */,
 			);
@@ -410,6 +429,7 @@
 				76829CDC2F66B8EF00969E6F /* UnauthorizedCoordinator.swift */,
 				76EF931C2F5A1309001B63C8 /* RepositoryDetailInfoCoordinator.swift */,
 				765594D02FB0C39600C3D894 /* IssuesListCoordinator.swift */,
+				765594E02FB1067900C3D894 /* IssueInfoCoordinator.swift */,
 			);
 			path = Coordinators;
 			sourceTree = "<group>";
@@ -578,6 +598,7 @@
 				765594BA2FB088BA00C3D894 /* RepositoriesListViewController.xib in Resources */,
 				765594BE2FB088E400C3D894 /* AuthViewController.xib in Resources */,
 				76DEF5232F618BAD00677238 /* LaunchScreen.storyboard in Resources */,
+				765594DE2FB1066E00C3D894 /* IssueInfoViewController.xib in Resources */,
 				769EC0A62FAFD912004BAB6C /* BaseViewController.xib in Resources */,
 				76D7CF992F62DEA9008104A0 /* RepositoryItemCell.xib in Resources */,
 				45F47921219463C7003D25FA /* Assets.xcassets in Resources */,
@@ -701,6 +722,7 @@
 				76350DA32F5F216F009D4FD1 /* Aliases.swift in Sources */,
 				D2F8433B2ADF0D9300657354 /* Koin.swift in Sources */,
 				76D6763D2F66EBA700DA76F5 /* IconLabelView.swift in Sources */,
+				765594E32FB1088A00C3D894 /* ChipLabel.swift in Sources */,
 				76350DA62F5FF5F8009D4FD1 /* UIAlertControllerExtensions.swift in Sources */,
 				D2F446F72D13468300A410C5 /* KoinExtension.swift in Sources */,
 				D25029FE2DB0F579000149C7 /* SwiftEnumConvertibleProtocol.swift in Sources */,
@@ -711,9 +733,11 @@
 				76829CDF2F66B90F00969E6F /* AuthorizedCoordinator.swift in Sources */,
 				76EF931F2F5A1440001B63C8 /* SceneDelegate.swift in Sources */,
 				765594B92FB088BA00C3D894 /* RepositoriesListViewController.swift in Sources */,
+				765594DF2FB1066E00C3D894 /* IssueInfoViewController.swift in Sources */,
 				765594CD2FB0C32300C3D894 /* IssueExtensions.swift in Sources */,
 				D2F446FB2D1405E900A410C5 /* ImageDesc.swift in Sources */,
 				76829CDD2F66B8EF00969E6F /* UnauthorizedCoordinator.swift in Sources */,
+				765594E12FB1067900C3D894 /* IssueInfoCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

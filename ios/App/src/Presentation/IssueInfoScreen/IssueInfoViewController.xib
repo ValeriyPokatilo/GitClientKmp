@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="24127" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IssueInfoViewController" customModule="mokoApp" customModuleProvider="target">
+            <connections>
+                <outlet property="descriptionLabel" destination="iqD-yy-mdB" id="1Hk-h4-hAB"/>
+                <outlet property="markdownView" destination="taN-8g-4Ae" id="S3c-Mw-QTI"/>
+                <outlet property="retryButton" destination="70k-bL-hkU" id="RbL-yF-Loz"/>
+                <outlet property="statusLabel" destination="30g-aH-g6H" id="JII-rO-B81"/>
+                <outlet property="titleLabel" destination="ehD-2R-ZXp" id="gJt-2A-hiq"/>
+                <outlet property="updatedAtLabel" destination="dvX-IQ-M0b" id="UB0-RG-PWU"/>
+                <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view clearsContextBeforeDrawing="NO" contentMode="scaleToFill" id="i5M-Pr-FkT">
+            <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Status" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="30g-aH-g6H" customClass="ChipLabel" customModule="mokoApp" customModuleProvider="target">
+                    <rect key="frame" x="15.999999999999996" y="142" width="41.666666666666657" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="MFo-V6-CCv"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dvX-IQ-M0b" customClass="ChipLabel" customModule="mokoApp" customModuleProvider="target">
+                    <rect key="frame" x="69.666666666666671" y="142" width="26.666666666666671" height="24"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="24" id="PEd-hW-Drl"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="taN-8g-4Ae">
+                    <rect key="frame" x="16" y="280" width="361" height="504"/>
+                    <color key="backgroundColor" name="appBackground"/>
+                </view>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ehD-2R-ZXp">
+                    <rect key="frame" x="16" y="190" width="361" height="24"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iqD-yy-mdB">
+                    <rect key="frame" x="16" y="238" width="361" height="18"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <color key="textColor" name="white50"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="70k-bL-hkU" customClass="LoadingButton" customModule="mokoApp" customModuleProvider="target">
+                    <rect key="frame" x="16" y="720" width="361" height="48"/>
+                    <color key="backgroundColor" name="appGreen"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="48" id="ENm-Ys-uVb"/>
+                    </constraints>
+                    <state key="normal" title="Button"/>
+                    <buttonConfiguration key="configuration" style="plain" title="Button">
+                        <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </buttonConfiguration>
+                    <connections>
+                        <action selector="onRetryButtonTap:" destination="-1" eventType="touchUpInside" id="lQw-fB-IBY"/>
+                    </connections>
+                </button>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
+            <color key="backgroundColor" name="appBackground"/>
+            <constraints>
+                <constraint firstItem="70k-bL-hkU" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="9zY-61-cYt"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="ehD-2R-ZXp" secondAttribute="trailing" constant="16" id="B0l-Gp-jWW"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="taN-8g-4Ae" secondAttribute="trailing" constant="16" id="Bkh-E0-cqx"/>
+                <constraint firstItem="iqD-yy-mdB" firstAttribute="top" secondItem="ehD-2R-ZXp" secondAttribute="bottom" constant="24" id="HkU-uK-IRE"/>
+                <constraint firstItem="30g-aH-g6H" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="HmE-Pi-RY9"/>
+                <constraint firstItem="taN-8g-4Ae" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Kpf-IU-Oid"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="70k-bL-hkU" secondAttribute="bottom" constant="16" id="MJn-Kn-If1"/>
+                <constraint firstItem="taN-8g-4Ae" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="OlL-iR-gla"/>
+                <constraint firstItem="dvX-IQ-M0b" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="TQA-Pa-rzJ"/>
+                <constraint firstItem="30g-aH-g6H" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="UKM-He-zWL"/>
+                <constraint firstItem="dvX-IQ-M0b" firstAttribute="leading" secondItem="30g-aH-g6H" secondAttribute="trailing" constant="12" id="aOM-A4-ZsJ"/>
+                <constraint firstItem="ehD-2R-ZXp" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="cTA-MH-hQg"/>
+                <constraint firstItem="taN-8g-4Ae" firstAttribute="top" secondItem="iqD-yy-mdB" secondAttribute="bottom" constant="24" id="l46-Tj-qJT"/>
+                <constraint firstItem="iqD-yy-mdB" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="n4I-1G-PSb"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="70k-bL-hkU" secondAttribute="trailing" constant="16" id="rl1-00-yLN"/>
+                <constraint firstItem="ehD-2R-ZXp" firstAttribute="top" secondItem="dvX-IQ-M0b" secondAttribute="bottom" constant="24" id="ssu-oV-ouh"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="iqD-yy-mdB" secondAttribute="trailing" constant="16" id="tC0-rX-PLD"/>
+            </constraints>
+            <point key="canvasLocation" x="-376.3358778625954" y="98.591549295774655"/>
+        </view>
+    </objects>
+    <resources>
+        <namedColor name="appBackground">
+            <color red="0.050980392156862744" green="0.066666666666666666" blue="0.090196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="appGreen">
+            <color red="0.35294117647058826" green="0.57647058823529407" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="white50">
+            <color red="0.99607843137254903" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>

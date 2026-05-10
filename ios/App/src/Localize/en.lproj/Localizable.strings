@@ -21,3 +21,4 @@
 "issues" = "Issues";
 "view_issues" = "View issues";
 "new_issue_button_title" = "Create new issue";
+"issue_number" = "Issue #";

@@ -21,3 +21,4 @@
 "issues" = "Проблемы";
 "view_issues" = "Просмотреть задачи";
 "new_issue_button_title" = "Создать задачу";
+"issue_number" = "Задача #";
