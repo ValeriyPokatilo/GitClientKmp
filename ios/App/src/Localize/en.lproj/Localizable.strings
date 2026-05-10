@@ -20,3 +20,4 @@
 "issues_empty_message" = "No issues at the moment";
 "issues" = "Issues";
 "view_issues" = "View issues";
+"new_issue_button_title" = "Create new issue";

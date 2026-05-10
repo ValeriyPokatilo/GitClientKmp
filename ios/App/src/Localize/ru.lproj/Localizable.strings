@@ -20,3 +20,4 @@
 "issues_empty_message" = "На данный момент задач нет";
 "issues" = "Проблемы";
 "view_issues" = "Просмотреть задачи";
+"new_issue_button_title" = "Создать задачу";

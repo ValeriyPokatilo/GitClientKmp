@@ -24,7 +24,7 @@ extension Koin {
             exceptionLogger: CrashlyticsExceptionLogger()
         )
 
-        koinApp.modules(modules: [utilsIosModule, repoIosModule])
+        koinApp.modules(modules: [utilsIosModule, repoIosModule, issueIosModule])
 
         koinInstance = koinApp.koin
     }

@@ -5,6 +5,7 @@ final class RepositoryDetailInfoCoordinator {
     private let owner: String
     private let repositoryName: String
     private let branch: String
+    private var issuesListCoordinator: IssuesListCoordinator?
 
     var onLogout: EmptyBlock?
 
@@ -31,6 +32,21 @@ final class RepositoryDetailInfoCoordinator {
             self?.onLogout?()
         }
 
+        controller.onViewIssues = { [weak self] in
+            self?.showIssues()
+        }
+
         navigationController.pushViewController(controller, animated: true)
+    }
+
+    private func showIssues() {
+        let coordinator = IssuesListCoordinator(
+            navigationController: navigationController,
+            owner: owner,
+            repositoryName: repositoryName
+        )
+        issuesListCoordinator = coordinator
+
+        coordinator.start()
     }
 }
