@@ -16,3 +16,7 @@
 "watchers" = "наблюдатели";
 "refresh" = "Обновить";
 "retry" = "Повторить";
+"issues_empty_title" = "Пусто";
+"issues_empty_message" = "На данный момент задач нет";
+"issues" = "Проблемы";
+"view_issues" = "Просмотреть задачи";

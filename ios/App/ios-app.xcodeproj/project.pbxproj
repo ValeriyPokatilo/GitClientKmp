@@ -20,25 +20,28 @@
 		7650E1002F695415004CA6AE /* RepositoryDetailsRoute.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7650E0FF2F695415004CA6AE /* RepositoryDetailsRoute.swift */; };
 		7650E1072F695EF2004CA6AE /* AlertModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7650E1062F695EF2004CA6AE /* AlertModel.swift */; };
 		7650E1092F696242004CA6AE /* UITextFieldExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7650E1082F696242004CA6AE /* UITextFieldExtensions.swift */; };
+		765594B92FB088BA00C3D894 /* RepositoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765594B72FB088BA00C3D894 /* RepositoriesListViewController.swift */; };
+		765594BA2FB088BA00C3D894 /* RepositoriesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 765594B82FB088BA00C3D894 /* RepositoriesListViewController.xib */; };
+		765594BD2FB088E400C3D894 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 765594BB2FB088E400C3D894 /* AuthViewController.swift */; };
+		765594BE2FB088E400C3D894 /* AuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 765594BC2FB088E400C3D894 /* AuthViewController.xib */; };
 		767503FD2F75B23F003D5CAC /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 767503FB2F75B23F003D5CAC /* Localizable.strings */; };
 		76829CDD2F66B8EF00969E6F /* UnauthorizedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76829CDC2F66B8EF00969E6F /* UnauthorizedCoordinator.swift */; };
 		76829CDF2F66B90F00969E6F /* AuthorizedCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76829CDE2F66B90F00969E6F /* AuthorizedCoordinator.swift */; };
-		7697AB332F6A847600C333E7 /* RepositoriesListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697AB312F6A847600C333E7 /* RepositoriesListViewController.swift */; };
-		7697AB342F6A847600C333E7 /* RepositoriesListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7697AB322F6A847600C333E7 /* RepositoriesListViewController.xib */; };
 		7697AB362F6A8B9200C333E7 /* RepositoryExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7697AB352F6A8B9200C333E7 /* RepositoryExtensions.swift */; };
+		769EC0A62FAFD912004BAB6C /* BaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769EC0A42FAFD912004BAB6C /* BaseViewController.xib */; };
+		769EC0A72FAFD912004BAB6C /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769EC0A32FAFD912004BAB6C /* BaseViewController.swift */; };
+		769EC0AA2FAFD9D3004BAB6C /* PlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769EC0A92FAFD9D3004BAB6C /* PlaceholderView.xib */; };
+		769EC0AB2FAFD9D3004BAB6C /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769EC0A82FAFD9D3004BAB6C /* PlaceholderView.swift */; };
+		769EC0AD2FAFDB51004BAB6C /* RepositoryDetailInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 769EC0AC2FAFDB51004BAB6C /* RepositoryDetailInfoViewController.xib */; };
+		769EC0AF2FAFDB6E004BAB6C /* LoadingButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 769EC0AE2FAFDB6E004BAB6C /* LoadingButton.swift */; };
 		76AF30712FAC903100D377BC /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 76AF30702FAC903100D377BC /* style.css */; };
 		76AF30732FAC905E00D377BC /* index.html in Resources */ = {isa = PBXBuildFile; fileRef = 76AF30722FAC905B00D377BC /* index.html */; };
-		76D676382F66C4E600DA76F5 /* PlaceholderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76D676362F66C4E500DA76F5 /* PlaceholderView.xib */; };
-		76D676392F66C4E600DA76F5 /* PlaceholderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D676352F66C4E500DA76F5 /* PlaceholderView.swift */; };
 		76D6763B2F66EB9900DA76F5 /* IconLabelView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76D6763A2F66EB9900DA76F5 /* IconLabelView.xib */; };
 		76D6763D2F66EBA700DA76F5 /* IconLabelView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D6763C2F66EBA700DA76F5 /* IconLabelView.swift */; };
 		76D7CF982F62DEA9008104A0 /* RepositoryItemCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76D7CF962F62DEA9008104A0 /* RepositoryItemCell.swift */; };
 		76D7CF992F62DEA9008104A0 /* RepositoryItemCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76D7CF972F62DEA9008104A0 /* RepositoryItemCell.xib */; };
 		76DEF5232F618BAD00677238 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 76DEF5222F618BAD00677238 /* LaunchScreen.storyboard */; };
 		76E3FECD2F6F38C500C7A60F /* IntExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76E3FECC2F6F38C500C7A60F /* IntExtensions.swift */; };
-		76EF930B2F5A120A001B63C8 /* AuthViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76EF930A2F5A120A001B63C8 /* AuthViewController.xib */; };
-		76EF930C2F5A120A001B63C8 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF93092F5A120A001B63C8 /* AuthViewController.swift */; };
-		76EF93132F5A1242001B63C8 /* RepositoryDetailInfoViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 76EF93122F5A1242001B63C8 /* RepositoryDetailInfoViewController.xib */; };
 		76EF93142F5A1242001B63C8 /* RepositoryDetailInfoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF93112F5A1242001B63C8 /* RepositoryDetailInfoViewController.swift */; };
 		76EF93172F5A12D5001B63C8 /* AppCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF93162F5A12D5001B63C8 /* AppCoordinator.swift */; };
 		76EF931D2F5A1309001B63C8 /* RepositoryDetailInfoCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76EF931C2F5A1309001B63C8 /* RepositoryDetailInfoCoordinator.swift */; };
@@ -97,27 +100,30 @@
 		7650E0FF2F695415004CA6AE /* RepositoryDetailsRoute.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailsRoute.swift; sourceTree = "<group>"; };
 		7650E1062F695EF2004CA6AE /* AlertModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertModel.swift; sourceTree = "<group>"; };
 		7650E1082F696242004CA6AE /* UITextFieldExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITextFieldExtensions.swift; sourceTree = "<group>"; };
+		765594B72FB088BA00C3D894 /* RepositoriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesListViewController.swift; sourceTree = "<group>"; };
+		765594B82FB088BA00C3D894 /* RepositoriesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoriesListViewController.xib; sourceTree = "<group>"; };
+		765594BB2FB088E400C3D894 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
+		765594BC2FB088E400C3D894 /* AuthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthViewController.xib; sourceTree = "<group>"; };
 		767503FC2F75B23F003D5CAC /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		767503FE2F75B2D6003D5CAC /* ru */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ru; path = ru.lproj/Localizable.strings; sourceTree = "<group>"; };
 		76829CDC2F66B8EF00969E6F /* UnauthorizedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnauthorizedCoordinator.swift; sourceTree = "<group>"; };
 		76829CDE2F66B90F00969E6F /* AuthorizedCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthorizedCoordinator.swift; sourceTree = "<group>"; };
-		7697AB312F6A847600C333E7 /* RepositoriesListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoriesListViewController.swift; sourceTree = "<group>"; };
-		7697AB322F6A847600C333E7 /* RepositoriesListViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoriesListViewController.xib; sourceTree = "<group>"; };
 		7697AB352F6A8B9200C333E7 /* RepositoryExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryExtensions.swift; sourceTree = "<group>"; };
+		769EC0A32FAFD912004BAB6C /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		769EC0A42FAFD912004BAB6C /* BaseViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = BaseViewController.xib; sourceTree = "<group>"; };
+		769EC0A82FAFD9D3004BAB6C /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
+		769EC0A92FAFD9D3004BAB6C /* PlaceholderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceholderView.xib; sourceTree = "<group>"; };
+		769EC0AC2FAFDB51004BAB6C /* RepositoryDetailInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryDetailInfoViewController.xib; sourceTree = "<group>"; };
+		769EC0AE2FAFDB6E004BAB6C /* LoadingButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingButton.swift; sourceTree = "<group>"; };
 		76AF30702FAC903100D377BC /* style.css */ = {isa = PBXFileReference; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
 		76AF30722FAC905B00D377BC /* index.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = index.html; sourceTree = "<group>"; };
-		76D676352F66C4E500DA76F5 /* PlaceholderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlaceholderView.swift; sourceTree = "<group>"; };
-		76D676362F66C4E500DA76F5 /* PlaceholderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PlaceholderView.xib; sourceTree = "<group>"; };
 		76D6763A2F66EB9900DA76F5 /* IconLabelView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = IconLabelView.xib; sourceTree = "<group>"; };
 		76D6763C2F66EBA700DA76F5 /* IconLabelView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IconLabelView.swift; sourceTree = "<group>"; };
 		76D7CF962F62DEA9008104A0 /* RepositoryItemCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryItemCell.swift; sourceTree = "<group>"; };
 		76D7CF972F62DEA9008104A0 /* RepositoryItemCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryItemCell.xib; sourceTree = "<group>"; };
 		76DEF5222F618BAD00677238 /* LaunchScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = LaunchScreen.storyboard; sourceTree = "<group>"; };
 		76E3FECC2F6F38C500C7A60F /* IntExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IntExtensions.swift; sourceTree = "<group>"; };
-		76EF93092F5A120A001B63C8 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthViewController.swift; sourceTree = "<group>"; };
-		76EF930A2F5A120A001B63C8 /* AuthViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AuthViewController.xib; sourceTree = "<group>"; };
 		76EF93112F5A1242001B63C8 /* RepositoryDetailInfoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailInfoViewController.swift; sourceTree = "<group>"; };
-		76EF93122F5A1242001B63C8 /* RepositoryDetailInfoViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RepositoryDetailInfoViewController.xib; sourceTree = "<group>"; };
 		76EF93162F5A12D5001B63C8 /* AppCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppCoordinator.swift; sourceTree = "<group>"; };
 		76EF931C2F5A1309001B63C8 /* RepositoryDetailInfoCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RepositoryDetailInfoCoordinator.swift; sourceTree = "<group>"; };
 		76EF931E2F5A1440001B63C8 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -273,6 +279,15 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		769EC0A52FAFD912004BAB6C /* BaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				769EC0A32FAFD912004BAB6C /* BaseViewController.swift */,
+				769EC0A42FAFD912004BAB6C /* BaseViewController.xib */,
+			);
+			path = BaseViewController;
+			sourceTree = "<group>";
+		};
 		76AF306F2FAC902300D377BC /* MarkdownTheme */ = {
 			isa = PBXGroup;
 			children = (
@@ -285,8 +300,9 @@
 		76D676372F66C4E500DA76F5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				76D676352F66C4E500DA76F5 /* PlaceholderView.swift */,
-				76D676362F66C4E500DA76F5 /* PlaceholderView.xib */,
+				769EC0AE2FAFDB6E004BAB6C /* LoadingButton.swift */,
+				769EC0A82FAFD9D3004BAB6C /* PlaceholderView.swift */,
+				769EC0A92FAFD9D3004BAB6C /* PlaceholderView.xib */,
 				76D6763C2F66EBA700DA76F5 /* IconLabelView.swift */,
 				76D6763A2F66EB9900DA76F5 /* IconLabelView.xib */,
 			);
@@ -296,8 +312,8 @@
 		76D7CF9C2F6314B9008104A0 /* AuthScreen */ = {
 			isa = PBXGroup;
 			children = (
-				76EF93092F5A120A001B63C8 /* AuthViewController.swift */,
-				76EF930A2F5A120A001B63C8 /* AuthViewController.xib */,
+				765594BB2FB088E400C3D894 /* AuthViewController.swift */,
+				765594BC2FB088E400C3D894 /* AuthViewController.xib */,
 			);
 			path = AuthScreen;
 			sourceTree = "<group>";
@@ -305,8 +321,8 @@
 		76D7CF9D2F6314C9008104A0 /* RepositoriesListScreen */ = {
 			isa = PBXGroup;
 			children = (
-				7697AB312F6A847600C333E7 /* RepositoriesListViewController.swift */,
-				7697AB322F6A847600C333E7 /* RepositoriesListViewController.xib */,
+				765594B72FB088BA00C3D894 /* RepositoriesListViewController.swift */,
+				765594B82FB088BA00C3D894 /* RepositoriesListViewController.xib */,
 				76D7CF962F62DEA9008104A0 /* RepositoryItemCell.swift */,
 				76D7CF972F62DEA9008104A0 /* RepositoryItemCell.xib */,
 			);
@@ -325,7 +341,7 @@
 			isa = PBXGroup;
 			children = (
 				76EF93112F5A1242001B63C8 /* RepositoryDetailInfoViewController.swift */,
-				76EF93122F5A1242001B63C8 /* RepositoryDetailInfoViewController.xib */,
+				769EC0AC2FAFDB51004BAB6C /* RepositoryDetailInfoViewController.xib */,
 			);
 			path = RepositoryInfoScreen;
 			sourceTree = "<group>";
@@ -342,6 +358,7 @@
 			isa = PBXGroup;
 			children = (
 				76D7CF9E2F6314E3008104A0 /* LaunchScreen */,
+				769EC0A52FAFD912004BAB6C /* BaseViewController */,
 				76D7CF9C2F6314B9008104A0 /* AuthScreen */,
 				76D7CF9D2F6314C9008104A0 /* RepositoriesListScreen */,
 				76D7CF9F2F631501008104A0 /* RepositoryInfoScreen */,
@@ -513,17 +530,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				769EC0AA2FAFD9D3004BAB6C /* PlaceholderView.xib in Resources */,
 				76D6763B2F66EB9900DA76F5 /* IconLabelView.xib in Resources */,
 				D25029F02DB0CD7E000149C7 /* Preview Assets.xcassets in Resources */,
 				76AF30712FAC903100D377BC /* style.css in Resources */,
 				76AF30732FAC905E00D377BC /* index.html in Resources */,
+				769EC0AD2FAFDB51004BAB6C /* RepositoryDetailInfoViewController.xib in Resources */,
 				767503FD2F75B23F003D5CAC /* Localizable.strings in Resources */,
-				76EF930B2F5A120A001B63C8 /* AuthViewController.xib in Resources */,
-				76D676382F66C4E600DA76F5 /* PlaceholderView.xib in Resources */,
+				765594BA2FB088BA00C3D894 /* RepositoriesListViewController.xib in Resources */,
+				765594BE2FB088E400C3D894 /* AuthViewController.xib in Resources */,
 				76DEF5232F618BAD00677238 /* LaunchScreen.storyboard in Resources */,
-				7697AB342F6A847600C333E7 /* RepositoriesListViewController.xib in Resources */,
+				769EC0A62FAFD912004BAB6C /* BaseViewController.xib in Resources */,
 				76D7CF992F62DEA9008104A0 /* RepositoryItemCell.xib in Resources */,
-				76EF93132F5A1242001B63C8 /* RepositoryDetailInfoViewController.xib in Resources */,
 				45F47921219463C7003D25FA /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -620,12 +638,14 @@
 				D2FD61E12DAE4ADA00A37209 /* ViewModelWrapper.swift in Sources */,
 				D25029FC2DB0F55F000149C7 /* CombineObservableObject.swift in Sources */,
 				D2FD61E72DAE4AEE00A37209 /* CFlowExt.swift in Sources */,
+				769EC0A72FAFD912004BAB6C /* BaseViewController.swift in Sources */,
 				76E3FECD2F6F38C500C7A60F /* IntExtensions.swift in Sources */,
 				76EF931D2F5A1309001B63C8 /* RepositoryDetailInfoCoordinator.swift in Sources */,
 				76EF93142F5A1242001B63C8 /* RepositoryDetailInfoViewController.swift in Sources */,
 				76D7CF982F62DEA9008104A0 /* RepositoryItemCell.swift in Sources */,
-				76D676392F66C4E600DA76F5 /* PlaceholderView.swift in Sources */,
+				769EC0AF2FAFDB6E004BAB6C /* LoadingButton.swift in Sources */,
 				D2FD61E82DAE4AEE00A37209 /* ViewModelState.swift in Sources */,
+				765594BD2FB088E400C3D894 /* AuthViewController.swift in Sources */,
 				D2FD61E92DAE4AEE00A37209 /* ViewModelBinding.swift in Sources */,
 				76350DA82F5FF776009D4FD1 /* AlertViewController.swift in Sources */,
 				7650E1072F695EF2004CA6AE /* AlertModel.swift in Sources */,
@@ -641,13 +661,13 @@
 				76350DA62F5FF5F8009D4FD1 /* UIAlertControllerExtensions.swift in Sources */,
 				D2F446F72D13468300A410C5 /* KoinExtension.swift in Sources */,
 				D25029FE2DB0F579000149C7 /* SwiftEnumConvertibleProtocol.swift in Sources */,
+				769EC0AB2FAFD9D3004BAB6C /* PlaceholderView.swift in Sources */,
 				D251A4A12D1412A700A7236D /* R.generated.swift in Sources */,
 				45D8D7FA26FB24AE00DD3A58 /* Environment.swift in Sources */,
 				221908112CC6B83A00A045C4 /* CrashlyticsExceptionLogger.swift in Sources */,
 				76829CDF2F66B90F00969E6F /* AuthorizedCoordinator.swift in Sources */,
 				76EF931F2F5A1440001B63C8 /* SceneDelegate.swift in Sources */,
-				7697AB332F6A847600C333E7 /* RepositoriesListViewController.swift in Sources */,
-				76EF930C2F5A120A001B63C8 /* AuthViewController.swift in Sources */,
+				765594B92FB088BA00C3D894 /* RepositoriesListViewController.swift in Sources */,
 				D2F446FB2D1405E900A410C5 /* ImageDesc.swift in Sources */,
 				76829CDD2F66B8EF00969E6F /* UnauthorizedCoordinator.swift in Sources */,
 			);

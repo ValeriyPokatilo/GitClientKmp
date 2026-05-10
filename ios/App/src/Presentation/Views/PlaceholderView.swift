@@ -5,9 +5,6 @@ final class PlaceholderView: UIView {
     @IBOutlet private var imageView: UIImageView!
     @IBOutlet private var titleLabel: UILabel!
     @IBOutlet private var messageLabel: UILabel!
-    @IBOutlet private var refreshButton: UIButton!
-
-    private var action: EmptyBlock?
 
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -34,7 +31,7 @@ final class PlaceholderView: UIView {
         addSubview(view)
     }
 
-    func show(with error: ErrorModel, action: @escaping EmptyBlock) {
+    func configure(with error: ErrorModel) {
         reset()
 
         if error.isNetworkError {
@@ -46,18 +43,25 @@ final class PlaceholderView: UIView {
         titleLabel.text = error.placeholderTitle.localized()
         titleLabel.textColor = .appError
         messageLabel.text = error.placeholderMessage.localized()
-        refreshButton.setTitle(
-            R.string.localizable.retry(),
-            for: .normal
-        )
-
-        self.action = action
     }
 
-    func showEmpty(
+    func configureEmptyRepositories() {
+        configureEmptyPlaceholder(
+            title: R.string.localizable.repositories_empty_title(),
+            message: R.string.localizable.repositories_empty_message()
+        )
+    }
+
+    func configureEmptyIssues() {
+        configureEmptyPlaceholder(
+            title: R.string.localizable.issues_empty_title(),
+            message: R.string.localizable.issues_empty_message()
+        )
+    }
+
+    private func configureEmptyPlaceholder(
         title: String,
-        message: String,
-        action: @escaping EmptyBlock
+        message: String
     ) {
         reset()
 
@@ -65,16 +69,6 @@ final class PlaceholderView: UIView {
         titleLabel.text = title
         titleLabel.textColor = R.color.appBlue()!
         messageLabel.text = message
-        refreshButton.setTitle(
-            R.string.localizable.refresh(),
-            for: .normal
-        )
-
-        self.action = action
-    }
-
-    @IBAction private func refreshAction(_ _: UIButton) {
-        action?()
     }
 
     private func reset() {
@@ -82,6 +76,5 @@ final class PlaceholderView: UIView {
         titleLabel.text = nil
         messageLabel.text = nil
         titleLabel.textColor = .label
-        action = nil
     }
 }

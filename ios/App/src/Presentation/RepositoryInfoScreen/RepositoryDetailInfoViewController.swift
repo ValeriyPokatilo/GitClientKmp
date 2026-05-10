@@ -3,17 +3,18 @@ import MultiPlatformLibrary
 import NVActivityIndicatorView
 import UIKit
 
-final class RepositoryDetailInfoViewController: UIViewController {
+final class RepositoryDetailInfoViewController: BaseViewController {
     @IBOutlet private var linkView: IconLabelView!
     @IBOutlet private var licenseView: IconLabelView!
     @IBOutlet private var licenseNameLabel: UILabel!
     @IBOutlet private var starsView: IconLabelView!
     @IBOutlet private var forksView: IconLabelView!
     @IBOutlet private var watchersView: IconLabelView!
+    @IBOutlet private var issueView: IconLabelView!
+    @IBOutlet private var issueLinkLabel: UILabel!
     @IBOutlet private var readmeIndicator: NVActivityIndicatorView!
-    @IBOutlet private var mainIndicator: NVActivityIndicatorView!
     @IBOutlet private var markdownView: UIView!
-    @IBOutlet private var placeholderView: PlaceholderView!
+    @IBOutlet private var refreshButton: LoadingButton!
 
     private var downView: DownView?
 
@@ -32,6 +33,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
     private var actionTask: Task<Void, Never>?
 
     var onLogout: EmptyBlock?
+    var onViewIssues: EmptyBlock?
 
     init(
         owner: String,
@@ -52,7 +54,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigation()
-        setupIndicators()
+        setupUI()
         setupDown()
         bindViewModel()
 
@@ -74,9 +76,9 @@ final class RepositoryDetailInfoViewController: UIViewController {
         navigationItem.rightBarButtonItem = button
     }
 
-    private func setupIndicators() {
-        mainIndicator.type = .circleStrokeSpin
+    private func setupUI() {
         readmeIndicator.type = .circleStrokeSpin
+        refreshButton.configure(style: .primary)
     }
 
     private func setupDown() {
@@ -94,14 +96,14 @@ final class RepositoryDetailInfoViewController: UIViewController {
         downView.scrollView.alwaysBounceHorizontal = false
 
         markdownView.addSubview(downView)
-        
+
         NSLayoutConstraint.activate([
             downView.topAnchor.constraint(equalTo: markdownView.topAnchor),
             downView.leadingAnchor.constraint(equalTo: markdownView.leadingAnchor),
             downView.trailingAnchor.constraint(equalTo: markdownView.trailingAnchor),
             downView.bottomAnchor.constraint(equalTo: markdownView.bottomAnchor),
         ])
-        
+
         self.downView = downView
     }
 
@@ -135,19 +137,22 @@ final class RepositoryDetailInfoViewController: UIViewController {
         let isLoading = state is RepositoryInfoViewModelStateLoading
 
         isLoading
-            ? mainIndicator.startAnimating()
-            : mainIndicator.stopAnimating()
+            ? startLoading()
+            : stopLoading()
     }
 
     private func renderPlaceholder(_ state: RepositoryInfoViewModelState) {
         switch onEnum(of: state) {
         case let .error(errorState):
-            placeholderView.isHidden = false
-            placeholderView.show(with: errorState.error) { [weak self] in
-                self?.viewModel.onRetryButtonPressed()
-            }
+            showErrorPlaceholder(error: errorState.error)
+            refreshButton.isHidden = false
+            refreshButton.setTitle(
+                R.string.localizable.retry(),
+                for: .normal
+            )
         default:
-            placeholderView.isHidden = true
+            hidePlaceholder()
+            refreshButton.isHidden = true
         }
     }
 
@@ -157,7 +162,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
             return
         }
 
-        mainIndicator.stopAnimating()
+        stopLoading()
         setupDetails(details: loadedState.githubRepo)
         renderReadmeState(loadedState.readmeState)
     }
@@ -240,6 +245,29 @@ final class RepositoryDetailInfoViewController: UIViewController {
             titleColor: R.color.appCyan()!,
             additional: R.string.localizable.watchers()
         )
+
+        issueView.configure(
+            icon: R.image.ic_issue(),
+            title: "\(details.openIssuesCount)",
+            titleColor: R.color.appLightGreen()!,
+            additional: R.string.localizable.issues()
+        )
+
+        let attributeString = NSMutableAttributedString(
+            string: R.string.localizable.view_issues()
+        )
+        attributeString.addAttribute(
+            .underlineStyle,
+            value: NSUnderlineStyle.single.rawValue,
+            range: NSRange(location: 0, length: attributeString.length)
+        )
+
+        issueLinkLabel.attributedText = attributeString
+        let tapGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(onViewIssuesTap)
+        )
+        issueLinkLabel.addGestureRecognizer(tapGesture)
     }
 
     private func handleMarkdown(markdownString: String?) {
@@ -255,19 +283,26 @@ final class RepositoryDetailInfoViewController: UIViewController {
     }
 
     private func handleErrorState(error: ErrorModel) {
-        placeholderView.isHidden = false
-
-        placeholderView.show(with: error) { [weak self] in
-            self?.viewModel.onRetryButtonPressed()
-        }
+        showErrorPlaceholder(error: error)
+        refreshButton.isHidden = false
+        refreshButton.setTitle(
+            R.string.localizable.retry(),
+            for: .normal
+        )
     }
 
     private func handleAction(_ action: RepositoryInfoViewModelAction) {
         switch onEnum(of: action) {
         case .logout:
             onLogout?()
+        case .routeToIssues:
+            onViewIssues?()
         default: break
         }
+    }
+
+    @objc func onViewIssuesTap() {
+        viewModel.onViewIssuesPressed()
     }
 
     @objc private func onLogoutTap() {

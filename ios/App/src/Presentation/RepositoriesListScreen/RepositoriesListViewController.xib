@@ -6,14 +6,12 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="24063"/>
         <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
-        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RepositoriesListViewController" customModule="mokoApp" customModuleProvider="target">
             <connections>
-                <outlet property="indicatorView" destination="Arv-as-k6v" id="ExA-YL-Hki"/>
-                <outlet property="placeholderView" destination="UNv-A8-XBy" id="xPO-Kz-lha"/>
+                <outlet property="refreshButton" destination="LQJ-YC-3RG" id="eRU-vf-nmJ"/>
                 <outlet property="tableView" destination="k7L-g8-Ees" id="Czt-hx-YSp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -28,31 +26,31 @@
                     <color key="backgroundColor" name="appBackground"/>
                     <color key="sectionIndexBackgroundColor" name="appBackground"/>
                 </tableView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Arv-as-k6v" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
-                    <rect key="frame" x="168.66666666666666" y="398" width="56" height="56"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="LQJ-YC-3RG" customClass="LoadingButton" customModule="mokoApp" customModuleProvider="target">
+                    <rect key="frame" x="16" y="736" width="361" height="48"/>
+                    <color key="backgroundColor" name="appGreen"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="56" id="XYN-BR-1J5"/>
-                        <constraint firstAttribute="width" constant="56" id="y6Z-3C-cij"/>
+                        <constraint firstAttribute="height" constant="48" id="dgC-TC-DKp"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="mdR-AR-21V"/>
                     </constraints>
-                </view>
-                <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UNv-A8-XBy" customClass="PlaceholderView" customModule="mokoApp" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="118" width="393" height="666"/>
-                </view>
+                    <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
+                    <state key="normal" title="Button"/>
+                    <connections>
+                        <action selector="refreshButtonAction:" destination="-1" eventType="touchUpInside" id="cQB-ch-jyz"/>
+                    </connections>
+                </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="appBackground"/>
             <constraints>
-                <constraint firstItem="UNv-A8-XBy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="3oU-5Q-MJK"/>
-                <constraint firstItem="UNv-A8-XBy" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="4YR-u8-xhG"/>
                 <constraint firstItem="k7L-g8-Ees" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="EyV-bP-9IQ"/>
-                <constraint firstItem="UNv-A8-XBy" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="Hhi-65-p39"/>
                 <constraint firstItem="k7L-g8-Ees" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="K22-qu-4Jd"/>
-                <constraint firstItem="k7L-g8-Ees" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="OeE-n6-Plh"/>
-                <constraint firstItem="Arv-as-k6v" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="W8d-Yi-DoX"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="LQJ-YC-3RG" secondAttribute="bottom" id="Kru-XW-1yq"/>
+                <constraint firstItem="k7L-g8-Ees" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Msw-Ty-4eC"/>
+                <constraint firstItem="LQJ-YC-3RG" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="aaU-Jq-QhR"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="LQJ-YC-3RG" secondAttribute="trailing" constant="16" id="dte-cm-eah"/>
                 <constraint firstItem="k7L-g8-Ees" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="kDl-2F-fws"/>
-                <constraint firstItem="Arv-as-k6v" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="l3X-7E-6e8"/>
-                <constraint firstItem="UNv-A8-XBy" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="vK0-no-Gzu"/>
             </constraints>
             <point key="canvasLocation" x="139.69465648854961" y="153.52112676056339"/>
         </view>
@@ -61,8 +59,8 @@
         <namedColor name="appBackground">
             <color red="0.050980392156862744" green="0.066666666666666666" blue="0.090196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <systemColor name="systemBackgroundColor">
-            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
+        <namedColor name="appGreen">
+            <color red="0.35294117647058826" green="0.57647058823529407" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
     </resources>
 </document>

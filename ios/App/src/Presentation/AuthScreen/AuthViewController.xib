@@ -13,7 +13,6 @@
             <connections>
                 <outlet property="bottomConstraint" destination="uxA-Hf-IPq" id="P5E-1a-a2m"/>
                 <outlet property="errorLabel" destination="LTU-AK-ZcQ" id="4as-oH-kco"/>
-                <outlet property="indicatorView" destination="Xd1-LA-NWK" id="d5k-GN-MiS"/>
                 <outlet property="mainLogoImageView" destination="VWA-Ya-0ex" id="Nh2-8g-nmF"/>
                 <outlet property="signInButton" destination="MOz-GQ-DtL" id="cgD-lh-F2J"/>
                 <outlet property="tokenTextField" destination="aJz-FB-wly" id="qYr-Ey-sic"/>
@@ -50,7 +49,7 @@
                         </userDefinedRuntimeAttribute>
                     </userDefinedRuntimeAttributes>
                 </textField>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MOz-GQ-DtL">
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MOz-GQ-DtL" customClass="LoadingButton" customModule="mokoApp" customModuleProvider="target">
                     <rect key="frame" x="16" y="720" width="361" height="48"/>
                     <color key="backgroundColor" name="appGreen"/>
                     <constraints>
@@ -61,12 +60,6 @@
                         <fontDescription key="titleFontDescription" type="system" weight="semibold" pointSize="16"/>
                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </buttonConfiguration>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="8"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounce" value="YES"/>
-                    </userDefinedRuntimeAttributes>
                     <connections>
                         <action selector="signInButtonAction:" destination="-1" eventType="touchUpInside" id="Dxi-rG-zQ5"/>
                     </connections>
@@ -77,13 +70,6 @@
                     <color key="textColor" name="appError"/>
                     <nil key="highlightedColor"/>
                 </label>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Xd1-LA-NWK" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
-                    <rect key="frame" x="184.66666666666666" y="732" width="24" height="24"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="24" id="K1Z-7g-8lF"/>
-                        <constraint firstAttribute="width" constant="24" id="a2b-Nz-aMC"/>
-                    </constraints>
-                </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="appBackground"/>
@@ -92,9 +78,7 @@
                 <constraint firstItem="LTU-AK-ZcQ" firstAttribute="top" secondItem="aJz-FB-wly" secondAttribute="bottom" constant="6" id="97X-IH-r7J"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="aJz-FB-wly" secondAttribute="trailing" constant="16" id="He6-Db-L2g"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="MOz-GQ-DtL" secondAttribute="trailing" constant="16" id="Hli-WN-hlh"/>
-                <constraint firstItem="Xd1-LA-NWK" firstAttribute="centerY" secondItem="MOz-GQ-DtL" secondAttribute="centerY" id="IIw-re-yEY"/>
                 <constraint firstItem="aJz-FB-wly" firstAttribute="top" secondItem="VWA-Ya-0ex" secondAttribute="bottom" constant="56" id="JQ2-1q-rnY"/>
-                <constraint firstItem="Xd1-LA-NWK" firstAttribute="centerX" secondItem="MOz-GQ-DtL" secondAttribute="centerX" id="PnB-R9-6S1"/>
                 <constraint firstItem="VWA-Ya-0ex" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="Zxg-tC-3Yo"/>
                 <constraint firstItem="LTU-AK-ZcQ" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="32" id="fgG-1W-sVH"/>
                 <constraint firstItem="VWA-Ya-0ex" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="58" id="ipE-hC-MIJ"/>

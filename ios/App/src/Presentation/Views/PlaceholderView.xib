@@ -13,7 +13,6 @@
             <connections>
                 <outlet property="imageView" destination="AkI-S4-4DK" id="aaC-IK-uRo"/>
                 <outlet property="messageLabel" destination="Osh-ff-nRG" id="fKQ-fG-EAM"/>
-                <outlet property="refreshButton" destination="SjK-i8-62j" id="Cdr-Qx-f0d"/>
                 <outlet property="titleLabel" destination="Edy-y9-cJQ" id="RZH-sw-SN4"/>
             </connections>
         </placeholder>
@@ -22,25 +21,6 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SjK-i8-62j">
-                    <rect key="frame" x="16" y="720" width="361" height="48"/>
-                    <color key="backgroundColor" name="appGreen"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="48" id="W6K-0B-2EF"/>
-                    </constraints>
-                    <color key="tintColor" name="white"/>
-                    <state key="normal" title="Button"/>
-                    <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                    <userDefinedRuntimeAttributes>
-                        <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
-                            <integer key="value" value="8"/>
-                        </userDefinedRuntimeAttribute>
-                        <userDefinedRuntimeAttribute type="boolean" keyPath="maskToBounce" value="YES"/>
-                    </userDefinedRuntimeAttributes>
-                    <connections>
-                        <action selector="refreshAction:" destination="-1" eventType="touchUpInside" id="1RF-Bv-Ppa"/>
-                    </connections>
-                </button>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="24" translatesAutoresizingMaskIntoConstraints="NO" id="NxG-zy-37z">
                     <rect key="frame" x="16" y="352" width="361" height="148.33333333333337"/>
                     <subviews>
@@ -74,12 +54,9 @@
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" name="appBackground"/>
             <constraints>
-                <constraint firstItem="SjK-i8-62j" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="6Q8-lK-udf"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="NxG-zy-37z" secondAttribute="trailing" constant="16" id="AW3-9K-s5g"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="SjK-i8-62j" secondAttribute="trailing" constant="16" id="Rk1-IX-z5c"/>
                 <constraint firstItem="NxG-zy-37z" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="16" id="SOL-xt-0Ig"/>
                 <constraint firstItem="NxG-zy-37z" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="gGv-IG-ZCB"/>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="SjK-i8-62j" secondAttribute="bottom" constant="16" id="xtH-jF-JmE"/>
                 <constraint firstItem="NxG-zy-37z" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="yYV-pD-eGX"/>
             </constraints>
             <point key="canvasLocation" x="141" y="154"/>
@@ -88,9 +65,6 @@
     <resources>
         <namedColor name="appBackground">
             <color red="0.050980392156862744" green="0.066666666666666666" blue="0.090196078431372548" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
-        <namedColor name="appGreen">
-            <color red="0.35294117647058826" green="0.57647058823529407" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <namedColor name="white">
             <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -1,17 +1,15 @@
 import MultiPlatformLibrary
-import NVActivityIndicatorView
 import RswiftResources
 import RxKeyboard
 import RxSwift
 import UIKit
 
-final class AuthViewController: UIViewController {
+final class AuthViewController: BaseViewController {
     @IBOutlet private var mainLogoImageView: UIImageView!
     @IBOutlet private var tokenTextField: UITextField!
     @IBOutlet private var errorLabel: UILabel!
-    @IBOutlet private var signInButton: UIButton!
+    @IBOutlet private var signInButton: LoadingButton!
     @IBOutlet private var bottomConstraint: NSLayoutConstraint!
-    @IBOutlet private var indicatorView: NVActivityIndicatorView!
 
     private lazy var viewModel: AuthViewModel = Koin.instance.getAuthViewModel()
 
@@ -21,7 +19,6 @@ final class AuthViewController: UIViewController {
     private var actionTask: Task<Void, Never>?
 
     var routeToMain: EmptyBlock?
-    var showAlert: ParameterBlock<AlertModel>?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,8 +32,6 @@ final class AuthViewController: UIViewController {
         navigationController?.setNavigationBarHidden(true, animated: false)
 
         mainLogoImageView.image = R.image.main_logo()
-
-        indicatorView.type = .circleStrokeSpin
     }
 
     private func localize() {
@@ -47,6 +42,7 @@ final class AuthViewController: UIViewController {
             R.string.localizable.sign_in_button_title(),
             for: .normal
         )
+        signInButton.configure(style: .primary)
     }
 
     private func bindKeyboard() {
@@ -96,7 +92,6 @@ final class AuthViewController: UIViewController {
             : nil
 
         signInButton.isEnabled = !isLoading && !isInvalid
-        signInButton.titleLabel?.isHidden = isLoading
 
         let borderColor = isInvalid
             ? UIColor.red
@@ -104,8 +99,8 @@ final class AuthViewController: UIViewController {
         tokenTextField.layer.borderColor = borderColor.cgColor
 
         isLoading
-            ? indicatorView.startAnimating()
-            : indicatorView.stopAnimating()
+            ? signInButton.startAnimating()
+            : signInButton.stopAnimating()
     }
 
     private func handleAction(_ action: AuthViewModelAction) {
@@ -119,14 +114,7 @@ final class AuthViewController: UIViewController {
         }
     }
 
-    private func showErrorAlert(error: ErrorModel) {
-        showAlert?(AlertModel(
-            title: R.string.localizable.error(),
-            message: error.alertMessage?.localized() ?? ""
-        ))
-    }
-
-    @IBAction private func signInButtonAction(_ _: UIButton) {
+    @IBAction private func signInButtonAction(_: UIButton) {
         viewModel.onSignButtonPressed()
     }
 
