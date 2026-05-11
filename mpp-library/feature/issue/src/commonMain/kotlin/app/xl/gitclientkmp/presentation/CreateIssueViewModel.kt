@@ -3,6 +3,7 @@ package app.xl.gitclientkmp.presentation
 import app.xl.gitclientkmp.MR
 import app.xl.gitclientkmp.domain.error.ErrorModel
 import app.xl.gitclientkmp.domain.repository.AppRepository
+import app.xl.gitclientkmp.logger.Logger
 import dev.icerock.moko.errors.mappers.mapThrowable
 import dev.icerock.moko.fields.core.validate
 import dev.icerock.moko.fields.core.validations.notBlank
@@ -48,7 +49,9 @@ class CreateIssueViewModel(
     )
 
     private fun createIssue() {
+        Logger.info(message = "CreateIssueViewModel: createIssue")
         viewModelScope.launch {
+            Logger.info(message = "CreateIssueViewModel: isLoading = true")
             _state.value = _state.value.copy(isLoading = true)
 
             try {
@@ -58,7 +61,13 @@ class CreateIssueViewModel(
                     title = title.value().trim(),
                     body = body.value().trim()
                 )
+                Logger.info(message = "CreateIssueViewModel: createIssue success")
+
+                Logger.info(message = "CreateIssueViewModel: Action - RouteBack")
+                _action.emit(value = Action.RouteBack)
             } catch (error: Exception) {
+                Logger.info(message = "CreateIssueViewModel: createIssue failed ${error.message}")
+                Logger.info(message = "CreateIssueViewModel: isLoading = false")
                 _state.value = _state.value.copy(isLoading = false)
                 handleError(error = error)
             }
@@ -71,6 +80,7 @@ class CreateIssueViewModel(
     }
 
     fun onSubmitButtonPressed() {
+        Logger.info(message = "CreateIssueViewModel: onSubmitButtonPressed")
         if (listOf(title, body).validate().not()) {
             return
         }
@@ -79,24 +89,29 @@ class CreateIssueViewModel(
     }
 
     fun onBackButtonPressed() {
+        Logger.info(message = "CreateIssueViewModel: onBackButtonPressed")
         viewModelScope.launch {
             _action.emit(value = Action.RouteBack)
         }
     }
 
     fun onAttachPressed() {
+        Logger.info(message = "CreateIssueViewModel: onAttachPressed")
         viewModelScope.launch {
+            Logger.info(message = "CreateIssueViewModel: Action - OpenImagePicker")
             _action.emit(value = Action.OpenImagePicker)
         }
     }
 
     fun onArrowPressed() {
+        Logger.info(message = "CreateIssueViewModel: onArrowPressed")
         _state.value = _state.value.copy(
             isExpanded = !_state.value.isExpanded
         )
     }
 
     fun onFilesSelected(files: List<ByteArray>) {
+        Logger.info(message = "CreateIssueViewModel: onFilesSelected")
         _state.value = _state.value.copy(
             isExpanded = true,
             totalCount = _state.value.totalCount + files.size
@@ -106,6 +121,7 @@ class CreateIssueViewModel(
     }
 
     private fun uploadFiles(files: List<ByteArray>) {
+        Logger.info(message = "CreateIssueViewModel: uploadFiles")
         viewModelScope.launch {
             coroutineScope {
                 files.map { bytes ->
@@ -119,7 +135,7 @@ class CreateIssueViewModel(
                                 )
                             }
                             body.setValue(
-                                body.value() + "\n\n![image]($url)"
+                                body.value() + " ![image]($url) "
                             )
                         } catch (error: Exception) {
                             handleError(error = error)
@@ -141,7 +157,6 @@ class CreateIssueViewModel(
     sealed interface Action {
         data class ShowError(val error: ErrorModel) : Action
         object RouteBack : Action
-        object RouteBackWithRefresh : Action
         object OpenImagePicker : Action
     }
 }
