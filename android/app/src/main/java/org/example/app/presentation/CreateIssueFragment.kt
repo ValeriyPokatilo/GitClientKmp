@@ -20,7 +20,6 @@ import app.xl.gitclientkmp.presentation.CreateIssueViewModel
 import io.noties.markwon.Markwon
 import org.example.app.R
 import org.example.app.databinding.CreateIssueFragmentBinding
-import org.example.app.utils.CreateIssueResultContract
 import org.example.app.utils.MarkwonFactory
 import org.example.app.utils.bindField
 import org.example.app.utils.collectIn
@@ -195,10 +194,6 @@ class CreateIssueFragment : Fragment() {
                 navigateBack()
             }
 
-            CreateIssueViewModel.Action.RouteBackWithRefresh -> {
-                navigateBackWithRefresh()
-            }
-
             CreateIssueViewModel.Action.OpenImagePicker -> {
                 openImagePicker()
             }
@@ -207,14 +202,6 @@ class CreateIssueFragment : Fragment() {
 
     private fun navigateBack() {
         findNavController().popBackStack()
-    }
-
-    private fun navigateBackWithRefresh() {
-        findNavController().previousBackStackEntry
-            ?.savedStateHandle
-            ?.let { CreateIssueResultContract.set(it) }
-
-        navigateBack()
     }
 
     private fun openImagePicker() {
