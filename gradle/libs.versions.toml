@@ -132,6 +132,7 @@ moko-test-robolectric = { module = "dev.icerock.moko:test-robolectric", version.
 
 moko-mvvm-Core = { module = "dev.icerock.moko:mvvm-core", version.ref = "mokoMvvmVersion" }
 moko-mvvm-LiveData = { module = "dev.icerock.moko:mvvm-livedata", version.ref = "mokoMvvmVersion" }
+moko-mvvm-LiveData-resources = { module = "dev.icerock.moko:mvvm-livedata-resources", version.ref = "mokoMvvmVersion" }
 moko-mvvm-flow = { module = "dev.icerock.moko:mvvm-flow", version.ref = "mokoMvvmVersion" }
 moko-mvvm-flow-compose = { module = "dev.icerock.moko:mvvm-flow-compose", version.ref = "mokoMvvmVersion" }
 moko-mvvm-State = { module = "dev.icerock.moko:mvvm-state", version.ref = "mokoMvvmVersion" }
