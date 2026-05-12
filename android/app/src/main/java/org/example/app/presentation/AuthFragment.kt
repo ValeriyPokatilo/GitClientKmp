@@ -36,6 +36,7 @@ class AuthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupUI()
+        localize()
         bindToViewModel()
         bindInputs()
     }
@@ -46,12 +47,15 @@ class AuthFragment : Fragment() {
     }
 
     private fun setupUI() {
-        binding.tokenInputLayout.hint = getString(R.string.token_text_field_placeholder)
-
-        binding.signInButton.text = getString(R.string.sign_in_button_title)
         binding.signInButton.setOnClickListener {
             viewModel.onSignButtonPressed()
         }
+    }
+
+    private fun localize() {
+        binding.tokenInputLayout.hint = getString(R.string.token_text_field_placeholder)
+
+        binding.signInButton.text = getString(R.string.sign_in_button_title)
     }
 
     private fun bindToViewModel() {

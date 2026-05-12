@@ -67,6 +67,7 @@ class IssuesListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupNavigationBar()
         setupUI()
+        localize()
         setupRecyclerView()
         bindToViewModel()
         bindPaging()
@@ -93,7 +94,6 @@ class IssuesListFragment : Fragment() {
 
     private fun setupUI() {
         binding.createIssueButton.setPrimaryStyle()
-        binding.createIssueButton.setTitle(title = getString(R.string.new_issue_button_title))
         binding.createIssueButton.setButtonClickListener {
             viewModel.onCreateIssuePressed()
         }
@@ -101,6 +101,10 @@ class IssuesListFragment : Fragment() {
         binding.retryButton.setButtonClickListener {
             viewModel.onRetryButtonPressed()
         }
+    }
+
+    private fun localize() {
+        binding.createIssueButton.setTitle(title = getString(R.string.new_issue_button_title))
     }
 
     private fun setupRecyclerView() = with(receiver = binding.recyclerView) {

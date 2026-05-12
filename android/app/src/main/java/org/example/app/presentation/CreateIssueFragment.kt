@@ -71,6 +71,7 @@ class CreateIssueFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setupUI(context = view.context)
+        localize()
         setupNavigationBar()
         bindToViewModel()
         bindInputs()
@@ -84,14 +85,6 @@ class CreateIssueFragment : Fragment() {
     private fun setupUI(context: Context) {
         markwon = MarkwonFactory.createMarkwon(context)
 
-        binding.submitButton.text = getString(R.string.submit_new_issue_button_title)
-
-        val titlePlaceholder: String = getString(R.string.title)
-        binding.titleInputLayout.hint = titlePlaceholder
-
-        val bodyPlaceholder: String = getString(R.string.description)
-        binding.bodyInputEdit.hint = bodyPlaceholder
-
         binding.submitButton.setOnClickListener {
             viewModel.onSubmitButtonPressed()
         }
@@ -103,6 +96,14 @@ class CreateIssueFragment : Fragment() {
         binding.arrowIcon.setOnClickListener {
             viewModel.onArrowPressed()
         }
+    }
+
+    private fun localize() {
+        binding.submitButton.text = getString(R.string.submit_new_issue_button_title)
+
+        binding.titleInputLayout.hint = getString(R.string.title)
+
+        binding.bodyInputEdit.hint = getString(R.string.description)
     }
 
     private fun setupNavigationBar() {
