@@ -17,7 +17,7 @@ final class RepositoryDetailInfoViewController: BaseViewController {
     @IBOutlet private var markdownView: UIView!
     @IBOutlet private var retryButton: LoadingButton!
     @IBOutlet private var markdownHeightConstraint: NSLayoutConstraint!
-    
+
     private var downView: DownView?
 
     private let owner: String
@@ -82,9 +82,9 @@ final class RepositoryDetailInfoViewController: BaseViewController {
     private func setupUI() {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
-        
+
         readmeIndicator.type = .circleStrokeSpin
-        
+
         retryButton.configure(style: .primary)
     }
 
@@ -318,10 +318,10 @@ final class RepositoryDetailInfoViewController: BaseViewController {
         }
     }
 
-    @IBAction func onRetryButtonTap(_ sender: Any) {
+    @IBAction func onRetryButtonTap() {
         viewModel.onRetryButtonPressed()
     }
-    
+
     @objc private func onViewIssuesTap() {
         viewModel.onViewIssuesPressed()
     }
