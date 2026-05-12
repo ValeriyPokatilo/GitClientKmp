@@ -5,6 +5,7 @@ final class IssuesListCoordinator {
     private let navigationController: UINavigationController
     private let owner: String
     private let repositoryName: String
+    private var createIssueCoordinator: CreateIssueCoordinator?
     private var issueInfoCoordinator: IssueInfoCoordinator?
 
     private var issuesListController: IssuesListViewController?
@@ -25,6 +26,10 @@ final class IssuesListCoordinator {
             repositoryName: repositoryName
         )
 
+        controller.showCreateIssue = { [weak self] in
+            self?.showCreateIssue()
+        }
+
         controller.showDetails = { [weak self] issueNumber in
             self?.showIssueDetails(issueNumber: issueNumber)
         }
@@ -32,6 +37,18 @@ final class IssuesListCoordinator {
         issuesListController = controller
 
         navigationController.pushViewController(controller, animated: true)
+    }
+
+    private func showCreateIssue() {
+        let coordinator = CreateIssueCoordinator(
+            navigationController: navigationController,
+            owner: owner,
+            repositoryName: repositoryName
+        )
+
+        createIssueCoordinator = coordinator
+
+        coordinator.start()
     }
 
     private func showIssueDetails(issueNumber: Int) {
@@ -45,9 +62,5 @@ final class IssuesListCoordinator {
         issueInfoCoordinator = coordinator
 
         coordinator.start()
-    }
-
-    private func refreshIssuesList() {
-        issuesListController?.refresh()
     }
 }

@@ -51,10 +51,6 @@ final class IssuesListViewController: BaseViewController {
         viewModel.onStart()
     }
 
-    func refresh() {
-        viewModel.onRetryButtonPressed()
-    }
-
     private func setupNavigation() {
         navigationItem.title = R.string.localizable.issues()
         navigationItem.backButtonTitle = ""

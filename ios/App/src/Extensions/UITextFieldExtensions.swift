@@ -3,6 +3,9 @@ import UIKit
 extension UITextField {
     func setupBorderedField(placeholder: String) {
         layer.borderColor = UIColor.appGrey.cgColor
+        layer.borderWidth = 1
+        layer.cornerRadius = 8
+        layer.masksToBounds = true
 
         attributedPlaceholder = NSAttributedString(
             string: placeholder,
