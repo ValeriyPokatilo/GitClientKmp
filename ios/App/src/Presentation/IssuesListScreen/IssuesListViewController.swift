@@ -6,7 +6,7 @@ import UIKit
 final class IssuesListViewController: BaseViewController {
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var createIssueButton: LoadingButton!
-    @IBOutlet private var refreshButton: LoadingButton!
+    @IBOutlet private var retryButton: LoadingButton!
 
     private let owner: String
     private let repositoryName: String
@@ -65,7 +65,7 @@ final class IssuesListViewController: BaseViewController {
 
     private func setupUI() {
         createIssueButton.configure(style: .primary)
-        refreshButton.configure(style: .secondary)
+        retryButton.configure(style: .secondary)
     }
 
     private func setupTableView() {
@@ -112,12 +112,12 @@ final class IssuesListViewController: BaseViewController {
         case .empty:
             stopLoading()
             showEmptyIssues()
-            refreshButton.isHidden = false
-            refreshButton.setTitle(R.string.localizable.refresh(), for: .normal)
+            retryButton.isHidden = false
+            retryButton.setTitle(R.string.localizable.refresh(), for: .normal)
         case let .failed(errorState):
             stopLoading()
-            refreshButton.isHidden = false
-            refreshButton.setTitle(R.string.localizable.retry(), for: .normal)
+            retryButton.isHidden = false
+            retryButton.setTitle(R.string.localizable.retry(), for: .normal)
             if let error = errorState.error {
                 showErrorPlaceholder(error: error)
             }
@@ -150,11 +150,11 @@ final class IssuesListViewController: BaseViewController {
 
         createIssueButton.isHidden = isLoading || isError
 
-        refreshButton.isHidden = isLoading || !(isEmpty || isError)
+        retryButton.isHidden = isLoading || !(isEmpty || isError)
 
         isError
-            ? refreshButton.configure(style: .primary)
-            : refreshButton.configure(style: .secondary)
+            ? retryButton.configure(style: .primary)
+            : retryButton.configure(style: .secondary)
     }
 
     private func bindItems(_ items: [IssuesListViewModelUiItem]) {
@@ -198,7 +198,7 @@ final class IssuesListViewController: BaseViewController {
         viewModel.onCreateIssuePressed()
     }
 
-    @IBAction func onRefreshButtonTap(_: Any) {
+    @IBAction func onRetryButtonTap(_: Any) {
         viewModel.onRetryButtonPressed()
     }
 

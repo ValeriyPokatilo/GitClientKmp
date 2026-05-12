@@ -12,7 +12,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="IssuesListViewController" customModule="mokoApp" customModuleProvider="target">
             <connections>
                 <outlet property="createIssueButton" destination="zhV-bh-oxG" id="hmN-ka-w6m"/>
-                <outlet property="refreshButton" destination="Mfg-9L-hLq" id="kUB-Ll-pOO"/>
+                <outlet property="retryButton" destination="Mfg-9L-hLq" id="kUB-Ll-pOO"/>
                 <outlet property="tableView" destination="xB0-BZ-5pR" id="DMR-1O-6pN"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
@@ -55,7 +55,7 @@
                             <state key="normal" title="Button"/>
                             <buttonConfiguration key="configuration" style="plain" title="Button"/>
                             <connections>
-                                <action selector="onRefreshButtonTap:" destination="-1" eventType="touchUpInside" id="mRs-eC-gAG"/>
+                                <action selector="onRetryButtonTap:" destination="-1" eventType="touchUpInside" id="mRs-eC-gAG"/>
                             </connections>
                         </button>
                     </subviews>

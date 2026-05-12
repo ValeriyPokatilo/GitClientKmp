@@ -11,7 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RepositoriesListViewController" customModule="mokoApp" customModuleProvider="target">
             <connections>
-                <outlet property="refreshButton" destination="LQJ-YC-3RG" id="eRU-vf-nmJ"/>
+                <outlet property="retryButton" destination="LQJ-YC-3RG" id="eRU-vf-nmJ"/>
                 <outlet property="tableView" destination="k7L-g8-Ees" id="Czt-hx-YSp"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>

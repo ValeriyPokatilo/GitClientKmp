@@ -5,7 +5,7 @@ import UIKit
 
 final class RepositoriesListViewController: BaseViewController {
     @IBOutlet private var tableView: UITableView!
-    @IBOutlet private var refreshButton: LoadingButton!
+    @IBOutlet private var retryButton: LoadingButton!
 
     private lazy var viewModel: RepositoriesListViewModel = Koin.instance
         .getRepositoriesListViewModel()
@@ -60,7 +60,7 @@ final class RepositoriesListViewController: BaseViewController {
     }
 
     private func setupUI() {
-        refreshButton.configure(style: .primary)
+        retryButton.configure(style: .primary)
     }
 
     private func bindViewModel() {
@@ -119,21 +119,21 @@ final class RepositoriesListViewController: BaseViewController {
         switch onEnum(of: state) {
         case .empty:
             showEmptyRepositories()
-            refreshButton.isHidden = false
-            refreshButton.setTitle(
+            retryButton.isHidden = false
+            retryButton.setTitle(
                 R.string.localizable.refresh(),
                 for: .normal
             )
         case let .error(errorState):
             showErrorPlaceholder(error: errorState.error)
-            refreshButton.isHidden = false
-            refreshButton.setTitle(
+            retryButton.isHidden = false
+            retryButton.setTitle(
                 R.string.localizable.retry(),
                 for: .normal
             )
         default:
             hidePlaceholder()
-            refreshButton.isHidden = true
+            retryButton.isHidden = true
         }
     }
 
