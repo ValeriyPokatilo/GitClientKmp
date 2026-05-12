@@ -19,6 +19,7 @@ import org.example.app.databinding.RepositoriesListFragmentBinding
 import org.example.app.model.PlaceholderState
 import org.example.app.utils.collectIn
 import org.example.app.utils.toUnitItem
+import org.koin.androidx.viewmodel.ext.android.activityViewModel
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class RepositoriesListFragment : Fragment() {
