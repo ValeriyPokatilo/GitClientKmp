@@ -56,6 +56,7 @@ class DetailInfoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupNavigationBar()
         setupUI(context = view.context)
+        localize()
         bindToViewModel()
 
         viewModel.onStart()
@@ -92,10 +93,13 @@ class DetailInfoFragment : Fragment() {
     private fun setupUI(context: Context) {
         markwon = MarkwonFactory.createMarkwon(context)
 
-        binding.retryButton.setTitle(getString(R.string.retry))
         binding.retryButton.setButtonClickListener {
             viewModel.onRetryButtonPressed()
         }
+    }
+
+    private fun localize() {
+        binding.retryButton.setTitle(getString(R.string.retry))
     }
 
     private fun bindToViewModel() {
