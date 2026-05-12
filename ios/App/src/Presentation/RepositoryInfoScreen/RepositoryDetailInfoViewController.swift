@@ -4,6 +4,7 @@ import NVActivityIndicatorView
 import UIKit
 
 final class RepositoryDetailInfoViewController: BaseViewController {
+    @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var linkView: IconLabelView!
     @IBOutlet private var licenseView: IconLabelView!
     @IBOutlet private var licenseNameLabel: UILabel!
@@ -14,8 +15,9 @@ final class RepositoryDetailInfoViewController: BaseViewController {
     @IBOutlet private var issueLinkLabel: UILabel!
     @IBOutlet private var readmeIndicator: NVActivityIndicatorView!
     @IBOutlet private var markdownView: UIView!
-    @IBOutlet private var refreshButton: LoadingButton!
-
+    @IBOutlet private var retryButton: LoadingButton!
+    @IBOutlet private var markdownHeightConstraint: NSLayoutConstraint!
+    
     private var downView: DownView?
 
     private let owner: String
@@ -78,8 +80,12 @@ final class RepositoryDetailInfoViewController: BaseViewController {
     }
 
     private func setupUI() {
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        
         readmeIndicator.type = .circleStrokeSpin
-        refreshButton.configure(style: .primary)
+        
+        retryButton.configure(style: .primary)
     }
 
     private func setupDown() {
@@ -95,6 +101,7 @@ final class RepositoryDetailInfoViewController: BaseViewController {
         downView.translatesAutoresizingMaskIntoConstraints = false
         downView.scrollView.showsHorizontalScrollIndicator = false
         downView.scrollView.alwaysBounceHorizontal = false
+        downView.scrollView.isScrollEnabled = false
 
         markdownView.addSubview(downView)
 
@@ -146,14 +153,14 @@ final class RepositoryDetailInfoViewController: BaseViewController {
         switch onEnum(of: state) {
         case let .error(errorState):
             showErrorPlaceholder(error: errorState.error)
-            refreshButton.isHidden = false
-            refreshButton.setTitle(
+            retryButton.isHidden = false
+            retryButton.setTitle(
                 R.string.localizable.retry(),
                 for: .normal
             )
         default:
             hidePlaceholder()
-            refreshButton.isHidden = true
+            retryButton.isHidden = true
         }
     }
 
@@ -276,7 +283,16 @@ final class RepositoryDetailInfoViewController: BaseViewController {
             try downView?.update(
                 markdownString: markdownString ?? "",
                 options: nil,
-                didLoadSuccessfully: nil
+                didLoadSuccessfully: {
+                    DispatchQueue.main.asyncAfter(
+                        deadline: .now() + 0.1,
+                        execute: { [weak self] in
+                            let contentHeight =
+                                self?.downView?.scrollView.contentSize.height ?? 0
+                            self?.markdownHeightConstraint.constant = contentHeight
+                        }
+                    )
+                }
             )
         } catch {
             assertionFailure("DownView update failed: \(error)")
@@ -285,8 +301,8 @@ final class RepositoryDetailInfoViewController: BaseViewController {
 
     private func handleErrorState(error: ErrorModel) {
         showErrorPlaceholder(error: error)
-        refreshButton.isHidden = false
-        refreshButton.setTitle(
+        retryButton.isHidden = false
+        retryButton.setTitle(
             R.string.localizable.retry(),
             for: .normal
         )
@@ -302,7 +318,11 @@ final class RepositoryDetailInfoViewController: BaseViewController {
         }
     }
 
-    @objc func onViewIssuesTap() {
+    @IBAction func onRetryButtonTap(_ sender: Any) {
+        viewModel.onRetryButtonPressed()
+    }
+    
+    @objc private func onViewIssuesTap() {
         viewModel.onViewIssuesPressed()
     }
 

@@ -12,18 +12,20 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RepositoryDetailInfoViewController" customModule="mokoApp" customModuleProvider="target">
             <connections>
-                <outlet property="forksView" destination="Dvt-4r-I8b" id="ZTr-U2-fdE"/>
-                <outlet property="issueLinkLabel" destination="vaW-Qt-YtO" id="bBS-MZ-eJ0"/>
-                <outlet property="issueView" destination="2jm-DJ-irG" id="4Gf-Yj-Bwi"/>
-                <outlet property="licenseNameLabel" destination="h5M-0t-7zD" id="JiJ-LL-qhm"/>
-                <outlet property="licenseView" destination="bzp-yz-bT6" id="y9j-vl-u2e"/>
-                <outlet property="linkView" destination="f4U-XT-L2r" id="bEg-2a-aMq"/>
-                <outlet property="markdownView" destination="dOj-dr-9fr" id="1n7-RD-riy"/>
-                <outlet property="readmeIndicator" destination="954-bd-8EW" id="ijW-Sg-d7h"/>
-                <outlet property="refreshButton" destination="AzE-Cu-FLu" id="Yeb-kX-6md"/>
-                <outlet property="starsView" destination="xCK-d6-RFj" id="LuL-SR-3Qz"/>
+                <outlet property="forksView" destination="Aau-3X-vns" id="HKk-nB-07j"/>
+                <outlet property="issueLinkLabel" destination="CfZ-29-nOt" id="E2q-lU-1hJ"/>
+                <outlet property="issueView" destination="5Mr-ms-2VN" id="EQJ-A0-dzV"/>
+                <outlet property="licenseNameLabel" destination="8ep-Ck-iz5" id="bmc-wq-S8D"/>
+                <outlet property="licenseView" destination="Eas-C3-GRN" id="ikM-4p-kaa"/>
+                <outlet property="linkView" destination="DZ5-wq-38L" id="mTd-jf-fDG"/>
+                <outlet property="markdownHeightConstraint" destination="WTX-tz-EaE" id="V3x-wr-xFI"/>
+                <outlet property="markdownView" destination="zc6-vC-Bji" id="seZ-Tp-EKf"/>
+                <outlet property="readmeIndicator" destination="2ty-uC-gZc" id="dAh-AO-dIA"/>
+                <outlet property="retryButton" destination="SzV-El-ok2" id="Epg-Yk-ovb"/>
+                <outlet property="scrollView" destination="KEI-D5-vXI" id="tvb-U9-nPO"/>
+                <outlet property="starsView" destination="Sd5-Nv-5L2" id="w7T-d3-STd"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
-                <outlet property="watchersView" destination="xXN-BO-12C" id="Dwf-87-CEK"/>
+                <outlet property="watchersView" destination="TU9-ha-3gR" id="6j4-eW-WaY"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
@@ -31,132 +33,146 @@
             <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="tVx-UA-zwD">
-                    <rect key="frame" x="16" y="190" width="361.33333333333331" height="24"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KEI-D5-vXI">
+                    <rect key="frame" x="16" y="118" width="361" height="666"/>
                     <subviews>
-                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bzp-yz-bT6" customClass="IconLabelView" customModule="mokoApp" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="180.66666666666666" height="24"/>
-                            <color key="backgroundColor" name="appBackground"/>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DZ5-wq-38L" customClass="IconLabelView" customModule="mokoApp" customModuleProvider="target">
+                            <rect key="frame" x="0.0" y="8" width="361" height="24"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="24" id="1GT-TL-yFk"/>
+                                <constraint firstAttribute="height" constant="24" id="U3m-r0-g7l"/>
                             </constraints>
                         </view>
-                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="h5M-0t-7zD">
-                            <rect key="frame" x="180.66666666666669" y="0.0" width="180.66666666666669" height="24"/>
-                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                            <color key="textColor" name="white"/>
-                            <nil key="highlightedColor"/>
-                        </label>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="VUn-Ao-3dV">
+                            <rect key="frame" x="0.0" y="56" width="361" height="24"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Eas-C3-GRN" customClass="IconLabelView" customModule="mokoApp" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="180.33333333333334" height="24"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </view>
+                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8ep-Ck-iz5">
+                                    <rect key="frame" x="180.33333333333337" y="0.0" width="180.66666666666663" height="24"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                    <color key="textColor" name="white50"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="JOI-CP-6mH"/>
+                            </constraints>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Nkf-jF-kBN">
+                            <rect key="frame" x="0.0" y="104" width="361" height="24"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" id="Sd5-Nv-5L2" customClass="IconLabelView" customModule="mokoApp" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="120.33333333333333" height="24"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <viewLayoutGuide key="safeArea" id="Mma-BC-SJo"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </view>
+                                <view contentMode="scaleToFill" id="Aau-3X-vns" customClass="IconLabelView" customModule="mokoApp" customModuleProvider="target">
+                                    <rect key="frame" x="120.33333333333334" y="0.0" width="120.33333333333334" height="24"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <viewLayoutGuide key="safeArea" id="7s6-ZO-iZ0"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </view>
+                                <view contentMode="scaleToFill" id="TU9-ha-3gR" customClass="IconLabelView" customModule="mokoApp" customModuleProvider="target">
+                                    <rect key="frame" x="240.66666666666666" y="0.0" width="120.33333333333334" height="24"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <viewLayoutGuide key="safeArea" id="YWe-pu-BNv"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </view>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="5Zg-s0-hF8"/>
+                            </constraints>
+                        </stackView>
+                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="lmI-05-TSF">
+                            <rect key="frame" x="0.0" y="152" width="361" height="24"/>
+                            <subviews>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5Mr-ms-2VN" customClass="IconLabelView" customModule="mokoApp" customModuleProvider="target">
+                                    <rect key="frame" x="0.0" y="0.0" width="180.33333333333334" height="24"/>
+                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                </view>
+                                <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CfZ-29-nOt">
+                                    <rect key="frame" x="180.33333333333337" y="0.0" width="180.66666666666663" height="24"/>
+                                    <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
+                                    <color key="textColor" name="white50"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="24" id="0Jh-W5-hj1"/>
+                            </constraints>
+                        </stackView>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zc6-vC-Bji">
+                            <rect key="frame" x="0.0" y="200" width="361" height="0.0"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="height" id="WTX-tz-EaE"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2ty-uC-gZc" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
+                            <rect key="frame" x="168.66666666666666" y="208" width="24" height="24"/>
+                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="width" constant="24" id="a8w-Ac-N8a"/>
+                                <constraint firstAttribute="height" constant="24" id="vAY-bL-gxF"/>
+                            </constraints>
+                        </view>
                     </subviews>
                     <constraints>
-                        <constraint firstAttribute="height" constant="24" id="vhe-Pq-cU6"/>
+                        <constraint firstItem="Nkf-jF-kBN" firstAttribute="trailing" secondItem="I2g-Av-kkM" secondAttribute="trailing" id="0AL-GN-Dlx"/>
+                        <constraint firstItem="Nkf-jF-kBN" firstAttribute="top" secondItem="VUn-Ao-3dV" secondAttribute="bottom" constant="24" id="2st-ZD-g1w"/>
+                        <constraint firstItem="VUn-Ao-3dV" firstAttribute="top" secondItem="DZ5-wq-38L" secondAttribute="bottom" constant="24" id="CTL-QZ-It1"/>
+                        <constraint firstItem="I2g-Av-kkM" firstAttribute="trailing" secondItem="DZ5-wq-38L" secondAttribute="trailing" id="IaO-Im-6Ua"/>
+                        <constraint firstItem="lmI-05-TSF" firstAttribute="top" secondItem="Nkf-jF-kBN" secondAttribute="bottom" constant="24" id="OeR-Oz-c3m"/>
+                        <constraint firstItem="2ty-uC-gZc" firstAttribute="centerX" secondItem="KEI-D5-vXI" secondAttribute="centerX" id="RFd-my-eXx"/>
+                        <constraint firstItem="zc6-vC-Bji" firstAttribute="top" secondItem="lmI-05-TSF" secondAttribute="bottom" constant="24" id="SOR-c6-zTb"/>
+                        <constraint firstItem="zc6-vC-Bji" firstAttribute="trailing" secondItem="I2g-Av-kkM" secondAttribute="trailing" id="TXs-TE-miH"/>
+                        <constraint firstItem="DZ5-wq-38L" firstAttribute="leading" secondItem="I2g-Av-kkM" secondAttribute="leading" id="ZOE-E8-kd0"/>
+                        <constraint firstAttribute="trailing" secondItem="zc6-vC-Bji" secondAttribute="trailing" id="ZWJ-kH-NhG"/>
+                        <constraint firstItem="Nkf-jF-kBN" firstAttribute="leading" secondItem="I2g-Av-kkM" secondAttribute="leading" id="aF3-Bx-c0c"/>
+                        <constraint firstItem="VUn-Ao-3dV" firstAttribute="leading" secondItem="I2g-Av-kkM" secondAttribute="leading" id="bbF-YQ-lIu"/>
+                        <constraint firstItem="zc6-vC-Bji" firstAttribute="leading" secondItem="I2g-Av-kkM" secondAttribute="leading" id="g3h-Ot-7Qm"/>
+                        <constraint firstItem="lmI-05-TSF" firstAttribute="leading" secondItem="I2g-Av-kkM" secondAttribute="leading" id="oT6-vU-kXm"/>
+                        <constraint firstItem="2ty-uC-gZc" firstAttribute="top" secondItem="5Mr-ms-2VN" secondAttribute="bottom" constant="32" id="sCQ-Sw-waf"/>
+                        <constraint firstItem="DZ5-wq-38L" firstAttribute="top" secondItem="KEI-D5-vXI" secondAttribute="top" constant="8" id="t1p-OU-Tzo"/>
+                        <constraint firstAttribute="bottom" secondItem="zc6-vC-Bji" secondAttribute="bottom" id="uWR-KU-btn"/>
+                        <constraint firstItem="lmI-05-TSF" firstAttribute="trailing" secondItem="I2g-Av-kkM" secondAttribute="trailing" id="y2o-FD-FAc"/>
+                        <constraint firstItem="VUn-Ao-3dV" firstAttribute="trailing" secondItem="I2g-Av-kkM" secondAttribute="trailing" id="zLg-EL-VqE"/>
                     </constraints>
-                </stackView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="f4U-XT-L2r" customClass="IconLabelView" customModule="mokoApp" customModuleProvider="target">
-                    <rect key="frame" x="16" y="142" width="393.33333333333331" height="24"/>
-                    <viewLayoutGuide key="safeArea" id="REQ-SX-LP7"/>
-                    <color key="backgroundColor" name="appBackground"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="24" id="mJh-Pb-wVn"/>
-                    </constraints>
-                </view>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="3Ir-F5-FEW">
-                    <rect key="frame" x="16" y="238" width="361.33333333333331" height="24"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" id="xCK-d6-RFj" customClass="IconLabelView" customModule="mokoApp" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="0.0" height="24"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <viewLayoutGuide key="safeArea" id="9LI-p7-737"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        </view>
-                        <view contentMode="scaleToFill" id="Dvt-4r-I8b" customClass="IconLabelView" customModule="mokoApp" customModuleProvider="target">
-                            <rect key="frame" x="180.66666666666666" y="0.0" width="0.0" height="24"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <viewLayoutGuide key="safeArea" id="G7d-lu-Fxb"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        </view>
-                        <view contentMode="scaleToFill" id="xXN-BO-12C" customClass="IconLabelView" customModule="mokoApp" customModuleProvider="target">
-                            <rect key="frame" x="361.33333333333331" y="0.0" width="0.0" height="24"/>
-                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                            <viewLayoutGuide key="safeArea" id="sLN-F3-KYK"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        </view>
-                    </subviews>
-                    <viewLayoutGuide key="safeArea" id="xM3-C1-mBa"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="24" id="umn-rk-DmN"/>
-                    </constraints>
-                </stackView>
-                <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" translatesAutoresizingMaskIntoConstraints="NO" id="RPL-H2-Ab7">
-                    <rect key="frame" x="16" y="286" width="361.33333333333331" height="24"/>
-                    <subviews>
-                        <view contentMode="scaleToFill" ambiguous="YES" translatesAutoresizingMaskIntoConstraints="NO" id="2jm-DJ-irG" customClass="IconLabelView" customModule="mokoApp" customModuleProvider="target">
-                            <rect key="frame" x="0.0" y="0.0" width="180.66666666666666" height="24"/>
-                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        </view>
-                        <label opaque="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vaW-Qt-YtO">
-                            <rect key="frame" x="181" y="0.0" width="180.33333333333337" height="24"/>
-                            <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="15"/>
-                            <color key="textColor" name="white50"/>
-                            <nil key="highlightedColor"/>
-                        </label>
-                    </subviews>
-                    <viewLayoutGuide key="safeArea" id="8SD-UX-jZE"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="24" id="beb-Y4-RsX"/>
-                    </constraints>
-                </stackView>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="954-bd-8EW" customClass="NVActivityIndicatorView" customModule="NVActivityIndicatorView">
-                    <rect key="frame" x="184.66666666666666" y="342" width="24" height="24"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="24" id="F8c-te-m2Z"/>
-                        <constraint firstAttribute="width" constant="24" id="xEV-vT-hJc"/>
-                    </constraints>
-                </view>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="dOj-dr-9fr">
-                    <rect key="frame" x="8" y="334" width="377.33333333333331" height="450"/>
-                    <color key="backgroundColor" systemColor="systemBrownColor"/>
-                </view>
-                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="AzE-Cu-FLu" customClass="LoadingButton" customModule="mokoApp" customModuleProvider="target">
-                    <rect key="frame" x="16" y="736" width="361.33333333333331" height="48"/>
+                    <viewLayoutGuide key="contentLayoutGuide" id="Vfn-jQ-HIi"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="I2g-Av-kkM"/>
+                </scrollView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="SzV-El-ok2" customClass="LoadingButton" customModule="mokoApp" customModuleProvider="target">
+                    <rect key="frame" x="16" y="720" width="361" height="48"/>
                     <color key="backgroundColor" name="appGreen"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="48" id="KJJ-hy-Ocp"/>
-                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="x3f-a0-c0m"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="48" id="9NF-Lj-3Vd"/>
+                        <constraint firstAttribute="height" constant="48" id="aU8-aI-Esb"/>
                     </constraints>
                     <state key="normal" title="Button"/>
                     <buttonConfiguration key="configuration" style="plain" title="Button">
                         <color key="baseForegroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </buttonConfiguration>
+                    <connections>
+                        <action selector="onRetryButtonTap:" destination="-1" eventType="touchUpInside" id="aNz-FO-wy3"/>
+                    </connections>
                 </button>
             </subviews>
             <viewLayoutGuide key="safeArea" id="fnl-2z-Ty3"/>
             <color key="backgroundColor" name="appBackground"/>
             <constraints>
-                <constraint firstItem="AzE-Cu-FLu" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="164-oB-u3M"/>
-                <constraint firstItem="954-bd-8EW" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="2ji-6y-YI2"/>
-                <constraint firstItem="3Ir-F5-FEW" firstAttribute="top" secondItem="tVx-UA-zwD" secondAttribute="bottom" constant="24" id="9wE-vI-mQW"/>
-                <constraint firstItem="f4U-XT-L2r" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" constant="16" id="BMv-Uf-wQB"/>
-                <constraint firstItem="3Ir-F5-FEW" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="BQb-8K-ZC0"/>
-                <constraint firstItem="tVx-UA-zwD" firstAttribute="top" secondItem="f4U-XT-L2r" secondAttribute="bottom" constant="24" id="Bml-fG-4Tc"/>
-                <constraint firstItem="RPL-H2-Ab7" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="ChT-vB-5xQ"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="3Ir-F5-FEW" secondAttribute="trailing" constant="16" id="DlV-0g-2i9"/>
-                <constraint firstItem="dOj-dr-9fr" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="8" id="IaN-Sj-4d8"/>
-                <constraint firstItem="RPL-H2-Ab7" firstAttribute="top" secondItem="3Ir-F5-FEW" secondAttribute="bottom" constant="24" id="LK4-KD-UDU"/>
-                <constraint firstItem="f4U-XT-L2r" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="Mm5-VO-PhA"/>
-                <constraint firstAttribute="trailing" secondItem="tVx-UA-zwD" secondAttribute="trailing" constant="16" id="Y7L-1l-0Jo"/>
-                <constraint firstItem="dOj-dr-9fr" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Z9e-9F-ahW"/>
-                <constraint firstItem="f4U-XT-L2r" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" constant="24" id="dGg-t5-UQ2"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="AzE-Cu-FLu" secondAttribute="bottom" id="dOG-eL-0od"/>
-                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="dOj-dr-9fr" secondAttribute="trailing" constant="8" id="gN3-f8-CHY"/>
-                <constraint firstAttribute="trailing" secondItem="RPL-H2-Ab7" secondAttribute="trailing" constant="16" id="jH8-Sh-hPo"/>
-                <constraint firstItem="dOj-dr-9fr" firstAttribute="top" secondItem="RPL-H2-Ab7" secondAttribute="bottom" constant="24" id="mRH-3C-MO1"/>
-                <constraint firstAttribute="trailing" secondItem="AzE-Cu-FLu" secondAttribute="trailing" constant="16" id="oTC-GI-V1h"/>
-                <constraint firstItem="954-bd-8EW" firstAttribute="top" secondItem="RPL-H2-Ab7" secondAttribute="bottom" constant="32" id="osf-wd-7pR"/>
-                <constraint firstItem="tVx-UA-zwD" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" constant="16" id="zzA-AZ-h6R"/>
+                <constraint firstItem="KEI-D5-vXI" firstAttribute="top" secondItem="fnl-2z-Ty3" secondAttribute="top" id="068-YS-5Jz"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="bottom" secondItem="SzV-El-ok2" secondAttribute="bottom" constant="16" id="EZU-kj-ua2"/>
+                <constraint firstItem="SzV-El-ok2" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="IWE-hh-K5m"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="KEI-D5-vXI" secondAttribute="trailing" constant="16" id="X0n-0M-d7E"/>
+                <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="SzV-El-ok2" secondAttribute="trailing" constant="16" id="gra-h9-ECk"/>
+                <constraint firstItem="KEI-D5-vXI" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="pVs-F7-JQQ"/>
+                <constraint firstItem="KEI-D5-vXI" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="tFq-zB-vBB"/>
             </constraints>
-            <point key="canvasLocation" x="127.48091603053435" y="153.52112676056339"/>
+            <point key="canvasLocation" x="139.69465648854961" y="153.52112676056339"/>
         </view>
     </objects>
     <resources>
@@ -166,17 +182,11 @@
         <namedColor name="appGreen">
             <color red="0.35294117647058826" green="0.57647058823529407" blue="0.3411764705882353" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
-        <namedColor name="white">
-            <color red="0.99607843137254903" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-        </namedColor>
         <namedColor name="white50">
             <color red="0.99607843137254903" green="1" blue="1" alpha="0.5" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-        </systemColor>
-        <systemColor name="systemBrownColor">
-            <color red="0.63529411759999999" green="0.51764705879999995" blue="0.36862745099999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>
