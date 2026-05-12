@@ -74,6 +74,7 @@ final class RepositoryDetailInfoViewController: BaseViewController {
         button.tintColor = .white
 
         navigationItem.rightBarButtonItem = button
+        navigationItem.backButtonTitle = ""
     }
 
     private func setupUI() {

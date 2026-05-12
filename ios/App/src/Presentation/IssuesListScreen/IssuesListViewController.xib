@@ -23,14 +23,14 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="xB0-BZ-5pR">
-                    <rect key="frame" x="0.0" y="118" width="393" height="610"/>
+                    <rect key="frame" x="0.0" y="118" width="393" height="594"/>
                     <color key="backgroundColor" name="appBackground"/>
                     <connections>
                         <outlet property="delegate" destination="-1" id="EHi-3I-fUP"/>
                     </connections>
                 </tableView>
                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="12" translatesAutoresizingMaskIntoConstraints="NO" id="TOv-mM-XSy">
-                    <rect key="frame" x="16" y="736" width="361" height="48"/>
+                    <rect key="frame" x="16" y="720" width="361" height="48"/>
                     <subviews>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zhV-bh-oxG" customClass="LoadingButton" customModule="mokoApp" customModuleProvider="target">
                             <rect key="frame" x="0.0" y="0.0" width="361" height="48"/>
@@ -68,7 +68,7 @@
                 <constraint firstItem="xB0-BZ-5pR" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" id="3oB-qA-HT6"/>
                 <constraint firstItem="xB0-BZ-5pR" firstAttribute="trailing" secondItem="fnl-2z-Ty3" secondAttribute="trailing" id="8Ct-Ub-QAD"/>
                 <constraint firstItem="fnl-2z-Ty3" firstAttribute="trailing" secondItem="TOv-mM-XSy" secondAttribute="trailing" constant="16" id="E3t-LL-rq1"/>
-                <constraint firstItem="TOv-mM-XSy" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" id="Ehl-6y-H5k"/>
+                <constraint firstItem="TOv-mM-XSy" firstAttribute="bottom" secondItem="fnl-2z-Ty3" secondAttribute="bottom" constant="-16" id="Ehl-6y-H5k"/>
                 <constraint firstItem="TOv-mM-XSy" firstAttribute="leading" secondItem="fnl-2z-Ty3" secondAttribute="leading" constant="16" id="KKJ-f2-ec3"/>
                 <constraint firstItem="TOv-mM-XSy" firstAttribute="top" secondItem="xB0-BZ-5pR" secondAttribute="bottom" constant="8" id="LIh-9s-L8x"/>
             </constraints>

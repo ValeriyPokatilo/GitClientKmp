@@ -145,11 +145,16 @@ final class IssuesListViewController: BaseViewController {
 
     private func renderButtons(_ state: ResourceState<NSArray, ErrorModel>) {
         let isLoading = state is ResourceStateLoading
+        let isError = state is ResourceStateFailed
+        let isEmpty = state is ResourceStateEmpty
 
-        createIssueButton.isHidden = isLoading
+        createIssueButton.isHidden = isLoading || isError
 
-        refreshButton.isHidden = isLoading ||
-            !(state is ResourceStateEmpty || state is ResourceStateFailed)
+        refreshButton.isHidden = isLoading || !(isEmpty || isError)
+
+        isError
+            ? refreshButton.configure(style: .primary)
+            : refreshButton.configure(style: .secondary)
     }
 
     private func bindItems(_ items: [IssuesListViewModelUiItem]) {

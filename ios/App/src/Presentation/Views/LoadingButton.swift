@@ -31,6 +31,7 @@ final class LoadingButton: UIButton {
         case .primary:
             setTitleColor(.white, for: .normal)
             backgroundColor = R.color.appGreen()
+            layer.borderWidth = 0
         case .secondary:
             setTitleColor(R.color.appLightGreen(), for: .normal)
             backgroundColor = .clear
