@@ -11,7 +11,7 @@ final class AuthViewController: BaseViewController {
     @IBOutlet private var signInButton: LoadingButton!
     @IBOutlet private var bottomConstraint: NSLayoutConstraint!
 
-    private lazy var viewModel: AuthViewModel = Koin.instance.getAuthViewModel()
+    private var viewModel: AuthViewModel = Koin.instance.getAuthViewModel()
 
     private let disposeBag = DisposeBag()
 

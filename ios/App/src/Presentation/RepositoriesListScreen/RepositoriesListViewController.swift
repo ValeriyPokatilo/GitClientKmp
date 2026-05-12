@@ -7,7 +7,7 @@ final class RepositoriesListViewController: BaseViewController {
     @IBOutlet private var tableView: UITableView!
     @IBOutlet private var retryButton: LoadingButton!
 
-    private lazy var viewModel: RepositoriesListViewModel = Koin.instance
+    private var viewModel: RepositoriesListViewModel = Koin.instance
         .getRepositoriesListViewModel()
 
     private var stateTask: Task<Void, Never>?
