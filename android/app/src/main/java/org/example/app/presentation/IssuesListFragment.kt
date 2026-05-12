@@ -174,6 +174,7 @@ class IssuesListFragment : Fragment() {
                     )
                 )
                 binding.retryButton.setTitle(title = getString(R.string.refresh))
+                binding.retryButton.setSecondaryStyle()
             }
 
             is ResourceState.Failed -> {
@@ -181,10 +182,12 @@ class IssuesListFragment : Fragment() {
                     state = PlaceholderState.Error(error = state.error)
                 )
                 binding.retryButton.setTitle(title = getString(R.string.retry))
+                binding.retryButton.setPrimaryStyle()
             }
 
             else -> {
                 binding.placeholderView.render(state = PlaceholderState.Hidden)
+                binding.retryButton.setSecondaryStyle()
             }
         }
 
