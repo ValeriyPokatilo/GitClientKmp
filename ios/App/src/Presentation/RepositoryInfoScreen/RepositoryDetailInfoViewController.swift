@@ -94,14 +94,14 @@ final class RepositoryDetailInfoViewController: UIViewController {
         downView.scrollView.alwaysBounceHorizontal = false
 
         markdownView.addSubview(downView)
-        
+
         NSLayoutConstraint.activate([
             downView.topAnchor.constraint(equalTo: markdownView.topAnchor),
             downView.leadingAnchor.constraint(equalTo: markdownView.leadingAnchor),
             downView.trailingAnchor.constraint(equalTo: markdownView.trailingAnchor),
             downView.bottomAnchor.constraint(equalTo: markdownView.bottomAnchor),
         ])
-        
+
         self.downView = downView
     }
 
