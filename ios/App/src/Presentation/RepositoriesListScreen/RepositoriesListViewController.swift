@@ -156,7 +156,7 @@ final class RepositoriesListViewController: BaseViewController {
         viewModel.onLogoutButtonPressed()
     }
 
-    @IBAction private func refreshButtonAction(_: Any) {
+    @IBAction private func retryButtonAction(_: Any) {
         viewModel.onRetryButtonPressed()
     }
 
