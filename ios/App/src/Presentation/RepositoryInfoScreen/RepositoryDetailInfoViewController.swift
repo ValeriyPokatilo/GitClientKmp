@@ -4,6 +4,7 @@ import NVActivityIndicatorView
 import UIKit
 
 final class RepositoryDetailInfoViewController: UIViewController {
+    @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var linkView: IconLabelView!
     @IBOutlet private var licenseView: IconLabelView!
     @IBOutlet private var licenseNameLabel: UILabel!
@@ -14,7 +15,8 @@ final class RepositoryDetailInfoViewController: UIViewController {
     @IBOutlet private var mainIndicator: NVActivityIndicatorView!
     @IBOutlet private var markdownView: UIView!
     @IBOutlet private var placeholderView: PlaceholderView!
-
+    @IBOutlet private var markdownHeightConstraint: NSLayoutConstraint!
+    
     private var downView: DownView?
 
     private let owner: String
@@ -52,6 +54,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupNavigation()
+        setupUI()
         setupIndicators()
         setupDown()
         bindViewModel()
@@ -73,6 +76,11 @@ final class RepositoryDetailInfoViewController: UIViewController {
 
         navigationItem.rightBarButtonItem = button
     }
+    
+    private func setupUI() {
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+    }
 
     private func setupIndicators() {
         mainIndicator.type = .circleStrokeSpin
@@ -92,6 +100,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
         downView.translatesAutoresizingMaskIntoConstraints = false
         downView.scrollView.showsHorizontalScrollIndicator = false
         downView.scrollView.alwaysBounceHorizontal = false
+        downView.scrollView.isScrollEnabled = false
 
         markdownView.addSubview(downView)
 
@@ -247,7 +256,16 @@ final class RepositoryDetailInfoViewController: UIViewController {
             try downView?.update(
                 markdownString: markdownString ?? "",
                 options: nil,
-                didLoadSuccessfully: nil
+                didLoadSuccessfully: {
+                    DispatchQueue.main.asyncAfter(
+                        deadline: .now() + 0.1,
+                        execute: { [weak self] in
+                            let contentHeight =
+                                self?.downView?.scrollView.contentSize.height ?? 0
+                            self?.markdownHeightConstraint.constant = contentHeight
+                        }
+                    )
+                }
             )
         } catch {
             assertionFailure("DownView update failed: \(error)")
