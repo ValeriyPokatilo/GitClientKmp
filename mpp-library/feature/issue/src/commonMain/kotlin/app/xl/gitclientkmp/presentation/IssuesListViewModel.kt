@@ -52,7 +52,6 @@ class IssuesListViewModel(
                     source1 = this,
                     source2 = pagination.nextPageLoading
                 ) { list, isNextLoading ->
-
                     val units: List<UiItem.IssueItem> = list.map { issue ->
                         UiItem.IssueItem(issue = issue)
                     }

@@ -18,7 +18,7 @@ class RepositoriesListViewModel(
     private val colorProvider: ColorProvider
 ) : ViewModel() {
 
-    private val _state: MutableStateFlow<State> = MutableStateFlow<State>(State.Loading)
+    private val _state: MutableStateFlow<State> = MutableStateFlow<State>(value = State.Loading)
     val state: StateFlow<State> = _state
 
     private val _action: MutableSharedFlow<Action> = MutableSharedFlow<Action>()

@@ -28,7 +28,7 @@ class CreateIssueViewModel(
     private val repositoryName: String
 ) : ViewModel() {
 
-    private val _state: MutableStateFlow<State> = MutableStateFlow(State())
+    private val _state: MutableStateFlow<State> = MutableStateFlow(value = State())
     val state: StateFlow<State> = _state
 
     private val _action: MutableSharedFlow<Action> = MutableSharedFlow<Action>()

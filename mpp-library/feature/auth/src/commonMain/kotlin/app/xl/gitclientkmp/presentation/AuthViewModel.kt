@@ -17,7 +17,7 @@ class AuthViewModel(
 
     private var token: String = ""
 
-    private val _state = MutableStateFlow<State>(State.Idle)
+    private val _state = MutableStateFlow<State>(value = State.Idle)
     val state: StateFlow<State> = _state
 
     private val _actions: MutableSharedFlow<Action> = MutableSharedFlow<Action>()
