@@ -16,3 +16,17 @@
 "watchers" = "наблюдатели";
 "refresh" = "Обновить";
 "retry" = "Повторить";
+"issues_empty_title" = "Пусто";
+"issues_empty_message" = "На данный момент задач нет";
+"issues" = "Проблемы";
+"view_issues" = "Просмотреть задачи";
+"new_issue_button_title" = "Создать задачу";
+"issue_number" = "Задача #";
+"title" = "Заголовок";
+"description" = "Описание";
+"new_issue" = "Новая задача";
+"submit_new_issue_button_title" = "Отправить задачу";
+"attach_files" = "Прикрепить файл";
+"attached_photos" = "Прикрепленных изображений";
+"upload_files" = "Загрузка файлов...";
+"zero" = "0";

@@ -1,12 +1,14 @@
 package app.xl.gitclientkmp.data.repository
 
 import app.xl.gitclientkmp.AppError
+import app.xl.gitclientkmp.Issue
 import app.xl.gitclientkmp.Repository
 import app.xl.gitclientkmp.RepositoryDetails
 import app.xl.gitclientkmp.UserInfo
 import app.xl.gitclientkmp.data.dto.GitHubErrorDto
 import app.xl.gitclientkmp.data.dto.ReadmeDto
 import app.xl.gitclientkmp.data.network.GitHubApi
+import app.xl.gitclientkmp.data.network.ImageApi
 import app.xl.gitclientkmp.data.repository.mappers.toEntity
 import app.xl.gitclientkmp.decoder.Base64Decoder
 import app.xl.gitclientkmp.domain.repository.AppRepository
@@ -19,6 +21,7 @@ import kotlinx.serialization.json.Json
 @Suppress("TooGenericExceptionCaught")
 class AppRepositoryImpl(
     private val api: GitHubApi,
+    private val imageApi: ImageApi,
     private val json: Json,
     private val keyValueStorage: KeyValueStorage
 ) : AppRepository {
@@ -106,6 +109,73 @@ class AppRepositoryImpl(
             }
         } catch (exception: Throwable) {
             Logger.info(message = "AppRepositoryImpl: get repository readme failed - $exception")
+            mapException(exception = exception)
+        }
+    }
+
+    @Throws(Exception::class)
+    override suspend fun getIssues(
+        ownerName: String,
+        repositoryName: String,
+        pageSize: Int,
+        page: Int
+    ): List<Issue> {
+        try {
+            return api.getIssues(
+                ownerName = ownerName,
+                repositoryName = repositoryName,
+                pageSize = pageSize,
+                page = page
+            )
+                .map { it.toEntity() }
+        } catch (exception: Throwable) {
+            mapException(exception = exception)
+        }
+    }
+
+    @Throws(Exception::class)
+    override suspend fun getIssue(
+        ownerName: String,
+        repositoryName: String,
+        issueNumber: Int
+    ): Issue {
+        try {
+            return api.getIssue(
+                ownerName = ownerName,
+                repositoryName = repositoryName,
+                issueNumber = issueNumber
+            ).toEntity()
+        } catch (exception: Throwable) {
+            mapException(exception = exception)
+        }
+    }
+
+    @Throws(Exception::class)
+    override suspend fun createIssue(
+        ownerName: String,
+        repositoryName: String,
+        title: String,
+        body: String
+    ): Issue {
+        try {
+            return api
+                .createIssue(
+                    ownerName = ownerName,
+                    repositoryName = repositoryName,
+                    title = title,
+                    body = body
+                )
+                .toEntity()
+        } catch (exception: Throwable) {
+            mapException(exception = exception)
+        }
+    }
+
+    @Throws(Exception::class)
+    override suspend fun uploadImage(bytes: ByteArray): String {
+        return try {
+            imageApi.uploadImage(bytes)
+        } catch (exception: Throwable) {
             mapException(exception = exception)
         }
     }

@@ -7,23 +7,26 @@ import androidx.core.content.ContextCompat
 import io.noties.markwon.AbstractMarkwonPlugin
 import io.noties.markwon.Markwon
 import io.noties.markwon.MarkwonSpansFactory
+import io.noties.markwon.SpanFactory
 import io.noties.markwon.core.MarkwonTheme
+import io.noties.markwon.image.coil.CoilImagesPlugin
 import org.commonmark.node.Heading
 import org.example.app.R
 
 object MarkwonFactory {
     fun createMarkwon(context: Context): Markwon {
         return Markwon.builder(context)
+            .usePlugin(CoilImagesPlugin.create(context))
             .usePlugin(object : AbstractMarkwonPlugin() {
                 override fun configureTheme(builder: MarkwonTheme.Builder) {
-                    val linkColor = ContextCompat.getColor(context, R.color.blue)
+                    val linkColor: Int = ContextCompat.getColor(context, R.color.blue)
                     builder
                         .headingBreakHeight(0)
                         .linkColor(linkColor)
                 }
 
                 override fun configureSpansFactory(builder: MarkwonSpansFactory.Builder) {
-                    val origin = builder.getFactory(Heading::class.java)
+                    val origin: SpanFactory? = builder.getFactory(Heading::class.java)
                     builder.setFactory(Heading::class.java) { configuration, props ->
                         arrayOf(
                             origin?.getSpans(configuration, props),

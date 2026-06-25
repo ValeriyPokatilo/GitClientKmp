@@ -3,7 +3,7 @@ import MultiPlatformLibrary
 import NVActivityIndicatorView
 import UIKit
 
-final class RepositoryDetailInfoViewController: UIViewController {
+final class RepositoryDetailInfoViewController: BaseViewController {
     @IBOutlet private var scrollView: UIScrollView!
     @IBOutlet private var linkView: IconLabelView!
     @IBOutlet private var licenseView: IconLabelView!
@@ -11,12 +11,13 @@ final class RepositoryDetailInfoViewController: UIViewController {
     @IBOutlet private var starsView: IconLabelView!
     @IBOutlet private var forksView: IconLabelView!
     @IBOutlet private var watchersView: IconLabelView!
+    @IBOutlet private var issueView: IconLabelView!
+    @IBOutlet private var issueLinkLabel: UILabel!
     @IBOutlet private var readmeIndicator: NVActivityIndicatorView!
-    @IBOutlet private var mainIndicator: NVActivityIndicatorView!
     @IBOutlet private var markdownView: UIView!
-    @IBOutlet private var placeholderView: PlaceholderView!
+    @IBOutlet private var retryButton: LoadingButton!
     @IBOutlet private var markdownHeightConstraint: NSLayoutConstraint!
-    
+
     private var downView: DownView?
 
     private let owner: String
@@ -34,6 +35,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
     private var actionTask: Task<Void, Never>?
 
     var onLogout: EmptyBlock?
+    var onViewIssues: EmptyBlock?
 
     init(
         owner: String,
@@ -55,7 +57,6 @@ final class RepositoryDetailInfoViewController: UIViewController {
         super.viewDidLoad()
         setupNavigation()
         setupUI()
-        setupIndicators()
         setupDown()
         bindViewModel()
 
@@ -75,16 +76,16 @@ final class RepositoryDetailInfoViewController: UIViewController {
         button.tintColor = .white
 
         navigationItem.rightBarButtonItem = button
+        navigationItem.backButtonTitle = ""
     }
-    
+
     private func setupUI() {
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
-    }
 
-    private func setupIndicators() {
-        mainIndicator.type = .circleStrokeSpin
         readmeIndicator.type = .circleStrokeSpin
+
+        retryButton.configure(style: .primary)
     }
 
     private func setupDown() {
@@ -144,19 +145,22 @@ final class RepositoryDetailInfoViewController: UIViewController {
         let isLoading = state is RepositoryInfoViewModelStateLoading
 
         isLoading
-            ? mainIndicator.startAnimating()
-            : mainIndicator.stopAnimating()
+            ? startLoading()
+            : stopLoading()
     }
 
     private func renderPlaceholder(_ state: RepositoryInfoViewModelState) {
         switch onEnum(of: state) {
         case let .error(errorState):
-            placeholderView.isHidden = false
-            placeholderView.show(with: errorState.error) { [weak self] in
-                self?.viewModel.onRetryButtonPressed()
-            }
+            showErrorPlaceholder(error: errorState.error)
+            retryButton.isHidden = false
+            retryButton.setTitle(
+                R.string.localizable.retry(),
+                for: .normal
+            )
         default:
-            placeholderView.isHidden = true
+            hidePlaceholder()
+            retryButton.isHidden = true
         }
     }
 
@@ -166,7 +170,7 @@ final class RepositoryDetailInfoViewController: UIViewController {
             return
         }
 
-        mainIndicator.stopAnimating()
+        stopLoading()
         setupDetails(details: loadedState.githubRepo)
         renderReadmeState(loadedState.readmeState)
     }
@@ -249,6 +253,29 @@ final class RepositoryDetailInfoViewController: UIViewController {
             titleColor: R.color.appCyan()!,
             additional: R.string.localizable.watchers()
         )
+
+        issueView.configure(
+            icon: R.image.ic_issue(),
+            title: "\(details.openIssuesCount)",
+            titleColor: R.color.appLightGreen()!,
+            additional: R.string.localizable.issues()
+        )
+
+        let attributeString = NSMutableAttributedString(
+            string: R.string.localizable.view_issues()
+        )
+        attributeString.addAttribute(
+            .underlineStyle,
+            value: NSUnderlineStyle.single.rawValue,
+            range: NSRange(location: 0, length: attributeString.length)
+        )
+
+        issueLinkLabel.attributedText = attributeString
+        let tapGesture = UITapGestureRecognizer(
+            target: self,
+            action: #selector(onViewIssuesTap)
+        )
+        issueLinkLabel.addGestureRecognizer(tapGesture)
     }
 
     private func handleMarkdown(markdownString: String?) {
@@ -273,19 +300,30 @@ final class RepositoryDetailInfoViewController: UIViewController {
     }
 
     private func handleErrorState(error: ErrorModel) {
-        placeholderView.isHidden = false
-
-        placeholderView.show(with: error) { [weak self] in
-            self?.viewModel.onRetryButtonPressed()
-        }
+        showErrorPlaceholder(error: error)
+        retryButton.isHidden = false
+        retryButton.setTitle(
+            R.string.localizable.retry(),
+            for: .normal
+        )
     }
 
     private func handleAction(_ action: RepositoryInfoViewModelAction) {
         switch onEnum(of: action) {
         case .logout:
             onLogout?()
+        case .routeToIssues:
+            onViewIssues?()
         default: break
         }
+    }
+
+    @IBAction func onRetryButtonTap() {
+        viewModel.onRetryButtonPressed()
+    }
+
+    @objc private func onViewIssuesTap() {
+        viewModel.onViewIssuesPressed()
     }
 
     @objc private func onLogoutTap() {

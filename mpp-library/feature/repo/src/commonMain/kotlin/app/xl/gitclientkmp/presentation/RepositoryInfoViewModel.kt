@@ -36,7 +36,7 @@ class RepositoryInfoViewModel(
     fun onBackButtonPressed() {
         Logger.info(message = "RepositoryInfoViewModel: onBackButtonPressed")
         viewModelScope.launch {
-            _action.emit(value = Action.RouteBack)
+            _action.emit(value = Action.RouteToBack)
         }
     }
 
@@ -54,12 +54,18 @@ class RepositoryInfoViewModel(
         loadRepositoryInfo()
     }
 
+    fun onViewIssuesPressed() {
+        viewModelScope.launch {
+            _action.emit(value = Action.RouteToIssues)
+        }
+    }
+
     private fun loadRepositoryInfo() {
         viewModelScope.launch {
             Logger.info(message = "RepositoryInfoViewModel: State - Loading")
             _state.value = State.Loading
             try {
-                val details = repository.getRepository(
+                val details: RepositoryDetails = repository.getRepository(
                     ownerName = owner,
                     repositoryName = repositoryName
                 )
@@ -128,6 +134,7 @@ class RepositoryInfoViewModel(
 
     sealed interface Action {
         object Logout : Action
-        object RouteBack : Action
+        object RouteToBack : Action
+        object RouteToIssues : Action
     }
 }

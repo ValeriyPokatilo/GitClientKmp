@@ -10,5 +10,6 @@ data class RepositoryDetails(
     val stargazersCount: Int,
     val subscribersCount: Int,
     val url: String,
+    val openIssuesCount: Int,
     val license: License?
 )

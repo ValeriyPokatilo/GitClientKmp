@@ -53,6 +53,7 @@ class LoadingButton @JvmOverloads constructor(
         button.setTextColor(ContextCompat.getColor(context, R.color.white))
         button.backgroundTintList =
             ColorStateList.valueOf(ContextCompat.getColor(context, R.color.green))
+        button.strokeWidth = 0
     }
 
     fun setSecondaryStyle() {

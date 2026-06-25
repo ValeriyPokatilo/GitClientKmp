@@ -16,3 +16,17 @@
 "watchers" = "watchers";
 "refresh" = "Refresh";
 "retry" = "Retry";
+"issues_empty_title" = "Empty";
+"issues_empty_message" = "No issues at the moment";
+"issues" = "Issues";
+"view_issues" = "View issues";
+"new_issue_button_title" = "Create new issue";
+"issue_number" = "Issue #";
+"title" = "Title";
+"description" = "Description";
+"new_issue" = "New Issue";
+"submit_new_issue_button_title" = "Submit new issue";
+"attach_files" = "Attach files";
+"attached_photos" = "Attached photos";
+"upload_files" = "Uploading your files...";
+"zero" = "0";

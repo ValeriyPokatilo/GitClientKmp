@@ -21,4 +21,18 @@
     <string name="github_logo_description">Github logo</string>
     <string name="placeholder_icon_description">Placeholder icon</string>
     <string name="reload_data_description">Reload data</string>
+    <string name="issues">Issues</string>
+    <string name="view_issues">View issues</string>
+    <string name="new_issue_button_title">CREATE NEW ISSUE</string>
+    <string name="new_issue">New Issue</string>
+    <string name="issues_empty_title">Empty</string>
+    <string name="issues_empty_message">No issues at the moment</string>
+    <string name="issue_number">Issue #</string>
+    <string name="description">Description</string>
+    <string name="attach_files">Attach files</string>
+    <string name="attached_photos">Attached photos</string>
+    <string name="upload_files">Uploading your files… (%1$d/%2$d)</string>
+    <string name="arrow_icon_description">Arrow icon</string>
+    <string name="submit_new_issue_button_title">SUBMIT NEW ISSUE</string>
+    <string name="title">Title</string>
 </resources>

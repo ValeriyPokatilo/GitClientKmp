@@ -14,6 +14,7 @@ fun RepoDetailsDto.toEntity(): RepositoryDetails {
         stargazersCount = this.stargazersCount,
         subscribersCount = this.subscribersCount,
         url = this.url,
+        openIssuesCount = this.openIssuesCount,
         license = this.license?.toEntity()
     )
 }

@@ -57,5 +57,65 @@
         <action
             android:id="@+id/action_detailInfoFragment_to_authFragment"
             app:destination="@id/authFragment" />
+        <action
+            android:id="@+id/action_detailInfoFragment_to_issuesListFragment"
+            app:destination="@id/issuesListFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/issuesListFragment"
+        android:name="org.example.app.presentation.IssuesListFragment"
+        android:label="issues_list_fragment"
+        tools:layout="@layout/issues_list_fragment">
+        <argument
+            android:name="owner"
+            app:argType="string" />
+        <argument
+            android:name="repositoryName"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_issuesListFragment_to_createIssueFragment"
+            app:destination="@id/createIssueFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_issuesListFragment_to_issueInfoFragment"
+            app:destination="@id/issueInfoFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/issueInfoFragment"
+        android:name="org.example.app.presentation.IssueInfoFragment"
+        android:label="issue_info_fragment"
+        tools:layout="@layout/issue_info_fragment">
+        <argument
+            android:name="owner"
+            app:argType="string" />
+        <argument
+            android:name="repositoryName"
+            app:argType="string" />
+        <argument
+            android:name="issueNumber"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/createIssueFragment"
+        android:name="org.example.app.presentation.CreateIssueFragment"
+        android:label="create_issue_fragment"
+        tools:layout="@layout/create_issue_fragment">
+        <argument
+            android:name="owner"
+            app:argType="string" />
+        <argument
+            android:name="repositoryName"
+            app:argType="string" />
     </fragment>
 </navigation>

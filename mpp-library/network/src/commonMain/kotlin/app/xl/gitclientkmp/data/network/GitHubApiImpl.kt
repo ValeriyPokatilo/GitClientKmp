@@ -1,5 +1,7 @@
 package app.xl.gitclientkmp.data.network
 
+import app.xl.gitclientkmp.data.dto.CreateIssueRequestDto
+import app.xl.gitclientkmp.data.dto.IssueDto
 import app.xl.gitclientkmp.data.dto.ReadmeDto
 import app.xl.gitclientkmp.data.dto.RepoDetailsDto
 import app.xl.gitclientkmp.data.dto.RepoDto
@@ -9,7 +11,11 @@ import io.ktor.client.call.body
 import io.ktor.client.request.get
 import io.ktor.client.request.header
 import io.ktor.client.request.parameter
+import io.ktor.client.request.post
+import io.ktor.client.request.setBody
+import io.ktor.http.ContentType
 import io.ktor.http.HttpHeaders
+import io.ktor.http.contentType
 
 class GitHubApiImpl(
     private val client: HttpClient
@@ -39,6 +45,47 @@ class GitHubApiImpl(
     ): ReadmeDto {
         return client.get(urlString = "repos/$ownerName/$repositoryName/readme") {
             branchName?.let { parameter("ref", it) }
+        }.body()
+    }
+
+    override suspend fun getIssues(
+        ownerName: String,
+        repositoryName: String,
+        pageSize: Int,
+        page: Int
+    ): List<IssueDto> {
+        return client.get("repos/$ownerName/$repositoryName/issues") {
+            parameter(key = "state", value = "all")
+            parameter(key = "page", value = page)
+            parameter(key = "per_page", value = pageSize)
+            parameter(key = "sort", value = "updated")
+            parameter(key = "direction", value = "desc")
+        }.body()
+    }
+
+    override suspend fun getIssue(
+        ownerName: String,
+        repositoryName: String,
+        issueNumber: Int
+    ): IssueDto {
+        return client.get(urlString = "repos/$ownerName/$repositoryName/issues/$issueNumber").body()
+    }
+
+    override suspend fun createIssue(
+        ownerName: String,
+        repositoryName: String,
+        title: String,
+        body: String
+    ): IssueDto {
+        return client.post(urlString = "repos/$ownerName/$repositoryName/issues") {
+            contentType(type = ContentType.Application.Json)
+
+            setBody(
+                CreateIssueRequestDto(
+                    title = title,
+                    body = body
+                )
+            )
         }.body()
     }
 }

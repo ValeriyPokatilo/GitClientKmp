@@ -46,7 +46,9 @@ dependencies {
 
     implementation(projects.mppLibrary)
     implementation(libs.markwon)
+    implementation(libs.markwon.image.coil)
     implementation(libs.moko.units)
+    implementation(libs.moko.units.viewbinding)
 
     api(libs.kotlinxDateTime)
     implementation(project(":mpp-library:entity"))

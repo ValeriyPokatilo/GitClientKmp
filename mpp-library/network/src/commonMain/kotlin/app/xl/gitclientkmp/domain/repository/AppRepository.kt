@@ -1,5 +1,6 @@
 package app.xl.gitclientkmp.domain.repository
 
+import app.xl.gitclientkmp.Issue
 import app.xl.gitclientkmp.Repository
 import app.xl.gitclientkmp.RepositoryDetails
 import app.xl.gitclientkmp.UserInfo
@@ -26,6 +27,32 @@ interface AppRepository {
         repositoryName: String,
         branchName: String? = null
     ): String
+
+    @Throws(Exception::class)
+    suspend fun getIssues(
+        ownerName: String,
+        repositoryName: String,
+        pageSize: Int,
+        page: Int
+    ): List<Issue>
+
+    @Throws(Exception::class)
+    suspend fun getIssue(
+        ownerName: String,
+        repositoryName: String,
+        issueNumber: Int
+    ): Issue
+
+    @Throws(Exception::class)
+    suspend fun createIssue(
+        ownerName: String,
+        repositoryName: String,
+        title: String,
+        body: String
+    ): Issue
+
+    @Throws(Exception::class)
+    suspend fun uploadImage(bytes: ByteArray): String
 
     fun logout()
 }

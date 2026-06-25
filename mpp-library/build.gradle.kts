@@ -17,6 +17,7 @@ plugins {
 val projectModules = listOf(
     projects.mppLibrary.feature.auth,
     projects.mppLibrary.feature.repo,
+    projects.mppLibrary.feature.issue,
     projects.mppLibrary.network,
     projects.mppLibrary.utils,
     projects.mppLibrary.entity,
@@ -51,6 +52,8 @@ kotlin {
             export(libs.moko.graphics)
             export(libs.moko.mvvm.core)
             export(libs.moko.mvvm.flow)
+            export(libs.moko.mvvm.liveData)
+            export(libs.moko.mvvm.liveData.resources)
             export(libs.moko.mvvm.state)
             export(libs.moko.fields.core)
             export(libs.moko.errors)
@@ -83,6 +86,8 @@ dependencies {
     commonMainApi(libs.moko.mvvm.core)
     commonMainApi(libs.moko.mvvm.state)
     commonMainApi(libs.moko.mvvm.flow)
+    commonMainApi(libs.moko.mvvm.liveData)
+    commonMainApi(libs.moko.mvvm.liveData.resources)
     commonMainApi(libs.moko.fields.core)
     commonMainApi(libs.moko.errors)
     commonMainApi(libs.moko.crashReporting.core)

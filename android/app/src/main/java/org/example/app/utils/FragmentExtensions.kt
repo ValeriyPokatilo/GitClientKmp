@@ -1,8 +1,14 @@
 package org.example.app.utils
 
+import android.app.AlertDialog
+import android.content.Context
 import android.content.Intent
+import android.view.LayoutInflater
 import androidx.core.net.toUri
 import androidx.fragment.app.Fragment
+import app.xl.gitclientkmp.domain.error.ErrorModel
+import org.example.app.R
+import org.example.app.databinding.AlertFragmentBinding
 
 fun Fragment.openUrl(url: String) {
     if (url.isBlank()) return
@@ -16,19 +22,24 @@ fun Fragment.openUrl(url: String) {
     }
 }
 
-fun Fragment.showErrorAlertDialog(
-    title: String,
-    message: String,
-    buttonTitle: String
-) {
-    val context = context ?: return
+fun Fragment.showErrorAlertDialog(errorModel: ErrorModel) {
+    val context: Context = context ?: return
 
-    CustomAlertDialog
+    val binding: AlertFragmentBinding = AlertFragmentBinding.inflate(
+        LayoutInflater.from(context)
+    )
+
+    val dialog: AlertDialog = CustomAlertDialog
         .create(
             context = context,
-            title = title,
-            message = message,
-            buttonTitle = buttonTitle
+            title = getString(R.string.error),
+            message = errorModel.alertMessage?.toString(requireContext()).orEmpty(),
+            buttonTitle = getString(R.string.ok)
         )
-        .show()
+
+    binding.dialogButton.setOnClickListener {
+        dialog.dismiss()
+    }
+
+    dialog.show()
 }

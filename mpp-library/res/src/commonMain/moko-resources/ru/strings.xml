@@ -7,4 +7,6 @@
     <string name="connection_error_message">Проверьте интернет-соединение</string>
     <string name="request_error_title">Произошла ошибка</string>
     <string name="request_error_message">Проверьте что-нибудь</string>
+    <string name="invalid_title">Некорректный заголовок</string>
+    <string name="invalid_description">Некорректное описание</string>
 </resources>

@@ -3,12 +3,11 @@ import MultiPlatformLibraryUnits
 import NVActivityIndicatorView
 import UIKit
 
-final class RepositoriesListViewController: UIViewController {
+final class RepositoriesListViewController: BaseViewController {
     @IBOutlet private var tableView: UITableView!
-    @IBOutlet private var indicatorView: NVActivityIndicatorView!
-    @IBOutlet private var placeholderView: PlaceholderView!
+    @IBOutlet private var retryButton: LoadingButton!
 
-    private lazy var viewModel: RepositoriesListViewModel = Koin.instance
+    private var viewModel: RepositoriesListViewModel = Koin.instance
         .getRepositoriesListViewModel()
 
     private var stateTask: Task<Void, Never>?
@@ -24,16 +23,12 @@ final class RepositoriesListViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         localize()
+        setupUI()
         setupNavigation()
-        setupIndicator()
         setupTableView()
         bindViewModel()
 
         viewModel.onStart()
-    }
-
-    private func setupIndicator() {
-        indicatorView.type = .circleStrokeSpin
     }
 
     private func setupTableView() {
@@ -62,6 +57,10 @@ final class RepositoriesListViewController: UIViewController {
 
     private func localize() {
         navigationItem.title = R.string.localizable.repositories()
+    }
+
+    private func setupUI() {
+        retryButton.configure(style: .primary)
     }
 
     private func bindViewModel() {
@@ -94,8 +93,8 @@ final class RepositoriesListViewController: UIViewController {
         let isLoading = state is RepositoriesListViewModelStateLoading
 
         isLoading
-            ? indicatorView.startAnimating()
-            : indicatorView.stopAnimating()
+            ? startLoading()
+            : stopLoading()
     }
 
     private func renderContent(_ state: RepositoriesListViewModelState) {
@@ -119,23 +118,22 @@ final class RepositoriesListViewController: UIViewController {
     private func renderPlaceholder(_ state: RepositoriesListViewModelState) {
         switch onEnum(of: state) {
         case .empty:
-            placeholderView.isHidden = false
-            placeholderView.showEmpty(
-                title: R.string.localizable.repositories_empty_title(),
-                message: R.string.localizable.repositories_empty_message(),
-                action: { [weak self] in
-                    self?.viewModel.onRetryButtonPressed()
-                }
+            showEmptyRepositories()
+            retryButton.isHidden = false
+            retryButton.setTitle(
+                R.string.localizable.refresh(),
+                for: .normal
             )
-
         case let .error(errorState):
-            placeholderView.isHidden = false
-            placeholderView.show(with: errorState.error) { [weak self] in
-                self?.viewModel.onRetryButtonPressed()
-            }
-
+            showErrorPlaceholder(error: errorState.error)
+            retryButton.isHidden = false
+            retryButton.setTitle(
+                R.string.localizable.retry(),
+                for: .normal
+            )
         default:
-            placeholderView.isHidden = true
+            hidePlaceholder()
+            retryButton.isHidden = true
         }
     }
 
@@ -156,6 +154,10 @@ final class RepositoriesListViewController: UIViewController {
 
     @objc private func onLogoutTap() {
         viewModel.onLogoutButtonPressed()
+    }
+
+    @IBAction private func retryButtonAction(_: Any) {
+        viewModel.onRetryButtonPressed()
     }
 
     deinit {

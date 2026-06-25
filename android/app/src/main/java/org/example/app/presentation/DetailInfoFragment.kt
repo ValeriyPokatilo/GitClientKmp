@@ -1,6 +1,7 @@
 package org.example.app.presentation
 
 import android.content.Context
+import android.graphics.Paint
 import android.os.Bundle
 import android.text.method.LinkMovementMethod
 import android.view.LayoutInflater
@@ -9,6 +10,7 @@ import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
+import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import app.xl.gitclientkmp.License
@@ -132,8 +134,12 @@ class DetailInfoFragment : Fragment() {
                 navigateToAuth()
             }
 
-            RepositoryInfoViewModel.Action.RouteBack -> {
+            RepositoryInfoViewModel.Action.RouteToBack -> {
                 navigateToList()
+            }
+
+            RepositoryInfoViewModel.Action.RouteToIssues -> {
+                navigateToIssues()
             }
         }
     }
@@ -205,6 +211,7 @@ class DetailInfoFragment : Fragment() {
         setupRepositoryLink(url = details.url)
         setupLicense(license = details.license)
         setupCounters(details = details)
+        setupIssues(issuesCount = details.openIssuesCount)
     }
 
     private fun setupRepositoryLink(url: String) {
@@ -234,6 +241,15 @@ class DetailInfoFragment : Fragment() {
         binding.watchersCounter.text = details.subscribersCount.toString()
     }
 
+    private fun setupIssues(issuesCount: Int) {
+        binding.issuelink.paintFlags =
+            binding.issuesCounter.paintFlags or Paint.UNDERLINE_TEXT_FLAG
+        binding.issuelink.setOnClickListener {
+            viewModel.onViewIssuesPressed()
+        }
+        binding.issuesCounter.text = issuesCount.toString()
+    }
+
     private fun showError(error: ErrorModel) {
         binding.placeholderView.render(
             state = PlaceholderState.Error(error = error)
@@ -246,5 +262,15 @@ class DetailInfoFragment : Fragment() {
 
     private fun navigateToList() {
         findNavController().popBackStack()
+    }
+
+    private fun navigateToIssues() {
+        val action: NavDirections = DetailInfoFragmentDirections
+            .actionDetailInfoFragmentToIssuesListFragment(
+                owner = args.owner,
+                repositoryName = args.repositoryName
+            )
+
+        findNavController().navigate(directions = action)
     }
 }

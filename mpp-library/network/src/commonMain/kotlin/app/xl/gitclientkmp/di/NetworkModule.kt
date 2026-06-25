@@ -2,6 +2,8 @@ package app.xl.gitclientkmp.di
 
 import app.xl.gitclientkmp.data.network.GitHubApi
 import app.xl.gitclientkmp.data.network.GitHubApiImpl
+import app.xl.gitclientkmp.data.network.ImageApi
+import app.xl.gitclientkmp.data.network.ImageApiImpl
 import app.xl.gitclientkmp.data.network.createHttpClient
 import app.xl.gitclientkmp.data.repository.AppRepositoryImpl
 import app.xl.gitclientkmp.domain.repository.AppRepository
@@ -18,6 +20,7 @@ val networkModule: Module = module {
     single<AppRepository> {
         AppRepositoryImpl(
             api = get(),
+            imageApi = get(),
             json = get(),
             keyValueStorage = get()
         )
@@ -39,5 +42,9 @@ val networkModule: Module = module {
 
     single<GitHubApi> {
         GitHubApiImpl(client = get())
+    }
+
+    single<ImageApi> {
+        ImageApiImpl(client = get())
     }
 }
