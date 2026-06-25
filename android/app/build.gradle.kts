@@ -7,16 +7,21 @@ plugins {
     id("com.google.gms.google-services")
     id("com.google.firebase.crashlytics")
     id("android-compose-convention")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
     namespace = "org.example.app"
 
     defaultConfig {
-        applicationId = "dev.icerock.boilerplate"
+        applicationId = "app.xl.gitclientkmp"
 
         versionCode = Integer.parseInt(project.property("VERSION_CODE") as String)
         versionName = project.property("VERSION_NAME") as String
+    }
+
+    buildFeatures {
+        viewBinding = true
     }
 }
 
@@ -40,6 +45,9 @@ dependencies {
     implementation(libs.moko.crashReporting.crashlytics)
 
     implementation(projects.mppLibrary)
+    implementation(libs.markwon)
+    implementation(libs.moko.units)
 
     api(libs.kotlinxDateTime)
+    implementation(project(":mpp-library:entity"))
 }

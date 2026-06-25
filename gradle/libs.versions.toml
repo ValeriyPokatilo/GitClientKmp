@@ -83,8 +83,12 @@ testExtJunitVersion = "1.2.1"
 # koin
 koinBomVersion = "4.0.0"
 
+markwon = "4.6.2"
+
 [libraries]
 detekt-formatting = { module = "io.gitlab.arturbosch.detekt:detekt-formatting", version.ref = "detektVersion" }
+
+markwon = { module = "io.noties.markwon:core", version.ref = "markwon" }
 
 # kotlin
 junit = { module = "junit:junit", version.ref = "junitVersion" }
@@ -98,6 +102,8 @@ coroutinesAndroid = { module = "org.jetbrains.kotlinx:kotlinx-coroutines-android
 kotlinxImmutable = { module = "org.jetbrains.kotlinx:kotlinx-collections-immutable", version.ref = "kotlinxImmutableVersion" }
 
 # ktor
+ktorClient-content-negotiation = { module = "io.ktor:ktor-client-content-negotiation", version.ref = "ktorClientVersion" }
+ktorSerialization-kotlinx-json = { module = "io.ktor:ktor-serialization-kotlinx-json", version.ref = "ktorClientVersion" }
 ktorClient = { module = "io.ktor:ktor-client-core", version.ref = "ktorClientVersion" }
 ktorClientLogging = { module = "io.ktor:ktor-client-logging", version.ref = "ktorClientVersion" }
 ktorClientAuth = { module = "io.ktor:ktor-client-auth", version.ref = "ktorClientVersion" }
@@ -138,6 +144,7 @@ moko-crashReporting-crashlytics = { module = "dev.icerock.moko:crash-reporting-c
 moko-crashReporting-napier = { module = "dev.icerock.moko:crash-reporting-napier", version.ref = "mokoCrashReportingVersion" }
 
 # multiplatform
+multiplatformSettings-noArg = { module = "com.russhwolf:multiplatform-settings-no-arg", version.ref = "multiplatformSettingsVersion" }
 multiplatformSettings = { module = "com.russhwolf:multiplatform-settings", version.ref = "multiplatformSettingsVersion" }
 multiplatformSettings-serialization = { module = "com.russhwolf:multiplatform-settings-serialization", version.ref = "multiplatformSettingsVersion" }
 multiplatformSettings-test = { module = "com.russhwolf:multiplatform-settings-test", version.ref = "multiplatformSettingsVersion" }

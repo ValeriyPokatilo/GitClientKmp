@@ -15,7 +15,12 @@ plugins {
 }
 
 val projectModules = listOf(
-    projects.mppLibrary.utils
+    projects.mppLibrary.feature.auth,
+    projects.mppLibrary.feature.repo,
+    projects.mppLibrary.network,
+    projects.mppLibrary.utils,
+    projects.mppLibrary.entity,
+    projects.mppLibrary.storage
 )
 
 kotlin {
@@ -50,6 +55,7 @@ kotlin {
             export(libs.moko.fields.core)
             export(libs.moko.errors)
             export(libs.moko.crashReporting.core)
+            export(libs.moko.units)
         }
     }
 }
@@ -84,6 +90,7 @@ dependencies {
     commonMainImplementation(libs.moko.network)
     commonMainImplementation(libs.moko.network.errors)
     commonMainImplementation(libs.moko.network.engine)
+    commonMainImplementation(libs.moko.units)
 
     //Koin DI
     commonMainApi(platform(libs.koin.bom))

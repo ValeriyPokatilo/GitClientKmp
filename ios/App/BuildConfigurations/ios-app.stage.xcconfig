@@ -1,8 +1,8 @@
 #include "ios-app.shared.xcconfig"
 
 // add "stage" params
-PRODUCT_BUNDLE_IDENTIFIER = dev.icerock.boilerplate.stage
+PRODUCT_BUNDLE_IDENTIFIER = app.xl.gitclientkmp.stage
 PROVISIONING_PROFILE_SPECIFIER = $(sigh_dev.icerock.boilerplate.stage_development_profile-name)
 // $() is hack to pass // in value
 SERVER_ENDPOINT = https:/$()/stage.localhost/
-BUNDLE_DISPLAY_NAME = MOKO app (S)
+BUNDLE_DISPLAY_NAME = GitClient (S)

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+    <string name="info_for_developer">information for developers</string>
+    <string name="error_with_dev_info">%1$s\n%2$s</string>
+    <string name="invalid_token_reason">Invalid token</string>
+    <string name="connection_error_title">Connection error</string>
+    <string name="connection_error_message">Check your Internet connection</string>
+    <string name="request_error_title">Something error</string>
+    <string name="request_error_message">Check your something</string>
+</resources>

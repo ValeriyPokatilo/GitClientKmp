@@ -5,6 +5,9 @@
 package org.example.app
 
 import android.app.Application
+import app.xl.gitclientkmp.di.repoAndroidModule
+import app.xl.gitclientkmp.di.utilsAndroidModule
+import app.xl.gitclientkmp.domain.error.Configurator
 import com.google.firebase.FirebaseApp
 import com.google.firebase.crashlytics.FirebaseCrashlytics
 import dev.icerock.moko.crashreporting.crashlytics.CrashlyticsLogger
@@ -35,6 +38,10 @@ class MainApplication : Application() {
             }
 
             androidContext(this@MainApplication)
+
+            modules(repoAndroidModule, utilsAndroidModule)
         }
+
+        Configurator.init()
     }
 }

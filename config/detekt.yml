@@ -1,6 +1,9 @@
 complexity:
   LongParameterList:
     active: false
+  TooManyFunctions:
+    active: true
+    thresholdInClasses: 30
 
 exceptions:
   TooGenericExceptionCaught:
